@@ -7,11 +7,14 @@ package mx.unam.pixel.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 import org.hibernate.type.TimestampType;
 
 /**
@@ -24,13 +27,18 @@ public class Resena implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+   @NotNull
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     private Usuario usuario;
+   @NotNull 
+   @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     private Local local;
-   
+   @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
+   @NotNull 
     private String comentario;
+   @NotNull 
     private int calificacion;
 
     public Usuario getUsuario() {

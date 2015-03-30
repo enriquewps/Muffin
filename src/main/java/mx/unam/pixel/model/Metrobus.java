@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,10 +22,8 @@ public class Metrobus implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @NotNull
     private String nombre;
-    private double latitud;
-    private double longiud;
 
     public String getNombre() {
         return nombre;
@@ -34,22 +33,6 @@ public class Metrobus implements Serializable {
         this.nombre = nombre;
     }
 
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public double getLongiud() {
-        return longiud;
-    }
-
-    public void setLongiud(double longiud) {
-        this.longiud = longiud;
-    }
-    
     public Long getId() {
         return id;
     }

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -22,33 +23,16 @@ public class BiciPuma implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    private String name; 
-    private double latitud;
-    private double longitud;
+    @NotNull
+    private String nombre; 
 
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
-    }
-    
     
     public String getName() {
-        return name;
+        return nombre;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nombre = name;
     }
 
     

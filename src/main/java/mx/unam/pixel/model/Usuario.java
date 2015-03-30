@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -22,10 +23,15 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     private String nombreUsuario;
+    @NotNull
     private String correo;
+    @NotNull    
     private String nombre;
+    @NotNull
     private String contrasena;
+    @NotNull
     private boolean administrador;
 
     public String getNombreUsuario() {

@@ -7,10 +7,15 @@ package mx.unam.pixel.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -22,12 +27,20 @@ public class Facultad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+        @NotNull
     private String nombre;
     
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Pumabus> pumabus;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<BiciPuma> biciPuma;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Metro> metro;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Metrobus> metroBus;
 
     public String getNombre() {
