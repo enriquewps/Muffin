@@ -27,10 +27,13 @@ public class Facultad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-        @NotNull
+    @Id    
+    @NotNull
     private String nombre;
     
-
+        
+        
+        
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Pumabus> pumabus;
 

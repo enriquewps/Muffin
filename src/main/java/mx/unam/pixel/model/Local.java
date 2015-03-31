@@ -8,11 +8,13 @@ package mx.unam.pixel.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -36,13 +38,23 @@ public class Local implements Serializable {
     private double latitud;
     @NotNull
     private double longitud;
+    @NotNull
+    private Double rangoInferior;
+     
+    @NotNull
+    private Double rangoSuperior;
+     
+    
     private boolean wifi;
     private boolean estacionamiento; 
     //Solo puede tener valores entre 1 y 3 significando 1: comer 2: llevar 3: ambos
     private int comerOLlevar;
     private boolean visible;
     
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
+    private Facultad facultad;
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Categoria recomendacion;
         
     @OneToMany(fetch = FetchType.EAGER,
