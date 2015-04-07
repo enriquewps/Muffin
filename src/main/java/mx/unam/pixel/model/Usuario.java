@@ -23,8 +23,11 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Id
     @NotNull
     private String nombreUsuario;
+    
+    @Id
     @NotNull
     private String correo;
     @NotNull    

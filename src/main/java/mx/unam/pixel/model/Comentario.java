@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
@@ -22,13 +24,13 @@ import org.hibernate.type.TimestampType;
  * @author Enrique
  */
 @Entity
-public class Resena implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Comentario implements Serializable {
+    //private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
    @NotNull
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Usuario usuario;
    @NotNull 
    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
@@ -99,10 +101,10 @@ public class Resena implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Resena)) {
+        if (!(object instanceof Comentario)) {
             return false;
         }
-        Resena other = (Resena) object;
+        Comentario other = (Comentario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

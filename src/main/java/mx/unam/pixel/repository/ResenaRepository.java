@@ -8,7 +8,7 @@ package mx.unam.pixel.repository;
 import java.util.Date;
 import java.util.List;
 import mx.unam.pixel.model.Local;
-import mx.unam.pixel.model.Resena;
+import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Usuario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -17,10 +17,10 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Enrique
  */
-public interface ResenaRepository extends CrudRepository<Resena, Integer>{
+public interface ResenaRepository extends CrudRepository<Comentario, Integer>{
      @Query("SELECT l FROM Resena l")
      @Override
-    List<Resena> findAll();
+    List<Comentario> findAll();
     
         @Query("SELECT r FROM Resena r JOIN FECTH r.usuario u "+
            "WHERE u.nombre LIKE CONCAT('%',?,'%')")
@@ -28,20 +28,20 @@ public interface ResenaRepository extends CrudRepository<Resena, Integer>{
     
         @Query("SELECT r FROM Resena r  "+
            "WHERE r.usuario.nombre LIKE CONCAT('%',?,'%')")
-    List<Resena> findByUsuario1(String usuario);
+    List<Comentario> findByUsuario1(String usuario);
     
             @Query("SELECT r FROM Resena r JOIN FECTH r.local u "+
            "WHERE u.nombre LIKE CONCAT('%',?,'%')")
-    List<Resena> findByLocal(String local);
+    List<Comentario> findByLocal(String local);
     
         @Query("SELECT r FROM Resena r  "+
            "WHERE r.local.nombre LIKE CONCAT('%',?,'%')")
-    List<Resena> findByLocal1(String local);
+    List<Comentario> findByLocal1(String local);
     
         @Query("SELECT l FROM Resena l WHERE l.fecha >= ?1 AND l.fecha<= ?2")
-    List<Resena> findByFecha(Date antes,Date despues);
+    List<Comentario> findByFecha(Date antes,Date despues);
     
     @Query("SELECT l FROM Resena l WHERE l.calificacion >= ?1 AND l.calificacion<= ?2")
-    List<Resena> findByCalificacion(Integer menor,Integer mayor);
+    List<Comentario> findByCalificacion(Integer menor,Integer mayor);
     
 }

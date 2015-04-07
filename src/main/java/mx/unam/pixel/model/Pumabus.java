@@ -6,6 +6,7 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,17 @@ public class Pumabus implements Serializable {
 
     @NotNull
     private String estacion;
+    
+    @NotNull
+    private List<Integer> lineas;
+
+    public List<Integer> getLineas() {
+        return lineas;
+    }
+
+    public void setLineas(List<Integer> lineas) {
+        this.lineas = lineas;
+    }
 
 
     public String getEstacion() {

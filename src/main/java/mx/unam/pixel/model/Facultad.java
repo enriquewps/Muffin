@@ -29,9 +29,7 @@ public class Facultad implements Serializable {
     private Integer id;
     @Id    
     @NotNull
-    private String nombre;
-    
-        
+    private String nombreFac;
         
         
     @ManyToMany(fetch = FetchType.EAGER)
@@ -46,12 +44,23 @@ public class Facultad implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Metrobus> metroBus;
 
-    public String getNombre() {
-        return nombre;
+    //1:Abierto 2: estudiantes 3:Academico
+    private Integer estacionamiento; 
+
+    public Integer getEstacionamiento() {
+        return estacionamiento;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEstacionamiento(Integer estacionamiento) {
+        this.estacionamiento = estacionamiento;
+    }
+    
+    public String getNombreFac() {
+        return nombreFac;
+    }
+
+    public void setNombreFac(String nombre) {
+        this.nombreFac = nombre;
     }
 
     public List<Pumabus> getPumabus() {
@@ -93,7 +102,7 @@ public class Facultad implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
+/*
     @Override
     public int hashCode() {
         int hash = 0;
@@ -113,7 +122,7 @@ public class Facultad implements Serializable {
         }
         return true;
     }
-
+*/
     @Override
     public String toString() {
         return "mx.unam.pixel.model.Facultad[ id=" + id + " ]";

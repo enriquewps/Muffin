@@ -38,18 +38,22 @@ public class Local implements Serializable {
     private double latitud;
     @NotNull
     private double longitud;
+    
+    
+    //Preguntar a memo por el trigger
     @NotNull
-    private Double rangoInferior;
+    private Integer rangoInferior;
      
     @NotNull
-    private Double rangoSuperior;
+    private Integer rangoSuperior;
      
     
     private boolean wifi;
-    private boolean estacionamiento; 
+    
     //Solo puede tener valores entre 1 y 3 significando 1: comer 2: llevar 3: ambos
     private int comerOLlevar;
-    private boolean visible;
+    
+    private boolean aprobado;
     
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Facultad facultad;
@@ -62,6 +66,96 @@ public class Local implements Serializable {
             mappedBy = "local",
             orphanRemoval = true)
     private List<Categoria> categorias;
+
+    private String descripcion;
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public Integer getRangoInferior() {
+        return rangoInferior;
+    }
+
+    public void setRangoInferior(Integer rangoInferior) {
+        this.rangoInferior = rangoInferior;
+    }
+
+    public Integer getRangoSuperior() {
+        return rangoSuperior;
+    }
+
+    public void setRangoSuperior(Integer rangoSuperior) {
+        this.rangoSuperior = rangoSuperior;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public int getComerOLlevar() {
+        return comerOLlevar;
+    }
+
+    public void setComerOLlevar(int comerOLlevar) {
+        this.comerOLlevar = comerOLlevar;
+    }
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public Facultad getFacultad() {
+        return facultad;
+    }
+
+    public void setFacultad(Facultad facultad) {
+        this.facultad = facultad;
+    }
+
+    public Categoria getRecomendacion() {
+        return recomendacion;
+    }
+
+    public void setRecomendacion(Categoria recomendacion) {
+        this.recomendacion = recomendacion;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
     
     
     

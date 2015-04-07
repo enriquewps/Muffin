@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Categoria implements Serializable {
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -31,14 +31,6 @@ public class Categoria implements Serializable {
 
     @NotNull
     private int precioMenor;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public int getPrecioMayor() {
         return precioMayor;
@@ -54,6 +46,14 @@ public class Categoria implements Serializable {
 
     public void setPrecioMenor(int precioMenor) {
         this.precioMenor = precioMenor;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     
