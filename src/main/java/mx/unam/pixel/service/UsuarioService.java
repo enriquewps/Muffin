@@ -5,16 +5,30 @@
  */
 package mx.unam.pixel.service;
 
+import java.util.List;
+import mx.unam.pixel.model.Usuario;
+
 /**
  *
  * @author Enrique
  */
 public interface UsuarioService {
     
-    boolean registrado(String correo);
+    boolean estaRegistrado(String correo);
     
-    boolean crearUsuario(String nombre, String usuario, String correo, String contrasena, 
-            boolean adminsitrador);
+    boolean crearUsuario(Usuario usuario);
     
-    elim
+    boolean eliminaUsuario(Usuario usuario);
+    
+    List<Usuario> findAll();
+    
+    List<Usuario> findByNombre(String nombre);
+    
+    List<Usuario> findByCorreo(String correo);
+    
+    List<Usuario> findByNombreUsuario(String nombreUsuario);
+    
+    void creaAdministrador(Usuario usuario);
+    
+    
 }
