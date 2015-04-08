@@ -33,8 +33,9 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     @Query("SELECT loc FROM Local loc WHERE loc.estacionamiento = true ")
     List<Local> findByEstacionamiento();
     
-    @Query("SELECT loc FROM Local loc WHERE loc.visible = true ")
-    List<Local> findByVisible();
+    @Query("SELECT loc FROM Local loc WHERE loc.aprobado = ? ")
+    List<Local> findByAprobado(Boolean b);
+    
 
     @Query("SELECT loc FROM Local loc WHERE loc.comeOLlevar = 1 or loc.comeOLlevar = 3 ")
     List<Local> findByComer();
@@ -58,7 +59,22 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
            "WHERE c.nombre LIKE CONCAT('%',?,'%') ")
     List<Local> findByCategoria(String categoria);
     
-    @Query("SELECT l FROM Local l JOIN FECTH l.rutas r "+
+    /*@Query("SELECT l FROM Local l JOIN FECTH l.rutas r "+
            "WHERE r.nombreRuta LIKE CONCAT('%',?,'%')")
     List<Local> findByRutaPumaBus(String nombreRuta);
+    */
+    
+    @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.pumabus p "+
+           "WHERE p.estacion LIKE CONCAT('%',?,'%')")
+    List<Local> findByPumabus(String estacion);
+        @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.biciPuma p "+
+           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByBiciPuma(String estacion);
+        @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.metro p "+
+           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByMetro(String estacion);
+        @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.metrobus p "+
+           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByMetroBus(String estacion);
+    
 }
