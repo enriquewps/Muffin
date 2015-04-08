@@ -14,11 +14,10 @@ import mx.unam.pixel.model.Usuario;
  */
 public interface UsuarioService {
     
-    boolean estaRegistrado(String correo);
     
     boolean crearUsuario(Usuario usuario);
     
-    boolean eliminaUsuario(Usuario usuario);
+    void eliminaUsuario(Usuario usuario);
     
     List<Usuario> findAll();
     
@@ -28,7 +27,9 @@ public interface UsuarioService {
     
     List<Usuario> findByNombreUsuario(String nombreUsuario);
     
-    void creaAdministrador(Usuario usuario);
+    boolean creaAdministrador(Usuario usuario);
+    
+    boolean eliminaAdministrador(Usuario usuario);
     
     
 }
