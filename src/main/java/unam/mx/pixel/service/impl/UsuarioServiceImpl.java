@@ -52,13 +52,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public boolean creaAdministrador(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void creaAdministrador(Usuario usuario) {
+        usuarioRepository.rolAdministrador(usuario.getNombreUsuario(), true);
     }
 
     @Override
-    public boolean eliminaAdministrador(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminaAdministrador(Usuario usuario) {
+        usuarioRepository.rolAdministrador(usuario.getNombreUsuario(), false);
     }
     
 }

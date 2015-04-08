@@ -27,9 +27,9 @@ public interface UsuarioService {
     
     List<Usuario> findByNombreUsuario(String nombreUsuario);
     
-    boolean creaAdministrador(Usuario usuario);
+    void creaAdministrador(Usuario usuario);
     
-    boolean eliminaAdministrador(Usuario usuario);
+    void eliminaAdministrador(Usuario usuario);
     
     
 }
