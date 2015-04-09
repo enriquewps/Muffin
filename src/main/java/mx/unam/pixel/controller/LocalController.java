@@ -3,50 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.unam.pixel.model;
+package mx.unam.pixel.controller;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import mx.unam.pixel.model.Categoria;
+import mx.unam.pixel.model.Facultad;
 
 /**
  *
  * @author Enrique
  */
-@Entity
-public class Local implements Serializable {
-   // private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @NotNull
-    @Id
-    private String nombre;
-    @NotNull
+public class LocalController {
+  private String nombre;
     private double latitud;
-    @NotNull
+    
     private double longitud;
     
     
     //Preguntar a memo por el trigger
-    @NotNull
     private Integer rangoInferior;
      
-    @NotNull
     private Integer rangoSuperior;
      
     
@@ -57,41 +34,14 @@ public class Local implements Serializable {
     
     private boolean aprobado;
     
-    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Facultad facultad;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Categoria recomendacion;
         
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "local",
-            orphanRemoval = true)
     private List<Categoria> categorias;
 
     private String descripcion;
-    
-    @Lob
-    @Column(name = "FOTO",columnDefinition = "LONGBLOB")
-    @Basic(fetch=FetchType.LAZY)
-    private Byte[] foto;
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Byte[] foto) {
-        this.foto = foto;
-    }
-    
     public String getNombre() {
         return nombre;
     }
@@ -179,42 +129,14 @@ public class Local implements Serializable {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    
-    
-    
-    public Integer getId() {
-        return id;
-    }
-    
-    
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Local)) {
-            return false;
-        }
-        Local other = (Local) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "mx.unam.pixel.model.Local[ id=" + id + " ]";
-    }
+    
     
 }
