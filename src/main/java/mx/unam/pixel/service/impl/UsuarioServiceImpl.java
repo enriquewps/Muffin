@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package unam.mx.pixel.service.impl;
+package mx.unam.pixel.service.impl;
 
 import java.util.List;
 import mx.unam.pixel.model.Usuario;

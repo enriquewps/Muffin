@@ -71,10 +71,13 @@ public class Local implements Serializable {
 
     private String descripcion;
     
+    
+    private Integer califiacion;
+    
     @Lob
     @Column(name = "FOTO",columnDefinition = "LONGBLOB")
     @Basic(fetch=FetchType.LAZY)
-    private Byte[] foto;
+    private byte[] foto;
 
     public String getDescripcion() {
         return descripcion;
@@ -84,11 +87,11 @@ public class Local implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Byte[] getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(Byte[] foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
     

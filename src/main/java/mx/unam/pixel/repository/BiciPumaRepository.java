@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Enrique
  */
-public interface BiciPumaReposirtory extends CrudRepository<BiciPuma, Integer>{
+public interface BiciPumaRepository extends CrudRepository<BiciPuma, Integer>{
     
     @Query("SELECT l FROM BiciPuma l")
     @Override

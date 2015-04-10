@@ -64,6 +64,8 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     List<Local> findByRutaPumaBus(String nombreRuta);
     */
     
+    //Hay que limpiar estps metodos pues estan contnidos en la facultad
+    
     @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.pumabus p "+
            "WHERE p.estacion LIKE CONCAT('%',?,'%')")
     List<Local> findByPumabus(String estacion);
@@ -76,5 +78,15 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
         @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.metrobus p "+
            "WHERE p.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByMetroBus(String estacion);
+    
+//Hay que limpiar estps metodos pues estan contnidos en la facultad    
+
+    
+    @Query("SELECT l FROM Facultad l ")
+    List<Local> findAllFacultades();
+
+    
+        @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01  ")
+    List<Local> findByPunto(Double latitud,Double longitud);
     
 }
