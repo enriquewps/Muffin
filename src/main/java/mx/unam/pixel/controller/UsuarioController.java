@@ -35,36 +35,41 @@ public class UsuarioController {
     
     @PostConstruct
     public void init(){
+       
         usuarios = this.usuarioService.findAll();
     }
     
     
-    public void registraUsuario(){
-        this.usuarioService.crearUsuario(usuario);
+    public boolean registraUsuario(){
+        for (Usuario u: usuarios){
+            if(u.getCorreo().equals(usuario.getCorreo()) ||
+                    u.getNombreUsuario().equals(usuario.getNombreUsuario()))
+                return false;
+        }
+        boolean creado  =this.usuarioService.crearUsuario(usuario);
         this.usuario=new Usuario();
+        return creado;
     }
     
     public void borraUsuario(Usuario u){
         this.usuarioService.eliminaUsuario(u);
     }
     
-    public void recuperaContraseña(String correo ){
-        // Por Implementar
+    public void recuperaContrasena(String correo ){
+        List<Usuario> u = usuarioService.findByCorreo(correo);
+        if(u!=null || u.size() > 0 )
+            //Aqui se envia correo al usuario investigar si se regresaria null o la lista vacia
+            return;
     }
     
-    public void buscaPorNombre(){
-        usuarios = usuarioService.findByNombre(busqueda);
-    }
-
-    
-    public void buscaPorCorreo(){
-        usuarios = usuarioService.findByCorreo(busqueda);
+    public void buscaUsuario(){
+    usuarios = usuarioService.findByNombre(busqueda);
+    usuarios.addAll(usuarioService.findByCorreo(busqueda));
+    usuarios.addAll(usuarioService.findByNombreUsuario(busqueda));
     }
     
     
-    public void buscaPorNombreUsuario(){
-        usuarios = usuarioService.findByNombreUsuario(busqueda);
-    }
+    
     
     
 }

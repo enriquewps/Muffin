@@ -77,9 +77,9 @@ public class LocalController {
         metros=this.localService.findAllMetro();
         biciPumas=this.localService.findAllBiciPuma();
         metrobuses=this.localService.findAllMetrobus();
-        locales=this.localService.findAll();
         //se va a borrar pues estan en las facultades        
-
+        locales=this.localService.findAll();
+       
         facultades = localService.findAllFacultades();
         
         simpleModel = new DefaultMapModel(); 

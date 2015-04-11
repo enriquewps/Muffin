@@ -30,4 +30,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
     
     @Query("UPDATE Usuario u SET u.administrador = ?2 WHERE u.nombreUsuario LIKE ?1")
     void rolAdministrador(String usuario, boolean rol);
+    
+        
 }

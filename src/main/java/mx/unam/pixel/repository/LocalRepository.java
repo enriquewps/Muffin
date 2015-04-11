@@ -6,6 +6,7 @@
 package mx.unam.pixel.repository;
 
 import java.util.List;
+import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Local;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -88,5 +89,13 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     
         @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01  ")
     List<Local> findByPunto(Double latitud,Double longitud);
+    
+    @Query("SELECT c FROM local l JOIN FETCH l.comentarios c WHERE l.nombre = ?")
+    List<Comentario> findComentarios(String id);
+    
+        @Query("UPDATE TABLE Local l SET l.calificacion = (SELECT AVG(c.calificacion)"
+                + " FROM Comentario c WHERE c.local.id = ?) "
+                + "WHERE l.id = ?")
+    void actualizaCalificacion(Integer id);
     
 }

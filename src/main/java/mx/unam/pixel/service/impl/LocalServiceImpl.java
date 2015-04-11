@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import mx.unam.pixel.model.BiciPuma;
 import mx.unam.pixel.model.Categoria;
+import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Facultad;
 import mx.unam.pixel.repository.LocalRepository;
 import mx.unam.pixel.model.Local;
@@ -58,6 +59,7 @@ public class LocalServiceImpl implements LocalService{
     @Override
     public void guardaLocal(Local local) {
         localRepository.save(local);
+       
     }
 
     @Override
@@ -163,6 +165,16 @@ return localRepository.findByPunto(lat, lon);
     public List<Facultad> findAllFacultades() {
 return facultadRepository.findAll();
         }
+
+    @Override
+    public List<Comentario> findComentarios(String local) {
+        return localRepository.findComentarios(local);
+    }
+
+    @Override
+    public void actualizaCalificacion(Integer id) {
+localRepository.actualizaCalificacion(id);
+    }
 
 
 }

@@ -72,13 +72,37 @@ public class Local implements Serializable {
     private String descripcion;
     
     
-    private Integer califiacion;
+    private Integer calificacion;
+    
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "local",
+            orphanRemoval = true)
+    private List<Comentario> comentarios;    
     
     @Lob
     @Column(name = "FOTO",columnDefinition = "LONGBLOB")
     @Basic(fetch=FetchType.LAZY)
     private byte[] foto;
 
+    public Integer getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Integer calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    
+    
     public String getDescripcion() {
         return descripcion;
     }

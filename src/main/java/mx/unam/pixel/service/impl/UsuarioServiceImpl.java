@@ -7,6 +7,7 @@ package mx.unam.pixel.service.impl;
 
 import java.util.List;
 import mx.unam.pixel.model.Usuario;
+import mx.unam.pixel.repository.ComentarioRepository;
 import mx.unam.pixel.repository.UsuarioRepository;
 import mx.unam.pixel.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,10 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     private UsuarioRepository usuarioRepository;
     
-
+    @Autowired
+    private ComentarioRepository comentarioRepository;
+    
+    
     @Override
     public boolean crearUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario)!= null;
@@ -28,7 +32,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public void eliminaUsuario(Usuario usuario) {
+        
         usuarioRepository.delete(usuario);
+        comentarioRepository.eliminaComentariosUsuario(usuario.getId());
     }
 
     @Override
