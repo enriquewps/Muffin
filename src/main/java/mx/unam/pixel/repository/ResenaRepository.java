@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * *Consultas para las resenas, se renombro la clase y hay que limpiar este archivos
  * @author Enrique
  */
 public interface ResenaRepository extends CrudRepository<Comentario, Integer>{

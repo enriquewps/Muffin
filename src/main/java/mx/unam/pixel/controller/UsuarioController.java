@@ -17,7 +17,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 /**
- *
+ *Esta clase sirve para agregar y eliminar usuarios y para controlar su relacion con los comentarios
+ * cuando se borra un usuario desde aqui se eliminan tambien sus ocmentarios
+ * se tiene tambien una instancia de todos los usuarios que hay  y una del que se esta 
+ * registrando en caso de que se este usando desde registro
  * @author Enrique
  */
 @Controller("localController")

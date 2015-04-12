@@ -30,7 +30,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 /**
- *
+ * Esta clase controlla a los locales tiene una instancia de los locales en la base de dato sy ademas tiene 
+ * un local que es el que se esta creando para egistrarlo en la base de datos
+ * todos los demas atributos que estan en esta clase son para realizar busquedas, 
  * @author Enrique
  */
 @Controller("localController")

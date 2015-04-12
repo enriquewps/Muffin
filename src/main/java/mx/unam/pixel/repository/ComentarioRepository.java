@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * *Consultas para los comentarios
  * @author Enrique
  */
 public interface ComentarioRepository extends CrudRepository<Comentario, Integer> {

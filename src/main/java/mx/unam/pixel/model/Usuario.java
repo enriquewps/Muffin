@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * *Clase de modelo
  * @author Enrique
  */
 @Entity

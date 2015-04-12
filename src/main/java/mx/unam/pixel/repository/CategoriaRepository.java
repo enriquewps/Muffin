@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * *Consultas para las categorias
  * @author Enrique
  */
 public interface CategoriaRepository extends CrudRepository<Categoria, Integer>{

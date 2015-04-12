@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.type.TimestampType;
 
 /**
- *
+  *Clase de modelo
  * @author Enrique
  */
 @Entity

@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * *Clase de modelo
  * @author Enrique
  */
 @Entity

@@ -18,14 +18,18 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 /**
- *
+ *La clase que se encarga de las operaciones de los comentairos tales como añadir, eliminar y conseguir 
+ * los comentarios que ya estan en la base datos, falta preguntarle a memo como recibimos el local y el usuario des
+ * la pagina
  * @author Enrique
  */
+
 @Controller("localController")
 @Scope("session")
 public class ComentarioController {
     @Autowired
     private LocalService localService;
+    
     
     @Autowired
     private ComentarioRepository comentarioRepository;

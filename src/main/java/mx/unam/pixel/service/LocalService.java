@@ -15,7 +15,7 @@ import mx.unam.pixel.model.Metrobus;
 import mx.unam.pixel.model.Metro;
 
 /**
- *
+ * Interface para operar con los locales, aqui se hacen busquedad, se agrega y se calcula la calificacion
  * @author Miguel
  */
 public interface LocalService {

@@ -9,7 +9,7 @@ import java.util.List;
 import mx.unam.pixel.model.Usuario;
 
 /**
- *
+ * Interface para operar con el susuario aqui se crean unsiarios y se aliminan asi como administradores
  * @author Enrique
  */
 public interface UsuarioService {

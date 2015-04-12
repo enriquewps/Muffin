@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ *Consultas para operar con los usuarios
  * @author Enrique
  */
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{

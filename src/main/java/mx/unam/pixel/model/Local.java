@@ -23,7 +23,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * *Clase de modelo
  * @author Enrique
  */
 @Entity
