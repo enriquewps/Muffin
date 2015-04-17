@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">    
+   <ui:composition template="/template/template.xhtml" >
+        <ui:define name="content">
+            <h2>Registro</h2>
+            <h:form id="form">
+		<p:panel  style="margin-bottom:5px;">
+		<h:panelGrid columns="2" cellpadding="1">
+		  <!-- Nombre -->
+		  <!--
+		  <p:outputLabel value="Nombre " />
+		  <p:inputText id="nombre" value="#{localController.local.nombre}" required="true"/>
+		  <p:message for="nombre"/>
+		  <br/>
+		  -->
+		  
+		  <p:outputLabel  value="" />
+		  <p:outputLabel  value="" />
+		  
+		  <!-- Nombre Usuario -->
+		  <p:outputLabel value="Nombre "/>
+		  <p:inputText id="nombre"  required="true"/>
+		  <p:message for="nombre"/>
+		  <br/>
+		  
+		  <!-- Nombre Usuario -->
+		  <p:outputLabel value="Nombre de Usuario "/>
+		  <p:inputText id="nombreusuario"  required="true"/>
+		  <p:message for="nombreusuario"/>
+		  <br/>
+		  <!-- Correo -->
+		  <p:outputLabel value="Correo "/>
+		  <p:inputText id="correo" required="true"/>
+		  <p:message for="correo"/>
+		  <br/>
+		  <!-- Contrasena -->
+		  <p:outputLabel  value="Contrasena: " />
+		  <p:password id="pwd1"  label="Password 1" required="true" />
+		  <br/>
+		  
+		  <!-- Contrasena -->
+		  <p:outputLabel  value="" />
+		  
+		  <p:outputLabel  value="Confirmar contraseña: " />
+		  
+		  <p:password id="pwd12"  label="Passworda 1" required="true" />
+		  <br/>
+		  <br/>
+		  <!-- Seccion de Botones -->
+		  <br/>
+		  <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+							<p:outputPanel>								
+								<p:commandButton ajax="true" 
+                             value="Cancelar"
+                             onclick="window.location.replace('index.xhtml')"
+							/>	
+		  
+		  <p:commandButton ajax="true"   
+					  
+					  value="Registrarse"
+                                          onclick="window.location.replace('index.xhtml')"/>
+									
+								</p:outputPanel>
+								</h:panelGrid>
+									
+		
+		</h:panelGrid>
+		</p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

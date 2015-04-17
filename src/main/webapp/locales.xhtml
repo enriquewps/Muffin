@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+        
+   <ui:composition template="/template/template.xhtml" >
+          
+        
+        
+    
+    
+        <ui:define name="content">
+            
+            <script type="text/javascript" 
+                src="http://maps.googleapis.com/maps/api/js"
+                />
+        <script type="text/javascript"> 
+            var marker = null;
+            function agregaMarcador(event) {
+               if(window.marker!==null){
+                   marker.setMap(null);
+               }
+                var punto=new google.maps.LatLng(
+                        event.latLng.lat(), 
+                event.latLng.lng()
+                        );
+                window.marker = new google.maps.Marker({
+                        position:punto,
+                        title:'Lugar'
+                    });
+                    
+                    PF('map').addOverlay(marker);
+            };
+        </script>
+            
+            <h4>Alta local</h4>
+            
+            <h:form id="form">
+                
+                <!-- Seccion de los locales -->
+               <h:panelGrid id="local" columns="3">
+                    <p:outputLabel value="Nombre local" />
+                    <p:inputText id="nombre" value="#{localController.local.nombre}" required="true" />
+                    <p:message for="nombre" />
+                
+                   <h:outputText id="rango" value="Rango de precios:" />
+                   <p:slider  minValue="20" maxValue="2000" 
+                              for="inferior,superior" 
+                              display="rango" style="width: 400px" 
+                              range="true" 
+                              displayTemplate="Precios entre $ {min} y $ {max} " />
+                   <p:message for="rango" />
+                                     
+                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
+                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+                   <p:separator/>
+                   
+                   <p:separator/>
+                   <p:message for="superior" />
+                   <p:message for="inferior" />
+
+                   <p:dataTable value="#{localController.rutas}" 
+                                var="_ruta" 
+                                rowKey="#{_ruta.id}"
+                                selection="#{localController.local.rutas}"
+                                >                       
+                       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                       <p:column>#{_ruta.nombreRuta}</p:column>
+                   </p:dataTable> 
+                   
+                   
+               </h:panelGrid>
+                <!-- Seccion de los locales -->
+                <!-- Seccion del mapa -->
+                <p:outputLabel value="Ubicacion" />
+                 <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="13" 
+                        type="HYBRID" 
+                        style="width:600px;height:400px"
+                        onPointClick="agregaMarcador(event);"
+                        widgetVar="map"
+                        disableDoubleClickZoom="true"      
+                        >
+                     <p:ajax event="pointSelect" listener="#{localController.seleccion}"  update=":form:cords"   />
+                </p:gmap>
+                <br/>
+                <h:panelGrid id="cords" columns="3">
+                    <p:outputLabel value="Latitud:" />
+                    <p:inputText id="lati" value=" #{localController.local.latitud}" disabled="true" />
+                    <p:message for="lati" />
+                    
+                    <p:outputLabel value="Longitud:" />
+                    <p:inputText id="long" value="#{localController.local.longitud}" disabled="true"  />
+                    <p:message for="long" />
+                </h:panelGrid>
+                <br/>
+                <!-- Seccion del mapa -->
+                
+                               
+                <!-- Seccion de los menus -->
+                <h:panelGrid columns="3" id="panelMenu">
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText id="menuNombre" value="#{localController.menu.nombre}"  />
+                    <p:message for="menuNombre" />
+                    
+                    <p:outputLabel value="Nombre" />
+                        <p:selectOneMenu id="categoria" value="#{localController.menu.categoria}"  >
+                            <f:selectItem itemLabel="Vegetariana" itemValue="Vegetariana" />
+                            <f:selectItem itemLabel="Carnes" itemValue="Carnes" />
+                        </p:selectOneMenu>
+                    <p:message for="categoria" />
+                    
+                    
+                    <p:outputLabel value="Descripcion" />
+                    <p:editor id="descripcion" value="#{localController.menu.descripcion}" />
+                    <p:message for="descripcion" />
+                
+                    <p:commandButton value="Guardar Menu" actionListener="#{localController.guardarMenu()}" update=":menus @form" /> 
+                    
+                </h:panelGrid>
+                <!-- Seccion de los menus -->
+                
+                
+                
+                <p:commandButton ajax="false"   
+                     actionListener="#{localController.guardarLocal()}" 
+                    value="Guardar" update=":locales @form" />
+
+            </h:form>
+
+
+        <h:form id="menus">
+                <p:dataTable  value="#{localController.local.menu}" 
+                          var="$_menu" >
+                    <p:column headerText="Categoria">
+                        #{$_menu.categoria}
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        #{$_menu.nombre}
+                    </p:column>
+                    <p:column headerText="Descripcion">
+                        #{$_menu.descripcion}
+                    </p:column>
+                    <p:column>
+                        <p:commandButton rendered="#{localController.local.recomendacion ne $_menu}" 
+                                        value="Recomendar" 
+                                         update="@form" 
+                                         action="#{localController.local.setRecomendacion($_menu)}" />
+                        <p:outputLabel value="Recomendado" 
+                                       rendered="#{localController.local.recomendacion eq $_menu}"  />
+                    </p:column>
+                    
+            </p:dataTable>
+        </h:form>
+       
+            
+        </ui:define>
+ 
+    </ui:composition>
+</html>

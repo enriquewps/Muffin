@@ -24,7 +24,7 @@ import org.springframework.stereotype.Controller;
  * @author Enrique
  */
 
-@Controller("localController")
+@Controller("comentarioController")
 @Scope("session")
 public class ComentarioController {
     @Autowired

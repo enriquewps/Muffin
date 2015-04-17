@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="template/template.xhtml">
+
+            <ui:define name="content">
+               <h:form>
+            <p:growl id="mostrar" showDetail="true" />
+            <p:panel header="Tarea PrimusFaces">
+		<h:panelGrid columns="2">
+                    <h:outputLabel/>
+                        <p:calendar value="#{pruebaVista.fecha}" mode="inline">
+                            <p:ajax event="dateSelect" listener="#{pruebaVista.cambioFecha}" update="mostrar"/> 
+                        </p:calendar>
+                    
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                        <p:editor value="#{pruebaVista.contenido}" />
+                        <p:commandButton type="buttom" value="Mostrar cambio" actionListener="#{pruebaVista.cambioContenido}" update="mostrar" />
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                        <p:rating value="#{pruebaVista.estrellas}">
+                        <p:ajax event="rate" listener="#{pruebaVista.cambioEstrellas}" update="mostrar" />
+                        </p:rating>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                        <p:password value="#{pruebaVista.contrasena}">
+                        <p:ajax event="change" listener="#{pruebaVista.cambioContrasena}" update="mostrar" />
+                        </p:password>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                        <p:inputMask value="#{pruebaVista.telefono}" mask="(999) 999-9999? x99999">
+                        <p:ajax event="change" listener="#{pruebaVista.cambioTelefono}" update="mostrar" />
+                        </p:inputMask>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

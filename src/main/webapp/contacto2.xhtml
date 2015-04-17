@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/template/template4.xhtml" >
+        <ui:define name="content">
+        <img alt="Muffin" src="logo2.png" style="width: 450px; height: auto" class="img-responsive" onclick="window.location.replace('index2.xhtml')"/>
+
+        
+        <br/>
+        
+        <h:form id="contacto" style="text-align:center" >
+            <br></br>
+            <h:outputText value="Si tienes alguna duda o comentario" style="color: black"/>
+            <br/>
+            <h:outputText value="escribenos a:" style="color: black"/>
+            <br/><br/>
+            <h:outputText value="developers@pixel.com" style="color: black"/>
+            <br/><br/><br/><br/>
+        </h:form>
+        </ui:define>
+   </ui:composition>
+    
+</html>

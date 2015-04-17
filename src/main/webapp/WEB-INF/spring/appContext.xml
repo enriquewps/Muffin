@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       
+       
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+          http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+          http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd 
+">
+    
+    <!--Srping MVC + JSF -->
+        <mvc:annotation-driven />
+    
+        <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+        <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+        <context:annotation-config />
+        <context:component-scan base-package="mx.unam.pixel.controller" />
+
+        <bean id="localController" class="mx.unam.pixel.controller.LocalController" scope="session">
+            <property name="terminoBusqueda" value="Nombre" />
+            <property name="local" >
+                <bean class="mx.unam.pixel.model.Local">
+                       <property name="nombre" value="Nombre del local..." />
+                       <property name="rangoInferior" value="10" /> 
+                        <property name="rangoSuperior" value="1000" /> 
+                 </bean>
+            </property> 
+        </bean>
+    <!-- ... -->
+
+
+       <!--Service -->
+       <bean id="localService" class="mx.unam.pixel.service.impl.LocalServiceImpl" />
+       
+
+       <!-- Data Base -->
+       <!-- Data Source -->
+       
+       <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" >
+            <property name="driverClass" value="org.h2.Driver"/>
+            <property name="url" value="jdbc:h2:./test"/>
+            <property name="username" value="sa"/>
+            <property name="password" value=""/>
+        </bean>
+     <!--
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" >
+            <property name="driverClass" value="org.sqlite.JDBC"/>
+            <property name="url" value="jdbc:sqlite:sample.db"/>
+        </bean>
+        -->
+	<!-- EntityManager -->
+        <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+            <property name="dataSource" ref="dataSource" />
+            <property name="jpaVendorAdapter">
+                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" /> 
+            </property>
+            <property name="packagesToScan" value="mx.unam.pixel.model"/> 
+            <property name="jpaProperties">
+            <props>
+                <!--prop key="hibernate.dialect">dialect.SQLiteDialect</prop-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.max_fetch_depth">3</prop>
+                <prop key="hibernate.jdbc.fetch_size">50</prop>
+                <prop key="hibernate.jdbc.batch_size">10</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>  
+                <prop key="hibernate.hbm2ddl.auto">update</prop>       
+            </props>
+            </property> 
+        </bean>
+
+	<!--Transaction Manager -->
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+            <property name="entityManagerFactory" ref="emf"/>
+        </bean>
+       
+        <jpa:repositories base-package="mx.unam.pixel.repository" 
+                          entity-manager-factory-ref="emf" 
+                          transaction-manager-ref="transactionManager"/>
+
+       
+       
+</beans>

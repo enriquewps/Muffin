@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <title>Muffin</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+			<h:form>
+            <ui:insert name="top">Buscar
+				<!-- Busqueda -->
+				<p:inputText id="campobusqueda" required="true"/>
+				<p:commandButton ajax="true" 
+                             icon="ui-icon-search"
+                             onclick="window.location.replace('verLocales2.xhtml')"
+				/>
+                                <h:outputText value=" Hola ADMIN "/>
+				<p:menu overlay="true" trigger="btnsesion" my="left top" at="right top">
+					<p:submenu label="Sesion">
+                                            <p:menuitem value="Panel de Administración" onclick="window.location.replace('paneladministracion.xhtml')"></p:menuitem>
+						<p:menuitem value="Administrar Usuarios" onclick="window.location.replace('adminusuarios.xhtml')"></p:menuitem>
+						<p:menuitem value="Administrar Locales" onclick="window.location.replace('adminlocales.xhtml')"></p:menuitem>
+                                                <p:menuitem value="Agregar Local" onclick="window.location.replace('agregarlocal.xhtml')"></p:menuitem>
+                                                
+						<p:separator/>
+					</p:submenu>
+					<p:submenu label="Otros">
+						<p:menuitem value="Salir" onclick="window.location.replace('index.xhtml')"></p:menuitem>
+					</p:submenu>
+				</p:menu>
+                                <!-- el styleClass se definio en csslayout.css-->
+                                <p:commandButton label="Hola ADMIN " id="btnsesion" value="Sesion" style= "float:right; color:white" styleClass="boton-sesion">
+                                    
+                                </p:commandButton>
+            </ui:insert>            
+            </h:form>
+        </div>
+        
+        <!-- Comentamos mi top para poner el de Gonzalo
+        <div id="top">
+
+        <h:form>
+             <h1 style="color:white">Busca un local</h1> 
+            
+            Buscar <p:inputText  id="nombre" size="35" validatorMessage="Formato no valido">
+                <f:validateRegex for="nombre" pattern="[a-zA-Z0-9]+" />
+            
+            <p:message for="nombre"/>
+            </p:inputText>
+            <p:commandButton id="Buscar" icon="ui-icon-busca" action="busqueda?faces-redirect=true"  />
+            <h:outputText value="   " />
+            <p:commandButton value="Iniciar sesion"  action="iniciarSesion?faces-redirect=true" style= "float:right" />
+            
+
+             Intento de separar en tres partes el top
+            <p:layout style="min-width:400px;min-height:50px;">
+                <p:layoutUnit position="west">
+                    <h:outputText value="Buscar" />
+                </p:layoutUnit>
+ 
+                <p:layoutUnit position="center">
+                    <p:inputText value="#{saludoController.nombre}" id="nombre" size="35" validatorMessage="Formato no valido">
+                    <f:validateRegex for="nombre" pattern="[a-zA-Z0-9]+" />
+                    <p:message for="nombre"/>
+                    </p:inputText>
+                    <p:commandButton value="Buscar"  actionListener="#{saludoController.cambiaNombre()}"  />
+                </p:layoutUnit>
+                
+                <p:layoutUnit position="east">
+                    <p:commandButton value="Iniciar sesion"  actionListener="#{saludoController.cambiaNombre()}"/>
+                </p:layoutUnit>
+            </p:layout>
+                </div>
+
+             fin del intento
+        </h:form> fin de mi top-->
+
+            
+        
+        
+        
+        <div id="content" class="center_content" align="center">
+            <!-- <h:form>
+            <h:commandLink action="index" >
+            <p:graphicImage library="images" name="logo.jpg" style="width: 450px; height: auto"  styleClass="img-responsive" onclick="windows.location.replace('index.xhtlm')"/>
+            </h:commandLink>
+            </h:form>
+            -->
+            <img alt="Muffin" src="logo.jpg" style="width: 450px; height: auto" class="img-responsive" onclick="window.location.replace('index2.xhtml')"/>
+                    <ui:insert name="content">Content</ui:insert>
+            
+        </div>
+        
+        
+        <div id="bottom">
+
+        <h:form style="text-align: center;color: red">
+
+        <p:commandLink id="nosotros" onclick="window.location.replace('quienesSomos2.xhtml')"> <!--ajax="false"-->
+            <h:outputText value="¿Quienes somos? " style="color: red" />
+        </p:commandLink>
+ 
+          <p:commandLink id="contacto" onclick="window.location.replace('contacto2.xhtml')"> <!--ajax="false"--> 
+            <h:outputText value=" Contacto " style="color: red"/>
+        </p:commandLink>
+
+        
+
+            <br></br>
+            <h:outputText value="Politica de Privacidad: Para mejorar tu experiencia, Muffin recaba información acerca de tu" style="color: black"/>
+            <br/>
+            <h:outputText value="dispositivo: Sistema operativo, caracteristicas de hardware, etc." style="color: black"/>
+            <br/>
+            <h:outputText value="Toda información es guardada de forma segura y no se le compartira a terceros." style="color: black"/>
+            
+        </h:form>
+        </div>
+
+    </h:body>
+
+</html>

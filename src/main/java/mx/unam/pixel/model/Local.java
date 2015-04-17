@@ -65,7 +65,7 @@ public class Local implements Serializable {
         
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
-            mappedBy = "local",
+            mappedBy = "categorias",
             orphanRemoval = true)
     private List<Categoria> categorias;
 
@@ -76,7 +76,7 @@ public class Local implements Serializable {
     
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
-            mappedBy = "local",
+            mappedBy = "comentarios",
             orphanRemoval = true)
     private List<Comentario> comentarios;    
     

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	 version="3.1">
+    
+
+    <display-name>Muffin</display-name>
+ 
+	<!-- Indica que el proyecto esta en fase de desarrollo -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+        
+        <context-param>
+            <param-name>javax.faces.CONFIG_FILES</param-name>
+            <param-value>/WEB-INF/faces-config.xml</param-value>
+        </context-param>
+
+ 
+	<!-- Pagina de inicio -->
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+ 
+	<!-- Servlet JSF -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+ 
+	<!-- Que tipo de archivos son procesados por el servlet de JSF -->
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+    
+    
+    
+    
+    <!--Spring-->
+    
+    <!--Configuracion para cargar archivos de Spring -->   
+      <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring/appContext.xml
+        </param-value>
+    </context-param>
+    
+
+      <!-- Definicion del servlet de Springn-->
+      <servlet>
+        <servlet-name>Spring Servlet</servlet-name>
+        	<servlet-class>
+org.springframework.web.servlet.DispatcherServlet
+</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appContext.xml</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+      <!-- Tipo de peticiones que van a ser procesadas por spring-->
+      <servlet-mapping>
+        <servlet-name>Spring Servlet</servlet-name>
+        <url-pattern>*.spring</url-pattern>
+    </servlet-mapping>
+    
+
+    
+    <!-- context loader -->
+    <!-- carga el appContext   -->   
+    <listener>
+<listener-class>
+		org.springframework.web.context.ContextLoaderListener
+</listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+
+    
+    
+    
+    
+    
+    
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    
+</web-app>

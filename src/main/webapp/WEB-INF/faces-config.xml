@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    
+    
+    
+        <application>
+          <variable-resolver>
+            org.springframework.web.jsf.DelegatingVariableResolver
+          </variable-resolver>
+     </application>
+    <!--
+    <managed-bean>
+        <managed-bean-class>mx.unam.ciencias.controller.LocalController</managed-bean-class>
+        <managed-bean-name>localController</managed-bean-name>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    -->
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-action>inicio</from-action>
+            <to-view-id>index.html</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>altaLocales</from-action>
+            <to-view-id>locales.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>nueva</from-action>
+            <to-view-id>nuevaVista.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>verLocales</from-action>
+            <to-view-id>verLocales.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>rutas</from-action>
+            <to-view-id>rutasPumaBus.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>iniciarSesion</from-action>
+            <to-view-id>inciarSesion.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>busqueda</from-action>
+            <to-view-id>busqueda.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>quienesSomos</from-action>
+            <to-view-id>quienesSomos.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>contacto</from-action>
+            <to-view-id>contacto.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    
+    
+    <navigation-rule>
+        <from-view-id>index.xhtml</from-view-id>
+        
+        
+        <navigation-case>
+            <from-action>verLocales</from-action>
+            <to-view-id>locales.xhtml</to-view-id>
+        </navigation-case>
+        
+    
+    </navigation-rule>
+    
+    
+</faces-config>

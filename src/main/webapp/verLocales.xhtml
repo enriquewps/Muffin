@@ -8,9 +8,54 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">    
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
-            <h2>TOP 5</h2>
+            <h2>RESULTADOS</h2>
             <h:form id="form">
                 
+              <p:growl id="busquedaAvanzada" showDetail="true" />
+ 
+    <p:panel header="BUSQUEDA AVANZADA" style="margin-bottom:5px;">
+      
+                              
+        <h:panelGrid columns="2" cellpadding="1">
+          
+          <p:outputLabel  value="Nombre:" />
+          <p:inputText id="campobusqueda" required="true"/>
+          
+          <h:outputText id="rango" value="Rango de precios: " />
+                   <p:slider  minValue="10" maxValue="200" 
+                              for="inferior,superior" 
+                              display="rango" style="width: 400px" 
+                              range="true" 
+                              displayTemplate="Precios entre $ {min} y $ {max} " />
+                   
+            <h:outputText value="Estacionamiento: " />
+            <p:selectBooleanButton id="estacionamiento" value="#{selectBooleanView.value1}" onLabel="Si" offLabel="No" style="width:60px" />
+
+            <h:outputText value="Baño: " />
+            <p:selectBooleanButton id="bano" value="#{selectBooleanView.value1}" onLabel="Si" offLabel="No" style="width:60px" /> 
+            
+            <h:outputText value="Internet: " />
+            <p:selectBooleanButton id="internet" value="#{selectBooleanView.value1}" onLabel="Si" offLabel="No" style="width:60px" /> 
+
+            
+            <p:outputLabel for="categoria" value="Categoria: " />
+            <p:selectOneMenu id="categoria" value="#{dropdownView.country}" style="width:160px">
+                <p:ajax listener="#{dropdownView.onCountryChange}" />
+                <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.countries}" />
+            </p:selectOneMenu>
+ 
+                                     
+                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
+                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+
+                   
+        </h:panelGrid>
+ 
+        <p:separator />
+ 
+        <p:commandButton value="Buscar" update="busquedaAvanzada" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" onclick="window.location.replace('verLocales.xhtml')"/>
+    </p:panel>
                 
                 <!--
                 

@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-mar-2015, 14:05:50
+    Author     : guillermorojas
+*/
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+{
+    border: 1px solid #ff0000;
+    background: #ff0000 ;
+    background: #04c404 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: #04c404 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+    background: #04c404 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0)); /*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF);     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF)"; */
+    font-weight: bold;
+    color: #4f4f4f;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/template3.xhtml" >
+        <ui:define name="content">	
+        <h2>Administrar Usuario</h2>
+        
+        <h:panelGrid columns="2" cellpadding="1">
+		  <!-- Nombre -->
+		  <!--
+		  <p:outputLabel value="Nombre " />
+		  <p:inputText id="nombre" value="#{localController.local.nombre}" required="true"/>
+		  <p:message for="nombre"/>
+		  <br/>
+		  -->
+		  
+		  <p:outputLabel  value="" />
+		  <p:outputLabel  value="" />
+		  
+		  <!-- Nombre Usuario -->
+		  <p:outputLabel value="Nombre "/>
+		  <p:inputText id="nombre"  required="true"/>
+		  <p:message for="nombre"/>
+		  <br/>
+		  
+		  <!-- Nombre Usuario -->
+		  <p:outputLabel value="Nombre de Usuario "/>
+		  <p:inputText id="nombreusuario"  required="true"/>
+		  <p:message for="nombreusuario"/>
+		  <br/>
+		  <!-- Correo -->
+		  <p:outputLabel value="Correo "/>
+		  <p:inputText id="correo" required="true"/>
+		  <p:message for="correo"/>
+		  <br/>
+                  <h:outputText value="Administrador " />
+                  <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+		  <!-- Seccion de Botones -->
+		  <br/><br/>
+                  
+                </h:panelGrid>
+                
+                <h:panelGrid columns="3" columnClasses="logo,detail">
+                          <p:outputPanel>								
+                            <p:commandButton ajax="true" 
+                                             accesskey=""
+                                             value="Cancelar"
+                                             onclick="window.location.replace('index2.xhtml')"
+							/>	
+		  
+                            <p:commandButton ajax="true"   
+                                          value="Guardar Cambios"
+                                          onclick="window.location.replace('index2.xhtml')"/>
+                            <p:commandButton ajax="true"   
+                                          value="Eliminar Usuario"
+                                          onclick="window.location.replace('index2.xhtml')"/>
+								
+				</p:outputPanel>
+                </h:panelGrid>
+									
+        
+        </ui:define>
+    </ui:composition>
+</html>

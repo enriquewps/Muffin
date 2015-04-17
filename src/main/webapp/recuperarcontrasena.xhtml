@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">    
+   <ui:composition template="/template/template.xhtml" >
+        <ui:define name="content">
+            
+            <h:form id="form">
+                <!-- Nombre -->
+                <h3>
+                <!-- Correo -->
+                <br/>
+                <br/>
+                <p:outputLabel value="Introduce tu correo "/>
+                
+                <p:inputText id="correo"  required="true"/>
+                <p:message for="correo"/>
+                <br/>
+                <br/>
+                <br/>
+                <!-- Seccion de Botones -->
+                <p:commandButton ajax="true"   
+					onclick="window.location.replace('index.xhtml')"
+					value="Cancelar"  />
+                <p:commandButton ajax="true"   
+					onclick="window.location.replace('index.xhtml')"
+					value="Recuperar" />
+                </h3>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

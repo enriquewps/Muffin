@@ -23,7 +23,7 @@ import org.springframework.stereotype.Controller;
  * registrando en caso de que se este usando desde registro
  * @author Enrique
  */
-@Controller("localController")
+@Controller("usuarioController")
 @Scope("session")
 public class UsuarioController {
     @Autowired

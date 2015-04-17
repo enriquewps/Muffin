@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+        
+   <ui:composition template="/template/template.xhtml" >
+        <ui:define name="content">
+          <h2>Sugerir Local</h2>
+          
+          <h:panelGrid columns="2" cellpadding="1">
+          <p:outputLabel  value="Nombre:" />
+          <p:inputText id="campobusqueda" required="true"/>
+        
+          </h:panelGrid>
+          
+          <br/><br/>
+          <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="14" 
+                        type="HYBRID" 
+                        style="width:600px;height:400px"
+                        onPointClick="agregaMarcador(event);"
+                        widgetVar="map"
+                        disableDoubleClickZoom="true"      
+                        ></p:gmap>
+         <br/>
+          <script type="text/javascript" 
+                src="http://maps.googleapis.com/maps/api/js"
+                />
+        
+          <h:panelGrid columns="2" cellpadding="1">
+            <p:outputLabel for="categoria" value="Categoria: " />
+            <p:selectOneMenu id="categoria" value="#{dropdownView.country}" style="width:160px">
+                <p:ajax listener="#{dropdownView.onCountryChange}" />
+                <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.countries}" />
+            </p:selectOneMenu>
+ 
+            <p:outputLabel for="especialidad" value="Especialidad: " />
+            <p:selectOneMenu id="especialidad" value="#{dropdownView.city}" style="width:160px">
+                <f:selectItem itemLabel="Seleccione especialidad" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.cities}" />
+            </p:selectOneMenu>
+
+            <h:outputText value="Baño: " />
+            <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+ 
+            <h:outputText value="WiFi: " />
+            <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+ 
+            
+            <h:outputText value="Estacionamiento: " />
+            <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+            
+            <p:outputLabel for="metrobus" value="Metrobus: " />
+            <p:selectOneMenu id="metrobus" value="#{dropdownView.city}" style="width:160px">
+                <f:selectItem itemLabel="Seleccione metrobus" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.cities}" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="pumabus" value="Pumabus: " />
+            <p:selectOneMenu id="pumabus" value="#{dropdownView.city}" style="width:160px">
+                <f:selectItem itemLabel="Seleccione pumabus" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.cities}" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="metro" value="Metro: " />
+            <p:selectOneMenu id="metro" value="#{dropdownView.city}" style="width:160px">
+                <f:selectItem itemLabel="Seleccione metro" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.cities}" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="bicipuma" value="Bicipuma: " />
+            <p:selectOneMenu id="bicipuma" value="#{dropdownView.city}" style="width:160px">
+                <f:selectItem itemLabel="Seleccione bicipuma" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.cities}" />
+            </p:selectOneMenu>
+
+            
+        
+
+                   <h:outputText id="rango" value="Rango de precios: " />
+                   <p:slider  minValue="10" maxValue="200" 
+                              for="inferior,superior" 
+                              display="rango" style="width: 250px" 
+                              range="true" 
+                              displayTemplate="Precios entre $ {min} y $ {max} " />
+                   <p:message for="rango" />
+                                     
+                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
+                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+
+                   
+        </h:panelGrid>
+
+          <br/>
+		  <h:panelGrid columns="3" columnClasses="logo,detail">
+                          <p:outputPanel>								
+                            <p:commandButton ajax="true" 
+                                             accesskey=""
+                                             value="Cancelar"
+                                             onclick="window.location.replace('index.xhtml')"
+							/>	
+		  
+                            <p:commandButton ajax="true"   
+                                          value="Guardar Cambios"
+                                          onclick="window.location.replace('index.xhtml')"/>
+                            <p:commandButton ajax="true"   
+                                          value="Eliminar Local"
+                                          onclick="window.location.replace('index.xhtml')"/>
+								
+				</p:outputPanel>
+			</h:panelGrid>
+                    
+        </ui:define>
+ 
+    </ui:composition>
+</html>
