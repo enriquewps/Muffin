@@ -172,8 +172,10 @@ return facultadRepository.findAll();
     }
 
     @Override
-    public void actualizaCalificacion(Integer id) {
-localRepository.actualizaCalificacion(id);
+    public void actualizaCalificacion(Local l) {
+        //
+       // l.setCalificacion(localRepository.getPromedio(l.getNombre()));
+localRepository.save(l);
     }
 
 

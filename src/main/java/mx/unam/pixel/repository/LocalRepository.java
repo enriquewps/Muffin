@@ -39,17 +39,17 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     List<Local> findByAprobado(Boolean b);
     
 
-    @Query("SELECT loc FROM Local loc WHERE loc.comeOLlevar = 1 or loc.comeOLlevar = 3 ")
+    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 1 or loc.comerOLlevar = 3 ")
     List<Local> findByComer();
     
-    @Query("SELECT loc FROM Local loc WHERE loc.comeOLlevar = 2 or loc.comeOLlevar = 3 ")
+    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 2 or loc.comerOLlevar = 3 ")
     List<Local> findByLlevar();    
     
-    @Query("SELECT l FROM Local l JOIN FECTH l.facultad f "+
+    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f "+
            "WHERE f.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByFacultad(String facultad);
     
-    @Query("SELECT l FROM Local l JOIN FECTH l.recomendacion r "+
+    @Query("SELECT l FROM Local l JOIN FETCH l.recomendacion r "+
            "WHERE r.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByRecomendacion(String recomendacion);
     
@@ -57,27 +57,31 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
            "WHERE l.recomendacion.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByRecomendacion1(String recomendacion);
         
-    @Query("SELECT l FROM Local l JOIN FECTH l.categorias c "+
-           "WHERE c.nombre LIKE CONCAT('%',?,'%') ")
+    //@Query("SELECT l FROM Local l JOIN FETCH l.categorias c WHERE c.nombre LIKE CONCAT('%',?,'%') ")
+    //List<Local> findByCategoria(String categoria);
+    
+    @Query("SELECT l FROM Local l JOIN FETCH l.categorias c WHERE c.nombre LIKE CONCAT('%',?,'%') ")
     List<Local> findByCategoria(String categoria);
     
-    /*@Query("SELECT l FROM Local l JOIN FECTH l.rutas r "+
+    
+    
+    /*@Query("SELECT l FROM Local l JOIN FETCH l.rutas r "+
            "WHERE r.nombreRuta LIKE CONCAT('%',?,'%')")
     List<Local> findByRutaPumaBus(String nombreRuta);
     */
     
     //Hay que limpiar estps metodos pues estan contnidos en la facultad
     
-    @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.pumabus p "+
+    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.pumabus p "+
            "WHERE p.estacion LIKE CONCAT('%',?,'%')")
     List<Local> findByPumabus(String estacion);
-        @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.biciPuma p "+
+        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.biciPuma p "+
            "WHERE p.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByBiciPuma(String estacion);
-        @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.metro p "+
+        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metro p "+
            "WHERE p.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByMetro(String estacion);
-        @Query("SELECT l FROM Local l JOIN FECTH l.facultad f JOIN FECTH f.metrobus p "+
+        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metrobus p "+
            "WHERE p.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByMetroBus(String estacion);
     
@@ -91,12 +95,15 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
         @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01  ")
     List<Local> findByPunto(Double latitud,Double longitud);
     
-    @Query("SELECT c FROM local l JOIN FETCH l.comentarios c WHERE l.nombre = ?")
-    List<Comentario> findComentarios(String id);
+    @Query("SELECT l.comentarios FROM local l WHERE l.nombre = ?")
+    List<Comentario> findComentarios(String nomre);
     
-        @Query("UPDATE TABLE Local l SET l.calificacion = (SELECT AVG(c.calificacion)"
+     /*   @Query("UPDATE TABLE Local l SET l.calificacion = (SELECT AVG(c.calificacion)"
                 + " FROM Comentario c WHERE c.local.id = ?) "
                 + "WHERE l.id = ?")
-    void actualizaCalificacion(Integer id);
+    void actualizaCalificacion(Integer id);*/
     
+    
+    @Query("SELECT AVG(c.calificacion) FROM Comentario c WHERE c.local.nombre = ? ")
+    public Double getPromedio(String nombre);
 }

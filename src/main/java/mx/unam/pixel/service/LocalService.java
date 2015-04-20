@@ -49,6 +49,6 @@ public interface LocalService {
     List<Comentario> findComentarios(String id);
     
     
-    void actualizaCalificacion(Integer id);
+    void actualizaCalificacion(Local local);
 
 }

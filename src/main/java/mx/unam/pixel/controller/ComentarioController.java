@@ -63,12 +63,12 @@ public class ComentarioController {
         comentarioRepository.save(comentario);
         
         local.getComentarios().add(comentario);
-        localService.actualizaCalificacion(local.getId());
+        localService.actualizaCalificacion(local);
     } 
     
     public void eliminiaComentario(Comentario c){
         comentarioRepository.delete(c);
-        localService.actualizaCalificacion(local.getId());        
+        localService.actualizaCalificacion(local);        
     }
             
 }

@@ -6,57 +6,39 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
 /**
-  *Clase de modelo
+ *
  * @author Enrique
  */
 @Entity
-public class Pumabus implements Serializable {
-   // private static final long serialVersionUID = 1L;
+public class LineaPumabus implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
-    @NotNull
-    private String estacion;
     
-    @OneToMany
-    private List<LineaPumabus> lineas;
+    @Id
+    private int numeroLinea;
 
-    public List<LineaPumabus> getLineas() {
-        return lineas;
+    public int getNumeroLinea() {
+        return numeroLinea;
     }
 
-    public void setLineas(List<LineaPumabus> lineas) {
-        this.lineas = lineas;
+    public void setNumeroLinea(int numeroLinea) {
+        this.numeroLinea = numeroLinea;
     }
-
-
-
-
-    public String getEstacion() {
-        return estacion;
-    }
-
-    public void setEstacion(String estacion) {
-        this.estacion = estacion;
-    }
-
-    public Integer getId() {
+    
+    public Long getId() {
         return id;
     }
-    
-    
 
-    public void  setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,10 +52,10 @@ public class Pumabus implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pumabus)) {
+        if (!(object instanceof LineaPumabus)) {
             return false;
         }
-        Pumabus other = (Pumabus) object;
+        LineaPumabus other = (LineaPumabus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -82,7 +64,7 @@ public class Pumabus implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.unam.pixel.model.Pumabus[ id=" + id + " ]";
+        return "mx.unam.pixel.model.LineaPumabus[ id=" + id + " ]";
     }
     
 }

@@ -11,6 +11,7 @@
     <class>mx.unam.pixel.model.Metrobus</class>
     <class>mx.unam.pixel.model.Categoria</class>
     <class>mx.unam.pixel.model.Comentario</class>
+    <class>mx.unam.pixel.model.LineaPumabus</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
