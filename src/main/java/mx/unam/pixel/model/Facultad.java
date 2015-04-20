@@ -27,7 +27,7 @@ public class Facultad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Id    
+    //@Id    
     @NotNull
     private String nombreFac;
         
@@ -44,7 +44,7 @@ public class Facultad implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Metrobus> metroBus;
 
-    //1:Abierto 2: estudiantes 3:Academico
+    //1:Abierto 2: estudiantes 3:Academico 0:no hay
     private Integer estacionamiento; 
 
     public Integer getEstacionamiento() {

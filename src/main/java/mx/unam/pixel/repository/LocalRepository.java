@@ -32,7 +32,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     @Query("SELECT loc FROM Local loc WHERE loc.wifi = true ")
     List<Local> findByWifi();
 
-    @Query("SELECT loc FROM Local loc WHERE loc.estacionamiento = true ")
+    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1)")
     List<Local> findByEstacionamiento();
     
     @Query("SELECT loc FROM Local loc WHERE loc.aprobado = ? ")
@@ -46,7 +46,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     List<Local> findByLlevar();    
     
     @Query("SELECT l FROM Local l JOIN FETCH l.facultad f "+
-           "WHERE f.nombre LIKE CONCAT('%',?,'%')")
+           "WHERE f.nombreFac LIKE CONCAT('%',?,'%')")
     List<Local> findByFacultad(String facultad);
     
     @Query("SELECT l FROM Local l JOIN FETCH l.recomendacion r "+
@@ -81,7 +81,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
         @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metro p "+
            "WHERE p.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByMetro(String estacion);
-        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metrobus p "+
+        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metroBus p "+
            "WHERE p.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByMetroBus(String estacion);
     
@@ -95,7 +95,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
         @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01  ")
     List<Local> findByPunto(Double latitud,Double longitud);
     
-    @Query("SELECT l.comentarios FROM local l WHERE l.nombre = ?")
+    @Query("SELECT l.comentarios FROM Local l WHERE l.nombre = ?")
     List<Comentario> findComentarios(String nomre);
     
      /*   @Query("UPDATE TABLE Local l SET l.calificacion = (SELECT AVG(c.calificacion)"
