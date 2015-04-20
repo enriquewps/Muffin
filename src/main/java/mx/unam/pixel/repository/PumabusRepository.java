@@ -20,7 +20,7 @@ public interface PumabusRepository extends CrudRepository<Pumabus, Integer>{
     @Override
     List<Pumabus> findAll();
 
-    @Query("SELECT loc FROM Pumabus loc WHERE loc.nombre LIKE CONCAT(?,'%') ")
+    @Query("SELECT loc FROM Pumabus loc WHERE loc.estacion LIKE CONCAT(?,'%') ")
     List<Pumabus> findByNombre(String nombre);
         
 }

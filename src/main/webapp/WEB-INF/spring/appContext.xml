@@ -22,7 +22,7 @@
         <context:component-scan base-package="mx.unam.pixel.controller" />
 
         <bean id="localController" class="mx.unam.pixel.controller.LocalController" scope="session">
-            <property name="terminoBusqueda" value="Nombre" />
+            <property name="nombre" value="Nombre" />
             <property name="local" >
                 <bean class="mx.unam.pixel.model.Local">
                        <property name="nombre" value="Nombre del local..." />
