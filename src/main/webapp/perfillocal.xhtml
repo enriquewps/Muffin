@@ -11,7 +11,7 @@
           <h2>Local X</h2>
           
           <h:form>
-            <p:dataList value="#{localController.local.nombre}" var="car" >
+            <p:dataList value="#{localController.local.nombre}" var="car"  >
               <f:facet name="header">
 		<p:outputPanel>								
                   <h:panelGrid columns="2" cellpadding="5">
@@ -57,15 +57,18 @@
                 src="http://maps.googleapis.com/maps/api/js"
           />
           
+          
+          <!-- Tabla ya sin colores del borde, usar para todas las tablas -->
+          
           <p:panelGrid >
                     <f:facet name="header">
                         <p:row>
-                            <p:column colspan="3">Comentario</p:column>
+                          <p:column colspan="3" style="background-color: red; color: white; font-weight: bold">Comentario</p:column>
                         </p:row>
                     </f:facet>
                     <p:row>
                         
-                        <p:column>
+                        <p:column style="border-bottom-color: transparent; border-right-color: transparent">
                             <h:outputText value="Usuario"/>
                         </p:column>
                         
@@ -75,7 +78,7 @@
                     </p:row>
                     
                     <p:row>
-                        <p:column>
+                      <p:column style="border-right-color: transparent">
                             <p:rating value="4" readonly="true" />
                         </p:column>
                     </p:row>
