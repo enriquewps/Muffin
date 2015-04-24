@@ -27,7 +27,12 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import org.springframework.mail.SimpleMailMessage;
+	
 
 /**
  * Esta clase controlla a los locales tiene una instancia de los locales en la base de dato sy ademas tiene 
@@ -69,10 +74,22 @@ public class LocalController {
     private String metrobus = "";
     private Boolean admin = false;
     private String facultad;
+    @Autowired
+    private JavaMailSenderImpl mailSender;
     
     @PostConstruct
     public void init(){
  
+               SimpleMailMessage mail=new SimpleMailMessage();
+        
+        mail.setTo("vampa@ciencias.unam.mx");
+        mail.setFrom("memo.onilink@gmail.com");
+        mail.setSubject("Local nuevo en la base de datos");
+        mail.setCc("memo.onilink@gmail.com");
+        mail.setText("...");
+
+        
+        mailSender.send(mail);
         
         //se va a borrar pues estan en las facultades
         pumabuses=this.localService.findAllPumabus();

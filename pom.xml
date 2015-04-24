@@ -4,7 +4,7 @@
 
     <groupId>com.pixel</groupId>
     <artifactId>Muffin</artifactId>
-    <version>1.0-DEV</version>
+    <version>1.0-DEVE</version>
     <packaging>war</packaging>
 
     <name>Muffin</name>
@@ -24,10 +24,23 @@
 			<version>3.2.8.RELEASE</version>
 		</dependency>
                 
+      <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>3.2.2.RELEASE</version>
+</dependency>
+
+                
                 <dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.1.0.RELEASE</version>
+                        
 		</dependency>
  
                 <dependency>
