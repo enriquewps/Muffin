@@ -5,6 +5,7 @@
  */
 package mx.unam.pixel.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.unam.pixel.model.Usuario;
 import mx.unam.pixel.repository.ComentarioRepository;
@@ -27,7 +28,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     
     @Override
     public boolean crearUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario)!= null;
+        usuarioRepository.save(usuario);
+        return true;
     }
 
     @Override
@@ -66,5 +68,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     public void eliminaAdministrador(Usuario usuario) {
         usuarioRepository.rolAdministrador(usuario.getNombreUsuario(), false);
     }
+
+    @Override
+    public Usuario iniciarSesion(String nombre, String contrasena) {
+        ArrayList<Usuario> us = (ArrayList<Usuario>) usuarioRepository.findByNombreContrasena(nombre, contrasena);
+        return (us.size() == 0 )? null:us.get(0);
+    }
+    
+    
     
 }

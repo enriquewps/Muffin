@@ -34,7 +34,7 @@ public class Local implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-
+    @NotNull
     private String nombre;
     @NotNull
     private double latitud;

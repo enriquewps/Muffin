@@ -28,6 +28,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
         @Query("SELECT u FROM Usuario u WHERE u.correo LIKE CONCAT(?,'%') ")
     List<Usuario> findByCorreo(String correo);
     
+    @Query("SELECT u FROM Usuario u WHERE u.nombre LIKE ? AND u.contrasena LIKE ? ")
+    List<Usuario> findByNombreContrasena(String nombre,String contrasena);
+    
     @Query("UPDATE Usuario u SET u.administrador = ?2 WHERE u.nombreUsuario LIKE ?1")
     void rolAdministrador(String usuario, boolean rol);
     

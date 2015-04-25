@@ -6,6 +6,7 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
+import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotNull;
  * *Clase de modelo
  * @author Enrique
  */
+@Named
 @Entity
 public class Usuario implements Serializable {
    // private static final long serialVersionUID = 1L;
@@ -23,11 +25,11 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Id
+    
     @NotNull
     private String nombreUsuario;
     
-    @Id
+    
     @NotNull
     private String correo;
     @NotNull    

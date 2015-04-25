@@ -31,5 +31,7 @@ public interface UsuarioService {
     
     void eliminaAdministrador(Usuario usuario);
     
+    Usuario iniciarSesion(String nombre, String contrasena);
+    
     
 }

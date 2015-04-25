@@ -24,10 +24,10 @@
 		  <p:outputLabel  value="" />
 		  
 		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre "
+		  <p:outputLabel value="#{usuarioController.usuario.nombre}"
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:inputText id="nombre"  required="true"/>
+                  <p:inputText id="nombre"  value="#{usuarioController.usuario.nombre}" required="true"/>
 		  <p:message for="nombre"/>
 		  <br/>
 		  
@@ -35,21 +35,21 @@
 		  <p:outputLabel value="Nombre de Usuario "
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:inputText id="nombreusuario"  required="true"/>
+                  <p:inputText id="nombreusuario" value="#{usuarioController.usuario.nombreUsuario}" required="true"/>
 		  <p:message for="nombreusuario"/>
 		  <br/>
 		  <!-- Correo -->
 		  <p:outputLabel value="Correo "
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:inputText id="correo" required="true"/>
+                  <p:inputText id="correo" value="#{usuarioController.usuario.correo}" required="true"/>
 		  <p:message for="correo"/>
 		  <br/>
 		  <!-- Contrasena -->
 		  <p:outputLabel  value="Contrasena: " 
                                   style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:password id="pwd1"  label="Password 1" required="true" />
+		  <p:password id="pwd1" value ="#{usuarioController.usuario.contrasena}" label="Password 1" required="true" />
 		  <br/>
 		  
 		  <!-- Contrasena -->
@@ -91,7 +91,7 @@
                                  font-size: medium;
                                  background-color: blue"
 					  value="Registrarse"
-                                          onclick="window.location.replace('index.xhtml')"/>
+                                          onclick="#{usuarioController.registraUsuario()}"/>
 									
                     </p:outputPanel>
                   </h:panelGrid>
