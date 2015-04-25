@@ -8,18 +8,25 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/template/template2.xhtml" >
         <ui:define name="content">
-        <img alt="Muffin" src="logo2.png" style="width: 450px; height: auto" class="img-responsive" onclick="window.location.replace('index.xhtml')"/>
+        <img alt="Muffin" src="logo2.png" style="width: 300px; height: auto" class="img-responsive" onclick="window.location.replace('index.xhtml')"/>
 
         
         <br/>
         
         <h:form id="contacto" style="text-align:center" >
             <br></br>
-            <h:outputText value="Si tienes alguna duda o comentario" style="color: black"/>
+            <h:outputText value="Si tienes alguna duda o comentario" 
+                          style="color: black;
+                          font-weight: bolder;
+                          font-size: small"/>
             <br/>
-            <h:outputText value="escribenos a:" style="color: black"/>
+            <h:outputText value="escribenos a:" style="color: black;
+                          font-weight: bolder;
+                          font-size: small"/>
             <br/><br/>
-            <h:outputText value="developers@pixel.com" style="color: black"/>
+            <h:outputText value="developers@pixel.com" style="color: black;
+                          font-weight: bolder;
+                          font-size: small"/>
             <br/><br/><br/><br/>
         </h:form>
         </ui:define>

@@ -18,7 +18,12 @@
 
         <div id="top">
 			<h:form>
-            <ui:insert name="top">Buscar
+            <ui:insert name="top">
+              <h:outputText value="Buscar" style="font-weight: bold;
+                          color: white;
+                          font-size: medium">
+                            
+            </h:outputText>
 				<!-- Busqueda -->
 				<p:inputText id="campobusqueda" required="true"/>
 				<p:commandButton ajax="true" 
@@ -38,7 +43,13 @@
 					</p:submenu>
 				</p:menu>
                                 <!-- el styleClass se definio en csslayout.css-->
-                                <p:commandButton id="btnsesion" value="Sesion" style= "float:right; color:white" styleClass="boton-sesion">
+                                <p:commandButton id="btnsesion" 
+                                                 value="Sesion" 
+                                                 style= "float:right;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium"
+                                                 styleClass="boton-sesion">
                                     
                                 </p:commandButton>
             </ui:insert>            

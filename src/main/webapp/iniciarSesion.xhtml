@@ -10,7 +10,7 @@
         <ui:define name="content">
             <h2>Inicio Sesion</h2>
             <h:form>
-				<p:panel  style="margin-bottom:5px;">
+	
 		<h:panelGrid columns="2" cellpadding="1">
 		  <!-- Nombre -->
 		  <!--
@@ -24,7 +24,9 @@
 		  <p:outputLabel  value="" />
 		  
 		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre Usuario"/>
+		  <p:outputLabel value="Nombre Usuario"
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="nombre"  required="true"/>
 		  <p:message for="nombre"/>
 		  <br/>
@@ -40,25 +42,46 @@
 		  <!-- Contrasena -->
 		  
 	                  
-			<p:outputLabel  value="Contrasena: " />
+			<p:outputLabel  value="Contrasena: "
+                                        style="font-size: medium;
+                                        font-weight: bolder"/>
 			<p:password id="pwd1"  label="Password 1" required="true" />
-		  <br/>
-		  <p:commandLink id="btnrecuperarcontrasena" onclick="window.location.replace('recuperarcontrasena.xhtml')"> 
-					<h:outputText value="Recuperar Contrasena    "  />
+		  <br/><br/>
+		  <p:commandLink id="btnrecuperarcontrasena"
+                                 onclick="window.location.replace('recuperarcontrasena.xhtml')"> 
+				<h:outputText value="Recuperar Contrasena    "  />
 		   </p:commandLink>
 		  
 		</h:panelGrid>
-		</p:panel>
+                
 		
 		<!-- Seccion de Botones -->
                 <!-- Cancelar -->
                 <p:commandButton ajax="true" 
                              value="Cancelar"
+                             style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red"
                              onclick="window.location.replace('index.xhtml')"
 				/>	
 				
 				<p:commandButton ajax="true" 
                              value="Iniciar Sesion"
+                             style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
                              onclick="window.location.replace('paneladministracion.xhtml')"
 				/>		
             </h:form>

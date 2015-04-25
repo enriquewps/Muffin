@@ -9,13 +9,16 @@
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
             
+          <h2>Recuperar Contraseña</h2>
             <h:form id="form">
                 <!-- Nombre -->
                 <h3>
                 <!-- Correo -->
                 <br/>
                 <br/>
-                <p:outputLabel value="Introduce tu correo "/>
+                <p:outputLabel value="Introduce tu correo " 
+                               style="font-size: medium;
+                               font-weight: bolder"/>
                 
                 <p:inputText id="correo"  required="true"/>
                 <p:message for="correo"/>
@@ -23,10 +26,28 @@
                 <br/>
                 <br/>
                 <!-- Seccion de Botones -->
-                <p:commandButton ajax="true"   
+                <p:commandButton ajax="true" 
+                                 style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red"
 					onclick="window.location.replace('index.xhtml')"
 					value="Cancelar"  />
-                <p:commandButton ajax="true"   
+                <p:commandButton ajax="true"
+                                 style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
 					onclick="window.location.replace('index.xhtml')"
 					value="Recuperar" />
                 </h3>

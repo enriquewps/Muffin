@@ -23,22 +23,30 @@
 		  <p:outputLabel  value="" />
 		  
 		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre "/>
+		  <p:outputLabel value="Nombre "
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="nombre"  required="true"/>
 		  <p:message for="nombre"/>
 		  <br/>
 		  
 		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre de Usuario "/>
+		  <p:outputLabel value="Nombre de Usuario "
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="nombreusuario"  required="true"/>
 		  <p:message for="nombreusuario"/>
 		  <br/>
 		  <!-- Correo -->
-		  <p:outputLabel value="Correo "/>
+		  <p:outputLabel value="Correo "
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="correo" required="true"/>
 		  <p:message for="correo"/>
 		  <br/>
-                  <h:outputText value="Administrador " />
+                  <h:outputText value="Administrador " 
+                                style="font-size: medium;
+                                 font-weight: bolder"/>
                   <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
 		  <!-- Seccion de Botones -->
 		  <br/><br/>
@@ -50,14 +58,41 @@
                             <p:commandButton ajax="true" 
                                              accesskey=""
                                              value="Cancelar"
+                                             style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red"
                                              onclick="window.location.replace('index2.xhtml')"
 							/>	
 		  
                             <p:commandButton ajax="true"   
                                           value="Guardar Cambios"
+                                          style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
                                           onclick="window.location.replace('index2.xhtml')"/>
                             <p:commandButton ajax="true"   
                                           value="Eliminar Usuario"
+                                          style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
                                           onclick="window.location.replace('index2.xhtml')"/>
 								
 				</p:outputPanel>

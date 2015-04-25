@@ -14,7 +14,7 @@ and open the template in the editor.
     background: #ff0000 ;
     background: #04c404 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
     background: #04c404 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
-    background: #04c404 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0)); /*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF);     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF)"; */
+    background: #04c404 -moz-linear-gradient(top, rgba(200,255,200,0.0), rgba(55,55,255,0)); /*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF);     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF)"; */
     font-weight: bold;
     color: #4f4f4f;
     text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
