@@ -15,15 +15,38 @@
         <br/>
         
           
-          <h:outputText value="Solicitar Baja" style="font-weight: bold"/>
+          <h:outputText value="Solicitar Baja" 
+                        
+                        style="font-weight: bolder;
+                        font-size: medium"/>
           <br/><br/>
-          <h:outputText value="Al dar click eliminaras tu cuenta del sistema" style="font-weight: bold"/>
+          <h:outputText value="Al dar click eliminaras tu cuenta del sistema" 
+                        style="font-weight: bolder;
+                        font-size: medium"/>
           <br/><br/><br/>
           <!-- Seccion de Botones -->
-                <p:commandButton ajax="true"   
+                <p:commandButton ajax="true"  
+                                 style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red"
 					onclick="window.location.replace('index.xhtml')"
 					value="Cancelar"  />
-                <p:commandButton ajax="true"   
+                <p:commandButton ajax="true"  
+                                 style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
 					onclick="window.location.replace('index.xhtml')"
 					value="Solicitar Baja" />
         </h:form>

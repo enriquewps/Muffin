@@ -16,34 +16,45 @@
 
     <h:body>
 
-        <div id="top">
-			<h:form>
-            <ui:insert name="top">Buscar
-				<!-- Busqueda -->
-				<p:inputText id="campobusqueda" required="true"/>
-				<p:commandButton ajax="true" 
-                             icon="ui-icon-search"
-                             onclick="window.location.replace('verLocales.xhtml')"
-				/>				
-				<p:menu overlay="true" trigger="btnsesion" my="left top" at="right top">
-					<p:submenu label="Sesion">
-						<p:menuitem value="Iniciar Sesion" onclick="window.location.replace('iniciarSesion.xhtml')"></p:menuitem>
-						<p:menuitem value="Registrarse" onclick="window.location.replace('registro.xhtml')"></p:menuitem>
-                                                <p:menuitem value="Solicitar Baja" onclick="window.location.replace('solicitarbaja.xhtml')"></p:menuitem>
-                                                <p:menuitem value="Sugerir Local" onclick="window.location.replace('sugerirlocal.xhtml')"></p:menuitem>
-						<p:separator/>
-					</p:submenu>
-					<p:submenu label="Otros">
-						<p:menuitem value="Salir" onclick="window.location.replace('index.xhtml')"></p:menuitem>
-					</p:submenu>
-				</p:menu>
-                                <!-- el styleClass se definio en csslayout.css-->
-                                <p:commandButton id="btnsesion" value="Sesion" style= "float:right; color:white" styleClass="boton-sesion">
+      <div id="top">
+        <h:form>
+          <ui:insert name="top">
+            <h:outputText value="Buscar" style="font-weight: bold;
+                          color: white;
+                          font-size: medium">
+                            
+            </h:outputText>
+            <!-- Busqueda -->
+              <p:inputText id="campobusqueda" required="true"/>
+		<p:commandButton ajax="true" 
+                                 icon="ui-icon-search"
+                                 onclick="window.location.replace('verLocales.xhtml')"
+                                 />				
+                <p:menu overlay="true" trigger="btnsesion" my="left top" at="right top">
+                <p:submenu label="Sesion">
+                  <p:menuitem value="Iniciar Sesion" onclick="window.location.replace('iniciarSesion.xhtml')"></p:menuitem>
+                  <p:menuitem value="Registrarse" onclick="window.location.replace('registro.xhtml')"></p:menuitem>
+                  <p:menuitem value="Solicitar Baja" onclick="window.location.replace('solicitarbaja.xhtml')"></p:menuitem>
+                  <p:menuitem value="Sugerir Local" onclick="window.location.replace('sugerirlocal.xhtml')"></p:menuitem>
+                  <p:separator/>
+		</p:submenu>
+		<p:submenu label="Otros">
+                  <p:menuitem value="Salir" onclick="window.location.replace('index.xhtml')"></p:menuitem>
+		</p:submenu>
+		</p:menu>
+                <!-- el styleClass se definio en csslayout.css-->
+                <p:commandButton id="btnsesion"
+                                 value="Sesion"
+                                 style= "float:right;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium"
+                                 styleClass="boton-sesion">
                                     
-                                </p:commandButton>
-            </ui:insert>            
-            </h:form>
-        </div>
+                </p:commandButton>
+          </ui:insert>            
+        </h:form>
+      </div>
         
         <!-- Comentamos mi top para poner el de Gonzalo
         <div id="top">
@@ -89,13 +100,27 @@
         
         
         <div id="content" class="center_content" align="center" style="margin: 0% 10% 0% 10%">
-            <!-- <h:form>
+          <!--   
+          <h:form>
             <h:commandLink action="index" >
-            <p:graphicImage library="images" name="logo.jpg" style="width: 450px; height: auto"  styleClass="img-responsive" onclick="windows.location.replace('index.xhtlm')"/>
+            <p:graphicImage library="images" 
+                            name="logo.jpg" 
+                            style=" float: left; width: 450px; height: auto"
+                            styleClass="img-responsive" onclick="windows.location.replace('index.xhtlm')"/>
             </h:commandLink>
             </h:form>
-            -->
-            <img alt="Muffin" src="logo.jpg" style="width: 450px; height: auto" class="img-responsive" onclick="window.location.replace('index.xhtml')"/>
+          action="iniciarSesion?faces-redirect=true"
+            
+          
+          -->
+            <img alt="Muffin" 
+                 src="logo.jpg" align="center" 
+                 style="width: 450px; height: auto; float: left" 
+                 class="img-responsive"
+                 onclick="window.location.replace('index.xhtml')"
+                 />
+          
+            <br/><br/><br/><br/><br/><br/>
                     <ui:insert name="content">Content</ui:insert>
             
         </div>

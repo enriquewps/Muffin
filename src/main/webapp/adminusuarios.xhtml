@@ -10,137 +10,417 @@
         <ui:define name="content">	
         <h2>Administrar Usuarios</h2>
         <h:form>
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Nombre de Usuario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Nombre Completo"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <p:commandButton value="Administrar"  onclick="window.location.replace('adminusuario.xhtml')"/>
-                        </p:column>  
-                    </p:row>
+          
+          
+          <p:panelGrid style="width: 75%" >
+            
+            
+            
+            <p:row>
                     
-                    <p:row>
-                        <p:column>
-                            <h:outputText value="Correo"/>
-                        </p:column>
-                    </p:row>
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Nombre de Usuario" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
                     
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
+                    <!-- white-space: pre sirve para activar el salto de linea -->
+                    <h:outputText value="Nombre Completo&#10;Correo"
+                                  style="font-weight: bold;
+                                  white-space: pre;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                          border-right-width: medium" >
+                <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuario.xhtml')"
+                                     />          
+                
+              </p:column>
+                  
+            </p:row>
+            
+            
+            
+            <p:row>
+                    
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Nombre de Usuario" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
+                    <!-- white-space: pre sirve para activar el salto de linea -->
+                    <h:outputText value="Nombre Completo&#10;Correo"
+                                  style="font-weight: bold;
+                                  white-space: pre;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                          border-right-width: medium" >
+                <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuario.xhtml')"
+                                     />          
+                
+              </p:column>
+                  
+            </p:row>
+            
+            
+            
+            <p:row>
+                    
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Nombre de Usuario" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
+                    <!-- white-space: pre sirve para activar el salto de linea -->
+                    <h:outputText value="Nombre Completo&#10;Correo"
+                                  style="font-weight: bold;
+                                  white-space: pre;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                          border-right-width: medium" >
+                <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuario.xhtml')"
+                                     />          
+                
+              </p:column>
+                  
+            </p:row>
+            
+            
+            
+            <p:row>
+                    
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Nombre de Usuario" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
+                    <!-- white-space: pre sirve para activar el salto de linea -->
+                    <h:outputText value="Nombre Completo&#10;Correo"
+                                  style="font-weight: bold;
+                                  white-space: pre;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                          border-right-width: medium" >
+                <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuario.xhtml')"
+                                     />          
+                
+              </p:column>
+                  
+            </p:row>
+            
+            
+            <p:row>
+                    
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Nombre de Usuario" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
+                    <!-- white-space: pre sirve para activar el salto de linea -->
+                    <h:outputText value="Nombre Completo&#10;Correo"
+                                  style="font-weight: bold;
+                                  white-space: pre;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                          border-right-width: medium" >
+                <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuario.xhtml')"
+                                     />          
+                
+              </p:column>
+                  
+            </p:row>
+            
+            
+            
+            <p:row>
+                    
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Nombre de Usuario" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
+                    <!-- white-space: pre sirve para activar el salto de linea -->
+                    <h:outputText value="Nombre Completo&#10;Correo"
+                                  style="font-weight: bold;
+                                  white-space: pre;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                          border-right-width: medium" >
+                <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuario.xhtml')"
+                                     />          
+                
+              </p:column>
+                  
+            </p:row>
+            
+            
+            
           </p:panelGrid>
           
-          <br/>
           
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Nombre de Usuario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Nombre Completo"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <p:commandButton value="Administrar"  onclick="window.location.replace('adminusuario.xhtml')"/>
-                        </p:column>  
-                    </p:row>
-                    
-                    <p:row>
-                        <p:column>
-                            <h:outputText value="Correo"/>
-                        </p:column>
-                    </p:row>
-                    
-            </p:panelGrid>
           
-          <br/>
-          
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Nombre de Usuario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Nombre Completo"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <p:commandButton value="Administrar"  onclick="window.location.replace('adminusuario.xhtml')"/>
-                        </p:column>  
-                    </p:row>
-                    
-                    <p:row>
-                        <p:column>
-                            <h:outputText value="Correo"/>
-                        </p:column>
-                    </p:row>
-                    
-            </p:panelGrid>
-          <br/>
-          
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Nombre de Usuario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Nombre Completo"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <p:commandButton value="Administrar"  onclick="window.location.replace('adminusuario.xhtml')"/>
-                        </p:column>  
-                    </p:row>
-                    
-                    <p:row>
-                        <p:column>
-                            <h:outputText value="Correo"/>
-                        </p:column>
-                    </p:row>
-                    
-            </p:panelGrid>
-          
-          <br/>
-          
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Nombre de Usuario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Nombre Completo"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <p:commandButton value="Administrar"  onclick="window.location.replace('adminusuario.xhtml')"/>
-                        </p:column>  
-                    </p:row>
-                    
-                    <p:row>
-                        <p:column>
-                            <h:outputText value="Correo"/>
-                        </p:column>
-                    </p:row>
-                    
-            </p:panelGrid>
           
         </h:form>
         

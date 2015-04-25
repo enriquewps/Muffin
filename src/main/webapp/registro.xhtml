@@ -10,7 +10,7 @@
         <ui:define name="content">
             <h2>Registro</h2>
             <h:form id="form">
-		<p:panel  style="margin-bottom:5px;">
+		
 		<h:panelGrid columns="2" cellpadding="1">
 		  <!-- Nombre -->
 		  <!--
@@ -24,30 +24,40 @@
 		  <p:outputLabel  value="" />
 		  
 		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre "/>
+		  <p:outputLabel value="Nombre "
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="nombre"  required="true"/>
 		  <p:message for="nombre"/>
 		  <br/>
 		  
 		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre de Usuario "/>
+		  <p:outputLabel value="Nombre de Usuario "
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="nombreusuario"  required="true"/>
 		  <p:message for="nombreusuario"/>
 		  <br/>
 		  <!-- Correo -->
-		  <p:outputLabel value="Correo "/>
+		  <p:outputLabel value="Correo "
+                                 style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:inputText id="correo" required="true"/>
 		  <p:message for="correo"/>
 		  <br/>
 		  <!-- Contrasena -->
-		  <p:outputLabel  value="Contrasena: " />
+		  <p:outputLabel  value="Contrasena: " 
+                                  style="font-size: medium;
+                                 font-weight: bolder"/>
 		  <p:password id="pwd1"  label="Password 1" required="true" />
 		  <br/>
 		  
 		  <!-- Contrasena -->
 		  <p:outputLabel  value="" />
 		  
-		  <p:outputLabel  value="Confirmar contraseña: " />
+		  <p:outputLabel  value="Confirmar contraseña: " 
+                                  style="font-size: medium;
+                                 font-weight: bolder"/>
 		  
 		  <p:password id="pwd12"  label="Passworda 1" required="true" />
 		  <br/>
@@ -55,23 +65,40 @@
 		  <!-- Seccion de Botones -->
 		  <br/>
 		  <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-							<p:outputPanel>								
-								<p:commandButton ajax="true" 
+                    <p:outputPanel>								
+			<p:commandButton ajax="true" 
+                                         style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red"
                              value="Cancelar"
                              onclick="window.location.replace('index.xhtml')"
 							/>	
 		  
-		  <p:commandButton ajax="true"   
-					  
+                        <p:commandButton ajax="true" 
+                                         style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
 					  value="Registrarse"
                                           onclick="window.location.replace('index.xhtml')"/>
 									
-								</p:outputPanel>
-								</h:panelGrid>
+                    </p:outputPanel>
+                  </h:panelGrid>
 									
 		
 		</h:panelGrid>
-		</p:panel>
+		
             </h:form>
         </ui:define>
     </ui:composition>

@@ -8,19 +8,33 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/template/template2.xhtml" >
         <ui:define name="content">
-        <img alt="Muffin" src="logo2.png" style="width: 450px; height: auto" class="img-responsive" onclick="window.location.replace('index.xhtml')"/>
+        <img alt="Muffin" src="logo2.png" style="width: 300px; height: auto" class="img-responsive" onclick="window.location.replace('index.xhtml')"/>
         
         <br/>
         
         <h:form id="nosotros" style="text-align:center" >
             <br></br>
-            <h:outputText value="Muffin fue diseñado por:" style="color: black"/>
+            <h:outputText value="Muffin fue diseñado por:" 
+                          style="color: black;
+                          font-weight: bolder;
+                          font-size: small"/>
             <br/><br/>
-            <img alt="PIXEL" src="logopixel.png" style="align:center;width: 170px; height: auto" class="img-responsive"/>
+            <img alt="PIXEL" src="logopixel.png" 
+                 style="align:center;width: 170px;
+                 height: auto;
+                 font-weight: bolder;
+                 font-size: small"
+                 class="img-responsive"/>
             <br></br>
-            <h:outputText value="Somos una compañia nueva" style="color: black"/>
+            <h:outputText value="Somos una compañia nueva" 
+                          style="color: black;
+                          font-weight: bolder;
+                          font-size: small"/>
             <br/>
-            <h:outputText value="con ganas de hacer grandes cosas." style="color: black"/>
+            <h:outputText value="con ganas de hacer grandes cosas." 
+                          style="color: black;
+                          font-weight: bolder;
+                          font-size: small"/>
             <br/><br/><br/><br/>
         </h:form>
         </ui:define>

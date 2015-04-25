@@ -12,13 +12,133 @@
         
         <br/><br/>
         
-        <h:outputText value="Administrar Usuarios " style="font-weight: bold" />
-        <p:commandButton value="Administrar" onclick="window.location.replace('adminusuarios.xhtml')" />
+        
+        <p:panelGrid style="width: 75%">
+                <p:row>
+                  
+                  
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium">
+                    
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+                
+                <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: transparent;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium">
+                    <h:outputText value="Administración de Usuarios"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+                  </p:column>
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                 border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminusuarios.xhtml')"
+                                     />
+                  </p:column>
+                </p:row>
+        </p:panelGrid>
         
         <br/><br/>
         
-        <h:outputText value="Administrar Locales " style="font-weight: bold" />
-        <p:commandButton value="Administrar" onclick="window.location.replace('adminlocales.xhtml')" />
+        <p:panelGrid style="width: 75%">
+                <p:row>
+                  
+                  
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium">
+                    
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+                
+                <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: transparent;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium">
+                    <h:outputText value="Administración de Locales"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+                  </p:column>
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
+                                     style="width: 125px;
+                                     -webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:black;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red;
+                                 float: right;
+                                 border-color: black!important;
+                                  border-width: thin!important"
+                                     
+                                     onclick="window.location.replace('adminlocales.xhtml')"
+                                     />
+                  </p:column>
+                </p:row>
+        </p:panelGrid>
+        
         
         </ui:define>
     </ui:composition>

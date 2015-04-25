@@ -71,5 +71,44 @@
 }
 
 .boton-sesion {
-    background: blue
+    background: blue;
+    text-shadow: none!important;
+    border-color: black!important;
+    border-width: thin!important;
+    box-shadow: none!important;
+    background-image: none!important;
+    
+}
+
+.ui-button{
+  display: inline-block;
+  position: relative;
+  padding: 0px;
+  margin-right: 0.1em;
+  text-decoration: none !important;
+  cursor: pointer;
+  text-align: right;
+  overflow: visible;
+}
+
+.boton {
+ 
+  -webkit-box-shadow: none!important;
+  -moz-box-shadow: none!important;
+  box-shadow: none!important;
+  float: right!important;
+  width: 85px!important;
+  background-color: red!important;
+  background-image: none!important;
+  color: black!important;
+  font-size: medium!important;
+  text-shadow: none!important; 
+  background-image: none!important;
+  border-color: black!important;
+  border-width: thin!important;
+
+}
+
+.barra-precio{
+  color: red;
 }

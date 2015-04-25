@@ -8,42 +8,177 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">   
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
-          <h2>Local X</h2>
           
-          <h:form>
-            <p:dataList value="#{localController.local.nombre}" var="car"  >
-              <f:facet name="header">
-		<p:outputPanel>								
-                  <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Establecimiento X" style="text-align: left;color: red" />
-                      <p:rating value="5" readonly="true" />
-                  </h:panelGrid>
-								
-		</p:outputPanel>
-              </f:facet>
-            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-              <p:outputPanel>								
-		<h:panelGrid columns="3" cellpadding="5">
-                  <p:graphicImage library="images" style="width: 170px; height: auto" name="restaurante.jpg" />
-                    <h:panelGrid columns="2" cellpadding="5">
-                      <h:outputText value="Descripción:" />
-			<h:outputText value="Este es un local de comida dentro de CU que ofrece..." style="font-weight: bold"/>
-					 
-			<h:outputText value="Categoría:" />
-			<h:outputText value="Tortas" style="font-weight: bold"/>
-					 
-			<h:outputText value="Precios:" />
-			<h:outputText value="$15 ~ $45" style="font-weight: bold"/>
+          
+          
+          <p:panelGrid style="width: 100%">
+                <p:row>
+                  <p:column rowspan="2" style="background-color: white;
+                            border-right-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            width: 165px">
+                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
+                  </p:column>
+                  
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Establecimiento X" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
                         
-                        <h:outputText value="Pumabus:" />
-			<h:outputText value="Anexo Ingeniería" style="font-weight: bold"/>
-                    </h:panelGrid>
-		</h:panelGrid>
-              </p:outputPanel>
-            </h:panelGrid>
-            </p:dataList>
-          </h:form>
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:rating value="5"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
+                  </p:column>
+                </p:row>
+          
+          
+          <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <h:outputText value="Descripción completa del establecimiento"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+
+                  </p:column>
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    
+                  </p:column>
+                </p:row>
+          </p:panelGrid>
+            
+            
 	<br></br>
+        
+        <p:accordionPanel activeIndex="2">
+      <p:tab title="Información del Local"
+             titleStyle="font-size: large;
+             background: red;
+             text-color: white;
+             text-shadow: none;
+             ">
+                              
+    <h:panelGrid columns="3" cellpadding="1">
+          
+          <p:outputLabel value="Categoria: "
+                           style="font-weight: bolder;
+                           font-size: large"/>
+          <p:outputLabel value="Tortas"
+                         style="font-weight: bolder;
+                         font-size: large" />
+             <br/>
+      
+          <p:outputLabel  value="Precios:"
+                          style="font-weight: bolder;
+                          font-size: large"/>
+          <p:outputLabel value="$17 ~ $45"
+                         style="font-weight: bolder;
+                         font-size: large"/>
+
+          <br/>
+            
+          
+
+            <p:column>
+            <h:outputText value="Baño: " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            <h:outputText value="Si " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            </p:column>
+            
+            <p:column>
+            <h:outputText value="Estacionamiento: "
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            <h:outputText value="No" 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            </p:column>
+            
+            
+            
+            <p:column>
+            <h:outputText value="Internet: " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            <h:outputText value="Si " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            </p:column>
+                
+ 
+            
+            <p:outputLabel value="Bicipuma: "
+                           style="font-weight: bolder;
+                           font-size: large"/>
+            <h:outputText value="Anexo de Ingeniería " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            
+            <br/>
+            <p:outputLabel value="Pumabus: "
+                           style="font-weight: bolder;
+                           font-size: large"/>
+            <h:outputText value="Anexo de Ingeniería " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+                                
+            <br/>
+            <p:outputLabel value="Metrobus: "
+                           style="font-weight: bolder;
+                           font-size: large"/>
+            <h:outputText value="No " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+            <br/>
+            <p:outputLabel value="Facultad: "
+                           style="font-weight: bolder;
+                           font-size: large"/>
+            <h:outputText value="Ingeniería " 
+                          style="font-weight: bolder;
+                          font-size: large"/>
+                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
+                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+
+                   
+        </h:panelGrid>
+        
+        
+    
+          </p:tab>
+    </p:accordionPanel>
+        
+        <br/>
+        
         
         <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="14" 
                         type="HYBRID" 
@@ -60,111 +195,222 @@
           
           <!-- Tabla ya sin colores del borde, usar para todas las tablas -->
           
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                          <p:column colspan="3" style="background-color: red; color: white; font-weight: bold">Comentario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column style="border-bottom-color: transparent; border-right-color: transparent">
-                            <h:outputText value="Usuario"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <h:outputText value="Me parecio un buen lugar para comer Pizza solo que se tardaron mucho en..." />
-                        </p:column>  
-                    </p:row>
+          <br/>
+          
+          <p:panelGrid style="width: 80%" >
+            
+            
+            
+            <p:row>
                     
-                    <p:row>
-                      <p:column style="border-right-color: transparent">
-                            <p:rating value="4" readonly="true" />
-                        </p:column>
-                    </p:row>
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Usuario Y" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:rating value="5"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <h:outputText value="Comentario del Usuario Y sobre el establecimiento"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                        border-right-width: medium" />
+                  
+            </p:row>
+            
+            
+            
+            <p:row>
                     
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Usuario Y" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:rating value="3"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <h:outputText value="Comentario del Usuario Y sobre el establecimiento"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                        border-right-width: medium" />
+                  
+            </p:row>
+            
+            
+            
+            
+            <p:row>
+                    
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText value="Usuario Y" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:rating value="4"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <h:outputText value="Comentario del Usuario Y sobre el establecimiento"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                        border-right-width: medium" />
+                  
+            </p:row>
+                    
+            
+            
+            
           </p:panelGrid>
           
           <br/>
-        
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Comentario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Usuario"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <h:outputText value="Me parecio un buen lugar para comer Pizza solo que se tardaron mucho en..." />
-                        </p:column>  
-                    </p:row>
+          
+          
+          
+          
+          
+          <p:panelGrid style="width: 80%">
                     
-                    <p:row>
-                        <p:column>
-                            <p:rating value="4" readonly="true" />
-                        </p:column>
-                    </p:row>
+            <p:row>
                     
+                  <p:column style="background-color: red; 
+                            border-bottom-color: transparent;
+                            border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-top-color: black;
+                            border-top-width: medium">
+                    <h:outputText style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"/>
+                  </p:column>
+                        
+                  <p:column style="background-color: red;
+                            border-bottom-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:rating value="0"
+                              style="float: right"
+                              stars="5"
+                              readonly="false"
+                              cancel="false"/>
+                  </p:column>
+                </p:row>
+            
+            <p:row>
+                  <p:column style="border-right-color: transparent;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium">
+                    <h:outputText value="Escribe tu comentario"
+                                  style="font-weight: bold;
+                                  font-size: medium"/>
+                  </p:column>
+                  
+              <p:column style="border-bottom-color: black;
+                        border-bottom-width: medium;
+                        border-right-color: black;
+                        border-right-width: medium" />
+                  
+            </p:row>
+            
           </p:panelGrid>
           
-          <br/>
           
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Comentario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Usuario"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <h:outputText value="Me parecio un buen lugar para comer Pizza solo que se tardaron mucho en..." />
-                        </p:column>  
-                    </p:row>
-                    
-                    <p:row>
-                        <p:column>
-                            <p:rating value="4" readonly="true" />
-                        </p:column>
-                    </p:row>
-                    
-          </p:panelGrid>
           
-          <br/>
-          
-          <p:panelGrid >
-                    <f:facet name="header">
-                        <p:row>
-                            <p:column colspan="3">Escribe tu Comentario</p:column>
-                        </p:row>
-                    </f:facet>
-                    <p:row>
-                        
-                        <p:column>
-                            <h:outputText value="Usuario"/>
-                        </p:column>
-                        
-                      <p:column rowspan="2">
-                            <p:inputText />
-                        </p:column>  
-                    </p:row>
-                    
-                    <p:row>
-                        <p:column>
-                            <p:rating value="#{ratingView.rating2}" stars="5" cancel="false"/>
-                        </p:column>
-                    </p:row>
-                    
-          </p:panelGrid>
           
           <br/>
           
@@ -172,16 +418,52 @@
                           <p:outputPanel>								
                             <p:commandButton ajax="true" 
                                              accesskey=""
+                                             style="-webkit-box-shadow: none!important;
+                                              -moz-box-shadow: none!important;
+                                              box-shadow: none!important;
+                                              background-image: none!important;
+                                              text-shadow: none!important;
+                                              color:white;
+                                              font-weight: bolder;
+                                              font-size: medium;
+                                              background-color: red"
                                              value="Cancelar"
                                              onclick="window.location.replace('index.xhtml')"
 							/>	
-                            <p:commandButton ajax="true"   
+                            <p:commandButton ajax="true"
+                                             style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
                                           value="Enviar"
                                           onclick="window.location.replace('index.xhtml')"/>
-                            <p:commandButton ajax="true"   
+                            <p:commandButton ajax="true" 
+                                             style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
                                           value="Comentar Facebook"
                                           onclick="window.location.replace('index.xhtml')"/>
-                            <p:commandButton ajax="true"   
+                            <p:commandButton ajax="true" 
+                                             style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: blue"
                                           value="Comentar Twitter"
                                           onclick="window.location.replace('index.xhtml')"/>
 			
