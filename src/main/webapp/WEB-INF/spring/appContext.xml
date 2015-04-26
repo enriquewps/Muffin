@@ -47,7 +47,7 @@
         <bean id="usuarioController" class="mx.unam.pixel.controller.UsuarioController" scope="session">
             <property name="busqueda" value="Nombre" />
             <property name="usuario" >
-                <bean class="mx.unam.pixel.model.Usuario">
+                <bean  class="mx.unam.pixel.model.Usuario">
                        <property name="nombreUsuario" value="Nombre del Usuario..." />
                        <property name="correo" value="correo" /> 
                         <property name="nombre" value="nombre" />

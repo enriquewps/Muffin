@@ -9,7 +9,7 @@
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
             <h2>Registro</h2>
-            <h:form id="form">
+            <h:form id="datos">
 		
 		<h:panelGrid columns="2" cellpadding="1">
 		  <!-- Nombre -->
@@ -91,7 +91,7 @@
                                  font-size: medium;
                                  background-color: blue"
 					  value="Registrarse"
-                                          onclick="#{usuarioController.registraUsuario()}"/>
+                                          onclick="#{usuarioController.registraUsuario()}" update="datos"/>
 									
                     </p:outputPanel>
                   </h:panelGrid>

@@ -46,9 +46,11 @@ public class UsuarioController {
     
     private Usuario usuario;
     
+    
+    
     @PostConstruct
     public void init(){
-       usuario = new Usuario();
+       //usuario = new Usuario();
         usuarios = this.usuarioService.findAll();
     }
 
@@ -87,6 +89,8 @@ public class UsuarioController {
     
     public boolean registraUsuario(){
         if(usuarios == null)usuarios = new ArrayList<Usuario>();
+        
+        System.out.println(busqueda +" usuariooooooo "+usuario.getNombreUsuario());
         try{
         
         for (Usuario u: usuarios){
@@ -124,16 +128,9 @@ public class UsuarioController {
     
     public void iniciarSesion(){
         if (usuario == null)usuario = new Usuario();
-        System.out.println(usuario.getNombre()+" nombre y passs"+usuario.getContrasena());
+        System.out.println(busqueda+" nombre y passs"+usuario.getContrasena());
         usuario = usuarioService.iniciarSesion(usuario.getNombre(), usuario.getContrasena());
-        if (usuario!= null){
-            busqueda = "Sesion iniciada";
-            
-        }
-        else{
-            busqueda = "Sesion no iniciada";
-            
-        }
+
     }
     
         public void enviaMensaje(String mensaje){
