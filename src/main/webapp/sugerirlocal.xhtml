@@ -8,32 +8,61 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
         
-   <ui:composition template="/template/template.xhtml" >
-        <ui:define name="content">
-          <h2>Sugerir Local</h2>
+  <ui:composition template="/template/template.xhtml" >
+    <ui:define name="content">
+      <h2>Sugerir Local</h2>
+      
+      <!--Panel para el primer campo "Nombre"  -->
+      <h:panelGrid columns="2" cellpadding="1">
+        <p:outputLabel  value="Nombre:" 
+                        style="font-size: medium;
+                        font-weight: bolder"/>
+        <p:inputText id="campobusqueda" required="true"/>
+      </h:panelGrid>
           
-          <h:panelGrid columns="2" cellpadding="1">
-          <p:outputLabel  value="Nombre:" 
-                          style="font-size: medium;
-                          font-weight: bolder"/>
-          <p:inputText id="campobusqueda" required="true"/>
-        
-          </h:panelGrid>
-          
-          <br/><br/>
-          <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="14" 
-                        type="HYBRID" 
-                        style="width:600px;height:400px"
-                        onPointClick="agregaMarcador(event);"
-                        widgetVar="map"
-                        disableDoubleClickZoom="true"      
-                        ></p:gmap>
-         <br/>
+      <br/><br/>
+        <h:form id="mapa">
+          <p:gmap id="gmap"
+                  center="19.3142052,-99.1835216"
+                  zoom="14" 
+                  type="HYBRID" 
+                  style="width:600px;height:400px"
+                  onPointClick="agregaMarcador(event);"
+                  widgetVar="map"
+                  disableDoubleClickZoom="true"      
+            >
+            <p:ajax event="pointSelect"
+                    listener="#{localController.busquedaPunto}"
+              />
+          </p:gmap>
+      <br/>
           <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
         
+          <!-- Marcador para el Mapa (Google Maps) -->
+          <script type="text/javascript"> 
+            var marker = null;
+            function agregaMarcador(event) {
+              if(window.marker!==null){
+                marker.setMap(null);
+              }
+              var punto=new google.maps.LatLng(
+                        event.latLng.lat(), 
+                        event.latLng.lng()
+                );
+              window.marker = new google.maps.Marker({
+                              position:punto,
+                              title:'Lugar'
+                });  
+                PF('map').addOverlay(marker);
+              };
+          </script>
+        </h:form>
+          
           <h:panelGrid columns="2" cellpadding="1">
+            
+            
             <p:outputLabel for="categoria" value="Categoria: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
@@ -129,7 +158,6 @@
 				</p:outputPanel>
 			</h:panelGrid>
                     
-        </ui:define>
- 
-    </ui:composition>
+    </ui:define>
+  </ui:composition>
 </html>

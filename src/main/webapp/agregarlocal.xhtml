@@ -25,7 +25,11 @@
                         onPointClick="agregaMarcador(event);"
                         widgetVar="map"
                         disableDoubleClickZoom="true"      
-                        ></p:gmap>
+            >
+                          <p:ajax event="pointSelect"
+                                  listener="#{localController.busquedaPunto}"
+                                  update="@form"   />
+          </p:gmap>
          <br/>
           <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
