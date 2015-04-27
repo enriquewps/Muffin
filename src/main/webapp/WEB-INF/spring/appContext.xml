@@ -48,11 +48,11 @@
             <property name="busqueda" value="Nombre" />
             <property name="usuario" >
                 <bean  class="mx.unam.pixel.model.Usuario">
-                       <property name="nombreUsuario" value="Nombre del Usuario bean" />
-                       <property name="correo" value="correo bean" /> 
-                        <property name="nombre" value="nombre bean" />
-                        <property name="contrasena" value="contrasena bean" />
-                        <property name="administrador" value="false" />                         
+                       <property name="nombreUsuario" value="" />
+                       <property name="correo" value="" /> 
+                        <property name="nombre" value="" />
+                        <property name="contrasena" value="" />
+                        <property name="administrador" value="true" />                         
                  </bean>
             </property> 
         </bean>

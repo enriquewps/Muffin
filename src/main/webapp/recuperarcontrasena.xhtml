@@ -20,7 +20,7 @@
                                style="font-size: medium;
                                font-weight: bolder"/>
                 
-                <p:inputText id="correo"  required="true"/>
+                <p:inputText id="correo"  required="true" value="#{usuarioController.correoRecuperar}"/>
                 <p:message for="correo"/>
                 <br/>
                 <br/>
@@ -36,7 +36,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: red"
-					onclick="window.location.replace('index.xhtml')"
+					actionListener="window.location.replace('index.xhtml')"
 					value="Cancelar"  />
                 <p:commandButton ajax="true"
                                  style="-webkit-box-shadow: none!important;
@@ -48,7 +48,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-					onclick="window.location.replace('index.xhtml')"
+                                 actionListener="#{usuarioController.recuperaContrasena()}"
 					value="Recuperar" />
                 </h3>
             </h:form>

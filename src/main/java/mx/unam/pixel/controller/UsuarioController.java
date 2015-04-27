@@ -26,6 +26,8 @@ import mx.unam.pixel.model.Usuario;
 import mx.unam.pixel.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -50,7 +52,32 @@ public class UsuarioController {
     //@ManagedProperty(value="#{usuario}")
     private Usuario usuario = new Usuario();
     
+    private Usuario usuarioRegistro = new Usuario();
 
+    private String correoRecuperar ="";
+    
+    
+    @Autowired
+    private JavaMailSenderImpl mailSender;
+    
+    public Usuario getUsuarioRegistro() {
+        if (usuarioRegistro == null)usuarioRegistro = new Usuario();
+        return usuarioRegistro;
+    }
+
+    public void setUsuarioRegistro(Usuario usarioRegistro) {
+        this.usuarioRegistro = usarioRegistro;
+    }
+
+    public String getCorreoRecuperar() {
+        return correoRecuperar;
+    }
+
+    public void setCorreoRecuperar(String correoRecuperar) {
+        this.correoRecuperar = correoRecuperar;
+    }
+    
+    
     
     @PostConstruct
     public void init(){
@@ -118,10 +145,23 @@ public class UsuarioController {
         this.usuarioService.eliminaUsuario(u);
     }
     
-    public void recuperaContrasena(String correo ){
-        List<Usuario> u = usuarioService.findByCorreo(correo);
-        if(u!=null || u.size() > 0 )
+    public void recuperaContrasena(){
+        List<Usuario> u = usuarioService.findByCorreo(correoRecuperar);
+        if(u!=null || u.size() > 0 ){
             //Aqui se envia correo al usuario investigar si se regresaria null o la lista vacia
+            
+        SimpleMailMessage mail=new SimpleMailMessage();
+        
+        mail.setTo(u.get(0).getCorreo());
+        mail.setFrom("pixel.is.pruebas@gmail.com");
+        mail.setSubject("Muffin");
+        mail.setCc("pixel_developer@gmail.com");
+        mail.setText("Tu contraseña es :"+u.get(0).getContrasena());
+
+        
+        mailSender.send(mail);
+         
+        }
             return;
     }
     
@@ -132,10 +172,15 @@ public class UsuarioController {
     }
     
     public void iniciarSesion(){
-        if (usuario == null)usuario = new Usuario();
+        if (usuarioRegistro == null)usuarioRegistro = new Usuario();
         System.out.println(usuario.getNombre()+" nombre y passs"+usuario.getContrasena());
-        usuario = usuarioService.iniciarSesion(usuario.getNombre(), usuario.getContrasena());
-        if (usuario == null)usuario = new Usuario();
+        usuarioRegistro = usuarioService.iniciarSesion(usuarioRegistro.getNombre(), usuarioRegistro.getContrasena());
+        if (usuarioRegistro == null){
+            usuarioRegistro = new Usuario();
+            busqueda = "No esta registrado";
+        }else{
+            busqueda = "Sesion Iniciada";
+        }
     }
     
         public void enviaMensaje(String mensaje){
