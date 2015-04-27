@@ -60,7 +60,7 @@
                              onclick="window.location.replace('index.xhtml')"
 				/>	
 				
-				<p:commandButton ajax="false" 
+				<p:commandButton 
                              value="Iniciar Sesion"
                              style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -71,7 +71,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                 onclick="#{usuarioController.iniciarSesion()}"
+                                 actionListener="#{usuarioController.iniciarSesion()}"
                                  update="isesion"
 				/>	
                                 

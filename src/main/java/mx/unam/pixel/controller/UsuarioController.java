@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -35,6 +37,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller("usuarioController")
 @Scope("session")
+@ManagedBean
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
@@ -43,14 +46,14 @@ public class UsuarioController {
     
     private List<Usuario> usuarios;
     
+
+    //@ManagedProperty(value="#{usuario}")
+    private Usuario usuario = new Usuario();
     
-    private Usuario usuario;
-    
-    
+
     
     @PostConstruct
     public void init(){
-       //usuario = new Usuario();
         usuarios = this.usuarioService.findAll();
     }
 
@@ -79,6 +82,7 @@ public class UsuarioController {
     }
 
     public Usuario getUsuario() {
+        if(usuario == null)usuario = new Usuario();
         return usuario;
     }
 
@@ -90,7 +94,7 @@ public class UsuarioController {
     public boolean registraUsuario(){
         if(usuarios == null)usuarios = new ArrayList<Usuario>();
         
-        System.out.println(busqueda +" usuariooooooo "+usuario.getNombreUsuario());
+        System.out.println(usuario.getNombre() +" usuariooooooo "+usuario.getContrasena());
         try{
         
         for (Usuario u: usuarios){
@@ -105,6 +109,7 @@ public class UsuarioController {
         }catch(Exception e){
             this.usuario=new Usuario();
             this.usuario.setNombre("NO se guardo");
+            e.printStackTrace();
         return false;
         }
     }
@@ -128,9 +133,9 @@ public class UsuarioController {
     
     public void iniciarSesion(){
         if (usuario == null)usuario = new Usuario();
-        System.out.println(busqueda+" nombre y passs"+usuario.getContrasena());
+        System.out.println(usuario.getNombre()+" nombre y passs"+usuario.getContrasena());
         usuario = usuarioService.iniciarSesion(usuario.getNombre(), usuario.getContrasena());
-
+        if (usuario == null)usuario = new Usuario();
     }
     
         public void enviaMensaje(String mensaje){

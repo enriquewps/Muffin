@@ -80,7 +80,7 @@
                              onclick="window.location.replace('index.xhtml')"
 							/>	
 		  
-                        <p:commandButton ajax="true" 
+                        <p:commandButton 
                                          style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
                                   box-shadow: none!important;
@@ -91,7 +91,7 @@
                                  font-size: medium;
                                  background-color: blue"
 					  value="Registrarse"
-                                          onclick="#{usuarioController.registraUsuario()}" update="datos"/>
+                                          actionListener="#{usuarioController.registraUsuario()}" update="datos"/>
 									
                     </p:outputPanel>
                   </h:panelGrid>
