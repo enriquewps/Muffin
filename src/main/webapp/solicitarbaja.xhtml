@@ -35,7 +35,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: red"
-					onclick="window.location.replace('index.xhtml')"
+					actionListener="window.location.replace('index.xhtml')"
 					value="Cancelar"  />
                 <p:commandButton ajax="true"  
                                  style="-webkit-box-shadow: none!important;
@@ -47,7 +47,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-					onclick="window.location.replace('index.xhtml')"
+                                 actionListener="#{usuarioController.borraUsuario()}"
 					value="Solicitar Baja" />
         </h:form>
         </ui:define>

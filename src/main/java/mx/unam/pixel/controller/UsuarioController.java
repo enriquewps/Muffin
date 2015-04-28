@@ -141,8 +141,9 @@ public class UsuarioController {
         }
     }
     
-    public void borraUsuario(Usuario u){
-        this.usuarioService.eliminaUsuario(u);
+    public void borraUsuario(){
+        this.usuarioService.eliminaUsuario(usuario);
+        usuario = new Usuario();
     }
     
     public void recuperaContrasena(){
@@ -173,10 +174,10 @@ public class UsuarioController {
     
     public void iniciarSesion(){
         if (usuarioRegistro == null)usuarioRegistro = new Usuario();
-        System.out.println(usuario.getNombre()+" nombre y passs"+usuario.getContrasena());
-        usuarioRegistro = usuarioService.iniciarSesion(usuarioRegistro.getNombre(), usuarioRegistro.getContrasena());
-        if (usuarioRegistro == null){
-            usuarioRegistro = new Usuario();
+        //System.out.println(usuario.getNombre()+" nombre y passs"+usuario.getContrasena());
+        usuario = usuarioService.iniciarSesion(usuarioRegistro.getNombre(), usuarioRegistro.getContrasena());
+        if (usuario == null){
+            usuario = new Usuario();
             busqueda = "No esta registrado";
         }else{
             busqueda = "Sesion Iniciada";
@@ -229,4 +230,8 @@ public class UsuarioController {
     
     }
     
+    public void eliminaUsuario(Usuario u){
+        usuarioService.eliminaUsuario(u);
+    }
+        
 }
