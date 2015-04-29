@@ -36,8 +36,22 @@ public class Usuario implements Serializable {
     @NotNull
     private String contrasena;
     @NotNull
-    private boolean administrador;
+    private boolean administrador = false;
 
+       @NotNull 
+   private String rol;
+
+       
+       
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+       
+       
     public String getNombreUsuario() {
         return nombreUsuario;
     }

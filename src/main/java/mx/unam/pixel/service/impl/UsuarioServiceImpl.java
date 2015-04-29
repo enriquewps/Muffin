@@ -28,6 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     
     @Override
     public boolean crearUsuario(Usuario usuario) {
+
         usuarioRepository.save(usuario);
         return true;
     }

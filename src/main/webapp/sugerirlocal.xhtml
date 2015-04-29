@@ -10,25 +10,49 @@
         
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
+                        <script type="text/javascript" 
+                src="http://maps.googleapis.com/maps/api/js"
+                />
+        <script type="text/javascript"> 
+            var marker = null;
+            function agregaMarcador(event) {
+               if(window.marker!==null){
+                   marker.setMap(null);
+               }
+                var punto=new google.maps.LatLng(
+                        event.latLng.lat(), 
+                event.latLng.lng()
+                        );
+                window.marker = new google.maps.Marker({
+                        position:punto,
+                        title:'Lugar'
+                    });
+                    
+                    PF('map').addOverlay(marker);
+            };
+        </script>
+            
+            
           <h2>Sugerir Local</h2>
           
           <h:panelGrid columns="2" cellpadding="1">
           <p:outputLabel  value="Nombre:" 
                           style="font-size: medium;
                           font-weight: bolder"/>
-          <p:inputText id="campobusqueda" required="true"/>
-        
+          <p:inputText id="campobusqueda" value="#{localController.local.nombre}" required="true"/>
+		  <p:message for="campobusqueda"/>
           </h:panelGrid>
           
           <br/><br/>
-          <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="14" 
+                 <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="13" 
                         type="HYBRID" 
                         style="width:600px;height:400px"
                         onPointClick="agregaMarcador(event);"
                         widgetVar="map"
                         disableDoubleClickZoom="true"      
-                        ></p:gmap>
-         <br/>
+                        >
+                     <p:ajax event="pointSelect" listener="#{localController.seleccion}"  update=":form:cords"   />
+                </p:gmap>
           <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
@@ -37,16 +61,15 @@
             <p:outputLabel for="categoria" value="Categoria: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="categoria" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
+            <p:selectOneMenu id="categoria" value="#{localController.categoria.nombre}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
+                <f:selectItems value="#{localController.categorias}" />
             </p:selectOneMenu>
  
             <h:outputText id="rango" value="Rango de precios: "
                           style="font-size: medium;
                           font-weight: bolder"/>
-                   <p:slider  minValue="10" maxValue="200" 
+            <p:slider  minValue="#{localController.categoria.precioMenor}" maxValue="#{localController.categoria.precioMayor}" 
                               for="inferior,superior" 
                               display="rango" style="width: 250px" 
                               range="true" 
@@ -65,23 +88,23 @@
                   -moz-box-shadow: none!important;
                   box-shadow: none!important;"
                    
-                 actionListener="#{dropdownView.displayLocation}" 
-                 onclick="window.location.replace('verLocales.xhtml')"/>
+                  actionListener="#{localController.guardarCategoria()}" 
+                 />
             
             <p:outputLabel for="especialidad" value="Especialidad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="especialidad" value="#{dropdownView.city}" style="width:160px">
+            <p:selectOneMenu id="especialidad" value="#{localController.especialidades}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione especialidad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.cities}" />
+                <f:selectItems value="#{localController.especialidades}" var="_esp" itemLabel="#{_esp.nombre}" itemValue="#{_esp.nombre}" />
             </p:selectOneMenu>
 
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="facultad" value="#{dropdownView.city}" style="width:160px">
+            <p:selectOneMenu id="facultad" value="#{localController.facultad}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.cities}" />
+                <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>
             
         
@@ -123,7 +146,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                          onclick="window.location.replace('index.xhtml')"/>
+                                 actionListener ="#{localController.guardarLocal()}" />
                             
 								
 				</p:outputPanel>

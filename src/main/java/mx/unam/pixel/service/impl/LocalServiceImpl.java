@@ -18,6 +18,7 @@ import mx.unam.pixel.model.Metro;
 import mx.unam.pixel.model.Metrobus;
 import mx.unam.pixel.model.Pumabus;
 import mx.unam.pixel.repository.BiciPumaRepository;
+import mx.unam.pixel.repository.CategoriaRepository;
 import mx.unam.pixel.repository.FacultadRepository;
 import mx.unam.pixel.repository.MetroRepository;
 import mx.unam.pixel.repository.MetrobusRepository;
@@ -36,6 +37,9 @@ public class LocalServiceImpl implements LocalService{
 
     @Autowired
     private LocalRepository localRepository;
+    
+        @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Autowired
     private FacultadRepository facultadRepository;
@@ -177,6 +181,11 @@ return facultadRepository.findAll();
        // l.setCalificacion(localRepository.getPromedio(l.getNombre()));
 localRepository.save(l);
     }
+
+    @Override
+    public List<Categoria> findEspecialidades() {
+    return categoriaRepository.findEspecialidades();
+        }
 
 
 }

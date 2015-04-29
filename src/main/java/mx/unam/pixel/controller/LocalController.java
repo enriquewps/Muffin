@@ -57,6 +57,8 @@ public class LocalController {
     private MapModel simpleModel; // es usado en la vista del ver locales
    
     private List<Facultad> facultades;
+    
+    private List<Categoria> especialidades;
 
     
     private Boolean aprobado = true;
@@ -77,9 +79,56 @@ public class LocalController {
     @Autowired
     private JavaMailSenderImpl mailSender;
     
+    
+    String [] categorias ={"Tipo",
+"Aguas",
+"Antojitos",
+"Café",
+"Corrida",
+"Empanada",
+"Ensaladas",
+"Fruta",
+"Gourmet",
+"Internacional",
+"Japonesa",
+"Jugos",
+"Licuados",
+"Mexicana",
+"Panes (baguettes, chapatas, cuernitos, etc.)",
+"Paquete",
+"Postres",
+"Rápida",
+"Sandwiches",
+"Tacos",
+"Tacos de canasta",
+"Tiendita",
+"Tortas",
+"Vegetariana",
+"Entradas",
+"Carnes",
+"Pescados",
+"Pastas"
+};
+
+    public String[] getCategorias() {
+
+        return categorias;
+    }
+
+    public void setCategorias(String[] categorias) {
+
+        this.categorias = categorias;
+    }
+    
+    
+    
     @PostConstruct
     public void init(){
  
+        if(local == null)this.local=new Local();
+        //las especialidades tiene como precio mayor 0
+        especialidades = this.localService.findEspecialidades();
+        
         //se va a borrar pues estan en las facultades
         pumabuses=this.localService.findAllPumabus();
         metros=this.localService.findAllMetro();
@@ -99,6 +148,8 @@ public class LocalController {
     }
     
     public void guardarCategoria(){
+        
+        if(local == null)this.local=new Local();
         this.local.getCategorias().add(categoria);
         this.categoria=new Categoria();   
     }
@@ -117,6 +168,8 @@ public class LocalController {
     
     
     public void seleccion(PointSelectEvent event){
+        
+        if(local == null)this.local=new Local();
          LatLng latlng = event.getLatLng();
          this.local.setLatitud(latlng.getLat());
          this.local.setLongitud(latlng.getLng());
@@ -178,6 +231,8 @@ public class LocalController {
     
     
     public void handleFileUpload(FileUploadEvent event) {
+        
+        if(local == null)this.local=new Local();
             UploadedFile file=event.getFile();
             this.local.setFoto( file.getContents());   
     }
@@ -201,6 +256,8 @@ public class LocalController {
     }
 
     public Local getLocal() {
+        
+        if(local == null)this.local=new Local();
         return local;
     }
 
@@ -275,10 +332,12 @@ public class LocalController {
     }
 
     public Categoria getCategoria() {
+                if(categoria == null )categoria = new Categoria();
         return categoria;
     }
 
     public void setCategoria(Categoria categoria) {
+                if(categoria == null )categoria = new Categoria();
         this.categoria = categoria;
     }
 
@@ -369,6 +428,40 @@ public class LocalController {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+
+    public List<Facultad> getFacultades() {
+        return facultades;
+    }
+
+    public void setFacultades(List<Facultad> facultades) {
+        this.facultades = facultades;
+    }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public JavaMailSenderImpl getMailSender() {
+        return mailSender;
+    }
+
+    public void setMailSender(JavaMailSenderImpl mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    public List<Categoria> getEspecialidades() {
+        return especialidades;
+    }
+
+    public void setEspecialidades(List<Categoria> especialidades) {
+        this.especialidades = especialidades;
+    }
+    
+    
     
     
 }

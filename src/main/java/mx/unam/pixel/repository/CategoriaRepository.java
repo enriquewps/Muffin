@@ -24,6 +24,9 @@ public interface CategoriaRepository extends CrudRepository<Categoria, Integer>{
      
     
     
-    @Query("SELECT l FROM Categoria l WHERE l.precioInferior > ? AND l.precioSuperior< ?")
+    @Query("SELECT l FROM Categoria l WHERE l.precioMenor <= ? AND l.precioMayor >= ?")
     List<Categoria> findByPrecioInferior(Integer precioInferior,Integer precioSuperior);
+    
+        @Query("SELECT l FROM Categoria l WHERE  l.precioMayor = 0")
+    List<Categoria> findEspecialidades();
 }

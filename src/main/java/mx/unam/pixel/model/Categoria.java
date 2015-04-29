@@ -32,6 +32,12 @@ public class Categoria implements Serializable {
     @NotNull
     private int precioMenor;
 
+    public Categoria(){
+        nombre ="";
+        precioMayor = 200;
+        precioMenor = 10;
+    }
+    
     public int getPrecioMayor() {
         return precioMayor;
     }

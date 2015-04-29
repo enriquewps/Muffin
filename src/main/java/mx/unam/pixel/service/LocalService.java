@@ -9,6 +9,7 @@ import java.util.List;
 import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Pumabus;
 import mx.unam.pixel.model.BiciPuma;
+import mx.unam.pixel.model.Categoria;
 import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Facultad;
 import mx.unam.pixel.model.Metrobus;
@@ -47,6 +48,9 @@ public interface LocalService {
         List<Facultad> findAllFacultades();
         
     List<Comentario> findComentarios(String id);
+    
+    
+    List<Categoria> findEspecialidades();
     
     
     void actualizaCalificacion(Local local);
