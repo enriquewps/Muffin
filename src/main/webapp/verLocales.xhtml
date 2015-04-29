@@ -6,444 +6,509 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">    
-   <ui:composition template="/template/template.xhtml" >
-        <ui:define name="content">
-            <h2>RESULTADOS</h2>
-
-            <h:form id="form">
-                
-              <p:growl id="busquedaAvanzada" showDetail="true" />
- 
-              <p:accordionPanel activeIndex="2">
-      <p:tab title="Busqueda Avanzada"
-             titleStyle="font-size: large;
-             background: red;
-             text-color: white;
-             text-shadow: none;
-             ">
-                              
-    <h:panelGrid columns="3" cellpadding="1">
+  <ui:composition template="/template/template.xhtml" >
+    <ui:define name="content">
+    <h2>RESULTADOS</h2>
+    <h:form id="form">
+      <p:growl id="busquedaAvanzada" showDetail="true" />
+      <p:accordionPanel activeIndex="2">
+        <p:tab title="Busqueda Avanzada"
+               titleStyle="font-size: large;
+              background: red;
+              text-color: white;
+              text-shadow: none;">
+          
+          <!-- Sección de la busqueda avanzada -->
+          <h:panelGrid columns="3" cellpadding="1">
           
           <p:outputLabel  value="Nombre:"
                           style="font-weight: bolder;
                           font-size: large"/>
-          <p:inputText id="campobusqueda" required="true"/>
+          <p:inputText id="campobusqueda"
+                       required="true"/>
 
           <br/>
           
-          <h:outputText id="rango" value="Rango de precios: - "
+          <h:outputText id="rango"
+                        value="Rango de precios: - "
                         style="font-weight: bolder;
                         font-size: large"/>
-                   <p:slider  minValue="10" maxValue="200" 
-                              for="inferior,superior" 
-                              display="rango" style="width: 300px" 
-                              range="true" 
-                              displayTemplate="Precios entre $ {min} y $ {max} "
-                              />
+          <p:slider  minValue="10"
+                     maxValue="200" 
+                     for="inferior,superior" 
+                     display="rango"
+                     style="width: 300px" 
+                     range="true" 
+                     displayTemplate="Precios entre $ {min} y $ {max} "/>
             
             <br/>       
 
-            <p:column>
+          <p:column>
             <h:outputText value="Baño: " 
                           style="font-weight: bolder;
                           font-size: large"/>
             <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" /> 
-            </p:column>
+          </p:column>
             
-            <p:column>
+          <p:column>
             <h:outputText value="Estacionamiento: "
                           style="font-weight: bolder;
                           font-size: large"/>
             <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
-            </p:column>
+          </p:column>
             
-            
-            
-            <p:column>
+          <p:column>
             <h:outputText value="Internet: " 
                           style="font-weight: bolder;
                           font-size: large"/>
             <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
-            </p:column>
+          </p:column>
                 
  
-            <p:outputLabel for="categoria" value="Categoria: "
-                           style="font-weight: bolder;
-                           font-size: large"/>
-            <p:selectOneMenu id="categoria" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
-                <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
-            </p:selectOneMenu>
-             <br/>
-            <p:outputLabel value="Bicipuma: "
-                           style="font-weight: bolder;
-                           font-size: large"/>
-            <p:selectOneMenu id="bicipuma" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
-                <f:selectItem itemLabel="Seleccione Bicipuma" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
-            </p:selectOneMenu>
-            
-            <br/>
-            <p:outputLabel value="Pumabus: "
-                           style="font-weight: bolder;
-                           font-size: large"/>
-            <p:selectOneMenu id="pumabus" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
-                <f:selectItem itemLabel="Seleccione Pumabus" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
-            </p:selectOneMenu>
-                                
-            <br/>
-            <p:outputLabel value="Metrobus: "
-                           style="font-weight: bolder;
-                           font-size: large"/>
-            <p:selectOneMenu id="metrobus" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
-                <f:selectItem itemLabel="Seleccione Metrobus" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
-            </p:selectOneMenu>
-            <br/>
-            <p:outputLabel value="Facultad: "
-                           style="font-weight: bolder;
-                           font-size: large"/>
-            <p:selectOneMenu id="facultad" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
-                <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
-            </p:selectOneMenu>
-                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
-                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+          <p:outputLabel for="categoria" value="Categoria: "
+                         style="font-weight: bolder;
+                         font-size: large"/>
+          <p:selectOneMenu id="categoria"
+                           value="#{dropdownView.country}"
+                           style="width:160px">
+              <p:ajax listener="#{dropdownView.onCountryChange}" />
+              <f:selectItem itemLabel="Seleccione categoria"
+                            itemValue=""
+                            noSelectionOption="true" />
+              <f:selectItems value="#{dropdownView.countries}" />
+          </p:selectOneMenu>
 
-                   
-        </h:panelGrid>
+          <br/>
+          
+          
+          <p:outputLabel value="Bicipuma: "
+                         style="font-weight: bolder;
+                         font-size: large"/>
+          <p:selectOneMenu id="bicipuma" value="#{dropdownView.country}" style="width:160px">
+              <p:ajax listener="#{dropdownView.onCountryChange}" />
+              <f:selectItem itemLabel="Seleccione Bicipuma"
+                            itemValue=""
+                            noSelectionOption="true" />
+              <f:selectItems value="#{dropdownView.countries}" />
+          </p:selectOneMenu>
+
+          <br/>
+          
+          <p:outputLabel value="Pumabus: "
+                         style="font-weight: bolder;
+                         font-size: large"/>
+          <p:selectOneMenu id="pumabus"
+                           value="#{dropdownView.country}"
+                           style="width:160px">
+              <p:ajax listener="#{dropdownView.onCountryChange}" />
+              <f:selectItem itemLabel="Seleccione Pumabus"
+                            itemValue=""
+                            noSelectionOption="true" />
+              <f:selectItems value="#{dropdownView.countries}" />
+          </p:selectOneMenu>
+
+          <br/>
+          
+          <p:outputLabel value="Metrobus: "
+                         style="font-weight: bolder;
+                         font-size: large"/>
+          <p:selectOneMenu id="metrobus" value="#{dropdownView.country}" style="width:160px">
+              <p:ajax listener="#{dropdownView.onCountryChange}" />
+              <f:selectItem itemLabel="Seleccione Metrobus"
+                            itemValue=""
+                            noSelectionOption="true" />
+              <f:selectItems value="#{dropdownView.countries}" />
+          </p:selectOneMenu>
+
+          <br/>
+          
+          <p:outputLabel value="Facultad: "
+                         style="font-weight: bolder;
+                         font-size: large"/>
+          <p:selectOneMenu id="facultad"
+                           value="#{dropdownView.country}"
+                           style="width:160px">
+              <p:ajax listener="#{dropdownView.onCountryChange}" />
+              <f:selectItem itemLabel="Seleccione Facultad"
+                            itemValue=""
+                            noSelectionOption="true" />
+              <f:selectItems value="#{dropdownView.countries}" />
+          </p:selectOneMenu>
+                 <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
+                 <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+
+          </h:panelGrid>
         
-        <p:commandButton value="Buscar" 
-                 style="background-color: red!important;
-                  background-image: none!important;
-                  color: black!important;
-                  font-size: medium!important;
-                  text-shadow: none!important; 
-                  border-color: black!important;
-                  border-width: thin!important;
-                  -webkit-box-shadow: none!important;
-                  -moz-box-shadow: none!important;
-                  box-shadow: none!important;"
-                   
-                 actionListener="#{dropdownView.displayLocation}" 
-                 onclick="window.location.replace('verLocales.xhtml')"/>
-    
-          </p:tab>
-    </p:accordionPanel>
- 
-              <!-- update="busquedaAvanzada" -->
+          <p:commandButton value="Buscar" 
+                   style="background-color: red!important;
+                    background-image: none!important;
+                    color: black!important;
+                    font-size: medium!important;
+                    text-shadow: none!important; 
+                    border-color: black!important;
+                    border-width: thin!important;
+                    -webkit-box-shadow: none!important;
+                    -moz-box-shadow: none!important;
+                    box-shadow: none!important;"
 
-                <p:separator />
+                   actionListener="#{dropdownView.displayLocation}" 
+                   action="buscar"/>
+    
+        </p:tab>
+        
+      </p:accordionPanel>
+ 
+      <p:separator />
+        
+      
+      <!-- Sección Locales -->
+      
+      
+      <p:panelGrid style="width: 100%">
+        
+      <!-- Local 1 -->
+      <p:row>
+        <p:column rowspan="2"
+                  style="background-color: black;
+                  border-right-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-left-color: black;
+                  border-left-width: medium;
+                  border-bottom-color: black;
+                  border-bottom-width: medium;
+                  width: 165px">
+          <p:graphicImage library="images"
+                          style="width: 165px;
+                          height: auto"
+                          name="restaurante.jpg" /> 
+        </p:column>
+
+        <p:column style="background-color: red; 
+                  border-bottom-color: transparent;
+                  border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium">
+          <h:outputText value="Establecimiento X"
+                        style="color: white;
+                        font-weight: bolder;
+                        letter-spacing: 0.05cm;
+                        font-size: large"/>
+        </p:column>
+
+        <p:column style="background-color: red;
+                  border-bottom-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:rating value="5"
+                    style="float: right"
+                    stars="5"
+                    readonly="true"
+                    cancel="false"/>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column style="border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-bottom-color: black;
+                  border-bottom-width: medium">
+          <h:outputText value="Descripción del establecimiento en 140 caracteres"
+                        style="font-weight: bold;
+                        font-size: medium"/>
+        </p:column>
+
+        <p:column style="border-bottom-color: black;
+                  border-bottom-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:commandButton value="Ver"
+                           styleClass="boton"
+                           action="verLocal"/>
+        </p:column>
+      </p:row>
+
+        
+        
+      <!-- Local 2 -->
+      <p:row>
+        <p:column rowspan="2"
+                  style="background-color: black;
+                  border-right-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-left-color: black;
+                  border-left-width: medium;
+                  border-bottom-color: black;
+                  border-bottom-width: medium;
+                  width: 165px">
+          <p:graphicImage library="images"
+                          style="width: 165px;
+                          height: auto"
+                          name="restaurante.jpg" /> 
+        </p:column>
+
+        <p:column style="background-color: red; 
+                  border-bottom-color: transparent;
+                  border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium">
+          <h:outputText value="Establecimiento X"
+                        style="color: white;
+                        font-weight: bolder;
+                        letter-spacing: 0.05cm;
+                        font-size: large"/>
+        </p:column>
+
+        <p:column style="background-color: red;
+                  border-bottom-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:rating value="5"
+                    style="float: right"
+                    stars="5"
+                    readonly="true"
+                    cancel="false"/>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column style="border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-bottom-color: black;
+                  border-bottom-width: medium">
+          <h:outputText value="Descripción del establecimiento en 140 caracteres"
+                        style="font-weight: bold;
+                        font-size: medium"/>
+        </p:column>
+
+        <p:column style="border-bottom-color: black;
+                  border-bottom-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:commandButton value="Ver"
+                           styleClass="boton"
+                           action="verLocal"/>
+        </p:column>
+      </p:row>
+        
+      
+      
+      
+      <!-- Local 3 -->
+      <p:row>
+        <p:column rowspan="2"
+                  style="background-color: black;
+                  border-right-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-left-color: black;
+                  border-left-width: medium;
+                  border-bottom-color: black;
+                  border-bottom-width: medium;
+                  width: 165px">
+          <p:graphicImage library="images"
+                          style="width: 165px;
+                          height: auto"
+                          name="restaurante.jpg" /> 
+        </p:column>
+
+        <p:column style="background-color: red; 
+                  border-bottom-color: transparent;
+                  border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium">
+          <h:outputText value="Establecimiento X"
+                        style="color: white;
+                        font-weight: bolder;
+                        letter-spacing: 0.05cm;
+                        font-size: large"/>
+        </p:column>
+
+        <p:column style="background-color: red;
+                  border-bottom-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:rating value="5"
+                    style="float: right"
+                    stars="5"
+                    readonly="true"
+                    cancel="false"/>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column style="border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-bottom-color: black;
+                  border-bottom-width: medium">
+          <h:outputText value="Descripción del establecimiento en 140 caracteres"
+                        style="font-weight: bold;
+                        font-size: medium"/>
+        </p:column>
+
+        <p:column style="border-bottom-color: black;
+                  border-bottom-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:commandButton value="Ver"
+                           styleClass="boton"
+                           action="verLocal"/>
+        </p:column>
+      </p:row>
+      
+      
+      
+      
+      
+      <!-- Local 4 -->
+      <p:row>
+        <p:column rowspan="2"
+                  style="background-color: black;
+                  border-right-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-left-color: black;
+                  border-left-width: medium;
+                  border-bottom-color: black;
+                  border-bottom-width: medium;
+                  width: 165px">
+          <p:graphicImage library="images"
+                          style="width: 165px;
+                          height: auto"
+                          name="restaurante.jpg" /> 
+        </p:column>
+
+        <p:column style="background-color: red; 
+                  border-bottom-color: transparent;
+                  border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium">
+          <h:outputText value="Establecimiento X"
+                        style="color: white;
+                        font-weight: bolder;
+                        letter-spacing: 0.05cm;
+                        font-size: large"/>
+        </p:column>
+
+        <p:column style="background-color: red;
+                  border-bottom-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:rating value="5"
+                    style="float: right"
+                    stars="5"
+                    readonly="true"
+                    cancel="false"/>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column style="border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-bottom-color: black;
+                  border-bottom-width: medium">
+          <h:outputText value="Descripción del establecimiento en 140 caracteres"
+                        style="font-weight: bold;
+                        font-size: medium"/>
+        </p:column>
+
+        <p:column style="border-bottom-color: black;
+                  border-bottom-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:commandButton value="Ver"
+                           styleClass="boton"
+                           action="verLocal"/>
+        </p:column>
+      </p:row>
+      
+      
+      
+      
+      <!-- Local 5 -->
+      <p:row>
+        <p:column rowspan="2"
+                  style="background-color: black;
+                  border-right-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-left-color: black;
+                  border-left-width: medium;
+                  border-bottom-color: black;
+                  border-bottom-width: medium;
+                  width: 165px">
+          <p:graphicImage library="images"
+                          style="width: 165px;
+                          height: auto"
+                          name="restaurante.jpg" /> 
+        </p:column>
+
+        <p:column style="background-color: red; 
+                  border-bottom-color: transparent;
+                  border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium">
+          <h:outputText value="Establecimiento X"
+                        style="color: white;
+                        font-weight: bolder;
+                        letter-spacing: 0.05cm;
+                        font-size: large"/>
+        </p:column>
+
+        <p:column style="background-color: red;
+                  border-bottom-color: transparent;
+                  border-top-color: black;
+                  border-top-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:rating value="5"
+                    style="float: right"
+                    stars="5"
+                    readonly="true"
+                    cancel="false"/>
+        </p:column>
+      </p:row>
+
+      <p:row>
+        <p:column style="border-right-color: transparent;
+                  border-left-color: transparent;
+                  border-bottom-color: black;
+                  border-bottom-width: medium">
+          <h:outputText value="Descripción del establecimiento en 140 caracteres"
+                        style="font-weight: bold;
+                        font-size: medium"/>
+        </p:column>
+
+        <p:column style="border-bottom-color: black;
+                  border-bottom-width: medium;
+                  border-right-color: black;
+                  border-right-width: medium">
+          <p:commandButton value="Ver"
+                           styleClass="boton"
+                           onclick="window.location.replace('perfillocal.xhtml')"/>
+        </p:column>
+      </p:row>
+      
+      </p:panelGrid>
+      <!-- Final Locales -->
+      
+      
                 
-                <p:panelGrid style="width: 100%">
-                <p:row>
-                  <p:column rowspan="2" style="background-color: black;
-                            border-right-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium;
-                            width: 165px">
-                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
-                  </p:column>
-                  
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Establecimiento X" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:rating value="5"
-                              style="float: right"
-                              stars="5"
-                              readonly="true"
-                              cancel="false"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
-                                  style="font-weight: bold;
-                                  font-size: medium"/>
-                  </p:column>
-                        
-                  <p:column style="border-bottom-color: black;
-                            border-bottom-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:commandButton value="Ver"
-                                     styleClass="boton"
-                                     
-                                     onclick="window.location.replace('perfillocal.xhtml')"/>
-                  </p:column>
-                </p:row>
-                    
-                <p:row>
-                  <p:column rowspan="2" style="background-color: black;
-                            border-right-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium;
-                            width: 165px">
-                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
-                  </p:column>
-                  
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Establecimiento X" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:rating value="5"
-                              style="float: right"
-                              stars="5"
-                              readonly="true"
-                              cancel="false"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
-                                  style="font-weight: bold;
-                                  font-size: medium"/>
-                  </p:column>
-                        
-                  <p:column style="border-bottom-color: black;
-                            border-bottom-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:commandButton value="Ver"
-                                     styleClass="boton"
-                                     
-                                     onclick="window.location.replace('perfillocal.xhtml')"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column rowspan="2" style="background-color: black;
-                            border-right-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium;
-                            width: 165px">
-                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
-                  </p:column>
-                  
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Establecimiento X" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:rating value="4"
-                              style="float: right"
-                              stars="5"
-                              readonly="true"
-                              cancel="false"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
-                                  style="font-weight: bold;
-                                  font-size: medium"/>
-                  </p:column>
-                        
-                  <p:column style="border-bottom-color: black;
-                            border-bottom-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:commandButton value="Ver"
-                                     styleClass="boton"
-                                     
-                                     onclick="window.location.replace('perfillocal.xhtml')"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column rowspan="2" style="background-color: black;
-                            border-right-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium;
-                            width: 165px">
-                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
-                  </p:column>
-                  
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Establecimiento X" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:rating value="3"
-                              style="float: right"
-                              stars="5"
-                              readonly="true"
-                              cancel="false"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
-                                  style="font-weight: bold;
-                                  font-size: medium"/>
-                  </p:column>
-                        
-                  <p:column style="border-bottom-color: black;
-                            border-bottom-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:commandButton value="Ver"
-                                     styleClass="boton"
-                                     
-                                     onclick="window.location.replace('perfillocal.xhtml')"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column rowspan="2" style="background-color: black;
-                            border-right-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium;
-                            width: 165px">
-                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
-                  </p:column>
-                  
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Establecimiento X" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:rating value="2"
-                              style="float: right"
-                              stars="5"
-                              readonly="true"
-                              cancel="false"/>
-                  </p:column>
-                </p:row>
-                
-                <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: transparent;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
-                                  style="font-weight: bold;
-                                  font-size: medium"/>
-                  </p:column>
-                        
-                  <p:column style="border-bottom-color: black;
-                            border-bottom-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    <p:commandButton value="Ver"
-                                     styleClass="boton"
-                                     
-                                     onclick="window.location.replace('perfillocal.xhtml')"/>
-                  </p:column>
-                </p:row>
-              </p:panelGrid>
-                
-            </h:form>
-        </ui:define>
-    </ui:composition>
+      </h:form>
+    </ui:define>
+  </ui:composition>
 </html>

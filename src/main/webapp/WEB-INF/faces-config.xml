@@ -4,13 +4,10 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-    
-    
-    
-        <application>
-          <variable-resolver>
-            org.springframework.web.jsf.DelegatingVariableResolver
-          </variable-resolver>
+    <application>
+      <variable-resolver>
+        org.springframework.web.jsf.DelegatingVariableResolver
+      </variable-resolver>
      </application>
     <!--
     <managed-bean>
@@ -23,72 +20,69 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-action>inicio</from-action>
-            <to-view-id>index.html</to-view-id>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        
+        <navigation-case>
+            <from-action>verLocal</from-action>
+            <to-view-id>/perfillocal.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>buscar</from-action>
+            <to-view-id>/verLocales.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         
         <navigation-case>
-            <from-action>altaLocales</from-action>
-            <to-view-id>locales.xhtml</to-view-id>
-             <redirect/>
-        </navigation-case>
-        
-        <navigation-case>
-            <from-action>nueva</from-action>
-            <to-view-id>nuevaVista.xhtml</to-view-id>
-             <redirect/>
-        </navigation-case>
-
-        <navigation-case>
-            <from-action>verLocales</from-action>
-            <to-view-id>verLocales.xhtml</to-view-id>
-             <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-action>rutas</from-action>
-            <to-view-id>rutasPumaBus.xhtml</to-view-id>
-             <redirect/>
-        </navigation-case>
-
-        <navigation-case>
             <from-action>iniciarSesion</from-action>
-            <to-view-id>inciarSesion.xhtml</to-view-id>
+            <to-view-id>/iniciarSesion.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        
+        <navigation-case>
+            <from-action>registrarse</from-action>
+            <to-view-id>/registro.xhtml</to-view-id>
              <redirect/>
         </navigation-case>
         
         <navigation-case>
-            <from-action>busqueda</from-action>
-            <to-view-id>busqueda.xhtml</to-view-id>
+            <from-action>baja</from-action>
+            <to-view-id>/solicitarbaja.xhtml</to-view-id>
              <redirect/>
         </navigation-case>
         
         <navigation-case>
-            <from-action>quienesSomos</from-action>
-            <to-view-id>quienesSomos.xhtml</to-view-id>
+            <from-action>sugerir</from-action>
+            <to-view-id>/sugerirlocal.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>nosotros</from-action>
+            <to-view-id>/quienesSomos.xhtml</to-view-id>
              <redirect/>
         </navigation-case>
         
         <navigation-case>
             <from-action>contacto</from-action>
-            <to-view-id>contacto.xhtml</to-view-id>
+            <to-view-id>/contacto.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>contrasena</from-action>
+            <to-view-id>/recuperarcontrasena.xhtml</to-view-id>
              <redirect/>
         </navigation-case>
         
     </navigation-rule>
     
     
-    
-    <navigation-rule>
-        <from-view-id>index.xhtml</from-view-id>
-        
-        
-        <navigation-case>
-            <from-action>verLocales</from-action>
-            <to-view-id>locales.xhtml</to-view-id>
-        </navigation-case>
-        
-    
-    </navigation-rule>
     
     
 </faces-config>

@@ -79,9 +79,10 @@ public class LocalController {
     
     @PostConstruct
     public void init(){
- 
+ /*
                SimpleMailMessage mail=new SimpleMailMessage();
-        
+       
+               
         mail.setTo("vampa@ciencias.unam.mx");
         mail.setFrom("memo.onilink@gmail.com");
         mail.setSubject("Local nuevo en la base de datos");
@@ -90,7 +91,7 @@ public class LocalController {
 
         
         mailSender.send(mail);
-        
+   */     
         //se va a borrar pues estan en las facultades
         pumabuses=this.localService.findAllPumabus();
         metros=this.localService.findAllMetro();
