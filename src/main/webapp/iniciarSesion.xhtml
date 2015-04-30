@@ -6,80 +6,86 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">    
-   <ui:composition template="/template/template.xhtml" >
-        <ui:define name="content">
-            <h2>Inicio Sesion</h2>
-            <h:form id = "isesion">
-	
-		<h:panelGrid columns="2" cellpadding="1">
-		  <!-- Nombre -->
+  <ui:composition template="/template/template.xhtml" >
+    <ui:define name="content">
+      <h2>Inicio Sesion</h2>
+      <h:form id = "isesion">
+        <h:panelGrid columns="2" cellpadding="1">
+          <!-- Nombre -->
+          <p:outputLabel  value=""/>
+          <p:outputLabel  value="" />
 
-		  
-		  <p:outputLabel  value="" />
-		  <p:outputLabel  value="" />
-		  
-		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre Usuario"
-                                 style="font-size: medium;
-                                 font-weight: bolder"/>
-                  <p:inputText id="nombre" value =" #{usuarioController.busqueda}" required="true"/>
-		  <p:message for="nombre"/>
-		  <br/>
+          <!-- Nombre Usuario -->
+          <p:outputLabel value="Nombre Usuario"
+                         style="font-size: medium;
+                         font-weight: bolder"/>
+          <p:inputText id="nombre" value =" #{usuarioController.busqueda}" required="true"/>
+          <p:message for="nombre"/>
+          <br/>
 
-		  
-		  
-		  <!-- Contrasena -->
-		  
-	                  
-			<p:outputLabel  value="Contrasena: "
-                                        style="font-size: medium;
-                                        font-weight: bolder"/>
-                        <p:password id="pwd1" value =" #{usuarioController.busqueda}" label="Password 1" required="true" />
-		  <br/><br/>
-		  <p:commandLink id="btnrecuperarcontrasena"
-                                 action="contrasena"> 
-				<h:outputText value="Recuperar Contrasena    "  />
-		   </p:commandLink>
-		  
-		</h:panelGrid>
-                
-		
-		<!-- Seccion de Botones -->
-                <!-- Cancelar -->
-                <p:commandButton ajax="true" 
-                             value="Cancelar"
-                             style="-webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:white;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red"
-                             onclick="window.location.replace('index.xhtml')"
-				/>	
-				
-				<p:commandButton ajax="false" 
-                             value="Iniciar Sesion"
-                             style="-webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:white;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: blue"
-                                 onclick="#{usuarioController.iniciarSesion()}"
-                                 update=":isesion @form"
-				/>	
-                                
-                                <p:outputLabel  value="#{usuarioController.busqueda}"
-                                        style="font-size: medium;
-                                        font-weight: bolder"/>
-            </h:form>
-            
-        </ui:define>
-    </ui:composition>
+          <!-- Contrasena -->
+
+      
+
+          <p:outputLabel  value="Contrasena: "
+                          style="font-size: medium;
+                          font-weight: bolder"/>
+          <p:password id="pwd1"
+                      value =" #{usuarioController.busqueda}"
+                      label="Password 1"
+                      required="true" />
+          
+
+        </h:panelGrid>
+
+      </h:form>
+      
+      <h:form>
+        <h:panelGrid>
+        <p:commandLink id="btnrecuperarcontrasena"
+                         action="contrasena"> 
+            <h:outputText value="Recuperar Contrasena"  />
+        </p:commandLink>
+        </h:panelGrid>
+      </h:form>
+      <br/><br/>
+      <h:form>
+
+        <!-- Seccion de Botones -->
+        <!-- Cancelar -->
+        <p:commandButton ajax="true" 
+                         value="Cancelar"
+                         style="-webkit-box-shadow: none!important;
+                         -moz-box-shadow: none!important;
+                         box-shadow: none!important;
+                         background-image: none!important;
+                         text-shadow: none!important;
+                         color:white;
+                         font-weight: bolder;
+                         font-size: medium;
+                         background-color: red"
+                         onclick="window.location.replace('index.xhtml')"/>	
+
+        <p:commandButton ajax="false" 
+                         value="Iniciar Sesion"
+                         style="-webkit-box-shadow: none!important;
+                         -moz-box-shadow: none!important;
+                         box-shadow: none!important;
+                         background-image: none!important;
+                         text-shadow: none!important;
+                         color:white;
+                         font-weight: bolder;
+                         font-size: medium;
+                         background-color: blue"
+                         action="padministracion"
+                         />	
+                       <!-- onclick="#{usuarioController.iniciarSesion()}"
+                            update=":isesion @form"-->
+        <p:outputLabel  value="#{usuarioController.busqueda}"
+                        style="font-size: medium;
+                               font-weight: bolder"/>
+      </h:form>
+
+    </ui:define>
+  </ui:composition>
 </html>

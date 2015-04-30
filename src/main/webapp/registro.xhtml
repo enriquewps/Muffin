@@ -6,99 +6,99 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">    
-   <ui:composition template="/template/template.xhtml" >
-        <ui:define name="content">
-            <h2>Registro</h2>
-            <h:form id="form">
-		
-		<h:panelGrid columns="2" cellpadding="1">
-		  <!-- Nombre -->
-		  <!--
-		  <p:outputLabel value="Nombre " />
-		  <p:inputText id="nombre" value="#{localController.local.nombre}" required="true"/>
-		  <p:message for="nombre"/>
-		  <br/>
-		  -->
-		  
-		  <p:outputLabel  value="" />
-		  <p:outputLabel  value="" />
-		  
-		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="#{usuarioController.usuario.nombre}"
-                                 style="font-size: medium;
-                                 font-weight: bolder"/>
-                  <p:inputText id="nombre"  value="#{usuarioController.usuario.nombre}" required="true"/>
-		  <p:message for="nombre"/>
-		  <br/>
-		  
-		  <!-- Nombre Usuario -->
-		  <p:outputLabel value="Nombre de Usuario "
-                                 style="font-size: medium;
-                                 font-weight: bolder"/>
-                  <p:inputText id="nombreusuario" value="#{usuarioController.usuario.nombreUsuario}" required="true"/>
-		  <p:message for="nombreusuario"/>
-		  <br/>
-		  <!-- Correo -->
-		  <p:outputLabel value="Correo "
-                                 style="font-size: medium;
-                                 font-weight: bolder"/>
-                  <p:inputText id="correo" value="#{usuarioController.usuario.correo}" required="true"/>
-		  <p:message for="correo"/>
-		  <br/>
-		  <!-- Contrasena -->
-		  <p:outputLabel  value="Contrasena: " 
-                                  style="font-size: medium;
-                                 font-weight: bolder"/>
-		  <p:password id="pwd1" value ="#{usuarioController.usuario.contrasena}" label="Password 1" required="true" />
-		  <br/>
-		  
-		  <!-- Contrasena -->
-		  <p:outputLabel  value="" />
-		  
-		  <p:outputLabel  value="Confirmar contraseña: " 
-                                  style="font-size: medium;
-                                 font-weight: bolder"/>
-		  
-		  <p:password id="pwd12"  label="Passworda 1" required="true" />
-		  <br/>
-		  <br/>
-		  <!-- Seccion de Botones -->
-		  <br/>
-		  <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <p:outputPanel>								
-			<p:commandButton ajax="true" 
-                                         style="-webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
+  <ui:composition template="/template/template.xhtml" >
+    <ui:define name="content">
+      <h2>Registro</h2>
+      <h:form id="form">
+        <h:panelGrid columns="2" cellpadding="1">
+          <p:outputLabel  value="" />
+          <p:outputLabel  value="" />
+
+          <!-- Nombre Usuario -->
+          <p:outputLabel value="#{usuarioController.usuario.nombre}"
+                         style="font-size: medium;
+                         font-weight: bolder"/>
+          <p:inputText id="nombre"
+                       value="#{usuarioController.usuario.nombre}"
+                       required="true"/>
+          <p:message for="nombre"/>
+          <br/>
+
+          <!-- Nombre Usuario -->
+          <p:outputLabel value="Nombre de Usuario "
+                         style="font-size: medium;
+                         font-weight: bolder"/>
+          <p:inputText id="nombreusuario"
+                       value="#{usuarioController.usuario.nombreUsuario}"
+                       required="true"/>
+          <p:message for="nombreusuario"/>
+          <br/>
+          <!-- Correo -->
+          <p:outputLabel value="Correo "
+                         style="font-size: medium;
+                         font-weight: bolder"/>
+          <p:inputText id="correo"
+                       value="#{usuarioController.usuario.correo}"
+                       required="true"/>
+          <p:message for="correo"/>
+          <br/>
+          <!-- Contrasena -->
+          <p:outputLabel  value="Contrasena: " 
+                          style="font-size: medium;
+                         font-weight: bolder"/>
+          <p:password id="pwd1"
+                      value ="#{usuarioController.usuario.contrasena}"
+                      label="Password 1"
+                      required="true" />
+          <br/>
+
+          <!-- Contrasena -->
+          <p:outputLabel  value="" />
+
+          <p:outputLabel  value="Confirmar contraseña: " 
+                          style="font-size: medium;
+                         font-weight: bolder"/>
+
+          <p:password id="pwd12"
+                      label="Password 1"
+                      required="true" />
+          <br/>
+          <br/>
+          <!-- Seccion de Botones -->
+          <br/>
+          <h:panelGrid columns="2"
+                       style="width:100%"
+                       columnClasses="logo,detail">
+            <p:outputPanel>								
+                <p:commandButton ajax="true" 
+                                 style="-webkit-box-shadow: none!important;
+                                 -moz-box-shadow: none!important;
+                                 box-shadow: none!important;
+                                 background-image: none!important;
+                                 text-shadow: none!important;
                                  color:white;
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: red"
-                             value="Cancelar"
-                             action="inicio"/>	
-		  
-                        <p:commandButton ajax="true" 
-                                         style="-webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
+                                 value="Cancelar"
+                                 action="inicio"/>	
+
+                <p:commandButton ajax="true" 
+                                 style="-webkit-box-shadow: none!important;
+                                 -moz-box-shadow: none!important;
+                                 box-shadow: none!important;
+                                 background-image: none!important;
+                                 text-shadow: none!important;
                                  color:white;
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-					  value="Registrarse"
-                                          action="inicio"/>
-									
-                    </p:outputPanel>
-                  </h:panelGrid>
-									
-		
-		</h:panelGrid>
-		
-            </h:form>
-        </ui:define>
-    </ui:composition>
+                                 value="Registrarse"
+                                 action="inicio"/>
+            </p:outputPanel>
+          </h:panelGrid>
+        </h:panelGrid>
+      </h:form>
+    </ui:define>
+  </ui:composition>
 </html>

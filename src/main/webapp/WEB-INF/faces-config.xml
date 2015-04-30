@@ -80,6 +80,42 @@
              <redirect/>
         </navigation-case>
         
+        <navigation-case>
+            <from-action>padministracion</from-action>
+            <to-view-id>/admin/paneladministracion.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>agregarlocal</from-action>
+            <to-view-id>/admin/agregarlocal.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>adminlocal</from-action>
+            <to-view-id>/admin/adminlocal.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>adminlocales</from-action>
+            <to-view-id>/admin/adminlocales.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>adminusuario</from-action>
+            <to-view-id>/admin/adminusuario.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>adminusuarios</from-action>
+            <to-view-id>/admin/adminusuarios.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
     </navigation-rule>
     
     

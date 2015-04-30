@@ -9,7 +9,7 @@
   <ui:composition template="/template/template.xhtml" >
     <ui:define name="content">
     <h2>RESULTADOS</h2>
-    <h:form id="form">
+    <h:form id="avanzada">
       <p:growl id="busquedaAvanzada" showDetail="true" />
       <p:accordionPanel activeIndex="2">
         <p:tab title="Busqueda Avanzada"
@@ -21,7 +21,7 @@
           <!-- Sección de la busqueda avanzada -->
           <h:panelGrid columns="3" cellpadding="1">
           
-          <p:outputLabel  value="Nombre:"
+          <p:outputLabel  value="Nombre:" 
                           style="font-weight: bolder;
                           font-size: large"/>
           <p:inputText id="campobusqueda"
@@ -47,21 +47,21 @@
             <h:outputText value="Baño: " 
                           style="font-weight: bolder;
                           font-size: large"/>
-            <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" /> 
+            <p:selectBooleanCheckbox /> 
           </p:column>
             
           <p:column>
             <h:outputText value="Estacionamiento: "
                           style="font-weight: bolder;
                           font-size: large"/>
-            <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+            <p:selectBooleanCheckbox />
           </p:column>
             
           <p:column>
             <h:outputText value="Internet: " 
                           style="font-weight: bolder;
                           font-size: large"/>
-            <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+            <p:selectBooleanCheckbox />
           </p:column>
                 
  
@@ -160,10 +160,10 @@
  
       <p:separator />
         
-      
+    </h:form>
       <!-- Sección Locales -->
       
-      
+    <h:form id="resultados">
       <p:panelGrid style="width: 100%">
         
       <!-- Local 1 -->
@@ -225,7 +225,7 @@
                   border-bottom-width: medium;
                   border-right-color: black;
                   border-right-width: medium">
-          <p:commandButton value="Ver"
+          <p:commandButton value="Ver" ajax="false"
                            styleClass="boton"
                            action="verLocal"/>
         </p:column>
@@ -499,15 +499,13 @@
                   border-right-width: medium">
           <p:commandButton value="Ver"
                            styleClass="boton"
-                           onclick="window.location.replace('perfillocal.xhtml')"/>
+                           action="verLocal"/>
         </p:column>
       </p:row>
       
       </p:panelGrid>
       <!-- Final Locales -->
-      
-      
-                
+                      
       </h:form>
     </ui:define>
   </ui:composition>

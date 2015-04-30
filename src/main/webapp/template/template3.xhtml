@@ -25,7 +25,7 @@
                             
             </h:outputText>
 				<!-- Busqueda -->
-				<p:inputText id="campobusqueda" required="true"/>
+				<p:inputText id="campobusqueda"/>
 				<p:commandButton ajax="true" 
                              icon="ui-icon-search"
                              onclick="window.location.replace('verLocales2.xhtml')"
@@ -34,10 +34,14 @@
                                               style="font-size: medium"/>
 				<p:menu overlay="true" trigger="btnsesion" my="left top" at="right top">
 					<p:submenu label="Sesion">
-                                            <p:menuitem value="Panel de Administración" onclick="window.location.replace('paneladministracion.xhtml')"></p:menuitem>
-						<p:menuitem value="Administrar Usuarios" onclick="window.location.replace('adminusuarios.xhtml')"></p:menuitem>
-						<p:menuitem value="Administrar Locales" onclick="window.location.replace('adminlocales.xhtml')"></p:menuitem>
-                                                <p:menuitem value="Agregar Local" onclick="window.location.replace('agregarlocal.xhtml')"></p:menuitem>
+                                            <p:menuitem value="Panel de Administración"
+                                                        action="padministracion"></p:menuitem>
+						<p:menuitem value="Administrar Usuarios"
+                                                            action="adminusuarios"></p:menuitem>
+						<p:menuitem value="Administrar Locales"
+                                                            action="adminlocales"></p:menuitem>
+                                                <p:menuitem value="Agregar Local"
+                                                            action="agregarlocal"></p:menuitem>
                                                 
 						<p:separator/>
 					</p:submenu>
