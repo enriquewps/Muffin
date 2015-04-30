@@ -8,24 +8,31 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template/template3.xhtml" >
         <ui:define name="content">	
-        <h2>Administrar Usuarios</h2>
+        <h2>Administrar Locales</h2>
+        
         <h:form>
           
-          
-          <p:panelGrid style="width: 75%" >
-            
-            
-            
-            <p:row>
-                    
+          <p:panelGrid style="width: 100%">
+                <p:row>
+                  <p:column rowspan="2" style="background-color: black;
+                            border-right-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            width: 165px">
+                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
+                  </p:column>
+                  
                   <p:column style="background-color: red; 
                             border-bottom-color: transparent;
                             border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-top-color: black;
                             border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
+                    <h:outputText value="Establecimiento X" style="color: white;
                                   font-weight: bolder;
                                   letter-spacing: 0.05cm;
                                   font-size: large"/>
@@ -37,29 +44,29 @@
                             border-top-width: medium;
                             border-right-color: black;
                             border-right-width: medium">
-                    
+                    <p:rating value="5"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
                   </p:column>
                 </p:row>
-            
-            <p:row>
+                
+                <p:row>
                   <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-bottom-color: black;
                             border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
+                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
                                   style="font-weight: bold;
-                                  white-space: pre;
                                   font-size: medium"/>
                   </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
                                      style="width: 125px;
                                      -webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -73,26 +80,32 @@
                                  float: right;
                                  border-color: black!important;
                                   border-width: thin!important"
-                                     
-                                     onclick="window.location.replace('adminusuario.xhtml')"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
+                                     action="adminlocal"
+                                     />
+                  </p:column>
+                </p:row>
             
             
             <p:row>
-                    
+                  <p:column rowspan="2" style="background-color: black;
+                            border-right-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            width: 165px">
+                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
+                  </p:column>
+                  
                   <p:column style="background-color: red; 
                             border-bottom-color: transparent;
                             border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-top-color: black;
                             border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
+                    <h:outputText value="Establecimiento X" style="color: white;
                                   font-weight: bolder;
                                   letter-spacing: 0.05cm;
                                   font-size: large"/>
@@ -104,29 +117,29 @@
                             border-top-width: medium;
                             border-right-color: black;
                             border-right-width: medium">
-                    
+                    <p:rating value="5"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
                   </p:column>
                 </p:row>
-            
-            <p:row>
+                
+                <p:row>
                   <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-bottom-color: black;
                             border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
+                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
                                   style="font-weight: bold;
-                                  white-space: pre;
                                   font-size: medium"/>
                   </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
                                      style="width: 125px;
                                      -webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -140,26 +153,32 @@
                                  float: right;
                                  border-color: black!important;
                                   border-width: thin!important"
-                                     
-                                     onclick="window.location.replace('adminusuario.xhtml')"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
+                                     action="adminlocal"
+                                     />
+                  </p:column>
+                </p:row>
             
             
             <p:row>
-                    
+                  <p:column rowspan="2" style="background-color: black;
+                            border-right-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            width: 165px">
+                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
+                  </p:column>
+                  
                   <p:column style="background-color: red; 
                             border-bottom-color: transparent;
                             border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-top-color: black;
                             border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
+                    <h:outputText value="Establecimiento X" style="color: white;
                                   font-weight: bolder;
                                   letter-spacing: 0.05cm;
                                   font-size: large"/>
@@ -171,29 +190,29 @@
                             border-top-width: medium;
                             border-right-color: black;
                             border-right-width: medium">
-                    
+                    <p:rating value="4"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
                   </p:column>
                 </p:row>
-            
-            <p:row>
+                
+                <p:row>
                   <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-bottom-color: black;
                             border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
+                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
                                   style="font-weight: bold;
-                                  white-space: pre;
                                   font-size: medium"/>
                   </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
                                      style="width: 125px;
                                      -webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -207,26 +226,32 @@
                                  float: right;
                                  border-color: black!important;
                                   border-width: thin!important"
-                                     
-                                     onclick="window.location.replace('adminusuario.xhtml')"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
+                                     action="adminlocal"
+                                     />
+                  </p:column>
+                </p:row>
             
             
             <p:row>
-                    
+                  <p:column rowspan="2" style="background-color: black;
+                            border-right-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            width: 165px">
+                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
+                  </p:column>
+                  
                   <p:column style="background-color: red; 
                             border-bottom-color: transparent;
                             border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-top-color: black;
                             border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
+                    <h:outputText value="Establecimiento X" style="color: white;
                                   font-weight: bolder;
                                   letter-spacing: 0.05cm;
                                   font-size: large"/>
@@ -238,29 +263,29 @@
                             border-top-width: medium;
                             border-right-color: black;
                             border-right-width: medium">
-                    
+                    <p:rating value="4"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
                   </p:column>
                 </p:row>
-            
-            <p:row>
+                
+                <p:row>
                   <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-bottom-color: black;
                             border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
+                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
                                   style="font-weight: bold;
-                                  white-space: pre;
                                   font-size: medium"/>
                   </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
                                      style="width: 125px;
                                      -webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -274,25 +299,32 @@
                                  float: right;
                                  border-color: black!important;
                                   border-width: thin!important"
-                                     
-                                     onclick="window.location.replace('adminusuario.xhtml')"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
+                                     action="adminlocal"
+                                     />
+                  </p:column>
+                </p:row>
             
             
             <p:row>
-                    
+                  <p:column rowspan="2" style="background-color: black;
+                            border-right-color: transparent;
+                            border-top-color: black;
+                            border-top-width: medium;
+                            border-left-color: black;
+                            border-left-width: medium;
+                            border-bottom-color: black;
+                            border-bottom-width: medium;
+                            width: 165px">
+                    <p:graphicImage library="images" style="width: 165px; height: auto" name="restaurante.jpg" /> 
+                  </p:column>
+                  
                   <p:column style="background-color: red; 
                             border-bottom-color: transparent;
                             border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-top-color: black;
                             border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
+                    <h:outputText value="Establecimiento X" style="color: white;
                                   font-weight: bolder;
                                   letter-spacing: 0.05cm;
                                   font-size: large"/>
@@ -304,29 +336,29 @@
                             border-top-width: medium;
                             border-right-color: black;
                             border-right-width: medium">
-                    
+                    <p:rating value="3"
+                              style="float: right"
+                              stars="5"
+                              readonly="true"
+                              cancel="false"/>
                   </p:column>
                 </p:row>
-            
-            <p:row>
+                
+                <p:row>
                   <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
+                            border-left-color: transparent;
                             border-bottom-color: black;
                             border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
+                    <h:outputText value="Descripción del establecimiento en 140 caracteres"
                                   style="font-weight: bold;
-                                  white-space: pre;
                                   font-size: medium"/>
                   </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
+                        
+                  <p:column style="border-bottom-color: black;
+                            border-bottom-width: medium;
+                            border-right-color: black;
+                            border-right-width: medium">
+                    <p:commandButton value="Administrar"
                                      style="width: 125px;
                                      -webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -340,87 +372,12 @@
                                  float: right;
                                  border-color: black!important;
                                   border-width: thin!important"
-                                     
-                                     onclick="window.location.replace('adminusuario.xhtml')"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
-            
-            <p:row>
-                    
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    
+                                     action="adminlocal"
+                                     />
                   </p:column>
                 </p:row>
-            
-            <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
-                                  style="font-weight: bold;
-                                  white-space: pre;
-                                  font-size: medium"/>
-                  </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
-                                     style="width: 125px;
-                                     -webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:black;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red;
-                                 float: right;
-                                 border-color: black!important;
-                                  border-width: thin!important"
-                                     
-                                     onclick="window.location.replace('adminusuario.xhtml')"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
             
           </p:panelGrid>
-          
-          
-          
           
         </h:form>
         
