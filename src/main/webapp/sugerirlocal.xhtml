@@ -8,6 +8,17 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
         
+  <ui:composition template="/template/template.xhtml" >
+    <ui:define name="content">
+      <h2>Sugerir Local</h2>
+      
+      <!--Panel para el primer campo "Nombre"  -->
+      <h:panelGrid columns="2" cellpadding="1">
+        <p:outputLabel  value="Nombre:" 
+                        style="font-size: medium;
+                        font-weight: bolder"/>
+        <p:inputText id="campobusqueda"/>
+      </h:panelGrid>
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
                         <script type="text/javascript" 
@@ -35,29 +46,49 @@
             
           <h2>Sugerir Local</h2>
           
-          <h:panelGrid columns="2" cellpadding="1">
-          <p:outputLabel  value="Nombre:" 
-                          style="font-size: medium;
-                          font-weight: bolder"/>
-          <p:inputText id="campobusqueda" value="#{localController.local.nombre}" required="true"/>
-		  <p:message for="campobusqueda"/>
-          </h:panelGrid>
-          
-          <br/><br/>
-                 <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="13" 
-                        type="HYBRID" 
-                        style="width:600px;height:400px"
-                        onPointClick="agregaMarcador(event);"
-                        widgetVar="map"
-                        disableDoubleClickZoom="true"      
-                        >
-                     <p:ajax event="pointSelect" listener="#{localController.seleccion}"  update=":form:cords"   />
-                </p:gmap>
+      <br/><br/>
+        <h:form id="mapa">
+          <p:gmap id="gmap"
+                  center="19.3142052,-99.1835216"
+                  zoom="14" 
+                  type="HYBRID" 
+                  style="width:600px;height:400px"
+                  onPointClick="agregaMarcador(event);"
+                  widgetVar="map"
+                  disableDoubleClickZoom="true"      
+            >
+            <p:ajax event="pointSelect"
+                    listener="#{localController.busquedaPunto}"
+              />
+          </p:gmap>
+      <br/>
           <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
         
+          <!-- Marcador para el Mapa (Google Maps) -->
+          <script type="text/javascript"> 
+            var marker = null;
+            function agregaMarcador(event) {
+              if(window.marker!==null){
+                marker.setMap(null);
+              }
+              var punto=new google.maps.LatLng(
+                        event.latLng.lat(), 
+                        event.latLng.lng()
+                );
+              window.marker = new google.maps.Marker({
+                              position:punto,
+                              title:'Lugar'
+                });  
+                PF('map').addOverlay(marker);
+              };
+          </script>
+        </h:form>
+          
           <h:panelGrid columns="2" cellpadding="1">
+            
+            
             <p:outputLabel for="categoria" value="Categoria: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
@@ -91,7 +122,8 @@
                   actionListener="#{localController.guardarCategoria()}" 
                  />
             
-            <p:outputLabel for="especialidad" value="Especialidad: " 
+            <p:outputLabel for="especialidad"
+                           value="Especialidad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
             <p:selectOneMenu id="especialidad" value="#{localController.especialidades}" style="width:160px">
@@ -110,13 +142,15 @@
         
 
                    
-                                     
-                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
-                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
-
+                  
                    
         </h:panelGrid>
 
+      <br/>
+      <!-- sección para adjuntar las imagenes -->
+      
+      <h:form enctype="multipart/form-data">
+        <p:growl id="messages" showDetail="true" />
           <br/>
 		  <h:panelGrid columns="2" columnClasses="logo,detail">
                           <p:outputPanel>								
@@ -154,5 +188,49 @@
                     
         </ui:define>
  
-    </ui:composition>
+        <p:fileUpload  mode="simple"/>
+ 
+        <p:commandButton value="Submit" ajax="false" disabled="true" />
+      </h:form>
+      
+      
+      
+      <h:form>
+      <br/>
+        <h:panelGrid columns="2" columnClasses="logo,detail">
+          <p:outputPanel>								
+          <p:commandButton ajax="false" 
+                           accesskey=""
+                           value="Cancelar"
+                           style="-webkit-box-shadow: none!important;
+                           -moz-box-shadow: none!important;
+                           box-shadow: none!important;
+                           background-image: none!important;
+                           text-shadow: none!important;
+                           color:white;
+                           font-weight: bolder;
+                           font-size: medium;
+                           background-color: red"
+                           action="inicio"
+                                      />	
+
+          <p:commandButton ajax="true"   
+                        value="Enviar"
+                        style="-webkit-box-shadow: none!important;
+                        -moz-box-shadow: none!important;
+                        box-shadow: none!important;
+                        background-image: none!important;
+                        text-shadow: none!important;
+                        color:white;
+                        font-weight: bolder;
+                        font-size: medium;
+                        background-color: blue"
+                        action="inicio"/>
+
+
+          </p:outputPanel>
+      </h:panelGrid>
+      </h:form>       
+    </ui:define>
+  </ui:composition>
 </html>

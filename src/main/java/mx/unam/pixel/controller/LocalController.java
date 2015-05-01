@@ -80,7 +80,7 @@ public class LocalController {
     private JavaMailSenderImpl mailSender;
     
     
-    String [] categorias ={"Tipo",
+    String [] categorias ={
 "Aguas",
 "Antojitos",
 "Café",
@@ -173,6 +173,8 @@ public class LocalController {
          LatLng latlng = event.getLatLng();
          this.local.setLatitud(latlng.getLat());
          this.local.setLongitud(latlng.getLng());
+         
+         System.out.println(""+latlng.getLat());
     }
 
     
@@ -200,6 +202,9 @@ public class LocalController {
         }
     }
     
+     
+
+     
     public void busquedaPunto(PointSelectEvent event){
         simpleModel = new DefaultMapModel(); 
         LatLng latlng = event.getLatLng();

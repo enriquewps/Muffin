@@ -58,7 +58,7 @@
                   disableDoubleClickZoom="true"      
             >
             <p:ajax event="pointSelect"
-                    listener="#{localController.busquedaPunto}"
+                    listener="#{localController.seleccion}"
               />
           </p:gmap>
       <br/>
@@ -86,6 +86,8 @@
           </script>
         </h:form>
           
+      
+        
           <h:panelGrid columns="2" cellpadding="1">
             
             
@@ -105,7 +107,15 @@
                               display="rango" style="width: 250px" 
                               range="true" 
                               displayTemplate="Precios entre $ {min} y $ {max} " />
-                   <p:message for="rango" />
+                  <p:message for="rango" />
+                                     
+                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
+                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+                   <p:separator/>
+                   
+                   <p:separator/>
+                   <p:message for="superior" />
+                   <p:message for="inferior" />
             
             <p:commandButton value="Guardar" 
                  style="background-color: blue!important;
@@ -119,18 +129,20 @@
                   -moz-box-shadow: none!important;
                   box-shadow: none!important;"
                    
-                  actionListener="#{localController.guardarCategoria()}" 
+                  actionListener="#{localController.guardarCategoria()}" update =""
                  />
             
             <p:outputLabel for="especialidad"
                            value="Especialidad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="especialidad" value="#{localController.especialidades}" style="width:160px">
+            <p:selectOneMenu id="especialidad" value="#{localController.local.recomendacion.nombre}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione especialidad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{localController.especialidades}" var="_esp" itemLabel="#{_esp.nombre}" itemValue="#{_esp.nombre}" />
+                <f:selectItems value="#{localController.categorias}" />
             </p:selectOneMenu>
 
+           
+            
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
@@ -185,13 +197,14 @@
 								
 				</p:outputPanel>
 			</h:panelGrid>
-                    
-        </ui:define>
- 
-        <p:fileUpload  mode="simple"/>
+                            <p:fileUpload  mode="simple"/>
  
         <p:commandButton value="Submit" ajax="false" disabled="true" />
       </h:form>
+        </ui:define>
+         </ui:composition>
+ 
+
       
       
       
@@ -225,7 +238,7 @@
                         font-weight: bolder;
                         font-size: medium;
                         background-color: blue"
-                        action="inicio"/>
+                        action="#{localController.guardarLocal()}"/>
 
 
           </p:outputPanel>
