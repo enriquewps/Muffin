@@ -22,10 +22,10 @@
             <!--<security:password-encoder hash="sha-256" />     -->
             <security:jdbc-user-service 
                 data-source-ref="dataSource" 
-                users-by-username-query="SELECT username,password,activo 
+                users-by-username-query="SELECT nombreusuario,contrasena,administrador 
                                          FROM USUARIO 
                                          WHERE username = ?"  
-                authorities-by-username-query="SELECT username,rol 
+                authorities-by-username-query="SELECT nombreusuario,administrador 
                                         FROM USUARIO 
                                         WHERE username = ?  "/>
 	  </security:authentication-provider>
