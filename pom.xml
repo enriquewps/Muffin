@@ -73,7 +73,7 @@
                 <dependency>  
                     <groupId>org.primefaces</groupId>  
                     <artifactId>primefaces</artifactId>  
-                    <version>4.0</version>  
+                    <version>5.1</version>  
                 </dependency> 
                 <!-- JEE -->
                 <dependency>

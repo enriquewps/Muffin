@@ -106,4 +106,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     
     @Query("SELECT AVG(c.calificacion) FROM Comentario c WHERE c.local.nombre = ? ")
     public Double getPromedio(String nombre);
+    
+    @Query("SELECT l FROM Local l WHERE l.id = ? ")
+    public List<Local> findById(Integer id);
 }

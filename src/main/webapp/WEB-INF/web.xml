@@ -19,6 +19,14 @@
             <param-value>/WEB-INF/faces-config.xml</param-value>
         </context-param>
 
+
+
+
+	<!-- Pinterpretar paso de parametros -->
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
  
 	<!-- Pagina de inicio -->
 	<welcome-file-list>

@@ -62,6 +62,7 @@ public class LocalServiceImpl implements LocalService{
     
     @Override
     public void guardaLocal(Local local) {
+        
         localRepository.save(local);
        
     }
@@ -186,6 +187,19 @@ localRepository.save(l);
     public List<Categoria> findEspecialidades() {
     return categoriaRepository.findEspecialidades();
         }
+    
+    @Override
+    public void guardaCategoria(Categoria c) {
+    //categoriaRepository.save(c);
+        }
+
+    @Override
+    public Local findById(Integer id) {
+        List<Local> result =localRepository.findById(id);
+        if (result.size() > 0)return result.get(0);
+        return null;    }
+    
+
 
 
 }

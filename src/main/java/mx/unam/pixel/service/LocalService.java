@@ -54,5 +54,9 @@ public interface LocalService {
     
     
     void actualizaCalificacion(Local local);
+    void guardaCategoria(Categoria c);
+    
+    Local findById(Integer id);
+
 
 }

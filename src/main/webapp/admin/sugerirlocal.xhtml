@@ -10,17 +10,9 @@
         
   <ui:composition template="/template/template.xhtml" >
     <ui:define name="content">
-      <h2>Sugerir Local</h2>
-      
-      <!--Panel para el primer campo "Nombre"  -->
-      <h:panelGrid columns="2" cellpadding="1">
-        <p:outputLabel  value="Nombre:" 
-                        style="font-size: medium;
-                        font-weight: bolder"/>
-        <p:inputText id="campobusqueda"/>
-      </h:panelGrid>
-   <ui:composition template="/template/template.xhtml" >
-        <ui:define name="content">
+     
+
+
                         <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
@@ -45,6 +37,15 @@
             
             
           <h2>Sugerir Local</h2>
+          
+          
+                <!--Panel para el primer campo "Nombre"  -->
+      <h:panelGrid columns="2" cellpadding="1">
+        <p:outputLabel  value="Nombre:" 
+                        style="font-size: medium;
+                        font-weight: bolder"/>
+        <p:inputText  value = "#{localController.local.nombre}"/>
+      </h:panelGrid>
           
       <br/><br/>
         <h:form id="mapa">
@@ -84,7 +85,6 @@
                 PF('map').addOverlay(marker);
               };
           </script>
-        </h:form>
           
       
         
@@ -109,8 +109,8 @@
                               displayTemplate="Precios entre $ {min} y $ {max} " />
                   <p:message for="rango" />
                                      
-                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
-                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
+                  <h:inputHidden  id="inferior" value="#{localController.categoria.precioMenor}" required="true" />
+                  <h:inputHidden  id="superior" value="#{localController.categoria.precioMayor}" required="true" />
                    <p:separator/>
                    
                    <p:separator/>
@@ -161,8 +161,6 @@
       <br/>
       <!-- sección para adjuntar las imagenes -->
       
-      <h:form enctype="multipart/form-data">
-        <p:growl id="messages" showDetail="true" />
           <br/>
 		  <h:panelGrid columns="2" columnClasses="logo,detail">
                           <p:outputPanel>								
@@ -199,51 +197,14 @@
 			</h:panelGrid>
                             <p:fileUpload  mode="simple"/>
  
-        <p:commandButton value="Submit" ajax="false" disabled="true" />
+        <p:commandButton value="Submit" ajax="false" disabled="false" />
       </h:form>
-        </ui:define>
-         </ui:composition>
+ 
  
 
       
       
-      
-      <h:form>
-      <br/>
-        <h:panelGrid columns="2" columnClasses="logo,detail">
-          <p:outputPanel>								
-          <p:commandButton ajax="false" 
-                           accesskey=""
-                           value="Cancelar"
-                           style="-webkit-box-shadow: none!important;
-                           -moz-box-shadow: none!important;
-                           box-shadow: none!important;
-                           background-image: none!important;
-                           text-shadow: none!important;
-                           color:white;
-                           font-weight: bolder;
-                           font-size: medium;
-                           background-color: red"
-                           action="inicio"
-                                      />	
-
-          <p:commandButton ajax="true"   
-                        value="Enviar"
-                        style="-webkit-box-shadow: none!important;
-                        -moz-box-shadow: none!important;
-                        box-shadow: none!important;
-                        background-image: none!important;
-                        text-shadow: none!important;
-                        color:white;
-                        font-weight: bolder;
-                        font-size: medium;
-                        background-color: blue"
-                        action="#{localController.guardarLocal()}"/>
-
-
-          </p:outputPanel>
-      </h:panelGrid>
-      </h:form>       
+     
     </ui:define>
   </ui:composition>
 </html>

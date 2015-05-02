@@ -6,6 +6,7 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -93,6 +94,7 @@ public class Local implements Serializable {
     }
 
     public List<Comentario> getComentarios() {
+        if(comentarios == null)comentarios = new ArrayList<Comentario>();
         return comentarios;
     }
 
@@ -183,6 +185,7 @@ public class Local implements Serializable {
     }
 
     public Facultad getFacultad() {
+        if (facultad == null)facultad = new Facultad();
         return facultad;
     }
 
@@ -191,6 +194,7 @@ public class Local implements Serializable {
     }
 
     public Categoria getRecomendacion() {
+        if (recomendacion == null)recomendacion =new Categoria();
         return recomendacion;
     }
 
@@ -199,6 +203,7 @@ public class Local implements Serializable {
     }
 
     public List<Categoria> getCategorias() {
+        if (categorias == null )categorias = new ArrayList<>();
         return categorias;
     }
 

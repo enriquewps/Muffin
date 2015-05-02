@@ -6,7 +6,9 @@
 package mx.unam.pixel.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import javax.annotation.PostConstruct;
 import mx.unam.pixel.model.BiciPuma;
 
@@ -32,6 +34,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.util.comparator.ComparableComparator;
 	
 
 /**
@@ -76,6 +79,10 @@ public class LocalController {
     private String metrobus = "";
     private Boolean admin = false;
     private String facultad;
+    private Integer localId ;
+    
+    private List<Local> top;
+    
     @Autowired
     private JavaMailSenderImpl mailSender;
     
@@ -110,6 +117,28 @@ public class LocalController {
 "Pastas"
 };
 
+    public List<Local> getTop() {
+        return top;
+    }
+
+    public void setTop(List<Local> top) {
+        this.top = top;
+    }
+
+    
+    
+    public void findLocalByID(){
+        local = localService.findById(localId);
+    }
+    
+    public Integer getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(Integer localId) {
+        this.localId = localId;
+    }
+
     public String[] getCategorias() {
 
         return categorias;
@@ -136,6 +165,7 @@ public class LocalController {
         metrobuses=this.localService.findAllMetrobus();
         //se va a borrar pues estan en las facultades        
         locales=this.localService.findAll();
+        top = getTop5();
        
         facultades = localService.findAllFacultades();
         
@@ -148,22 +178,36 @@ public class LocalController {
     }
     
     public void guardarCategoria(){
-        
+        System.out.println("gaurdando categoria "+categoria.getNombre());
         if(local == null)this.local=new Local();
+        localService.guardaCategoria(categoria);
         this.local.getCategorias().add(categoria);
         this.categoria=new Categoria();   
     }
     
     public void guardarLocal(){
-        LatLng coord = new LatLng(local.getLatitud(), local.getLongitud()); 
-        simpleModel.addOverlay(new Marker(coord, local.getNombre()));
-
+                System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size());
                
         this.localService.guardaLocal(local);
         this.locales=localService.findAll();
     /***************************************/
         this.local=new Local();
         this.local.setCategorias(new ArrayList<Categoria>());
+    }
+    
+    public void guaradLocalProvisional(){
+        while(true){
+            try{
+                local.setId(new Random().nextInt(100000));
+                        this.localService.guardaLocal(local);
+        this.locales=localService.findAll();
+    /***************************************/
+        this.local=new Local();
+        this.local.setCategorias(new ArrayList<Categoria>());
+                return;
+            }catch(Exception e){}
+            
+        }
     }
     
     
@@ -468,7 +512,20 @@ public class LocalController {
     
     
     
+    public void visitaLocal(Local l){
+        this.local = l;
+    }
     
+    public List<Local> getTop5(){
+        locales.sort(new Comparator<Local>() {
+
+            @Override
+            public int compare(Local o1, Local o2) {
+                return o2.getCalificacion().compareTo(o1.getCalificacion());
+            }
+        });
+        return locales.subList(0, 5);
+    }
    
     
 }
