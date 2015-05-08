@@ -189,7 +189,7 @@
           
       <!-- Fin información locales -->
       <!-- Sección Comentarios -->
-             
+      <h:form id ="comentarios">
       <p:dataScroller value="#{comentarioController.local.comentarios}" var="com" chunkSize="20" mode="inline" scrollHeight="500" >
            <p:panelGrid style="width: 80%" >
         
@@ -238,12 +238,12 @@
         </p:row>
            </p:panelGrid>
           </p:dataScroller>
-          
+          </h:form>
           
      
           
       <!-- Comentario del Usuario -->
-      <h:form id="form">
+      <h:form id="comentar">
 <p:growl id="messages" showDetail="true" />
       <p:panelGrid style="width: 80%">
         <p:row>
@@ -285,7 +285,7 @@
                     border-right-width: medium" />
         </p:row>
       </p:panelGrid>
-</h:form>
+
       <!-- Fin del comentario del usuario 
       <h:outputText value="Escribe tu comentario"
                           style="font-weight: bold;
@@ -322,7 +322,7 @@
                            font-size: medium;
                            background-color: blue"
                            value="Enviar"
-                           action ="verLocal"
+                           update =":comentarios"
                            actionListener="#{comentarioController.guardaComentario()}"
                            
                            />
@@ -356,6 +356,7 @@
                            />
         </p:outputPanel>
       </h:panelGrid>
+      </h:form>
       <!-- Fin seccion de botones -->
         
     </ui:define>
