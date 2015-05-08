@@ -112,3 +112,7 @@
 .barra-precio{
   color: red;
 }
+
+.top5{
+    border-bottom-color: transparent!important;
+}

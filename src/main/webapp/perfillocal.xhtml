@@ -34,7 +34,7 @@
                     border-left-width: medium;
                     border-top-color: black;
                     border-top-width: medium">
-              <h:outputText value="#{localController.local.nombre}"
+              <h:outputText value="#{comentarioController.local.nombre}"
                           style="color: white;
                           font-weight: bolder;
                           letter-spacing: 0.05cm;
@@ -47,7 +47,7 @@
                     border-top-width: medium;
                     border-right-color: black;
                     border-right-width: medium">
-              <p:rating value="#{localController.local.calificacion}"
+              <p:rating value="#{comentarioController.local.calificacion}"
                       style="float: right"
                       stars="5"
                       readonly="true"
@@ -62,7 +62,7 @@
                     border-left-width: medium;
                     border-bottom-color: black;
                     border-bottom-width: medium">
-              <h:outputText value="#{localController.local.descripcion}"
+              <h:outputText value="#{comentarioController.local.descripcion}"
                           style="font-weight: bold;
                           font-size: medium"/>
 
@@ -190,8 +190,7 @@
       <!-- Fin información locales -->
       <!-- Sección Comentarios -->
              
-      <p:dataScroller value="#{localController.top}" var="loc" chunkSize="10" mode="inline" scrollHeight="100%" >
-
+      <p:dataScroller value="#{comentarioController.local.comentarios}" var="com" chunkSize="20" mode="inline" scrollHeight="500" >
            <p:panelGrid style="width: 80%" >
         
         <!-- Comentario 1 -->
@@ -203,38 +202,35 @@
                     border-left-width: medium;
                     border-top-color: black;
                     border-top-width: medium">
-              <h:outputText value="#{usuarioController.usuario.nombre}"
+              <h:outputText value="#{com.usuario.nombre}"
                           style="color: white;
                           font-weight: bolder;
                           letter-spacing: 0.05cm;
                           font-size: large"/>
           </p:column>
-
           <p:column style="background-color: red;
                     border-bottom-color: transparent;
                     border-top-color: black;
                     border-top-width: medium;
                     border-right-color: black;
                     border-right-width: medium">
-            <p:rating value="5"
+              <p:rating value="#{com.calificacion}"
                       style="float: right"
                       stars="5"
                       readonly="true"
                       cancel="false"/>
           </p:column>
         </p:row>
-
         <p:row>
           <p:column style="border-right-color: transparent;
                     border-left-color: black;
                     border-left-width: medium;
                     border-bottom-color: black;
                     border-bottom-width: medium">
-            <h:outputText value="Comentario del Usuario Y sobre el establecimiento"
+              <h:outputText value="#{com.comentario}"
                           style="font-weight: bold;
                           font-size: medium"/>
           </p:column>
-
           <p:column style="border-bottom-color: black;
                     border-bottom-width: medium;
                     border-right-color: black;
@@ -260,14 +256,13 @@
                     border-top-width: medium">
             
           </p:column>
-
           <p:column style="background-color: red;
                     border-bottom-color: transparent;
                     border-top-color: black;
                     border-top-width: medium;
                     border-right-color: black;
                     border-right-width: medium">
-            <p:rating id="calificacion" value="0"
+              <p:rating id="calificacion" value="#{comentarioController.comentario.calificacion}"
                       style="float: right"
                       stars="5"
                       readonly="false"
@@ -275,17 +270,15 @@
             
           </p:column>
         </p:row>
-
         <p:row >
           <p:column  style="border-right-color: transparent;
                     border-left-color: black;
                     border-left-width: medium;
                     border-bottom-color: black;
                     border-bottom-width: medium">
-              <p:inputText id="comentario" value="" placeholder="Escribe tu comentario"
+              <p:inputText id="comentario" value="#{comentarioController.comentario.comentario}" placeholder="Escribe tu comentario"
                          style="width: 150%;height:30px"/>
           </p:column>
-
           <p:column style="border-bottom-color: black;
                     border-bottom-width: medium;
                     border-right-color: black;
@@ -302,9 +295,7 @@
           
           
       <!--Sección de Botones -->
-
       <br/>
-
       <h:panelGrid columns="4" columnClasses="logo,detail">
         <p:outputPanel>								
           <p:commandButton ajax="true" 
@@ -331,7 +322,10 @@
                            font-size: medium;
                            background-color: blue"
                            value="Enviar"
-                           action="inicio"/>
+                           action ="verLocal"
+                           actionListener="#{comentarioController.guardaComentario()}"
+                           
+                           />
           <p:commandButton ajax="true" 
                            style="-webkit-box-shadow: none!important;
                            -moz-box-shadow: none!important;
@@ -360,7 +354,6 @@
                            value="Comentar Twitter"
                            onclick="Alerta(getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"
                            />
-
         </p:outputPanel>
       </h:panelGrid>
       <!-- Fin seccion de botones -->

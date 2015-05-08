@@ -12,7 +12,8 @@
       <h:form id="form">
                 
           
-          <p:dataScroller value="#{localController.top}" var="loc" chunkSize="10" mode="inline" scrollHeight="500">
+          <p:dataScroller value="#{localController.top}" var="loc" chunkSize="10" mode="inline" scrollHeight="500"
+                          styleClass="top5">
 
        <p:panelGrid style="width: 100%">
 
@@ -78,7 +79,7 @@
  
             <p:commandButton value="Ver" ajax="false"
                              styleClass="boton"
-                             actionListener ="#{localController.visitaLocal(loc)}"
+                             actionListener ="#{comentarioController.setLocal(loc)}"
                              action="verLocal">
             </p:commandButton>
           </p:column>

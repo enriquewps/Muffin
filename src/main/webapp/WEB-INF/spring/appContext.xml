@@ -58,40 +58,32 @@
         </bean>
         
         <bean id="comentarioController" class="mx.unam.pixel.controller.ComentarioController" scope="session">
-            <property name="local" >
-                <bean class="mx.unam.pixel.model.Local">
-                       <property name="nombre" value="" />
-                       <property name="latitud" value="" /> 
-                        <property name="longitud" value="" />
-                        <property name="rangoInferior" value="10" />
-                        <property name="rangoSuperior" value="100" />
-                        <property name="wifi" value="false" /> 
-                        <property name="comerOLlevar" value="1" />
-                        <property name="aprobado" value="false" />
-                                                 
-                 </bean>
-            </property> 
             <property name="usuario" >
                 <bean class="mx.unam.pixel.model.Usuario">
                        <property name="nombreUsuario" value="Nombre del Usuario..." />
                        <property name="correo" value="" /> 
                         <property name="nombre" value="" />
                         <property name="contrasena" value="" />
-                        <property name="administrador" value="" />                         
+                        <property name="administrador" value="false" />                         
                  </bean>
             </property>
             <property name="comentario" >
                 <bean class="mx.unam.pixel.model.Comentario">
-                       <property name="usuario" value="" />
-                       <property name="local" value="" /> 
-                        <property name="fecha" value="" />
-                        <property name="calificacion" value="" />
+                        <property name="calificacion" value="5" />
                         <property name="comentario" value="" />                         
+                 </bean>
+            </property> 
+                        <property name="local" >
+                <bean class="mx.unam.pixel.model.Local">
+                       <property name="nombre" value="Nombre del local..." />
+                       <property name="rangoInferior" value="10" /> 
+                        <property name="rangoSuperior" value="1000" /> 
                  </bean>
             </property> 
         </bean>
         
     <!-- ... -->
+
 
 
        <!--Service -->

@@ -33,7 +33,7 @@ public class Comentario implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Usuario usuario;
    @NotNull 
-   @ManyToOne(cascade = CascadeType.ALL)
+   @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Local local;
    @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -43,6 +43,7 @@ public class Comentario implements Serializable {
    @NotNull 
     private int calificacion;
    
+
 
 
     public Usuario getUsuario() {

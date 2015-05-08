@@ -19,6 +19,7 @@ import mx.unam.pixel.model.Metrobus;
 import mx.unam.pixel.model.Pumabus;
 import mx.unam.pixel.repository.BiciPumaRepository;
 import mx.unam.pixel.repository.CategoriaRepository;
+import mx.unam.pixel.repository.ComentarioRepository;
 import mx.unam.pixel.repository.FacultadRepository;
 import mx.unam.pixel.repository.MetroRepository;
 import mx.unam.pixel.repository.MetrobusRepository;
@@ -58,13 +59,17 @@ public class LocalServiceImpl implements LocalService{
     @Autowired
     private BiciPumaRepository bicipumaRepository;
     
+    @Autowired
+    private ComentarioRepository comentarioRepository;
+    
     //Hayq eu quitar por que estan en la faculad
     
     @Override
     public void guardaLocal(Local local) {
-        
+        for(Comentario coment:local.getComentarios()){
+            coment.setLocal(local);
+        }
         localRepository.save(local);
-       
     }
 
     @Override
@@ -172,8 +177,8 @@ return facultadRepository.findAll();
         }
 
     @Override
-    public List<Comentario> findComentarios(String local) {
-        return localRepository.findComentarios(local);
+    public List<Comentario> findComentarios(Integer id) {
+        return comentarioRepository.findByLocalID(id);
     }
 
     @Override

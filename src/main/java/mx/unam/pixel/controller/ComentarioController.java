@@ -47,23 +47,91 @@ public class ComentarioController {
     
     @PostConstruct
     public void init(){
+        if (local != null)
         comentarios = comentarioRepository.findByLocalID(local.getId());
  
     }
+
+    public LocalService getLocalService() {
+        return localService;
+    }
+
+    public void setLocalService(LocalService localService) {
+        this.localService = localService;
+    }
+
+    public ComentarioRepository getComentarioRepository() {
+        return comentarioRepository;
+    }
+
+    public void setComentarioRepository(ComentarioRepository comentarioRepository) {
+        this.comentarioRepository = comentarioRepository;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
+                comentarios = comentarioRepository.findByLocalID(local.getId());
+
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Comentario getComentario() {
+        if (comentario == null)comentario= new Comentario();
+        return comentario;
+    }
+
+    public void setComentario(Comentario comentario) {
+
+        this.comentario = comentario;
+    }
+
+    public List<Comentario> getComentarios() {
+        //local = localService.findById(local.getId());
+        comentarios = localService.findComentarios(local.getId());
+                //local.getComentarios();
+        local.setComentarios(comentarios);
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    
     
     public void obtenComentarios(){
-        comentarios = local.getComentarios();
+       // local = localService.findById(local.getId());
+       // comentarios = local.getComentarios();
+                comentarios = localService.findComentarios(local.getId());
+                local.setComentarios(comentarios);
+
     }
     
     public void guardaComentario(){
         
-        comentario.setLocal(local);
+        //comentario.setLocal(local);
         comentario.setFecha(new Date());
         comentario.setUsuario(usuario);
-        comentarioRepository.save(comentario);
         
         local.getComentarios().add(comentario);
+        localService.guardaLocal(local);
         localService.actualizaCalificacion(local);
+        comentario = new Comentario();
+        comentario.setCalificacion(5);
+        comentario.setComentario("");
+        //obtenComentarios();
+        
     } 
     
     public void eliminiaComentario(Comentario c){

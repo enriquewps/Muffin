@@ -22,4 +22,5 @@ public interface ComentarioRepository extends CrudRepository<Comentario, Integer
     @Query ("SELECT c FROM Comentario c WHERE c.local.id = ?")
     List<Comentario> findByLocalID(Integer id);
     
+    
 }

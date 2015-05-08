@@ -6,6 +6,7 @@
 	 version="3.1">
     
 
+
     <display-name>Muffin</display-name>
  
 	<!-- Indica que el proyecto esta en fase de desarrollo -->
@@ -19,14 +20,6 @@
             <param-value>/WEB-INF/faces-config.xml</param-value>
         </context-param>
 
-
-
-
-	<!-- Pinterpretar paso de parametros -->
-    <context-param>
-        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
-        <param-value>true</param-value>
-    </context-param>
  
 	<!-- Pagina de inicio -->
 	<welcome-file-list>
@@ -57,16 +50,17 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring/appContext.xml
+            /WEB-INF/spring/springSecurity.xml
         </param-value>
     </context-param>
     
 
       <!-- Definicion del servlet de Springn-->
-      <servlet>
+    <servlet>
         <servlet-name>Spring Servlet</servlet-name>
         	<servlet-class>
-org.springframework.web.servlet.DispatcherServlet
-</servlet-class>
+                    org.springframework.web.servlet.DispatcherServlet
+                </servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/spring/appContext.xml</param-value>
@@ -85,9 +79,9 @@ org.springframework.web.servlet.DispatcherServlet
     <!-- context loader -->
     <!-- carga el appContext   -->   
     <listener>
-<listener-class>
-		org.springframework.web.context.ContextLoaderListener
-</listener-class>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
     </listener>
     <listener>
         <listener-class>
@@ -96,17 +90,72 @@ org.springframework.web.servlet.DispatcherServlet
     </listener>
 
     
+
+
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    
+
+
     
     
-    
-    
-    
-    
+       
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    
+    
+    <listener>
+        <listener-class>
+            org.springframework.security.web.session.HttpSessionEventPublisher
+        </listener-class>
+    </listener> 
+    
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+  <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    
+    
+    
+    
+    <servlet>
+        <servlet-name>webservice</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet 
+        </servlet-class>
+        <init-param>
+        <param-name>contextConfigLocation</param-name> 
+        <param-value>
+            /WEB-INF/spring/restful-context.xml
+        </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup> 
+    </servlet>
+    <servlet-mapping> 
+            <servlet-name>webservice</servlet-name> 
+            <url-pattern>/webservice/*</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
     
     
 </web-app>

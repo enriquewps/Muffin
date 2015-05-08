@@ -47,7 +47,7 @@ public interface LocalService {
     
         List<Facultad> findAllFacultades();
         
-    List<Comentario> findComentarios(String id);
+    List<Comentario> findComentarios(Integer id);
     
     
     List<Categoria> findEspecialidades();

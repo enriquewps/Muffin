@@ -95,8 +95,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
         @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01  ")
     List<Local> findByPunto(Double latitud,Double longitud);
     
-    @Query("SELECT l.comentarios FROM Local l WHERE l.nombre = ?")
-    List<Comentario> findComentarios(String nomre);
+
     
      /*   @Query("UPDATE TABLE Local l SET l.calificacion = (SELECT AVG(c.calificacion)"
                 + " FROM Comentario c WHERE c.local.id = ?) "

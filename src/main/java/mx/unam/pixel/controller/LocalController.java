@@ -195,6 +195,8 @@ public class LocalController {
         this.local.setCategorias(new ArrayList<Categoria>());
     }
     
+    
+    
     public void guaradLocalProvisional(){
         while(true){
             try{
@@ -526,6 +528,8 @@ public class LocalController {
         });
         return locales.subList(0, 5);
     }
+    
+    
    
     
 }
