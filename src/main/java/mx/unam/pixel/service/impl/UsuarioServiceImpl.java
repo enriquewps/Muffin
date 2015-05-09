@@ -29,6 +29,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public boolean crearUsuario(Usuario usuario) {
 
+        if (usuario.isAdministrador())usuario.setRol("ROL_ADMIN");
+        else usuario.setRol("ROL_USER");
         usuarioRepository.save(usuario);
         return true;
     }

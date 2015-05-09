@@ -77,6 +77,13 @@ public class ComentarioController {
                 comentarios = comentarioRepository.findByLocalID(local.getId());
 
     }
+    
+        public void setLocalUsuario(Local local,Usuario us) {
+        this.local = local;
+        this.usuario = us;
+                comentarios = comentarioRepository.findByLocalID(local.getId());
+
+    }
 
     public Usuario getUsuario() {
         return usuario;

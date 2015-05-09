@@ -10,15 +10,8 @@
     <ui:define name="content">
       <h2>Inicio Sesion</h2>
       <h:form id = "isesion">
-        <h:panelGrid columns="2" cellpadding="1">
-          <!-- Nombre -->
-          <p:outputLabel  value=""/>
-          <p:outputLabel  value="" />
 
-		  
-		  <p:outputLabel  value="" />
-		  <p:outputLabel  value="" />
-                  
+                  <!-- 
                                   <h:panelGrid rendered="#{!loginController.loged}">
                     <form action="#{facesContext.externalContext.requestContextPath}/j_spring_security_check" method="POST">
                         Usuario:<input type="text" name="j_username"/>
@@ -31,7 +24,18 @@
                         <p>User:#{loginController.username}(#{loginController.rol})</p>
                         <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout" >Cerrar Session</a>
                     </h:form>
+                  
                 </h:panelGrid>
+                  -->
+                  <form id="loginForm" prependId="false">
+                              <h:panelGrid columns="2" cellpadding="1">
+          <!-- Nombre -->
+          <p:outputLabel  value=""/>
+          <p:outputLabel  value="" />
+
+		  
+		  <p:outputLabel  value="" />
+		  <p:outputLabel  value="" />
 				  <!-- Nombre Usuario -->
 		  <p:outputLabel value="Nombre Usuario"
                                  style="font-size: medium;
@@ -40,7 +44,6 @@
 		  <p:message for="j_username"/>
 		  <br/>
 
-		  
 		  
 		  <!-- Contrasena -->
 		  
@@ -60,7 +63,7 @@
 		
 		<!-- Seccion de Botones -->
                 <!-- Cancelar -->
-                <p:commandButton ajax="false" 
+                <p:commandButton ajax="true" 
                              value="Cancelar"
                              style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -74,7 +77,9 @@
                              onclick="window.location.replace('index.xhtml')"
 				/>	
 				
-				<p:commandButton 
+				<p:commandButton id ="login"
+                                                 ajax ="true"
+                                                 type ="submit"
                              value="Iniciar Sesion"
                              style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -85,10 +90,11 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                 action="#{loginController.log}"
-                                 actionListener="#{usuarioController.iniciarSesion()}"
-                                 update="isesion"
+                                 
+                                 actionListener="#{loginController.doLogin()}"
+                                 
 				/>	
+                                </form>
                                 
             </h:form>
             

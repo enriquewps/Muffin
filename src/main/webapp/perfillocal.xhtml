@@ -243,7 +243,7 @@
      
           
       <!-- Comentario del Usuario -->
-      <h:form id="comentar">
+      <h:form id="comentar" >
 <p:growl id="messages" showDetail="true" />
       <p:panelGrid style="width: 80%">
         <p:row>
@@ -296,7 +296,7 @@
           
       <!--Sección de Botones -->
       <br/>
-      <h:panelGrid columns="4" columnClasses="logo,detail">
+      <h:panelGrid columns="4" columnClasses="logo,detail" rendered="#{loginController.admin}">
         <p:outputPanel>								
           <p:commandButton ajax="true" 
                            accesskey=""

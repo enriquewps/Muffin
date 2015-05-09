@@ -79,7 +79,7 @@
  
             <p:commandButton value="Ver" ajax="false"
                              styleClass="boton"
-                             actionListener ="#{comentarioController.setLocal(loc)}"
+                             actionListener ="#{comentarioController.setLocalUsuario(loc,usuarioController.usuario)}"
                              action="verLocal">
             </p:commandButton>
           </p:column>
