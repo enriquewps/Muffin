@@ -39,7 +39,7 @@ public class Usuario implements Serializable {
     private boolean administrador = false;
 
        @NotNull 
-   private String rol;
+   private String rol = "ROLE_USER";
 
        
        

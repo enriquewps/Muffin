@@ -35,8 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public void eliminaUsuario(Usuario usuario) {
-        
-        usuarioRepository.delete(usuario);
+        usuarioRepository.delete(usuario.getId());
         comentarioRepository.eliminaComentariosUsuario(usuario.getId());
     }
 
@@ -74,6 +73,11 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Usuario iniciarSesion(String nombre, String contrasena) {
         ArrayList<Usuario> us = (ArrayList<Usuario>) usuarioRepository.findByNombreContrasena(nombre, contrasena);
         return (us.size() == 0 )? null:us.get(0);
+    }
+
+    @Override
+    public void guardaUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
     }
     
     

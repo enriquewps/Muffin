@@ -6,16 +6,25 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+
     <ui:composition template="/template/template3.xhtml" >
-        <ui:define name="content">	
-        <h2>Administrar Usuarios</h2>
-        <h:form>
+        
+        <ui:define name="content" >	
+        
+            
+        <h2 >Administrar Usuarios</h2>
+        
+        <h:form id="form" >
+                        <p:dataScroller  value="#{usuarioController.usuarios}" 
+                          id="usuarios"
+                          var="_usuario"
+                          style="width: 800px"
+                          chunkSize="6" 
+                          >
           
           
           <p:panelGrid style="width: 75%" >
             
-            
-            
             <p:row>
                     
                   <p:column style="background-color: red; 
@@ -25,10 +34,12 @@
                             border-left-width: medium;
                             border-top-color: black;
                             border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
+                      <h:outputText value="#{_usuario.nombreUsuario}" style="color: white;
                                   font-weight: bolder;
                                   letter-spacing: 0.05cm;
-                                  font-size: large"/>
+                                  font-size: large"
+                                  
+                                  />
                   </p:column>
                         
                   <p:column style="background-color: red;
@@ -49,7 +60,7 @@
                             border-bottom-width: medium">
                     <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
                     <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
+                    <h:outputText value="#{_usuario.nombre}&#10;#{_usuario.correo}"
                                   style="font-weight: bold;
                                   white-space: pre;
                                   font-size: medium"/>
@@ -75,353 +86,17 @@
                                   border-width: thin!important"
                                      
                                      action="adminusuario"
-                                     />          
-                
+                                     actionListener="#{usuarioController.setUsuario(_usuario)}"
+                                     />
+
               </p:column>
                   
             </p:row>
-            
-            
-            
-            <p:row>
-                    
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    
-                  </p:column>
-                </p:row>
-            
-            <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
-                                  style="font-weight: bold;
-                                  white-space: pre;
-                                  font-size: medium"/>
-                  </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
-                                     style="width: 125px;
-                                     -webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:black;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red;
-                                 float: right;
-                                 border-color: black!important;
-                                  border-width: thin!important"
-                                     
-                                     action="adminusuario"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
-            
-            <p:row>
-                    
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    
-                  </p:column>
-                </p:row>
-            
-            <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
-                                  style="font-weight: bold;
-                                  white-space: pre;
-                                  font-size: medium"/>
-                  </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
-                                     style="width: 125px;
-                                     -webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:black;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red;
-                                 float: right;
-                                 border-color: black!important;
-                                  border-width: thin!important"
-                                     
-                                     action="adminusuario"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
-            
-            <p:row>
-                    
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    
-                  </p:column>
-                </p:row>
-            
-            <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
-                                  style="font-weight: bold;
-                                  white-space: pre;
-                                  font-size: medium"/>
-                  </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
-                                     style="width: 125px;
-                                     -webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:black;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red;
-                                 float: right;
-                                 border-color: black!important;
-                                  border-width: thin!important"
-                                     
-                                     action="adminusuario"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
-            <p:row>
-                    
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    
-                  </p:column>
-                </p:row>
-            
-            <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
-                                  style="font-weight: bold;
-                                  white-space: pre;
-                                  font-size: medium"/>
-                  </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
-                                     style="width: 125px;
-                                     -webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:black;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red;
-                                 float: right;
-                                 border-color: black!important;
-                                  border-width: thin!important"
-                                     
-                                     action="adminusuario"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
-            
-            <p:row>
-                    
-                  <p:column style="background-color: red; 
-                            border-bottom-color: transparent;
-                            border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-top-color: black;
-                            border-top-width: medium">
-                    <h:outputText value="Nombre de Usuario" style="color: white;
-                                  font-weight: bolder;
-                                  letter-spacing: 0.05cm;
-                                  font-size: large"/>
-                  </p:column>
-                        
-                  <p:column style="background-color: red;
-                            border-bottom-color: transparent;
-                            border-top-color: black;
-                            border-top-width: medium;
-                            border-right-color: black;
-                            border-right-width: medium">
-                    
-                  </p:column>
-                </p:row>
-            
-            <p:row>
-                  <p:column style="border-right-color: transparent;
-                            border-left-color: black;
-                            border-left-width: medium;
-                            border-bottom-color: black;
-                            border-bottom-width: medium">
-                    <!-- &#10; sirve para saber donde va a hacer el salto de linea -->
-                    <!-- white-space: pre sirve para activar el salto de linea -->
-                    <h:outputText value="Nombre Completo&#10;Correo"
-                                  style="font-weight: bold;
-                                  white-space: pre;
-                                  font-size: medium"/>
-                  </p:column>
-                  
-              <p:column style="border-bottom-color: black;
-                        border-bottom-width: medium;
-                        border-right-color: black;
-                          border-right-width: medium" >
-                <p:commandButton value="Administrar"
-                                     style="width: 125px;
-                                     -webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:black;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red;
-                                 float: right;
-                                 border-color: black!important;
-                                  border-width: thin!important"
-                                     
-                                     action="adminusuario"
-                                     />          
-                
-              </p:column>
-                  
-            </p:row>
-            
-            
-            
+           
           </p:panelGrid>
-          
-          
-          
-          
+
+                        </p:dataScroller>
+           
         </h:form>
         
         </ui:define>

@@ -200,6 +200,13 @@ localRepository.save(l);
         return null;    }
     
 
+    public List<Local> findAllAdmin(){
+         List<Local> result = localRepository.findByAprobado(Boolean.FALSE);
+         result.addAll(localRepository.findByAprobado(Boolean.FALSE));
+        return result;
+    }
 
-
+    public List<Local> finNoAprobados(){
+        return localRepository.findByAprobado(Boolean.FALSE);
+    }
 }

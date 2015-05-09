@@ -10,35 +10,56 @@
         <ui:define name="content">	
         <h2>Modificar Local</h2>
         
-        <h:panelGrid columns="2" cellpadding="1">
+        <h:panelGrid columns="2" cellpadding="1" id="panel">
           <p:outputLabel  value="Nombre:" 
                           style="font-size: medium;
                           font-weight: bolder"/>
-          <p:inputText id="campobusqueda" required="true"/>
+          <p:inputText id="campobusqueda" required="true" value="#{localController.local.nombre}"/>
         
           </h:panelGrid>
           
           <br/><br/>
-          <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="14" 
+          <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="15" 
                         type="HYBRID" 
                         style="width:600px;height:400px"
                         onPointClick="agregaMarcador(event);"
                         widgetVar="map"
                         disableDoubleClickZoom="true"      
-                        ></p:gmap>
+                        >
+            <p:ajax event="pointSelect" listener="#{localController.seleccion}"  update="" />
+          </p:gmap>
          <br/>
           <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
+          <script type="text/javascript"> 
+            var marker = null;
+            function agregaMarcador(event) {
+               if(window.marker!==null){
+                   marker.setMap(null);
+               }
+                var punto=new google.maps.LatLng(
+                        event.latLng.lat(), 
+                event.latLng.lng()
+                        );
+                window.marker = new google.maps.Marker({
+                        position:punto,
+                        title:'Lugar'
+                    });
+                    
+                    PF('map').addOverlay(marker);
+            };
+        </script>
         
+          
+                
           <h:panelGrid columns="2" cellpadding="1">
             <p:outputLabel for="categoria" value="Categoria: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="categoria" value="#{dropdownView.country}" style="width:160px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" />
+            <p:selectOneMenu id="categoria" value="#{localController.categoria.nombre}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
+                <f:selectItems value="#{localController.categorias}" />
             </p:selectOneMenu>
  
             <h:outputText id="rango" value="Rango de precios: "
@@ -77,20 +98,17 @@
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
+            
             <p:selectOneMenu id="facultad" value="#{dropdownView.city}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{dropdownView.cities}" />
             </p:selectOneMenu>
             
+            
         
-
-                   
-                                     
-                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
-                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
-
-                   
-        </h:panelGrid>
+          
+          
+          </h:panelGrid>
 
           <br/>
 		  <h:panelGrid columns="3" columnClasses="logo,detail">
