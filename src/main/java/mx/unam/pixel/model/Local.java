@@ -53,6 +53,7 @@ public class Local implements Serializable {
     
     private boolean wifi;
     
+    
     //Solo puede tener valores entre 1 y 3 significando 1: comer 2: llevar 3: ambos
     private int comerOLlevar;
     
@@ -61,11 +62,13 @@ public class Local implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Facultad facultad;
     
-    @OneToOne(cascade = CascadeType.ALL)
+        @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+
     private Categoria recomendacion;
         
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
+             mappedBy = "local",
             orphanRemoval = true)
     private List<Categoria> categorias;
 
@@ -90,6 +93,7 @@ public class Local implements Serializable {
     }
 
     public void setCalificacion(Integer calificacion) {
+        System.out.println(calificacion+"");
         this.calificacion = calificacion;
     }
 
@@ -109,6 +113,7 @@ public class Local implements Serializable {
     }
 
     public void setDescripcion(String descripcion) {
+        setDescripcion(descripcion);
         this.descripcion = descripcion;
     }
 
@@ -125,6 +130,7 @@ public class Local implements Serializable {
     }
 
     public void setNombre(String nombre) {
+        System.out.println(nombre);
         this.nombre = nombre;
     }
 
@@ -133,6 +139,7 @@ public class Local implements Serializable {
     }
 
     public void setLatitud(double latitud) {
+        System.out.println(latitud+"");
         this.latitud = latitud;
     }
 
@@ -199,6 +206,7 @@ public class Local implements Serializable {
     }
 
     public void setRecomendacion(Categoria recomendacion) {
+        System.out.println(recomendacion.getNombre());
         this.recomendacion = recomendacion;
     }
 
@@ -247,5 +255,7 @@ public class Local implements Serializable {
     public String toString() {
         return "mx.unam.pixel.model.Local[ id=" + id + " ]";
     }
+
+
     
 }

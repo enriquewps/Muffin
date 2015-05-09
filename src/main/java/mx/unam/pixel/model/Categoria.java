@@ -6,10 +6,13 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,12 +29,15 @@ public class Categoria implements Serializable {
     
     @NotNull
     private String nombre;
-    @NotNull    
+    
     private int precioMayor;
 
-    @NotNull
     private int precioMenor;
 
+    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
+    private Local local;
+    
+    
     public Categoria(){
         nombre ="";
         precioMayor = 200;
@@ -43,6 +49,7 @@ public class Categoria implements Serializable {
     }
 
     public void setPrecioMayor(int precioMayor) {
+        System.out.println("categoria PM:"+precioMayor);
         this.precioMayor = precioMayor;
     }
 
@@ -51,6 +58,7 @@ public class Categoria implements Serializable {
     }
 
     public void setPrecioMenor(int precioMenor) {
+                System.out.println("categoria Pm:"+precioMenor);
         this.precioMenor = precioMenor;
     }
 
@@ -60,6 +68,7 @@ public class Categoria implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+        System.out.println("categoria:"+nombre);
     }
 
     
@@ -94,6 +103,14 @@ public class Categoria implements Serializable {
     @Override
     public String toString() {
         return "mx.unam.pixel.model.Categoria[ id=" + id + " ]";
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
     
 }

@@ -37,7 +37,7 @@
             
             
           <h2>Sugerir Local</h2>
-          
+                  <h:form id="mapa">
           
                 <!--Panel para el primer campo "Nombre"  -->
       <h:panelGrid columns="2" cellpadding="1">
@@ -48,7 +48,7 @@
       </h:panelGrid>
           
       <br/><br/>
-        <h:form id="mapa">
+
           <p:gmap id="gmap"
                   center="19.3142052,-99.1835216"
                   zoom="14" 
@@ -129,7 +129,7 @@
                   -moz-box-shadow: none!important;
                   box-shadow: none!important;"
                    
-                  actionListener="#{localController.guardarCategoria()}" update =""
+                  actionListener="#{localController.guardarCategoria}" update =""
                  />
             
             <p:outputLabel for="especialidad"
@@ -151,7 +151,28 @@
                 <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>
             
-        
+                           <h:outputText  value="Foto local" />
+                   <p:fileUpload 
+                       
+                       fileUploadListener="#{localController.handleFileUpload}" 
+                                          mode="advanced"  
+                                          auto="false"
+                                          value="#{localController.local.foto}"
+                                          sizeLimit="2097152" 
+                                          multiple="false"
+                                          update="foto"
+                                          immediate="true"
+                                          invalidFileMessage="Tipo de archivo invalido"
+                                          uploadLabel="añadir"
+                                          label="elegir"
+                                          
+                       allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                   <h:graphicImage 
+                       value="data:image/png;base64,#{localController.local.fotoUrl}"
+                                   rendered="#{localController.local.foto ne null}"
+                                   id="foto"
+                                   height="200"
+                                   />
 
                    
                   
@@ -179,7 +200,7 @@
                                              onclick="window.location.replace('index.xhtml')"
 							/>	
 		  
-                            <p:commandButton ajax="true"   
+                            <p:commandButton ajax="false"   
                                           value="Enviar"
                                           style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -190,12 +211,11 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                 actionListener ="#{localController.guardarLocal()}" />
+                                 actionListener ="#{localController.guardarLocal()}" update ="mapa" />
                             
 								
 				</p:outputPanel>
 			</h:panelGrid>
-                            <p:fileUpload  mode="simple"/>
  
         <p:commandButton value="Submit" ajax="false" disabled="false" />
       </h:form>

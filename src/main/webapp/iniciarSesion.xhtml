@@ -32,20 +32,23 @@
           <!-- Nombre -->
           <p:outputLabel  value=""/>
           <p:outputLabel  value="" />
-
-		  
+                        <form action="#{facesContext.externalContext.requestContextPath}/j_spring_security_check" method="POST">
+                            Usuario:<input type="text" name="j_username"/>
+                            Password:<input type="password" name="j_password"/>
+                            <input name="submit" type="submit" value="Login"/>
+                        </form>
+		  <!-- 
 		  <p:outputLabel  value="" />
 		  <p:outputLabel  value="" />
-				  <!-- Nombre Usuario -->
+				  <!Nombre Usuario 
 		  <p:outputLabel value="Nombre Usuario"
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-                  <p:inputText id="j_username" value ="#{usuarioController.usuarioRegistro.nombre}" required="true"/>
-		  <p:message for="j_username"/>
+                  <input id="j_username" value ="#{usuarioController.usuarioRegistro.nombre}" required="true" name ="j_username"/>
+		 
 		  <br/>
 
 		  
-		  <!-- Contrasena -->
 		  
 	                  
 			<p:outputLabel  value="Contrasena: "
@@ -57,6 +60,7 @@
                                  onclick="window.location.replace('recuperarcontrasena.xhtml')"> 
 				<h:outputText value="Recuperar Contrasena    "  />
 		   </p:commandLink>
+-->
 		  
 		</h:panelGrid>
                 

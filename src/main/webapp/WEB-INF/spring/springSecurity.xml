@@ -11,7 +11,7 @@
         <import resource="appContext.xml"/>
     
         <security:http auto-config="true">
-		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/admini/*" access="ROLE_ADMIN" />
                 <!--<security:intercept-url pattern="/verLocales.xhtml" access="ROLE_ADMIN,ROLE_USER" />-->
                 <security:access-denied-handler error-page="/index.xhtml?message=Acceso Denegado" />
                 <security:form-login login-page="/iniciarSesion.xhtml"/> 
@@ -24,10 +24,10 @@
                 data-source-ref="dataSource" 
                 users-by-username-query="SELECT nombreusuario,contrasena,administrador 
                                          FROM USUARIO 
-                                         WHERE username = ?"  
+                                         WHERE nombreusuario = ?"  
                 authorities-by-username-query="SELECT nombreusuario,rol 
                                         FROM USUARIO 
-                                        WHERE username = ?  "/>
+                                        WHERE nombreusuario = ?  "/>
 	  </security:authentication-provider>
 	</security:authentication-manager>       
         

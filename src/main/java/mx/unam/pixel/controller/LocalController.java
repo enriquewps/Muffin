@@ -178,15 +178,17 @@ public class LocalController {
     }
     
     public void guardarCategoria(){
-        System.out.println("gaurdando categoria "+categoria.getNombre());
-        if(local == null)this.local=new Local();
-        localService.guardaCategoria(categoria);
-        this.local.getCategorias().add(categoria);
-        this.categoria=new Categoria();   
+       System.out.println("gaurdando categoria "+categoria.getNombre());
+       if(local == null)this.local=new Local();
+       if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
+       local.getCategorias().add(categoria);
+        //localService.guardaCategoria(categoria);
+        //this.local.getCategorias().add(categoria);
+        //this.categoria=new Categoria();   
     }
     
     public void guardarLocal(){
-                System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size());
+        System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size());
                
         this.localService.guardaLocal(local);
         this.locales=localService.findAll();
@@ -526,7 +528,8 @@ public class LocalController {
                 return o2.getCalificacion().compareTo(o1.getCalificacion());
             }
         });
-        return locales.subList(0, 5);
+        
+        return (locales.size()>= 5)?locales.subList(0,5):locales;
     }
     
     

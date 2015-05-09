@@ -69,9 +69,30 @@ public class LocalServiceImpl implements LocalService{
         for(Comentario coment:local.getComentarios()){
             coment.setLocal(local);
         }
+        for(Categoria coment:local.getCategorias()){
+            coment.setLocal(local);
+        }
+        
+        
+        int precio= 100000;
+        for (Categoria cat: local.getCategorias()){
+            if (precio > cat.getPrecioMenor())precio = cat.getPrecioMenor();
+        }
+        local.setRangoInferior(precio);
+        
+        precio= 0;
+        for (Categoria cat: local.getCategorias()){
+            if (precio < cat.getPrecioMayor())precio = cat.getPrecioMayor();
+        }
+        local.setRangoSuperior(precio);
+
+        
         localRepository.save(local);
     }
 
+    
+    
+    
     @Override
     public void eliminaLocal(Local local) {
         localRepository.delete(local);
@@ -205,6 +226,8 @@ return facultadRepository.findAll();
         return null;    }
     
 
-
-
+  
+    
+    
+    
 }
