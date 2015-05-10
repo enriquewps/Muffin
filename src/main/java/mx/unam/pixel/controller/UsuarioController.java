@@ -30,6 +30,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 
+
+
+//con ajax para eventos 
+import javax.faces.application.FacesMessage;
+/*import javax.faces.bean.ManagedBean;*/
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
 /**
  *Esta clase sirve para agregar y eliminar usuarios y para controlar su relacion con los comentarios
  * cuando se borra un usuario desde aqui se eliminan tambien sus ocmentarios
@@ -77,8 +85,6 @@ public class UsuarioController {
         this.correoRecuperar = correoRecuperar;
     }
     
-    
-    
     @PostConstruct
     public void init(){
         usuarios = this.usuarioService.findAll();
@@ -101,7 +107,7 @@ public class UsuarioController {
     }
 
     public List<Usuario> getUsuarios() {
-        return usuarios;
+        return usuarioService.findAll();
     }
 
     public void setUsuarios(List<Usuario> usuarios) {
@@ -109,43 +115,55 @@ public class UsuarioController {
     }
 
     public Usuario getUsuario() {
-        if(usuario == null)usuario = new Usuario();
+        if(usuario == null)
+            usuario = new Usuario();
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+        this.usuarioRegistro = usuario;
     }
     
     
     public boolean registraUsuario(){
-        if(usuarios == null)usuarios = new ArrayList<Usuario>();
+        if(usuarios == null)
+            usuarios = new ArrayList<Usuario>();
         
-        System.out.println(usuario.getNombre() +" usuariooooooo "+usuario.getContrasena());
+        System.out.println(usuarioRegistro.getNombre() +" usuariooooooo "+usuarioRegistro.getContrasena());
         try{
         
         for (Usuario u: usuarios){
-            if(u.getCorreo().equals(usuario.getCorreo()) ||
-                    u.getNombreUsuario().equals(usuario.getNombreUsuario()))
+            if(u.getCorreo().equals(usuarioRegistro.getCorreo()) ||
+                    u.getNombreUsuario().equals(usuarioRegistro.getNombreUsuario()))
                 return false;
         }
-        boolean creado  =this.usuarioService.crearUsuario(usuario);
-        this.usuario=new Usuario();
-        this.usuario.setNombre("Se guardo");
+        boolean creado  =this.usuarioService.crearUsuario(usuarioRegistro);
+        //this.usuarioRegistro = new Usuario();
+        //this.usuarioRegistro.setNombre("Se guardo");
         return creado;
         }catch(Exception e){
-            this.usuario=new Usuario();
-            this.usuario.setNombre("NO se guardo");
+            this.usuarioRegistro=new Usuario();
+            this.usuarioRegistro.setNombre("NO se guardo");
             e.printStackTrace();
         return false;
         }
     }
-    
+
     public void borraUsuario(){
-        this.usuarioService.eliminaUsuario(usuario);
-        usuario = new Usuario();
+        
+        usuarioService.eliminaUsuario(usuarioRegistro);
+        usuarioService.eliminaUsuario(usuario);
+        usuarioRegistro = new Usuario();
+        usuarios.remove(usuario);// = usuarioService.findAll();
+        usuarios.remove(usuarioRegistro);
     }
-    
+
+    public void actualizaUsuario(){
+        this.usuarioService.guardaUsuario(usuarioRegistro);
+        this.usuarios = usuarioService.findAll();
+        this.usuarioRegistro = new Usuario();
+    }
+
     public void recuperaContrasena(){
         List<Usuario> u = usuarioService.findByCorreo(correoRecuperar);
         if(u!=null || u.size() > 0 ){
@@ -230,8 +248,45 @@ public class UsuarioController {
     
     }
     
-    public void eliminaUsuario(Usuario u){
-        usuarioService.eliminaUsuario(u);
+    //public void eliminaUsuario(Usuario u){
+        //usuarioService.eliminaUsuario(u);
+    //}
+    
+        /*public void eliminaUsuario(){
+        for (Usuario u: usuarios){
+        if(u.getCorreo().equals(usuarioRegistro.getCorreo()) ||
+        u.getNombreUsuario().equals(usuarioRegistro.getNombreUsuario())){
+        usuarioService.eliminaUsuario(usuarioRegistro);
+        this.usuarioRegistro = new Usuario();
+        
+        }
+        }
+        
+        }*/
+        public String eliminaUsuario(){
+         this.usuarioService.eliminaUsuario(usuarioRegistro);
+         this.usuarioRegistro = new Usuario();
+         this.usuarios=usuarioService.findAll();
+         this.usuario = new Usuario();
+         this.usuario.setNombre("ESTO ES Un ERROR");
+         return "Se elimino el usuario";
+     }
+
+
+    public void buttonAction(ActionEvent actionEvent) {
+        for (Usuario u: usuarios){
+                if(u.getCorreo().equals(usuarioRegistro.getCorreo()) ||
+                    u.getNombreUsuario().equals(usuarioRegistro.getNombreUsuario())){
+                usuarioService.eliminaUsuario(usuarioRegistro);
+                this.usuarioRegistro = new Usuario();
+                addMessage("Usuario eliminado");
+                }
+        }
+    }
+     
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
         
 }

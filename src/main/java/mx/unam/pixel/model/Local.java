@@ -59,6 +59,7 @@ public class Local implements Serializable {
     
     private boolean aprobado;
     
+    
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Facultad facultad;
     
@@ -187,6 +188,7 @@ public class Local implements Serializable {
         return aprobado;
     }
 
+    
     public void setAprobado(boolean aprobado) {
         this.aprobado = aprobado;
     }

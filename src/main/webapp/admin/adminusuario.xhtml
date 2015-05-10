@@ -10,45 +10,40 @@
         <ui:define name="content">	
         <h2>Administrar Usuario</h2>
         
-        <h:panelGrid columns="2" cellpadding="1">
-		  <!-- Nombre -->
-		  <!--
-		  <p:outputLabel value="Nombre " />
-		  <p:inputText id="nombre" value="#{localController.local.nombre}" required="true"/>
-		  <p:message for="nombre"/>
-		  <br/>
-		  -->
+        <h:form id="form">
+        
+        <h:panelGrid id="usuario" columns="2" cellpadding="1" >
 		  
 		  <p:outputLabel  value="" />
-		  <p:outputLabel  value="" />
-		  
 		  <!-- Nombre Usuario -->
 		  <p:outputLabel value="Nombre "
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:inputText id="nombre"  required="true"/>
+                  <h:outputText id="nombre" value="#{usuarioController.usuarioRegistro.nombre}" />
 		  <p:message for="nombre"/>
-		  <br/>
+		  
+                   <br/>
 		  
 		  <!-- Nombre Usuario -->
 		  <p:outputLabel value="Nombre de Usuario "
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:inputText id="nombreusuario"  required="true"/>
+                  <h:outputText id="nombreusuario" value="#{usuarioController.usuarioRegistro.nombreUsuario}" />
 		  <p:message for="nombreusuario"/>
 		  <br/>
 		  <!-- Correo -->
 		  <p:outputLabel value="Correo "
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:inputText id="correo" required="true"/>
+                  <h:outputText id="correo" value="#{usuarioController.usuarioRegistro.correo}" />
 		  <p:message for="correo"/>
 		  <br/>
                   <h:outputText value="Administrador " 
                                 style="font-size: medium;
                                  font-weight: bolder"/>
-                  <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
-		  <!-- Seccion de Botones -->
+                  <p:selectBooleanCheckbox value="#{usuarioController.usuarioRegistro.administrador}" />
+
+                  <!-- Seccion de Botones -->
 		  <br/><br/>
                   
                 </h:panelGrid>
@@ -56,7 +51,6 @@
                 <h:panelGrid columns="3" columnClasses="logo,detail">
                           <p:outputPanel>								
                             <p:commandButton ajax="true" 
-                                             accesskey=""
                                              value="Cancelar"
                                              style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -67,7 +61,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: red"
-                                             onclick="window.location.replace('index2.xhtml')"
+                                 action="adminusuarios"
 							/>	
 		  
                             <p:commandButton ajax="true"   
@@ -81,8 +75,13 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                          onclick="window.location.replace('index2.xhtml')"/>
-                            <p:commandButton ajax="true"   
+                                 action="adminusuarios"
+                                 actionListener="#{usuarioController.actualizaUsuario}"
+                                 />
+                                
+                        
+                            
+                                 <p:commandButton ajax="true"
                                           value="Eliminar Usuario"
                                           style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -93,12 +92,15 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                          onclick="window.location.replace('index2.xhtml')"/>
-								
+                                 onclick="window.location.replace('adminusuarios.xhtml')"
+                                actionListener="#{usuarioController.borraUsuario()}"
+                                 update="form"
+                                 
+                                />
 				</p:outputPanel>
                 </h:panelGrid>
 									
-        
+        </h:form>
         </ui:define>
     </ui:composition>
 </html>

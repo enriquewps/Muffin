@@ -9,9 +9,9 @@
    <ui:composition template="/template/template.xhtml" >
         <ui:define name="content">
             <h2>Registro</h2>
-            <h:form id="datos">
+            <h:form id="datos" >
 		
-		<h:panelGrid columns="2" cellpadding="1">
+                <h:panelGrid id="usuario"  columns="2" cellpadding="1">
 		  <!-- Nombre -->
 		  <!--
 		  <p:outputLabel value="Nombre " />
@@ -20,7 +20,7 @@
 		  <br/>
 		  -->
 		  
-		  <p:outputLabel  value="" />
+                  <p:outputLabel  value="" />
 		  <p:outputLabel  value="" />
 		  
 		  <!-- Nombre Usuario -->
@@ -90,8 +90,9 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-					  value="Registrarse"
-                                          actionListener="#{usuarioController.registraUsuario()}" update="datos"/>
+				value="Registrarse"
+                                action="registro"
+                                actionListener="#{usuarioController.actualizaUsuario()}" update=":datos @form"/>
 									
                     </p:outputPanel>
                   </h:panelGrid>

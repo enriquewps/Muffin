@@ -52,6 +52,8 @@ public class LocalController {
     
     private Local local;
     private List<Local> locales;
+    private List<Local> localesAdmin;
+
     
     private List<Pumabus> pumabuses;
     private List<Metro> metros;
@@ -322,6 +324,11 @@ public class LocalController {
         return locales;
     }
 
+    public List<Local> getLocalesAdmin() {
+        //en vez de este, hacer una if dependiendo de el usuario que lo pide;
+        return localService.findAllAdmin();
+    }
+    
     public void setLocales(List<Local> locales) {
         this.locales = locales;
     }

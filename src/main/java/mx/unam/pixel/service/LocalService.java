@@ -57,6 +57,8 @@ public interface LocalService {
     void guardaCategoria(Categoria c);
     
     Local findById(Integer id);
-
+    
+    List<Local> findAllAdmin();
+    
 
 }
