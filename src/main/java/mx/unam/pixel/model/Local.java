@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import sun.misc.BASE64Encoder;
 
 /**
  * *Clase de modelo
@@ -257,6 +258,17 @@ public class Local implements Serializable {
     public String toString() {
         return "mx.unam.pixel.model.Local[ id=" + id + " ]";
     }
+
+    public String getFotoUrl(){ 
+            if(this!=null && this.getFoto()!=null){
+                BASE64Encoder encoder = new BASE64Encoder();
+                String imageString = encoder.encode(this.getFoto());
+                return   imageString;
+            }
+            else{
+                return null;
+            }
+        }
 
 
     

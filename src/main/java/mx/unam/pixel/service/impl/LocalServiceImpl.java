@@ -86,7 +86,7 @@ public class LocalServiceImpl implements LocalService{
         }
         local.setRangoSuperior(precio);
 
-        
+        local.setAprobado(true);
         localRepository.save(local);
     }
 

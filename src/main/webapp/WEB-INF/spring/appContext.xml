@@ -26,6 +26,7 @@
             <property name="local" >
                 <bean class="mx.unam.pixel.model.Local">
                        <property name="nombre" value="" />
+                       <property name ="aprobado" value = "false"/>
                        <property name="rangoInferior" value="10" />
                         <property name="rangoSuperior" value="1000" /> 
                  </bean>
@@ -99,7 +100,7 @@
        
        <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" >
             <property name="driverClass" value="org.h2.Driver"/>
-            <property name="url" value="jdbc:h2:~/test"/>
+            <property name="url" value="jdbc:h2:./testmuffin"/>
             <property name="username" value="sa"/>
             <property name="password" value=""/>
         </bean>

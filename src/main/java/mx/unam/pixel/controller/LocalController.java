@@ -180,7 +180,7 @@ public class LocalController {
     }
     
     public void guardarCategoria(){
-       System.out.println("gaurdando categoria "+categoria.getNombre());
+       System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
        if(local == null)this.local=new Local();
        if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
        local.getCategorias().add(categoria);
