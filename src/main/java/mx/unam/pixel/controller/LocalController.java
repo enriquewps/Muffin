@@ -18,6 +18,7 @@ import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Metro;
 import mx.unam.pixel.model.Metrobus;
 import mx.unam.pixel.model.Pumabus;
+import mx.unam.pixel.repository.FacultadRepository;
 import mx.unam.pixel.service.LocalService;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.map.PointSelectEvent;
@@ -156,7 +157,9 @@ public class LocalController {
     @PostConstruct
     public void init(){
  
-        if(local == null)this.local=new Local();
+        if(local == null){this.local=new Local();
+        this.local.setCalificacion(5);
+        }
         //las especialidades tiene como precio mayor 0
         especialidades = this.localService.findEspecialidades();
         
@@ -181,7 +184,9 @@ public class LocalController {
     
     public void guardarCategoria(){
        System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
-       if(local == null)this.local=new Local();
+       if(local == null){this.local=new Local();
+       this.local.setCalificacion(5);
+       }
        if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
        local.getCategorias().add(categoria);
         //localService.guardaCategoria(categoria);
@@ -196,6 +201,7 @@ public class LocalController {
         this.locales=localService.findAll();
     /***************************************/
         this.local=new Local();
+               this.local.setCalificacion(5);
         this.local.setCategorias(new ArrayList<Categoria>());
     }
     
@@ -209,6 +215,7 @@ public class LocalController {
         this.locales=localService.findAll();
     /***************************************/
         this.local=new Local();
+               this.local.setCalificacion(5);
         this.local.setCategorias(new ArrayList<Categoria>());
                 return;
             }catch(Exception e){}
@@ -219,7 +226,10 @@ public class LocalController {
     
     public void seleccion(PointSelectEvent event){
         
-        if(local == null)this.local=new Local();
+        if(local == null){this.local=new Local(); 
+              this.local.setCalificacion(5);
+               }
+        
          LatLng latlng = event.getLatLng();
          this.local.setLatitud(latlng.getLat());
          this.local.setLongitud(latlng.getLng());
@@ -287,7 +297,11 @@ public class LocalController {
     
     public void handleFileUpload(FileUploadEvent event) {
         
-        if(local == null)this.local=new Local();
+        if(local == null){this.local=new Local();
+        
+                     this.local.setCalificacion(5);
+
+        }
             UploadedFile file=event.getFile();
             this.local.setFoto( file.getContents());   
     }
@@ -312,7 +326,10 @@ public class LocalController {
 
     public Local getLocal() {
         
-        if(local == null)this.local=new Local();
+        if(local == null){this.local=new Local();
+                      this.local.setCalificacion(5);
+
+        }
         return local;
     }
 
@@ -532,6 +549,8 @@ public class LocalController {
 
             @Override
             public int compare(Local o1, Local o2) {
+                if (o2.getCalificacion() == null)o2.setCalificacion(5);
+                if (o1.getCalificacion() == null)o1.setCalificacion(5);
                 return o2.getCalificacion().compareTo(o1.getCalificacion());
             }
         });

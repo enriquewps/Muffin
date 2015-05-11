@@ -126,7 +126,7 @@ public class ComentarioController {
     }
     
     public void guardaComentario(){
-        
+       /* 
         comentario.setLocal(local);
         comentario.setFecha(new Date());
         comentario.setUsuario(usuario);
@@ -137,8 +137,22 @@ public class ComentarioController {
         local = localService.findById(local.getId());
         comentario = new Comentario();
         comentario.setCalificacion(5);
-        comentario.setComentario("");
+        comentario.setComentario("");*/
         //obtenComentarios();
+        
+        
+        
+         comentario.setLocal(local);
+         comentario.setFecha(new Date());
+         comentario.setUsuario(usuario);
+         
+         local.getComentarios().add(comentario);
+         localService.guardaLocal(local);
+         localService.actualizaCalificacion(local);
+         local = localService.findById(local.getId());
+         comentario = new Comentario();
+         comentario.setCalificacion(5);
+         comentario.setComentario("");
         
     } 
     

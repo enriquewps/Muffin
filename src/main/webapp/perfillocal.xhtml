@@ -21,10 +21,16 @@
                     border-bottom-color: black;
                     border-bottom-width: medium;
                     width: 165px">
-            <p:graphicImage library="images"
+            <p:graphicImage library="images" rendered="#{!(localController.local.foto ne null)}"
                             style="width: 165px;
                             height: auto"
                             name="restaurante.jpg" /> 
+            <h:graphicImage library="images"
+                       value="data:image/png;base64,#{localController.local.fotoUrl}"
+                       rendered="#{localController.local.foto ne null}"
+                       style="width: 165px;
+                            height: auto"
+                                   />
           </p:column>
 
           <p:column style="background-color: red; 
@@ -92,7 +98,7 @@
         <p:outputLabel value="Categoria: "
                          style="font-weight: bolder;
                          font-size: large"/>
-        <p:outputLabel value="Tortas"
+        <p:outputLabel value="#{comentarioController.local.recomendacion.nombre}"
                        style="font-weight: bolder;
                        font-size: large" />
            <br/>
@@ -100,7 +106,7 @@
         <p:outputLabel  value="Precios:"
                         style="font-weight: bolder;
                         font-size: large"/>
-        <p:outputLabel value="$17 ~ $45"
+        <p:outputLabel value="#{comentarioController.local.rangoInferior} ~ #{comentarioController.local.rangoSuperior}"
                        style="font-weight: bolder;
                        font-size: large"/>
 
@@ -119,7 +125,10 @@
         <h:outputText value="Estacionamiento: "
                       style="font-weight: bolder;
                       font-size: large"/>
-        <h:outputText value="No" 
+        <h:outputText value="No" rendered="#{comentarioController.local.facultad.estacionamiento == 0}" 
+                      style="font-weight: bolder;
+                      font-size: large"/>
+        <h:outputText value="Si" rendered="#{comentarioController.local.facultad.estacionamiento != 0}" 
                       style="font-weight: bolder;
                       font-size: large"/>
         </p:column>
@@ -128,7 +137,10 @@
         <h:outputText value="Internet: " 
                       style="font-weight: bolder;
                       font-size: large"/>
-        <h:outputText value="Si " 
+                <h:outputText value="No " rendered="#{!comentarioController.local.wifi}" 
+                      style="font-weight: bolder;
+                      font-size: large"/>
+        <h:outputText value="Si " rendered="#{comentarioController.local.wifi}" 
                       style="font-weight: bolder;
                       font-size: large"/>
         </p:column>
@@ -136,7 +148,7 @@
         <p:outputLabel value="Bicipuma: "
                        style="font-weight: bolder;
                        font-size: large"/>
-        <h:outputText value="Anexo de Ingeniería " 
+        <h:outputText value="#{comentarioController.local.facultad.paradasBicipuma}" 
                       style="font-weight: bolder;
                       font-size: large"/>
 
@@ -144,22 +156,29 @@
         <p:outputLabel value="Pumabus: "
                        style="font-weight: bolder;
                        font-size: large"/>
-        <h:outputText value="Anexo de Ingeniería " 
+        <h:outputText value="#{comentarioController.local.facultad.paradasPumabus}" 
                       style="font-weight: bolder;
                       font-size: large"/>
-
+        <br/>
+        <p:outputLabel value="Metro: "
+                       style="font-weight: bolder;
+                       font-size: large"/>
+        <h:outputText value="#{comentarioController.local.facultad.paradasMetro}" 
+                      style="font-weight: bolder;
+                      font-size: large"/>
+        
         <br/>
         <p:outputLabel value="Metrobus: "
                        style="font-weight: bolder;
                        font-size: large"/>
-        <h:outputText value="No " 
+        <h:outputText value="#{comentarioController.local.facultad.paradasMetrobus}" 
                       style="font-weight: bolder;
                       font-size: large"/>
         <br/>
         <p:outputLabel value="Facultad: "
                        style="font-weight: bolder;
                        font-size: large"/>
-        <h:outputText value="Ingeniería " 
+        <h:outputText value="#{comentarioController.local.facultad.nombreFac}" 
                       style="font-weight: bolder;
                       font-size: large"/>                   
       </h:panelGrid>
@@ -175,7 +194,7 @@
         
       <p:gmap id="gmap"
               center="19.3142052,-99.1835216"
-              zoom="14" 
+              zoom="16" 
               type="HYBRID" 
               style="width:600px;height:400px"
               onPointClick="agregaMarcador(event);"
@@ -296,7 +315,7 @@
           
       <!--Sección de Botones -->
       <br/>
-      <h:panelGrid columns="4" columnClasses="logo,detail" rendered="#{loginController.admin}">
+      <h:panelGrid columns="4" columnClasses="logo,detail" rendered="#{!loginController.loged}">
         <p:outputPanel>								
           <p:commandButton ajax="true" 
                            accesskey=""
@@ -336,6 +355,8 @@
                            font-weight: bolder;
                            font-size: medium;
                            background-color: blue"
+                                                      update =":comentarios"
+                           actionListener="#{comentarioController.guardaComentario()}"
                            value="Comentar Facebook"
                            onclick="irUrl('https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%developers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://developers.facebook.com/tools/explorer&amp;name= NOmbre del local&amp;description='+getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"/>
                            
@@ -351,6 +372,8 @@
                            font-weight: bolder;
                            font-size: medium;
                            background-color: blue"
+                                                      update =":comentarios"
+                           actionListener="#{comentarioController.guardaComentario()}"
                            value="Comentar Twitter"
                            onclick="Alerta(getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"
                            />

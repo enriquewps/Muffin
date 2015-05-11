@@ -151,11 +151,25 @@
                 <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac}" />
             </p:selectOneMenu>
             
-                           <h:outputText  value="Foto local" />
+                    <h:outputText value="Baño: " />
+                    <p:selectBooleanCheckbox value="#{localController.aprobado}" />
+                    <h:outputText value="WIFI: " />
+                    <p:selectBooleanCheckbox value="#{localController.wifi}" />            
+            
+                           <h:outputText  value="Foto" style="font-size: medium;
+                          font-weight: bolder"/>
+                                              <h:graphicImage 
+                       value="data:image/png;base64,#{localController.local.fotoUrl}"
+                                   rendered="#{localController.local.foto ne null}"
+                                   id="foto"
+                                   height="200"
+                                   />
                    <p:fileUpload 
                        
                        fileUploadListener="#{localController.handleFileUpload}" 
                                           mode="advanced"  
+                                         rendered="#{!(localController.local.foto ne null)}"
+
                                           auto="false"
                                           value="#{localController.local.foto}"
                                           sizeLimit="2097152" 
@@ -167,12 +181,12 @@
                                           label="elegir"
                                           
                        allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-                   <h:graphicImage 
-                       value="data:image/png;base64,#{localController.local.fotoUrl}"
-                                   rendered="#{localController.local.foto ne null}"
-                                   id="foto"
-                                   height="200"
-                                   />
+
+            <p:outputLabel  value="Descripcion" 
+                           style="font-size: medium;
+                          font-weight: bolder"/>
+            <p:inputText id="comentario" value="#{localController.local.descripcion}" placeholder="Escribe tu comentario"
+                         style="width: 150%;height:60px"/>
 
                    
                   
@@ -217,7 +231,6 @@
 				</p:outputPanel>
 			</h:panelGrid>
  
-        <p:commandButton value="Submit" ajax="false" disabled="false" />
       </h:form>
  
  

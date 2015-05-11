@@ -6,6 +6,7 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import mx.unam.pixel.repository.BiciPumaRepository;
 
 /**
  * *Clase de modelo
@@ -127,5 +129,36 @@ public class Facultad implements Serializable {
     public String toString() {
         return "mx.unam.pixel.model.Facultad[ id=" + id + " ]";
     }
+ 
+    public String getParadasBicipuma(){
+        String pb="";
+        if (biciPuma == null) biciPuma = new ArrayList<BiciPuma>();
+        for (BiciPuma bici : biciPuma)
+            pb+=bici.getName()+" - ";
+        return pb.equals("")? "Sin estaciones":pb;
+    }
     
+    public String getParadasPumabus(){
+        String pb="";
+                if (pumabus == null) pumabus = new ArrayList<Pumabus>();
+        for (Pumabus bici : pumabus)
+            pb+=bici.getEstacion()+" - ";
+        return pb.equals("")? "Sin estaciones":pb;
+    }
+    
+    public String getParadasMetro(){
+        String pb="";
+                if (metro == null) metro = new ArrayList<Metro>();
+        for (Metro bici : metro)
+            pb+=bici.getNombre()+" - ";
+        return pb.equals("")? "Sin estaciones":pb;
+    }
+    
+    public String getParadasMetrobus(){
+        String pb="";
+                if (metroBus == null)metroBus = new ArrayList<Metrobus>();
+        for (Metrobus bici : metroBus)
+            pb+=bici.getNombre()+" - ";
+        return pb.equals("")? "Sin estaciones":pb;
+    }
 }

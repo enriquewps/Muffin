@@ -115,7 +115,7 @@ public class Local implements Serializable {
     }
 
     public void setDescripcion(String descripcion) {
-        setDescripcion(descripcion);
+        //setDescripcion(descripcion);
         this.descripcion = descripcion;
     }
 

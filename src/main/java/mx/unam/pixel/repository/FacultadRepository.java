@@ -18,4 +18,5 @@ public interface FacultadRepository extends CrudRepository<Facultad, Integer>{
      @Query("SELECT l FROM Facultad l")
      @Override
     List<Facultad> findAll();
+    
 }

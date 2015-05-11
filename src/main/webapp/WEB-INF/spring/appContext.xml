@@ -26,6 +26,7 @@
             <property name="local" >
                 <bean class="mx.unam.pixel.model.Local">
                        <property name="nombre" value="" />
+                       <property name ="calificacion" value = "5"/>
                        <property name ="aprobado" value = "false"/>
                        <property name="rangoInferior" value="10" />
                         <property name="rangoSuperior" value="1000" /> 
@@ -37,6 +38,7 @@
             <property name="nombre" value="Nombre" />
             <property name="local" >
                 <bean class="mx.unam.pixel.model.Local">
+                                           <property name ="calificacion" value = "5"/>
                        <property name="nombre" value="" />
                        <property name="rangoInferior" value="10" /> 
                         <property name="rangoSuperior" value="1000" /> 
@@ -76,6 +78,7 @@
             </property> 
                         <property name="local" >
                 <bean class="mx.unam.pixel.model.Local">
+                                           <property name ="calificacion" value = "5"/>
                        <property name="nombre" value="" />
                        <property name="rangoInferior" value="10" /> 
                         <property name="rangoSuperior" value="1000" /> 
