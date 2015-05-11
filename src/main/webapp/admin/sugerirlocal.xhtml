@@ -146,9 +146,9 @@
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-              <p:selectOneMenu id="facultad" value="#{localController.facultad}" style="width:160px">
+            <p:selectOneMenu id="facultad" value="#{localController.facultad}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac}" />
+                <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>
             
                     <h:outputText value="Baño: " />
@@ -225,6 +225,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
+                                 action ="inicio"
                                  actionListener ="#{localController.guardarLocal()}" update ="mapa" />
                             
 								

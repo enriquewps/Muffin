@@ -54,6 +54,7 @@ public class LocalController {
     private Local local;
     private List<Local> locales;
     private List<Local> localesAdmin;
+        private List<Local> top;
 
     
     private List<Pumabus> pumabuses;
@@ -84,7 +85,6 @@ public class LocalController {
     private String facultad;
     private Integer localId ;
     
-    private List<Local> top;
     
     @Autowired
     private JavaMailSenderImpl mailSender;
@@ -120,13 +120,7 @@ public class LocalController {
 "Pastas"
 };
 
-    public List<Local> getTop() {
-        return top;
-    }
 
-    public void setTop(List<Local> top) {
-        this.top = top;
-    }
 
     
     
@@ -195,8 +189,14 @@ public class LocalController {
     }
     
     public void guardarLocal(){
-        System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size());
+        System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size()+" facultad: "+facultad);
                
+        for(Facultad f:facultades){
+            if(f.getNombreFac().equals(facultad)){
+                local.setFacultad(f);
+                break;
+            }
+        }
         this.localService.guardaLocal(local);
         this.locales=localService.findAll();
     /***************************************/
@@ -311,6 +311,7 @@ public class LocalController {
     }
 
     public void setFacultad(String facultad) {
+        System.out.println("nombre de facultad seleccionada "+facultad);
         this.facultad = facultad;
     }
 
@@ -545,6 +546,7 @@ public class LocalController {
     }
     
     public List<Local> getTop5(){
+        locales = localService.findAll();
         locales.sort(new Comparator<Local>() {
 
             @Override
@@ -558,7 +560,25 @@ public class LocalController {
         return (locales.size()>= 5)?locales.subList(0,5):locales;
     }
     
-    
+    public List<Local> getTop() {
+        locales = localService.findAll();
+        locales.sort(new Comparator<Local>() {
+
+            @Override
+            public int compare(Local o1, Local o2) {
+                if (o2.getCalificacion() == null)o2.setCalificacion(5);
+                if (o1.getCalificacion() == null)o1.setCalificacion(5);
+                return o2.getCalificacion().compareTo(o1.getCalificacion());
+            }
+        });
+        
+        top= (locales.size()>= 5)?locales.subList(0,5):locales;
+        return top;
+    }
+
+    public void setTop(List<Local> top) {
+        this.top = top;
+    }
    
     
 }
