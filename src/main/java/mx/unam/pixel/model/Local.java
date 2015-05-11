@@ -7,6 +7,7 @@ package mx.unam.pixel.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -23,7 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import sun.misc.BASE64Encoder;
+//import sun.misc.BASE64Encoder;
+import java.util.Base64.Encoder;
 
 /**
  * *Clase de modelo
@@ -87,7 +89,7 @@ public class Local implements Serializable {
     
     @Lob
     @Column(name = "FOTO",columnDefinition = "LONGBLOB")
-    @Basic(fetch=FetchType.LAZY)
+  
     private byte[] foto;
 
     public Integer getCalificacion() {
@@ -261,8 +263,10 @@ public class Local implements Serializable {
 
     public String getFotoUrl(){ 
             if(this!=null && this.getFoto()!=null){
-                BASE64Encoder encoder = new BASE64Encoder();
-                String imageString = encoder.encode(this.getFoto());
+                //BASE64.Encoder encoder = new BASE64Encoder();
+                String imageString = Base64.getEncoder().encodeToString(this.getFoto());
+                
+                
                 return   imageString;
             }
             else{

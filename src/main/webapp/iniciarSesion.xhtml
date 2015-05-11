@@ -9,6 +9,17 @@
   <ui:composition template="/template/template.xhtml" >
     <ui:define name="content">
       <h2>Inicio Sesion</h2>
+                            <form action="#{facesContext.externalContext.requestContextPath}/j_spring_security_check" method="POST">
+                                      <p:outputLabel  value="Usuario"  style="font-size: medium;
+                          font-weight: bolder"/>
+          <input type="text" name="j_username" />
+                            <br/>
+                            <br/>
+                            <p:outputLabel  value="Contraseña"  style="font-size: medium;
+                          font-weight: bolder"/>
+                            <input type="password" name="j_password"/>
+                            <input name="submit" type="submit" value="Login"/>
+                        </form>
       <h:form id = "isesion">
 
                   <!-- 
@@ -27,16 +38,11 @@
                   
                 </h:panelGrid>
                   -->
-                  <form id="loginForm" prependId="false">
                               <h:panelGrid columns="2" cellpadding="1">
           <!-- Nombre -->
           <p:outputLabel  value=""/>
           <p:outputLabel  value="" />
-                        <form action="#{facesContext.externalContext.requestContextPath}/j_spring_security_check" method="POST">
-                            Usuario:<input type="text" name="j_username"/>
-                            Password:<input type="password" name="j_password"/>
-                            <input name="submit" type="submit" value="Login"/>
-                        </form>
+  
 		  <!-- 
 		  <p:outputLabel  value="" />
 		  <p:outputLabel  value="" />
@@ -94,11 +100,10 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                 
                                  actionListener="#{loginController.doLogin()}"
                                  
 				/>	
-                                </form>
+                  
                                 
             </h:form>
             

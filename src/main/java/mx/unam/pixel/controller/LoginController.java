@@ -46,7 +46,7 @@ public class LoginController {
     }
     
     
-    //@PostConstruct
+    @PostConstruct
     public void init(){
         rol = "";
       Object user =SecurityContextHolder.getContext().getAuthentication().getPrincipal();

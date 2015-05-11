@@ -21,13 +21,10 @@
                     border-bottom-color: black;
                     border-bottom-width: medium;
                     width: 165px">
-            <p:graphicImage library="images" rendered="#{!(localController.local.foto ne null)}"
-                            style="width: 165px;
-                            height: auto"
-                            name="restaurante.jpg" /> 
-            <h:graphicImage library="images"
+
+            <h:graphicImage 
                        value="data:image/png;base64,#{localController.local.fotoUrl}"
-                       rendered="#{localController.local.foto ne null}"
+                     
                        style="width: 165px;
                             height: auto"
                                    />
