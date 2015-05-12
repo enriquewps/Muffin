@@ -205,7 +205,14 @@ return facultadRepository.findAll();
     @Override
     public void actualizaCalificacion(Local l) {
         //
+        try{
         l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+        }catch(Exception e){
+       /* localRepository.save(l);
+                l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+        localRepository.save(l);
+*/
+        }
         localRepository.save(l);
     }
 
@@ -234,5 +241,9 @@ return facultadRepository.findAll();
 
     public List<Local> finNoAprobados(){
         return localRepository.findByAprobado(Boolean.FALSE);
+    }
+    
+    public byte[] findFoto(Integer id){
+        return localRepository.findFoto(id);
     }
 }

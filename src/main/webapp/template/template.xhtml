@@ -28,25 +28,40 @@
       <p:inputText id="campobusqueda" />
       <p:commandButton 
                        icon="ui-icon-search"
-                       action="buscar"/>				
+                       action="buscar"/>
+      <h:outputText rendered="#{loginController.loged}"
+               value="Bienvenido #{loginController.username}"
+                                              style="font-size: medium"/>
       <p:menu overlay="true"
               trigger="btnsesion"
               my="left top"
               at="right top">
         <p:submenu label="Sesion">
-          <p:menuitem value="Iniciar Sesion"
+          <p:menuitem 
+              rendered ="#{!loginController.loged}"
+              value="Iniciar Sesion"
                       action="iniciarSesion"/>
           <p:menuitem value="Registrarse"
+                                    rendered ="#{!loginController.loged}"
                       action="registrarse"/>
           <p:menuitem value="Solicitar Baja"
+                                    rendered ="#{loginController.loged}"
                       action="baja"/>
           <p:menuitem value="Sugerir Local"
+                                    rendered ="#{loginController.loged}"
                       action="sugerir"/>
-        <p:separator/>
+
+          <p:menuitem rendered="#{loginController.admin}"
+                      value="Panel de Administración" 
+                      action="padministracion"/>
+                                               
+          <p:separator/>
         </p:submenu>
         <p:submenu label="Otros">
           <p:menuitem value="Salir"
-                      action="inicio"/>
+                                    rendered ="#{loginController.loged}"
+                      action="inicio"
+                      actionListener="#{loginController.doLogout()}"/>
         </p:submenu>
         </p:menu>
         <!-- el styleClass se definio en csslayout.css-->

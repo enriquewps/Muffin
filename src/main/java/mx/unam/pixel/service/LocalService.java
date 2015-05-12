@@ -59,6 +59,8 @@ public interface LocalService {
     Local findById(Integer id);
     
     List<Local> findAllAdmin();
+
+    public byte[] findFoto(Integer id);
     
 
 }

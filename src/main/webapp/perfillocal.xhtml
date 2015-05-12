@@ -23,7 +23,7 @@
                     width: 165px">
 
             <h:graphicImage 
-                       value="data:image/png;base64,#{localController.local.fotoUrl}"
+                value="data:image/png;base64,#{comentarioController.local.fotoUrl}"
                      
                        style="width: 165px;
                             height: auto"
@@ -270,8 +270,13 @@
                     border-left-width: medium;
                     border-top-color: black;
                     border-top-width: medium">
-            
-          </p:column>
+              <h:outputText value="#{loginController.username}" style="color: white;
+                                  font-weight: bolder;
+                                  letter-spacing: 0.05cm;
+                                  font-size: large"
+                                  
+                                  />
+                  </p:column>
           <p:column style="background-color: red;
                     border-bottom-color: transparent;
                     border-top-color: black;
@@ -312,7 +317,7 @@
           
       <!--Sección de Botones -->
       <br/>
-      <h:panelGrid columns="4" columnClasses="logo,detail" rendered="#{!loginController.loged}">
+      <h:panelGrid columns="4" columnClasses="logo,detail" rendered="#{loginController.loged}">
         <p:outputPanel>								
           <p:commandButton ajax="true" 
                            accesskey=""
@@ -339,7 +344,7 @@
                            background-color: blue"
                            value="Enviar"
                            update =":comentarios"
-                           actionListener="#{comentarioController.guardaComentario()}"
+                           actionListener="#{comentarioController.guardaComentario(loginController.username)}"
                            
                            />
           <p:commandButton ajax="true" 
@@ -353,7 +358,7 @@
                            font-size: medium;
                            background-color: blue"
                                                       update =":comentarios"
-                           actionListener="#{comentarioController.guardaComentario()}"
+                           actionListener="#{comentarioController.guardaComentario(loginController.username)}"
                            value="Comentar Facebook"
                            onclick="irUrl('https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%developers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://developers.facebook.com/tools/explorer&amp;name= NOmbre del local&amp;description='+getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"/>
                            
@@ -370,7 +375,7 @@
                            font-size: medium;
                            background-color: blue"
                                                       update =":comentarios"
-                           actionListener="#{comentarioController.guardaComentario()}"
+                                                      actionListener="#{comentarioController.guardaComentario(loginController.usernameloginController.username)}"
                            value="Comentar Twitter"
                            onclick="Alerta(getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"
                            />

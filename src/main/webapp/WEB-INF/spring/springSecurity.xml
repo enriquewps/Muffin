@@ -30,6 +30,7 @@
                                         FROM USUARIO 
                                         WHERE nombreusuario = ?  "/>
 	  </security:authentication-provider>
+          
 	</security:authentication-manager>       
         
 </beans>

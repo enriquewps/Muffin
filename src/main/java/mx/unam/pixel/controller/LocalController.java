@@ -6,6 +6,9 @@
 package mx.unam.pixel.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
@@ -330,6 +333,8 @@ public class LocalController {
         if(local == null){this.local=new Local();
                       this.local.setCalificacion(5);
 
+        }else if (local.getNombre() != null){
+            local.setFoto(localService.findFoto(local.getId()));
         }
         return local;
     }
@@ -546,8 +551,7 @@ public class LocalController {
     }
     
     public List<Local> getTop5(){
-        locales = localService.findAll();
-        locales.sort(new Comparator<Local>() {
+        Collections.sort(locales,new Comparator<Local>() {
 
             @Override
             public int compare(Local o1, Local o2) {
@@ -557,6 +561,8 @@ public class LocalController {
             }
         });
         
+        locales = localService.findAll();
+      
         return (locales.size()>= 5)?locales.subList(0,5):locales;
     }
     

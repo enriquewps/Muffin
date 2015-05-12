@@ -106,4 +106,8 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     
     @Query("SELECT l FROM Local l WHERE l.id = ? ")
     public List<Local> findById(Integer id);
+    
+    
+    @Query("SELECT l.foto FROM Local l WHERE l.id = ? ")
+    public byte[] findFoto(Integer id);
 }

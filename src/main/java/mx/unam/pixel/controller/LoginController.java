@@ -38,7 +38,9 @@ public class LoginController {
     private Boolean admin;
 
     public Boolean getAdmin() {
-      return rol.equals("ROL_ADMIN");
+
+        admin=getRol().equals("ROLE_ADMIN");
+      return admin;
     }
 
     public void setAdmin(Boolean admin) {
@@ -81,9 +83,7 @@ public class LoginController {
         return rol;
     }
     
-    public Boolean isAdmin(){
-        return rol.equals("ROL_ADMIN");
-    }
+ 
    
     
     public void doLogin() {

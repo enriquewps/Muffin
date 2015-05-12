@@ -26,6 +26,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 //import sun.misc.BASE64Encoder;
 import java.util.Base64.Encoder;
+import mx.unam.pixel.repository.LocalRepository;
+import mx.unam.pixel.service.LocalService;
+import mx.unam.pixel.service.impl.LocalServiceImpl;
 
 /**
  * *Clase de modelo
@@ -45,6 +48,8 @@ public class Local implements Serializable {
     @NotNull
     private double longitud;
     
+    private Boolean bano;
+    
     
     //Preguntar a memo por el trigger
     @NotNull
@@ -61,6 +66,14 @@ public class Local implements Serializable {
     private int comerOLlevar;
     
     private boolean aprobado;
+
+    public Boolean getBano() {
+        return bano;
+    }
+
+    public void setBano(Boolean bano) {
+        this.bano = bano;
+    }
     
     
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
@@ -263,13 +276,16 @@ public class Local implements Serializable {
 
     public String getFotoUrl(){ 
             if(this!=null && this.getFoto()!=null){
+                System.out.println("no es null la imagen");
                 //BASE64.Encoder encoder = new BASE64Encoder();
                 String imageString = Base64.getEncoder().encodeToString(this.getFoto());
+                
                 
                 
                 return   imageString;
             }
             else{
+                                System.out.println("SI es null la imagen");
                 return null;
             }
         }

@@ -28,11 +28,19 @@
                     border-bottom-color: black;
                     border-bottom-width: medium;
                     width: 165px">
-            <p:graphicImage library="images"
+              <p:graphicImage 
+                  library="images"
+                  rendered="#{!(loc.foto ne null)}"
                             style="width:
                             165px;
                             height: auto"
                             name="restaurante.jpg" /> 
+              <p:graphicImage rendered="#{loc.foto ne null}"
+                value="data:image/png;base64,#{comentarioController.local.fotoUrl}"
+                     
+                       style="width: 165px;
+                            height: auto"
+                                   />
           </p:column>
                   
           <p:column style="background-color: red; 

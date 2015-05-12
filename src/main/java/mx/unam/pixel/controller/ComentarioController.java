@@ -12,6 +12,7 @@ import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Usuario;
 import mx.unam.pixel.repository.ComentarioRepository;
+import mx.unam.pixel.repository.UsuarioRepository;
 import mx.unam.pixel.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -33,6 +34,9 @@ public class ComentarioController {
     
     @Autowired
     private ComentarioRepository comentarioRepository;
+    
+        @Autowired
+    private UsuarioRepository usuarioRepository;
     
     
     //Local y usuario son los que estan relacionadoes en esta pantalla asi que 
@@ -125,7 +129,7 @@ public class ComentarioController {
 
     }
     
-    public void guardaComentario(){
+    public void guardaComentario(String username){
        /* 
         comentario.setLocal(local);
         comentario.setFecha(new Date());
@@ -141,13 +145,15 @@ public class ComentarioController {
         //obtenComentarios();
         
         
-        
+        try{
+        usuario = usuarioRepository.findByNombreUsuario(username).get(0);
+        }catch(Exception e){}
          comentario.setLocal(local);
          comentario.setFecha(new Date());
          comentario.setUsuario(usuario);
          
          local.getComentarios().add(comentario);
-         localService.guardaLocal(local);
+         //localService.guardaLocal(local);
          localService.actualizaCalificacion(local);
          local = localService.findById(local.getId());
          comentario = new Comentario();
