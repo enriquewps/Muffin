@@ -10,12 +10,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.annotation.PostConstruct;
 import mx.unam.pixel.model.BiciPuma;
 
 import mx.unam.pixel.model.Categoria;
+import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Facultad;
 import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Metro;
@@ -179,17 +181,7 @@ public class LocalController {
         }
     }
     
-    public void guardarCategoria(){
-       System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
-       if(local == null){this.local=new Local();
-       this.local.setCalificacion(5);
-       }
-       if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
-       local.getCategorias().add(categoria);
-        //localService.guardaCategoria(categoria);
-        //this.local.getCategorias().add(categoria);
-        //this.categoria=new Categoria();   
-    }
+
     
     public void guardarLocal(){
         System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size()+" facultad: "+facultad);
@@ -567,8 +559,7 @@ public class LocalController {
     }
     
     public List<Local> getTop() {
-        locales = localService.findAll();
-        locales.sort(new Comparator<Local>() {
+         Collections.sort(locales,new Comparator<Local>() {
 
             @Override
             public int compare(Local o1, Local o2) {
@@ -586,5 +577,41 @@ public class LocalController {
         this.top = top;
     }
    
-    
+    public void guardarCategoria(){
+       System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
+       if(local == null){this.local=new Local();
+       this.local.setCalificacion(5);
+       }
+       if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
+       local.getCategorias().add(categoria);
+       categoria.setLocal(local);
+       localService.guardaCategoria(categoria);
+        //localService.guardaCategoria(categoria);
+        //this.local.getCategorias().add(categoria);
+        //this.categoria=new Categoria();   
+       
+       
+       
+               Categoria c = categoria;
+        
+                 categoria = new Categoria();
+         c.setLocal(local);
+
+         //usuario.getComentarios().add(categoria);
+         
+         
+         local.getCategorias().add(c);
+         //localService.guardaLocal(local);
+         
+         //categoriaRepository.save(local.getComentarios());
+         //localService.actualizaCalificacion(local);
+
+        // localService.actualizaCalificacion(local);
+                  localService.guardaCategoria(c);
+         local = localService.findById(local.getId());
+         
+
+         
+       
+    }
 }

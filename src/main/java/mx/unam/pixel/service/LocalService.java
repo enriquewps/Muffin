@@ -61,6 +61,9 @@ public interface LocalService {
     List<Local> findAllAdmin();
 
     public byte[] findFoto(Integer id);
+
+    public void guardaComentario(Comentario comentario);
+
     
 
 }

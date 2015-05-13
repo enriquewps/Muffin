@@ -131,38 +131,34 @@ public class ComentarioController {
     }
     
     public void guardaComentario(String username){
-       /* 
-        comentario.setLocal(local);
-        comentario.setFecha(new Date());
-        comentario.setUsuario(usuario);
         
-        local.getComentarios().add(comentario);
-        localService.guardaLocal(local);
-        localService.actualizaCalificacion(local);
-        local = localService.findById(local.getId());
-        comentario = new Comentario();
-        comentario.setCalificacion(5);
-        comentario.setComentario("");*/
-        //obtenComentarios();
+        Comentario c = comentario;
         
-        
+                 comentario = new Comentario();
+         comentario.setCalificacion(5);
+         comentario.setComentario("");
         try{
         usuario = usuarioRepository.findByNombreUsuario(username).get(0);
             System.out.println(usuario.getNombre());
         }catch(Exception e){            System.out.println("error al buscar el usuario");
 }
-         comentario.setLocal(local);
-         comentario.setFecha(new Date());
-         comentario.setUsuario(usuario);
+         c.setLocal(local);
+         c.setFecha(new Date());
+         //usuario.getComentarios().add(comentario);
+         c.setUsuario(usuario);
          
-         local.getComentarios().add(comentario);
-         localService.guardaLocal(local);
+         local.getComentarios().add(c);
+         //localService.guardaLocal(local);
+         
+         //comentarioRepository.save(local.getComentarios());
          //localService.actualizaCalificacion(local);
+
+         localService.actualizaCalificacion(local);
+                  localService.guardaComentario(c);
          local = localService.findById(local.getId());
          comentarios = local.getComentarios();
-         comentario = new Comentario();
-         comentario.setCalificacion(5);
-         comentario.setComentario("");
+
+         
         
     } 
     
@@ -170,5 +166,7 @@ public class ComentarioController {
         comentarioRepository.delete(c);
         localService.actualizaCalificacion(local);        
     }
+    
+ 
             
 }

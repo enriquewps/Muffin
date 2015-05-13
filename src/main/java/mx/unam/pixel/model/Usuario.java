@@ -6,11 +6,16 @@
 package mx.unam.pixel.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -40,6 +45,12 @@ public class Usuario implements Serializable {
 
        @NotNull 
    private String rol = "ROLE_USER";
+       
+       /*@OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Comentario> comentarios; 
+       */
 
        
        

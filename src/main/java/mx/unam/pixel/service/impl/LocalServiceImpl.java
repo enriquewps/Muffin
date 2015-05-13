@@ -24,6 +24,7 @@ import mx.unam.pixel.repository.FacultadRepository;
 import mx.unam.pixel.repository.MetroRepository;
 import mx.unam.pixel.repository.MetrobusRepository;
 import mx.unam.pixel.repository.PumabusRepository;
+import mx.unam.pixel.repository.UsuarioRepository;
 import mx.unam.pixel.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -62,6 +63,9 @@ public class LocalServiceImpl implements LocalService{
     @Autowired
     private ComentarioRepository comentarioRepository;
     
+        @Autowired
+    private UsuarioRepository usuarioRepository;
+    
     //Hayq eu quitar por que estan en la faculad
     
     @Override
@@ -69,9 +73,11 @@ public class LocalServiceImpl implements LocalService{
        
         for(Categoria cat:local.getCategorias()){
             cat.setLocal(local);
+            //categoriaRepository.save(cat);
         }
         for(Comentario coment:local.getComentarios()){
             coment.setLocal(local);
+            //usuarioRepository.save(coment.getUsuario());
         }
         
         
@@ -222,7 +228,13 @@ return facultadRepository.findAll();
         }
         
         try{
-        l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+        //l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+            int calif = 0;
+            for (Comentario c: l.getComentarios()){
+                calif+=c.getCalificacion();
+            }
+            calif = calif /l.getComentarios().size();
+            l.setCalificacion(calif);
         }catch(Exception e){
        /* localRepository.save(l);
                 l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
@@ -262,5 +274,10 @@ return facultadRepository.findAll();
     public byte[] findFoto(Integer id){
         return localRepository.findFoto(id);
     }
-   
+ 
+    
+       public void guardaComentario(Comentario c){
+        comentarioRepository.save(c);
+    }
+    
 }
