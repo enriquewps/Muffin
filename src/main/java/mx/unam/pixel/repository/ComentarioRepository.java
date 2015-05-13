@@ -16,8 +16,8 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ComentarioRepository extends CrudRepository<Comentario, Integer> {
     
-    @Query("DELETE FROM Comentario c WHERE c.usuario.id = ? ")
-    void eliminaComentariosUsuario(Integer id);
+    //@Query("DELETE FROM Comentario c WHERE c.usuario.id = ? ")
+    //void eliminaComentariosUsuario(Integer id);
     
     @Query ("SELECT c FROM Comentario c WHERE c.local.id = ?")
     List<Comentario> findByLocalID(Integer id);

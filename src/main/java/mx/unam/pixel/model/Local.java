@@ -25,6 +25,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import sun.misc.BASE64Encoder;
 
+
+
 /**
  * *Clase de modelo
  * @author Enrique
@@ -43,6 +45,7 @@ public class Local implements Serializable {
     @NotNull
     private double longitud;
     
+
     
     //Preguntar a memo por el trigger
     @NotNull
@@ -269,7 +272,5 @@ public class Local implements Serializable {
                 return null;
             }
         }
-
-
     
 }

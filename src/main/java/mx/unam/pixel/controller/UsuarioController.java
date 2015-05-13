@@ -154,8 +154,10 @@ public class UsuarioController {
         usuarioService.eliminaUsuario(usuarioRegistro);
         usuarioService.eliminaUsuario(usuario);
         usuarioRegistro = new Usuario();
-        usuarios.remove(usuario);// = usuarioService.findAll();
-        usuarios.remove(usuarioRegistro);
+        usuarios = usuarioService.findAll();
+        //usuarios.remove(usuario);// = usuarioService.findAll();
+        //usuarios.remove(usuarioRegistro);
+        
     }
 
     public void actualizaUsuario(){

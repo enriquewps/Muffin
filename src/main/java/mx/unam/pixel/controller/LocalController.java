@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import mx.unam.pixel.model.BiciPuma;
 
@@ -36,6 +37,17 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.util.comparator.ComparableComparator;
+
+
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
+/*import javax.faces.bean.ManagedBean;*/
+ 
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
+
 	
 
 /**
@@ -46,6 +58,7 @@ import org.springframework.util.comparator.ComparableComparator;
  */
 @Controller("localController")
 @Scope("session")
+@ManagedBean
 public class LocalController {
         @Autowired
     private LocalService localService;
@@ -56,7 +69,8 @@ public class LocalController {
     private List<Local> localesAdmin;
         private List<Local> top;
 
-    
+    private String busqueda = "";
+        
     private List<Pumabus> pumabuses;
     private List<Metro> metros;
     private List<BiciPuma> biciPumas;
@@ -67,6 +81,7 @@ public class LocalController {
     
     private List<Categoria> especialidades;
 
+    private List<Categoria> categoriasAdmin;
     
     private Boolean aprobado = true;
     private String nombre = "";
@@ -88,6 +103,7 @@ public class LocalController {
     
     @Autowired
     private JavaMailSenderImpl mailSender;
+    
     
     
     String [] categorias ={
@@ -120,6 +136,7 @@ public class LocalController {
 "Pastas"
 };
 
+    
 
 
     
@@ -169,11 +186,13 @@ public class LocalController {
         facultades = localService.findAllFacultades();
         
         simpleModel = new DefaultMapModel(); 
+
+        categoriasAdmin = local.getCategorias();
         
-        for(Local l:this.locales){
-            LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
-            simpleModel.addOverlay(new Marker(coord, l.getNombre()));
-        }
+        /*for(Local l:this.locales){
+        LatLng coord = new LatLng(l.getLatitud(), l.getLongitud());
+        simpleModel.addOverlay(new Marker(coord, l.getNombre()));
+        }*/
     }
     
     public void guardarCategoria(){
@@ -205,7 +224,11 @@ public class LocalController {
         this.local.setCategorias(new ArrayList<Categoria>());
     }
     
-    
+    public void actualizaLocal(){
+        this.localService.guardaLocal(local);
+        this.locales = localService.findAll();
+        this.localesAdmin = localService.findAllAdmin();
+    }
     
     public void guaradLocalProvisional(){
         while(true){
@@ -284,8 +307,10 @@ public class LocalController {
         }
     }
     
-    public void borraLocal(Local loc){
-         localService.eliminaLocal(loc);
+    public void borraLocal(){
+        
+         localService.eliminaLocal(local);
+         local = new Local();
          this.locales=localService.findAll();
           simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
@@ -347,6 +372,8 @@ public class LocalController {
         return localService.findAllAdmin();
     }
     
+    
+    
     public void setLocales(List<Local> locales) {
         this.locales = locales;
     }
@@ -386,6 +413,8 @@ public class LocalController {
     }
 
     public MapModel getSimpleModel() {
+        LatLng coord = new LatLng(local.getLatitud(), local.getLongitud());
+        simpleModel.addOverlay(new Marker(coord, local.getNombre()));
         return simpleModel;
     }
 
@@ -579,6 +608,24 @@ public class LocalController {
     public void setTop(List<Local> top) {
         this.top = top;
     }
+
+    public List<Categoria> getCategoriasAdmin() {
+        
+        return categoriasAdmin;
+    }
+
+    public void setCategoriasAdmin(List<Categoria> CategoriasAdmin) {
+        this.categoriasAdmin = CategoriasAdmin;
+    }
+
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
    
+    
     
 }

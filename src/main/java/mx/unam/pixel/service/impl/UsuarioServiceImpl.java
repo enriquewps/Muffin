@@ -37,8 +37,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public void eliminaUsuario(Usuario usuario) {
-        usuarioRepository.delete(usuario.getId());
-        comentarioRepository.eliminaComentariosUsuario(usuario.getId());
+        comentarioRepository.delete(comentarioRepository.findByLocalID(usuario.getId()));//traer los comentarios de usuario con Querry
+        usuarioRepository.delete(usuario);
     }
 
     @Override

@@ -18,7 +18,7 @@
   <h:body id="barrabusqueda">
 
   <div id="top">
-    <h:form>
+    <h:form id="formbusqueda">
       <ui:insert name="top">
       <h:outputText value="Buscar" style="font-weight: bold;
                     color: white;
@@ -28,7 +28,9 @@
       <p:inputText id="campobusqueda" />
       <p:commandButton 
                        icon="ui-icon-search"
-                       action="buscar"/>				
+                       action="buscar"
+                       actionListener="#{localController.buscarPorNombre()}"/>
+      
       <p:menu overlay="true"
               trigger="btnsesion"
               my="left top"

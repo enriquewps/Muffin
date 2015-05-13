@@ -228,7 +228,7 @@ return facultadRepository.findAll();
 
     public List<Local> findAllAdmin(){
          List<Local> result = localRepository.findByAprobado(Boolean.FALSE);
-         result.addAll(localRepository.findByAprobado(Boolean.FALSE));
+         result.addAll(localRepository.findByAprobado(Boolean.TRUE));
         return result;
     }
 
