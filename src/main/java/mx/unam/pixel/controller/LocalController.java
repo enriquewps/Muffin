@@ -63,7 +63,7 @@ import org.primefaces.model.map.Marker;
 @Scope("session")
 @ManagedBean
 public class LocalController {
-        @Autowired
+    @Autowired
     private LocalService localService;
         
     
@@ -89,6 +89,7 @@ public class LocalController {
     private Boolean aprobado = true;
     private String nombre = "";
     private Categoria categoria;
+    private String categoriaBusqueda = "";
     private Integer rangoInferior = 20;
     private Integer rangoSuperior = 200;
     private Boolean wifi = false;
@@ -100,10 +101,10 @@ public class LocalController {
     private String metro = "";
     private String metrobus = "";
     private Boolean admin = false;
-    private String facultad;
+    private String facultad = "";
     private Integer localId ;
-    
-    
+    private Boolean bano = false;
+
     @Autowired
     private JavaMailSenderImpl mailSender;
     
@@ -264,23 +265,34 @@ public class LocalController {
     }
 
     
-    public void buscarPorNombre(){
-        this.locales=localService.findByNombre(nombre);
+    public List<Local> buscarPorNombre(String busqueda,Boolean admin){
+        this.locales=localService.findByNombre(busqueda,admin);
          simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
             LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
             simpleModel.addOverlay(new Marker(coord, l.getNombre()));
         }
+        busqueda = "";
+        return locales;
     }
     
     
-     public void busquedaAvanzada(){
-         
-        this.locales = localService.busquedaAvanzada(aprobado, nombre, 
-                metro, rangoInferior, rangoSuperior, wifi, estacionamiento,
-                comeOLleva, bicipuma, pumabus, bicipuma, metro, metrobus, admin);
-         
-         
+     public void busquedaAvanzada(Boolean admin){
+        this.locales = localService.busquedaAvanzada(nombre,
+                rangoInferior, rangoSuperior, wifi, estacionamiento,facultad,
+                pumabus, bicipuma, metrobus, admin,bano,categoriaBusqueda);         
+        nombre = "";
+        rangoInferior = 0;
+        rangoSuperior = 200;
+        wifi = false;
+        estacionamiento = false;
+        facultad = "";
+        pumabus = "";
+        bicipuma = "";
+        metrobus = "";
+        bano = false;
+        categoriaBusqueda = "";
+        
         simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
             LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
@@ -630,6 +642,22 @@ public class LocalController {
 
     public void setBusqueda(String busqueda) {
         this.busqueda = busqueda;
+    }
+
+    public String getCategoriaBusqueda() {
+        return categoriaBusqueda;
+    }
+
+    public void setCategoriaBusqueda(String categoriaBusqueda) {
+        this.categoriaBusqueda = categoriaBusqueda;
+    }
+
+    public Boolean getBano() {
+        return bano;
+    }
+
+    public void setBano(Boolean bano) {
+        this.bano = bano;
     }
    
     

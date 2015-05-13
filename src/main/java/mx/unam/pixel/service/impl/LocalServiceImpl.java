@@ -117,43 +117,57 @@ public class LocalServiceImpl implements LocalService{
     
     
     @Override
-    public List<Local> busquedaAvanzada(Boolean aprobado, String nombre, String categoria,
+    public List<Local> busquedaAvanzada(String nombre,
             Integer rangoInferior, Integer rangoSuperior, Boolean wifi, Boolean estacionamiento,
-            Integer comeOLleva, String facultad, String pumabus, String bicipuma, String metro,
-            String metrobus, Boolean admin){
+            String facultad, String pumabus, String bicipuma,
+            String metrobus, Boolean admin, Boolean bano,String categoria){
         
         List<Local> resultado;
 
         if(admin){
-            if(!aprobado){
-                resultado = localRepository.findByAprobado(aprobado);
-            }else{
-                resultado = localRepository.findAll();
-            }
-        }else
-            resultado = localRepository.findByAprobado(aprobado);
-        if(nombre != "")
-            resultado = intersecta(resultado,localRepository.findByNombre(nombre));
-        if(categoria != "")
-            resultado = intersecta(resultado,localRepository.findByCategoria(categoria));
-        resultado = intersecta(resultado,localRepository.findByRangoInferior(rangoInferior, rangoSuperior));
-        if(wifi)
-            resultado = intersecta(resultado,localRepository.findByWifi());
-        if(estacionamiento)
-            resultado = intersecta(resultado,localRepository.findByEstacionamiento());
-        if(comeOLleva == 1 || comeOLleva == 3)
-            resultado = intersecta(resultado,localRepository.findByComer());
-        if(comeOLleva == 2 || comeOLleva == 3)
-            resultado = intersecta(resultado,localRepository.findByLlevar());
-        if(facultad != "")
-            resultado = intersecta(resultado,localRepository.findByFacultad(facultad));
-        if(pumabus != "")
-            resultado = intersecta(resultado,localRepository.findByPumabus(pumabus));
-        if(bicipuma != "")
-            resultado = intersecta(resultado,localRepository.findByBiciPuma(bicipuma));
-        if(metro != "")
-            resultado = intersecta(resultado,localRepository.findByBiciPuma(metro));
+            resultado = localRepository.findAll();
+            if(nombre != "")
+                resultado = intersecta(resultado,localRepository.findByNombreAdmin(nombre));
+            
+            resultado = intersecta(resultado,localRepository.findByBanoAdmin(bano));
+            if(categoria != "")
+                resultado = intersecta(resultado,localRepository.findByCategoriaAdmin(categoria));
+            resultado = intersecta(resultado,localRepository.findByRangoInferiorAdmin(rangoInferior, rangoSuperior));
+            if(wifi)
+                resultado = intersecta(resultado,localRepository.findByWifiAdmin());
+            if(estacionamiento)
+                resultado = intersecta(resultado,localRepository.findByEstacionamientoAdmin());
+            if(facultad != "")
+                resultado = intersecta(resultado,localRepository.findByFacultadAdmin(facultad));
+            if(pumabus != "")
+                resultado = intersecta(resultado,localRepository.findByPumabusAdmin(pumabus));
+            if(bicipuma != "")
+                resultado = intersecta(resultado,localRepository.findByBiciPumaAdmin(bicipuma));
+            if(metrobus != "")
+                resultado = intersecta(resultado,localRepository.findByBiciPumaAdmin(metrobus));
+            return resultado;
+        }else{
+            resultado = localRepository.findByAprobado(true);
+            if(nombre != "")
+                resultado = intersecta(resultado,localRepository.findByNombre(nombre));
+            resultado = intersecta(resultado,localRepository.findByBano(bano));
+            if(categoria != "")
+                resultado = intersecta(resultado,localRepository.findByCategoria(categoria));
+            resultado = intersecta(resultado,localRepository.findByRangoInferior(rangoInferior, rangoSuperior));
+            if(wifi)
+                resultado = intersecta(resultado,localRepository.findByWifi());
+            if(estacionamiento)
+                resultado = intersecta(resultado,localRepository.findByEstacionamiento());
+            if(facultad != "")
+                resultado = intersecta(resultado,localRepository.findByFacultad(facultad));
+            if(pumabus != "")
+                resultado = intersecta(resultado,localRepository.findByPumabus(pumabus));
+            if(bicipuma != "")
+                resultado = intersecta(resultado,localRepository.findByBiciPuma(bicipuma));
+            if(metrobus != "")
+                resultado = intersecta(resultado,localRepository.findByMetroBus(metrobus));
         return resultado;
+        }
     }
 
 
@@ -194,9 +208,11 @@ public class LocalServiceImpl implements LocalService{
     }
 
     @Override
-    public List<Local> findByNombre(String nombre) {
-return localRepository.findByNombre(nombre);
-        }
+    public List<Local> findByNombre(String nombre,Boolean admin) {
+        if(admin)
+            return localRepository.findByNombreAdmin(nombre);
+        return localRepository.findByNombre(nombre);
+    }
 
     @Override
     public List<Local> findByPunto(Double lat, Double lon) {
