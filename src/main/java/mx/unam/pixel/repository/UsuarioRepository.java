@@ -22,7 +22,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
     @Query("SELECT u FROM Usuario u WHERE u.nombre LIKE CONCAT(?,'%') ")
     List<Usuario> findByNombre(String nombre);
     
-        @Query("SELECT u FROM Usuario u WHERE u.nombreUsuario LIKE CONCAT(?,'%') ")
+        @Query("SELECT u FROM Usuario u WHERE u.nombreUsuario LIKE ? ")
     List<Usuario> findByNombreUsuario(String nombreUsuario);
     
         @Query("SELECT u FROM Usuario u WHERE u.correo LIKE ? ")

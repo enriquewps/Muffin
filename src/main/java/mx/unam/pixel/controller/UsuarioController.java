@@ -149,12 +149,18 @@ public class UsuarioController {
         }
     }
 
-    public void borraUsuario(){
+    public void borraUsuario(LoginController lg){
+        String usr=lg.getUsername();
+        
+        lg.doLogout();
+        
+        usuarioRegistro = usuarioService.findByNombreUsuario(usr).get(0);
+        
         
         usuarioService.eliminaUsuario(usuarioRegistro);
-        usuarioService.eliminaUsuario(usuario);
+        //usuarioService.eliminaUsuario(usuario);
         usuarioRegistro = new Usuario();
-        usuarios.remove(usuario);// = usuarioService.findAll();
+        //usuarios.remove(usuario);// = usuarioService.findAll();
         usuarios.remove(usuarioRegistro);
     }
 

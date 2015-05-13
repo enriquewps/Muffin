@@ -45,9 +45,6 @@
           <p:menuitem value="Registrarse"
                                     rendered ="#{!loginController.loged}"
                       action="registrarse"/>
-          <p:menuitem value="Solicitar Baja"
-                                    rendered ="#{loginController.loged}"
-                      action="baja"/>
           <p:menuitem value="Sugerir Local"
                                     rendered ="#{loginController.loged}"
                       action="sugerir"/>
@@ -63,6 +60,16 @@
                                     rendered ="#{loginController.loged}"
                       action="inicio"
                       actionListener="#{loginController.doLogout()}"/>
+                        <p:menuitem value="Solicitar Baja"
+                      rendered ="#{loginController.loged}">
+                <p:commandButton value="Solicitar baja" actionListener="#{usuarioController.borraUsuario(loginController)}" >
+                      <p:confirm header="Confirmar"  icon="ui-icon-alert" />
+                </p:commandButton>
+                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+                    </p:menuitem>
         </p:submenu>
         </p:menu>
                                 <!-- el styleClass se definio en csslayout.css-->

@@ -51,6 +51,7 @@ public class ComentarioController {
     
     @PostConstruct
     public void init(){
+        //comentarioRepository.deleteAll();
         if (local != null)
         comentarios = comentarioRepository.findByLocalID(local.getId());
  
@@ -147,15 +148,18 @@ public class ComentarioController {
         
         try{
         usuario = usuarioRepository.findByNombreUsuario(username).get(0);
-        }catch(Exception e){}
+            System.out.println(usuario.getNombre());
+        }catch(Exception e){            System.out.println("error al buscar el usuario");
+}
          comentario.setLocal(local);
          comentario.setFecha(new Date());
          comentario.setUsuario(usuario);
          
          local.getComentarios().add(comentario);
-         //localService.guardaLocal(local);
-         localService.actualizaCalificacion(local);
+         localService.guardaLocal(local);
+         //localService.actualizaCalificacion(local);
          local = localService.findById(local.getId());
+         comentarios = local.getComentarios();
          comentario = new Comentario();
          comentario.setCalificacion(5);
          comentario.setComentario("");
