@@ -66,10 +66,11 @@ public class LocalServiceImpl implements LocalService{
     
     @Override
     public void guardaLocal(Local local) {
-        for(Comentario coment:local.getComentarios()){
-            coment.setLocal(local);
+       
+        for(Categoria cat:local.getCategorias()){
+            cat.setLocal(local);
         }
-        for(Categoria coment:local.getCategorias()){
+        for(Comentario coment:local.getComentarios()){
             coment.setLocal(local);
         }
         
@@ -87,6 +88,16 @@ public class LocalServiceImpl implements LocalService{
         local.setRangoSuperior(precio);
 
         local.setAprobado(true);
+        //localRepository.save(local);
+        
+                try{
+        local.setCalificacion(localRepository.getPromedio(local.getNombre()).intValue());
+        }catch(Exception e){
+       /* localRepository.save(l);
+                l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+        localRepository.save(l);
+*/
+        }
         localRepository.save(local);
     }
 
@@ -205,7 +216,19 @@ return facultadRepository.findAll();
     @Override
     public void actualizaCalificacion(Local l) {
         //
+        
+        for(Comentario coment:l.getComentarios()){
+            coment.setLocal(l);
+        }
+        
+        try{
         l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+        }catch(Exception e){
+       /* localRepository.save(l);
+                l.setCalificacion(localRepository.getPromedio(l.getNombre()).intValue());
+        localRepository.save(l);
+*/
+        }
         localRepository.save(l);
     }
 
@@ -235,4 +258,9 @@ return facultadRepository.findAll();
     public List<Local> finNoAprobados(){
         return localRepository.findByAprobado(Boolean.FALSE);
     }
+    
+    public byte[] findFoto(Integer id){
+        return localRepository.findFoto(id);
+    }
+   
 }

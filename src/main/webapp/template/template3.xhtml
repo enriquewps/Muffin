@@ -30,25 +30,48 @@
                              icon="ui-icon-search"
                              onclick="window.location.replace('verLocales2.xhtml')"
 				/>
-                                <h:outputText value="hola admin(template3)"
+                                 <h:outputText rendered="#{loginController.loged}"
+               value="Bienvenido #{loginController.username}"
                                               style="font-size: medium"/>
-				<p:menu overlay="true" trigger="btnsesion" my="left top" at="right top">
-					<p:submenu label="Sesion">
-                                            <p:menuitem value="Panel de Administración"
-                                                        action="padministracion"></p:menuitem>
-						<p:menuitem value="Administrar Usuarios"
-                                                            action="adminusuarios"></p:menuitem>
-						<p:menuitem value="Administrar Locales"
-                                                            action="adminlocales"></p:menuitem>
-                                                <p:menuitem value="Agregar Local"
-                                                            action="agregarlocal"></p:menuitem>
-                                                
-						<p:separator/>
-					</p:submenu>
-					<p:submenu label="Otros">
-						<p:menuitem value="Salir" onclick="window.location.replace('index.xhtml')"></p:menuitem>
-					</p:submenu>
-				</p:menu>
+		      <p:menu overlay="true"
+              trigger="btnsesion"
+              my="left top"
+              at="right top">
+        <p:submenu label="Sesion">
+          <p:menuitem 
+              rendered ="#{!loginController.loged}"
+              value="Iniciar Sesion"
+                      action="iniciarSesion"/>
+          <p:menuitem value="Registrarse"
+                                    rendered ="#{!loginController.loged}"
+                      action="registrarse"/>
+          <p:menuitem value="Sugerir Local"
+                                    rendered ="#{loginController.loged}"
+                      action="sugerir"/>
+
+          <p:menuitem rendered="#{loginController.admin}"
+                      value="Panel de Administración" 
+                      action="padministracion"/>
+                                               
+          <p:separator/>
+        </p:submenu>
+        <p:submenu label="Otros">
+          <p:menuitem value="Salir"
+                                    rendered ="#{loginController.loged}"
+                      action="inicio"
+                      actionListener="#{loginController.doLogout()}"/>
+                        <p:menuitem value="Solicitar Baja"
+                      rendered ="#{loginController.loged}">
+                <p:commandButton value="Solicitar baja" actionListener="#{usuarioController.borraUsuario(loginController)}" >
+                      <p:confirm header="Confirmar"  icon="ui-icon-alert" />
+                </p:commandButton>
+                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+                    </p:menuitem>
+        </p:submenu>
+        </p:menu>
                                 <!-- el styleClass se definio en csslayout.css-->
                                 <p:commandButton label="hola admin" id="btnsesion" value="Sesion" 
                                                  style= "float:right;
@@ -114,11 +137,11 @@
             </h:form>
             -->
             <img alt="Muffin"
-                 src="logo.jpg"
+                 src="../logo.jpg"
                  style="width: 450px; height: auto;
                  float: left"
                  class="img-responsive"
-                 onclick="window.location.replace('index2.xhtml')"/>
+                 onclick="window.location.replace('../index.xhtml')"/>
             <br/><br/><br/><br/><br/><br/>
                     <ui:insert name="content">Content</ui:insert>
             
@@ -129,11 +152,11 @@
 
         <h:form style="text-align: center;color: red">
 
-        <p:commandLink id="nosotros" onclick="window.location.replace('quienesSomos2.xhtml')"> <!--ajax="false"-->
+        <p:commandLink id="nosotros" onclick="window.location.replace('../quienesSomos.xhtml')"> <!--ajax="false"-->
             <h:outputText value="¿Quienes somos? " style="color: red" />
         </p:commandLink>
  
-          <p:commandLink id="contacto" onclick="window.location.replace('contacto2.xhtml')"> <!--ajax="false"--> 
+          <p:commandLink id="contacto" onclick="window.location.replace('../contacto2.xhtml')"> <!--ajax="false"--> 
             <h:outputText value=" Contacto " style="color: red"/>
         </p:commandLink>
 

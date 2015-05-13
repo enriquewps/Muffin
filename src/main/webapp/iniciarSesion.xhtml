@@ -9,6 +9,43 @@
   <ui:composition template="/template/template.xhtml" >
     <ui:define name="content">
       <h2>Inicio Sesion</h2>
+                            <form action="#{facesContext.externalContext.requestContextPath}/j_spring_security_check" method="POST">
+                                <h:panelGrid columns="2" cellpadding="1">
+                                <p:outputLabel  value="Usuario"  style="font-size: medium;
+                          font-weight: bolder"/>
+          <input type="text" name="j_username" />
+                            <br/>
+                            <br/>
+                            <p:outputLabel  value="Contraseña"  style="font-size: medium;
+                          font-weight: bolder"/>
+                            <input type="password" name="j_password"/>
+                            
+            
+                              
+      		</h:panelGrid>
+                                <br/>
+                                                  <input name="submit" type="submit" value="Cancelar"              style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 background-color: red"/>
+                              <input name="submit" type="submit" value="Iniciar Sesión"     
+                                     style="-webkit-box-shadow: none!important;
+                                  -moz-box-shadow: none!important;
+                                  box-shadow: none!important;
+                                  background-image: none!important;
+                                  text-shadow: none!important;
+                                 color:white;
+                                 font-weight: bolder;
+                                 font-size: medium;
+                                 padding: 100;
+                                 background-color: blue" />
+                        </form>
+      
       <h:form id = "isesion">
 
                   <!-- 
@@ -27,16 +64,11 @@
                   
                 </h:panelGrid>
                   -->
-                  <form id="loginForm" prependId="false">
                               <h:panelGrid columns="2" cellpadding="1">
           <!-- Nombre -->
           <p:outputLabel  value=""/>
           <p:outputLabel  value="" />
-                        <form action="#{facesContext.externalContext.requestContextPath}/j_spring_security_check" method="POST">
-                            Usuario:<input type="text" name="j_username"/>
-                            Password:<input type="password" name="j_password"/>
-                            <input name="submit" type="submit" value="Login"/>
-                        </form>
+  
 		  <!-- 
 		  <p:outputLabel  value="" />
 		  <p:outputLabel  value="" />
@@ -67,38 +99,7 @@
 		
 		<!-- Seccion de Botones -->
                 <!-- Cancelar -->
-                <p:commandButton ajax="true" 
-                             value="Cancelar"
-                             style="-webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:white;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: red"
-                             onclick="window.location.replace('index.xhtml')"
-				/>	
-				
-				<p:commandButton id ="login"
-                                                 ajax ="true"
-                                                 type ="submit"
-                             value="Iniciar Sesion"
-                             style="-webkit-box-shadow: none!important;
-                                  -moz-box-shadow: none!important;
-                                  box-shadow: none!important;
-                                  background-image: none!important;
-                                  text-shadow: none!important;
-                                 color:white;
-                                 font-weight: bolder;
-                                 font-size: medium;
-                                 background-color: blue"
-                                 
-                                 actionListener="#{loginController.doLogin()}"
-                                 
-				/>	
-                                </form>
+                  
                                 
             </h:form>
             

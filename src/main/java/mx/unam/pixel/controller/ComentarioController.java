@@ -12,6 +12,7 @@ import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Usuario;
 import mx.unam.pixel.repository.ComentarioRepository;
+import mx.unam.pixel.repository.UsuarioRepository;
 import mx.unam.pixel.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -34,6 +35,9 @@ public class ComentarioController {
     @Autowired
     private ComentarioRepository comentarioRepository;
     
+        @Autowired
+    private UsuarioRepository usuarioRepository;
+    
     
     //Local y usuario son los que estan relacionadoes en esta pantalla asi que 
     //se muestra el local que se selecciono y se usa el usuario que esta viendo la pantalla
@@ -47,6 +51,7 @@ public class ComentarioController {
     
     @PostConstruct
     public void init(){
+        //comentarioRepository.deleteAll();
         if (local != null)
         comentarios = comentarioRepository.findByLocalID(local.getId());
  
@@ -125,7 +130,7 @@ public class ComentarioController {
 
     }
     
-    public void guardaComentario(){
+    public void guardaComentario(String username){
        /* 
         comentario.setLocal(local);
         comentario.setFecha(new Date());
@@ -141,15 +146,20 @@ public class ComentarioController {
         //obtenComentarios();
         
         
-        
+        try{
+        usuario = usuarioRepository.findByNombreUsuario(username).get(0);
+            System.out.println(usuario.getNombre());
+        }catch(Exception e){            System.out.println("error al buscar el usuario");
+}
          comentario.setLocal(local);
          comentario.setFecha(new Date());
          comentario.setUsuario(usuario);
          
          local.getComentarios().add(comentario);
          localService.guardaLocal(local);
-         localService.actualizaCalificacion(local);
+         //localService.actualizaCalificacion(local);
          local = localService.findById(local.getId());
+         comentarios = local.getComentarios();
          comentario = new Comentario();
          comentario.setCalificacion(5);
          comentario.setComentario("");

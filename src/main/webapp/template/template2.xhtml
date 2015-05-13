@@ -29,19 +29,49 @@
 				<p:commandButton ajax="true" 
                              icon="ui-icon-search"
                              onclick="window.location.replace('busqueda.xhtml')"
-				/>				
-				<p:menu overlay="true" trigger="btnsesion" my="left top" at="right top">
-					<p:submenu label="Sesion">
-						<p:menuitem value="Iniciar Sesion" onclick="window.location.replace('iniciarSesion.xhtml')"></p:menuitem>
-						<p:menuitem value="Registrarse" onclick="window.location.replace('registro.xhtml')"></p:menuitem>
-                                                <p:menuitem value="Solicitar Baja" onclick="window.location.replace('solicitarbaja.xhtml')"></p:menuitem>
-                                                <p:menuitem value="Sugerir Local" onclick="window.location.replace('sugerirlocal.xhtml')"></p:menuitem>
-						<p:separator/>
-					</p:submenu>
-					<p:submenu label="Otros">
-                                          <p:menuitem value="Salir" onclick="window.location.replace('index.xhtml')"></p:menuitem>
-					</p:submenu>
-				</p:menu>
+				/>	
+                                      <h:outputText rendered="#{loginController.loged}"
+               value="Bienvenido #{loginController.username}"
+                                              style="font-size: medium"/>
+				      <p:menu overlay="true"
+              trigger="btnsesion"
+              my="left top"
+              at="right top">
+        <p:submenu label="Sesion">
+          <p:menuitem 
+              rendered ="#{!loginController.loged}"
+              value="Iniciar Sesion"
+                      action="iniciarSesion"/>
+          <p:menuitem value="Registrarse"
+                                    rendered ="#{!loginController.loged}"
+                      action="registrarse"/>
+          <p:menuitem value="Sugerir Local"
+                                    rendered ="#{loginController.loged}"
+                      action="sugerir"/>
+
+          <p:menuitem rendered="#{loginController.admin}"
+                      value="Panel de Administración" 
+                      action="padministracion"/>
+                                               
+          <p:separator/>
+        </p:submenu>
+        <p:submenu label="Otros">
+          <p:menuitem value="Salir"
+                                    rendered ="#{loginController.loged}"
+                      action="inicio"
+                      actionListener="#{loginController.doLogout()}"/>
+                        <p:menuitem value="Solicitar Baja"
+                      rendered ="#{loginController.loged}">
+                <p:commandButton value="Solicitar baja" actionListener="#{usuarioController.borraUsuario(loginController)}" >
+                      <p:confirm header="Confirmar"  icon="ui-icon-alert" />
+                </p:commandButton>
+                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+                    </p:menuitem>
+        </p:submenu>
+        </p:menu>
                                 <!-- el styleClass se definio en csslayout.css-->
                                 <p:commandButton id="btnsesion" 
                                                  value="Sesion" 
