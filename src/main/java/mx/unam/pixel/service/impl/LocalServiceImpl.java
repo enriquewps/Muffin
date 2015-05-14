@@ -75,6 +75,7 @@ public class LocalServiceImpl implements LocalService{
             cat.setLocal(local);
             //categoriaRepository.save(cat);
         }
+        if (local.getRecomendacion()!= null)local.getRecomendacion().setLocal(local);
         for(Comentario coment:local.getComentarios()){
             coment.setLocal(local);
             //usuarioRepository.save(coment.getUsuario());

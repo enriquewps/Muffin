@@ -144,7 +144,6 @@ public class ComentarioController {
 }
          c.setLocal(local);
          c.setFecha(new Date());
-         //usuario.getComentarios().add(comentario);
          c.setUsuario(usuario);
          
          local.getComentarios().add(c);

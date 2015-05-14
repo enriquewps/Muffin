@@ -211,6 +211,7 @@ public class LocalController {
        if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
        
        local.getCategorias().add(categoria);
+       categoria = new Categoria();
         //localService.guardaCategoria(categoria);
         //this.local.getCategorias().add(categoria);
         //this.categoria=new Categoria();   
@@ -233,6 +234,7 @@ public class LocalController {
         }
         int comerLlevar = (comer && llevar )? 3:(comer)? 1:2;
         local.setComerOLlevar(comerLlevar);
+        
         this.localService.guardaLocal(local);
         
         this.locales=localService.findAll();
