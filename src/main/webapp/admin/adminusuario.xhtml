@@ -41,7 +41,7 @@
                   <h:outputText value="Administrador " 
                                 style="font-size: medium;
                                  font-weight: bolder"/>
-                  <p:selectBooleanCheckbox value="#{usuarioController.usuarioRegistro.administrador}" />
+                  <p:selectBooleanCheckbox value="#{usuarioController.usuarioRegistro.administrador}"  />
 
                   <!-- Seccion de Botones -->
 		  <br/><br/>
@@ -81,7 +81,7 @@
                                 
                         
                             
-                                 <p:commandButton ajax="true"
+                                 <p:commandButton ajax="false"
                                           value="Eliminar Usuario"
                                           style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -92,10 +92,11 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                 onclick="window.location.replace('adminusuarios.xhtml')"
+                                 immediate="true"
+                                 action="adminusuarios"
                                 actionListener="#{usuarioController.borraUsuario()}"
                                  update="form"
-                                 
+                                 process="@form"
                                 />
 				</p:outputPanel>
                 </h:panelGrid>

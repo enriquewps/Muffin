@@ -21,46 +21,76 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
      @Override
     List<Local> findAll();
     
-    @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT(?,'%') ")
-    List<Local> findByNombre(String nombre);
+    @Query("SELECT l FROM Local l WHERE l.bano = ? AND l.aprobado = TRUE")
+    List<Local> findByBano(Boolean bano);
     
-    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ?")
+    @Query("SELECT l FROM Local l WHERE l.bano = ? ")
+    List<Local> findByBanoAdmin(Boolean bano);
+    
+    @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT('%',?,'%') AND loc.aprobado = TRUE")
+    List<Local> findByNombre(String nombre);
+
+    @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByNombreAdmin(String nombre);
+    
+    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ? AND l.aprobado = TRUE")
     List<Local> findByRangoInferior(Integer rangoInferior,Integer rangoSuperior);
 
-    @Query("SELECT loc FROM Local loc WHERE loc.wifi = true ")
+    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ?")
+    List<Local> findByRangoInferiorAdmin(Integer rangoInferior,Integer rangoSuperior);
+    
+    @Query("SELECT loc FROM Local loc WHERE loc.wifi = true AND loc.aprobado = TRUE")
     List<Local> findByWifi();
 
-    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1)")
+    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1) AND loc.aprobado = TRUE")
     List<Local> findByEstacionamiento();
-    
+
+    @Query("SELECT loc FROM Local loc WHERE loc.wifi = true")
+    List<Local> findByWifiAdmin();
+
+    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1)")
+    List<Local> findByEstacionamientoAdmin();
+
     @Query("SELECT loc FROM Local loc WHERE loc.aprobado = ? ")
     List<Local> findByAprobado(Boolean b);
     
 
-    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 1 or loc.comerOLlevar = 3 ")
+    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 1 or loc.comerOLlevar = 3 AND loc.aprobado = TRUE")
     List<Local> findByComer();
     
-    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 2 or loc.comerOLlevar = 3 ")
+    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 1 or loc.comerOLlevar = 3 ")
+    List<Local> findByComerAdmin();
+    
+    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 2 or loc.comerOLlevar = 3 AND loc.aprobado = TRUE")
     List<Local> findByLlevar();    
     
-    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f "+
-           "WHERE f.nombreFac LIKE CONCAT('%',?,'%')")
+    @Query("SELECT loc FROM Local loc WHERE loc.comerOLlevar = 2 or loc.comerOLlevar = 3")
+    List<Local> findByLlevarAdmin();
+    
+    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f WHERE f.nombreFac LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByFacultad(String facultad);
     
-    @Query("SELECT l FROM Local l JOIN FETCH l.recomendacion r "+
-           "WHERE r.nombre LIKE CONCAT('%',?,'%')")
+    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f WHERE f.nombreFac LIKE CONCAT('%',?,'%')")
+    List<Local> findByFacultadAdmin(String facultad);
+    
+    @Query("SELECT l FROM Local l JOIN FETCH l.recomendacion r WHERE r.nombre LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByRecomendacion(String recomendacion);
     
-        @Query("SELECT l FROM Local l  "+
-           "WHERE l.recomendacion.nombre LIKE CONCAT('%',?,'%')")
+    @Query("SELECT l FROM Local l JOIN FETCH l.recomendacion r WHERE r.nombre LIKE CONCAT('%',?,'%') ")
+    List<Local> findByRecomendacionAdmin(String recomendacion);
+    
+    
+    @Query("SELECT l FROM Local l WHERE l.recomendacion.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByRecomendacion1(String recomendacion);
         
     //@Query("SELECT l FROM Local l JOIN FETCH l.categorias c WHERE c.nombre LIKE CONCAT('%',?,'%') ")
     //List<Local> findByCategoria(String categoria);
     
-    @Query("SELECT l FROM Local l JOIN FETCH l.categorias c WHERE c.nombre LIKE CONCAT('%',?,'%') ")
+    @Query("SELECT l FROM Local l JOIN FETCH l.categorias c WHERE c.nombre LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByCategoria(String categoria);
     
+    @Query("SELECT l FROM Local l JOIN FETCH l.categorias c WHERE c.nombre LIKE CONCAT('%',?,'%') ")
+    List<Local> findByCategoriaAdmin(String categoria);
     
     
     /*@Query("SELECT l FROM Local l JOIN FETCH l.rutas r "+
@@ -71,17 +101,30 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     //Hay que limpiar estps metodos pues estan contnidos en la facultad
     
     @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.pumabus p "+
-           "WHERE p.estacion LIKE CONCAT('%',?,'%')")
+           "WHERE p.estacion LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByPumabus(String estacion);
         @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.biciPuma p "+
-           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+           "WHERE p.nombre LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByBiciPuma(String estacion);
         @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metro p "+
-           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+           "WHERE p.nombre LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByMetro(String estacion);
         @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metroBus p "+
-           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+           "WHERE p.nombre LIKE CONCAT('%',?,'%') AND l.aprobado = TRUE")
     List<Local> findByMetroBus(String estacion);
+    
+    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.pumabus p "+
+           "WHERE p.estacion LIKE CONCAT('%',?,'%')")
+    List<Local> findByPumabusAdmin(String estacion);
+        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.biciPuma p "+
+           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByBiciPumaAdmin(String estacion);
+        @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metro p "+
+           "WHERE p.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByMetroAdmin(String estacion);
+    
+    @Query("SELECT l FROM Local l JOIN FETCH l.facultad f JOIN FETCH f.metroBus p WHERE p.nombre LIKE CONCAT('%',?,'%')")
+    List<Local> findByMetroBusAdmin(String estacion);
     
 //Hay que limpiar estps metodos pues estan contnidos en la facultad    
 
@@ -90,9 +133,11 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     List<Local> findAllFacultades();
 
     
-        @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01  ")
+    @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01   AND l.aprobado = TRUE")
     List<Local> findByPunto(Double latitud,Double longitud);
     
+    @Query("SELECT l FROM Local l WHERE SQRT(POWER(l.latitud-?,2)+POWER(l.longitud-?,2))<0.01")
+    List<Local> findByPuntoAdmin(Double latitud,Double longitud);
 
     
      /*   @Query("UPDATE TABLE Local l SET l.calificacion = (SELECT AVG(c.calificacion)"

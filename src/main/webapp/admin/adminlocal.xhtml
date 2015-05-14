@@ -4,122 +4,153 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="/template/template3.xhtml" >
-        <ui:define name="content">	
-        <h2>Modificar Local</h2>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
         
-        <h:panelGrid columns="2" cellpadding="1" id="panel">
-          <p:outputLabel  value="Nombre:" 
-                          style="font-size: medium;
-                          font-weight: bolder"/>
-          <p:inputText id="campobusqueda" required="true" value="#{localController.local.nombre}"/>
+  <ui:composition template="/template/template.xhtml" >
+    <ui:define name="content">
+     
+
+
+                        <script type="text/javascript" 
+                src="http://maps.googleapis.com/maps/api/js"
+                />
         
-          </h:panelGrid>
+            
+            
+          <h2>Sugerir Local</h2>
+                  <h:form id="mapa">
           
-          <br/><br/>
-          <p:gmap id="gmap" center="19.3142052,-99.1835216" zoom="15" 
-                        type="HYBRID" 
-                        style="width:600px;height:400px"
-                        onPointClick="agregaMarcador(event);"
-                        widgetVar="map"
-                        disableDoubleClickZoom="true"      
-                        >
-            <p:ajax event="pointSelect" listener="#{localController.seleccion}"  update="" />
-          </p:gmap>
-         <br/>
+                <!--Panel para el primer campo "Nombre"  -->
+      <h:panelGrid columns="2" cellpadding="1">
+        <p:outputLabel  value="Nombre:" 
+                        style="font-size: medium;
+                        font-weight: bolder"/>
+        <p:outputLabel  value = "#{localController.local.nombre}"/>
+      </h:panelGrid>
+          
+      <br/><br/>
+
+          <p:gmap center="19.3142052,-99.1835216" 
+                  zoom="15" 
+                  type="HYBRID" 
+                  style="width:600px;height:400px"
+                  
+                  model="#{localController.simpleModel}" />
+      <br/>
           <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
+        
+          <!-- Marcador para el Mapa (Google Maps) -->
           <script type="text/javascript"> 
             var marker = null;
             function agregaMarcador(event) {
-               if(window.marker!==null){
-                   marker.setMap(null);
-               }
-                var punto=new google.maps.LatLng(
+              if(window.marker!==null){
+                marker.setMap(null);
+              }
+              var punto=new google.maps.LatLng(
                         event.latLng.lat(), 
-                event.latLng.lng()
-                        );
-                window.marker = new google.maps.Marker({
-                        position:punto,
-                        title:'Lugar'
-                    });
-                    
-                    PF('map').addOverlay(marker);
-            };
-        </script>
-        
+                        event.latLng.lng()
+                );
+              window.marker = new google.maps.Marker({
+                              position:punto,
+                              title:'Lugar'
+                });  
+                PF('map').addOverlay(marker);
+              };
+          </script>
           
+      
+        
+            
+            <p:dataScroller  value="#{localController.localesAdmin}" 
+                          id="locales"
+                          var="_local"
+                          style="width: 400px"
+                          chunkSize="6"
+                          >
                 
+            <p:outputLabel value="Categoria: " 
+                           style="font-size: medium;
+                          font-weight: bolder"/>
+            
+            <h:outputText value="#{_local.nombre}" />
+            
+            </p:dataScroller>
+            
+          <p:dataScroller  value="#{localController.categoriasAdmin}" 
+                          id="categorias"
+                          var="_categoria"
+                          style="width: 800px"
+                          chunkSize="6"
+                          >
+            <p:outputLabel value="Categoria: " 
+                           style="font-size: medium;
+                          font-weight: bolder"/>
+            
+            <h:outputText value="#{_categoria.nombre}" />
+            
+                   <p:separator/>
+                   </p:dataScroller>
+        
           <h:panelGrid columns="2" cellpadding="1">
-            <p:outputLabel for="categoria" value="Categoria: " 
+              
+            
+            
+                        
+            <p:outputLabel id="especialidad"
+                           value="Especialidad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="categoria" value="#{localController.categoria.nombre}" style="width:160px">
-                <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{localController.categorias}" />
-            </p:selectOneMenu>
- 
-            <h:outputText id="rango" value="Rango de precios: "
-                          style="font-size: medium;
-                          font-weight: bolder"/>
-                   <p:slider  minValue="10" maxValue="200" 
-                              for="inferior,superior" 
-                              display="rango" style="width: 250px" 
-                              range="true" 
-                              displayTemplate="Precios entre $ {min} y $ {max} " />
-                   <p:message for="rango" />
-            
-            <p:commandButton value="Guardar" 
-                 style="background-color: blue!important;
-                  background-image: none!important;
-                  color: white!important;
-                  font-size: small!important;
-                  text-shadow: none!important; 
-                  border-color: black!important;
-                  border-width: thin!important;
-                  -webkit-box-shadow: none!important;
-                  -moz-box-shadow: none!important;
-                  box-shadow: none!important;"
-                   
-                 actionListener="#{dropdownView.displayLocation}" 
-                 onclick="window.location.replace('verLocales.xhtml')"/>
-            
-            <p:outputLabel for="especialidad" value="Especialidad: " 
-                           style="font-size: medium;
-                          font-weight: bolder"/>
-            <p:selectOneMenu id="especialidad" value="#{dropdownView.city}" style="width:160px">
-                <f:selectItem itemLabel="Seleccione especialidad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.cities}" />
-            </p:selectOneMenu>
+            <h:outputText value="#{localController.local.recomendacion.nombre}" />
 
+           
+            
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
+            <p:outputLabel id="facultad" value="#{localController.local.facultad.nombreFac}" />
             
-            <p:selectOneMenu id="facultad" value="#{dropdownView.city}" style="width:160px">
-                <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.cities}" />
-            </p:selectOneMenu>
+                    <h:outputText value="Baño: " />
+                    <p:selectBooleanCheckbox value="#{localController.local.aprobado}" />
+                    <!--CAMBIARLO PARA CUANDO SE TENGO BAÑO EN LOCAL-->
+                    <h:outputText value="WIFI: " />
+                    <p:selectBooleanCheckbox value="#{localController.wifi}" />            
             
-            
-        
+                           <h:outputText  value="Foto" style="font-size: medium;
+                          font-weight: bolder"/>
+                      <h:graphicImage 
+                       value="data:image/png;base64,#{localController.local.fotoUrl}"
+                                   rendered="#{localController.local.foto ne null}"
+                                   id="foto"
+                                   height="200"
+                                   />
+                      
+                      
+                   
+
+            <p:outputLabel  value="Descripcion" 
+                           style="font-size: medium;
+                          font-weight: bolder"/>
+            <p:outputLabel id="comentario" value="#{localController.local.descripcion}" />
 
                    
-                                     
-                   <h:inputHidden  id="inferior" value="#{localController.local.rangoInferior}" required="true" />
-                   <h:inputHidden  id="superior" value="#{localController.local.rangoSuperior}" required="true" />
-
+             <h:outputText value="Aprobado: " 
+                                style="font-size: medium;
+                                 font-weight: bolder"/>
+             <p:selectBooleanCheckbox value="#{localController.local.aprobado}"  />
                    
         </h:panelGrid>
 
+      <br/>
+      <!-- sección para adjuntar las imagenes -->
+      
           <br/>
 		  <h:panelGrid columns="3" columnClasses="logo,detail">
                           <p:outputPanel>								
                             <p:commandButton ajax="true" 
-                                             accesskey=""
                                              value="Cancelar"
                                              style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -130,8 +161,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: red"
-                                             onclick="window.location.replace('index2.xhtml')"
-							/>	
+                                 action="adminlocales"  />
 		  
                             <p:commandButton ajax="true"   
                                           value="Guardar Cambios"
@@ -144,9 +174,14 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                          onclick="window.location.replace('index2.xhtml')"/>
-                            <p:commandButton ajax="true"   
-                                          value="Eliminar Local"
+                                 action="adminlocales"
+                                 actionListener="#{localController.actualizaLocal()}"
+                                 />
+                                
+                        
+                            
+                                 <p:commandButton ajax="false"
+                                          value="Eliminar Usuario"
                                           style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
                                   box-shadow: none!important;
@@ -156,10 +191,23 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                          onclick="window.location.replace('index2.xhtml')"/>
-								
+                                 immediate="true"
+                                 action="adminlocales"
+                                 actionListener="#{localController.borraLocal()}"
+                                 update="form"
+                                 process="@form"
+                                 
+                                />
 				</p:outputPanel>
                 </h:panelGrid>
-        </ui:define>
-    </ui:composition>
+ 
+      </h:form>
+ 
+ 
+
+      
+      
+     
+    </ui:define>
+  </ui:composition>
 </html>

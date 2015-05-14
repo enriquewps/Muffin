@@ -29,7 +29,7 @@ public class Comentario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-   @NotNull
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     private Usuario usuario;
    @NotNull 

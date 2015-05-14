@@ -13,6 +13,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import mx.unam.pixel.model.BiciPuma;
 
@@ -41,6 +42,17 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.util.comparator.ComparableComparator;
+
+
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
+/*import javax.faces.bean.ManagedBean;*/
+ 
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
+
 	
 
 /**
@@ -51,8 +63,9 @@ import org.springframework.util.comparator.ComparableComparator;
  */
 @Controller("localController")
 @Scope("session")
+@ManagedBean
 public class LocalController {
-        @Autowired
+    @Autowired
     private LocalService localService;
         
     
@@ -61,7 +74,8 @@ public class LocalController {
     private List<Local> localesAdmin;
         private List<Local> top;
 
-    
+    private String busqueda = "";
+        
     private List<Pumabus> pumabuses;
     private List<Metro> metros;
     private List<BiciPuma> biciPumas;
@@ -72,10 +86,12 @@ public class LocalController {
     
     private List<Categoria> especialidades;
 
+    private List<Categoria> categoriasAdmin;
     
     private Boolean aprobado = true;
     private String nombre = "";
     private Categoria categoria;
+    private String categoriaBusqueda = "";
     private Integer rangoInferior = 20;
     private Integer rangoSuperior = 200;
     private Boolean wifi = false;
@@ -87,12 +103,13 @@ public class LocalController {
     private String metro = "";
     private String metrobus = "";
     private Boolean admin = false;
-    private String facultad;
+    private String facultad = "";
     private Integer localId ;
-    
-    
+    private Boolean bano = false;
+
     @Autowired
     private JavaMailSenderImpl mailSender;
+    
     
     
     String [] categorias ={
@@ -125,6 +142,7 @@ public class LocalController {
 "Pastas"
 };
 
+    
 
 
     
@@ -174,11 +192,13 @@ public class LocalController {
         facultades = localService.findAllFacultades();
         
         simpleModel = new DefaultMapModel(); 
+
+        categoriasAdmin = local.getCategorias();
         
-        for(Local l:this.locales){
-            LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
-            simpleModel.addOverlay(new Marker(coord, l.getNombre()));
-        }
+        /*for(Local l:this.locales){
+        LatLng coord = new LatLng(l.getLatitud(), l.getLongitud());
+        simpleModel.addOverlay(new Marker(coord, l.getNombre()));
+        }*/
     }
     
 
@@ -200,7 +220,11 @@ public class LocalController {
         this.local.setCategorias(new ArrayList<Categoria>());
     }
     
-    
+    public void actualizaLocal(){
+        this.localService.guardaLocal(local);
+        this.locales = localService.findAll();
+        this.localesAdmin = localService.findAllAdmin();
+    }
     
     public void guaradLocalProvisional(){
         while(true){
@@ -233,23 +257,34 @@ public class LocalController {
     }
 
     
-    public void buscarPorNombre(){
-        this.locales=localService.findByNombre(nombre);
+    public List<Local> buscarPorNombre(String busqueda,Boolean admin){
+        this.locales=localService.findByNombre(busqueda,admin);
          simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
             LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
             simpleModel.addOverlay(new Marker(coord, l.getNombre()));
         }
+        busqueda = "";
+        return locales;
     }
     
     
-     public void busquedaAvanzada(){
-         
-        this.locales = localService.busquedaAvanzada(aprobado, nombre, 
-                metro, rangoInferior, rangoSuperior, wifi, estacionamiento,
-                comeOLleva, bicipuma, pumabus, bicipuma, metro, metrobus, admin);
-         
-         
+     public void busquedaAvanzada(Boolean admin){
+        this.locales = localService.busquedaAvanzada(nombre,
+                rangoInferior, rangoSuperior, wifi, estacionamiento,facultad,
+                pumabus, bicipuma, metrobus, admin,bano,categoriaBusqueda);         
+        nombre = "";
+        rangoInferior = 0;
+        rangoSuperior = 200;
+        wifi = false;
+        estacionamiento = false;
+        facultad = "";
+        pumabus = "";
+        bicipuma = "";
+        metrobus = "";
+        bano = false;
+        categoriaBusqueda = "";
+        
         simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
             LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
@@ -279,8 +314,10 @@ public class LocalController {
         }
     }
     
-    public void borraLocal(Local loc){
-         localService.eliminaLocal(loc);
+    public void borraLocal(){
+        
+         localService.eliminaLocal(local);
+         local = new Local();
          this.locales=localService.findAll();
           simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
@@ -344,6 +381,8 @@ public class LocalController {
         return localService.findAllAdmin();
     }
     
+    
+    
     public void setLocales(List<Local> locales) {
         this.locales = locales;
     }
@@ -383,6 +422,8 @@ public class LocalController {
     }
 
     public MapModel getSimpleModel() {
+        LatLng coord = new LatLng(local.getLatitud(), local.getLongitud());
+        simpleModel.addOverlay(new Marker(coord, local.getNombre()));
         return simpleModel;
     }
 
@@ -575,6 +616,39 @@ public class LocalController {
 
     public void setTop(List<Local> top) {
         this.top = top;
+    }
+
+    public List<Categoria> getCategoriasAdmin() {
+        
+        return categoriasAdmin;
+    }
+
+    public void setCategoriasAdmin(List<Categoria> CategoriasAdmin) {
+        this.categoriasAdmin = CategoriasAdmin;
+    }
+
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
+
+    public String getCategoriaBusqueda() {
+        return categoriaBusqueda;
+    }
+
+    public void setCategoriaBusqueda(String categoriaBusqueda) {
+        this.categoriaBusqueda = categoriaBusqueda;
+    }
+
+    public Boolean getBano() {
+        return bano;
+    }
+
+    public void setBano(Boolean bano) {
+        this.bano = bano;
     }
    
     public void guardarCategoria(){

@@ -30,6 +30,8 @@ import mx.unam.pixel.repository.LocalRepository;
 import mx.unam.pixel.service.LocalService;
 import mx.unam.pixel.service.impl.LocalServiceImpl;
 
+
+
 /**
  * *Clase de modelo
  * @author Enrique
@@ -289,7 +291,5 @@ public class Local implements Serializable {
                 return null;
             }
         }
-
-
     
 }
