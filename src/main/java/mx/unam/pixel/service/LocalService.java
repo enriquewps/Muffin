@@ -64,6 +64,10 @@ public interface LocalService {
 
     public void guardaComentario(Comentario comentario);
 
+    public void guardaFacultad(Facultad facultad);
+
+    public void creaLocal(Local local);
+
     
 
 }

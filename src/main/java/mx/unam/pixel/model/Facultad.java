@@ -33,7 +33,8 @@ public class Facultad implements Serializable {
     @NotNull
     private String nombreFac;
         
-        
+     
+    
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Pumabus> pumabus;
 
@@ -161,4 +162,8 @@ public class Facultad implements Serializable {
             pb+=bici.getNombre()+" - ";
         return pb.equals("")? "Sin estaciones":pb;
     }
+
+
+    
+    
 }

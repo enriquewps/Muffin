@@ -62,6 +62,14 @@
              <redirect/>
         </navigation-case>
         
+               <navigation-case>
+            <from-action>sugerir3</from-action>
+            <to-view-id>/sugerirlocal.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        
+   
+        
         <navigation-case>
             <from-action>nosotros</from-action>
             <to-view-id>/quienesSomos.xhtml</to-view-id>

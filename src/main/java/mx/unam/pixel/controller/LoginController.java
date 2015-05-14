@@ -86,7 +86,7 @@ public class LoginController {
  
    
     
-    public void doLogin() {
+  public void doLogin() {
         System.out.println("sdsdsdsdsdsddsddsdsdsds");
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 System.out.println("1");

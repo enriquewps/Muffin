@@ -24,7 +24,6 @@
 
             <h:graphicImage 
                 value="data:image/png;base64,#{comentarioController.local.fotoUrl}"
-                     
                        style="width: 165px;
                             height: auto"
                                    />
@@ -129,6 +128,17 @@
                       style="font-weight: bolder;
                       font-size: large"/>
         </p:column>
+        
+        <h:outputText value="Comer ahí "
+                      rendered="#{comentarioController.local.comerOLlevar == 2}"
+                      style="font-weight: bolder;
+                      font-size: large"/>
+        <h:outputText value="Llevar" rendered="#{comentarioController.local.comerOLlevar == 3}" 
+                      style="font-weight: bolder;
+                      font-size: large"/>
+        <h:outputText value="Comer y Llevar" rendered="#{comentarioController.local.comerOLlevar == 1}" 
+                      style="font-weight: bolder;
+                      font-size: large"/>
 
         <p:column>
         <h:outputText value="Internet: " 

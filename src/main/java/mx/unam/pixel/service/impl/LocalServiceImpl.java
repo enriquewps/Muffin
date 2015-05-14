@@ -104,7 +104,13 @@ public class LocalServiceImpl implements LocalService{
         localRepository.save(l);
 */
         }
+        try{
+            //facultadRepository.save(local.getFacultad());
+        }catch(Exception e){}        
+                
         localRepository.save(local);
+                    //facultadRepository.save(local.getFacultad());
+
     }
 
     
@@ -294,6 +300,20 @@ return facultadRepository.findAll();
     
        public void guardaComentario(Comentario c){
         comentarioRepository.save(c);
+        
+    }
+
+    @Override
+    public void guardaFacultad(Facultad facultad) {
+
+facultadRepository.save(facultad);
+    }
+
+    @Override
+    public void creaLocal(Local local) {
+for (Categoria c : local.getCategorias())
+    c.setLocal(local);
+localRepository.save(local);
     }
     
 }

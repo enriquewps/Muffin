@@ -8,19 +8,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
         
-  <ui:composition template="/template/template.xhtml" >
+  <ui:composition template="/template/template3.xhtml" >
     <ui:define name="content">
-      <h2>Sugerir Local</h2>
-      
-      <!--Panel para el primer campo "Nombre"  -->
-      <h:panelGrid columns="2" cellpadding="1">
-        <p:outputLabel  value="Nombre:" 
-                        style="font-size: medium;
-                        font-weight: bolder"/>
-        <p:inputText id="campobusqueda"/>
-      </h:panelGrid>
-   <ui:composition template="/template/template.xhtml" >
-        <ui:define name="content">
+     
+
+
                         <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"
                 />
@@ -45,9 +37,18 @@
             
             
           <h2>Sugerir Local</h2>
+                  <h:form id="mapa">
+          
+                <!--Panel para el primer campo "Nombre"  -->
+      <h:panelGrid columns="2" cellpadding="1">
+        <p:outputLabel  value="Nombre:" 
+                        style="font-size: medium;
+                        font-weight: bolder"/>
+        <p:inputText  value = "#{localController.local.nombre}"/>
+      </h:panelGrid>
           
       <br/><br/>
-        <h:form id="mapa">
+
           <p:gmap id="gmap"
                   center="19.3142052,-99.1835216"
                   zoom="14" 
@@ -58,7 +59,7 @@
                   disableDoubleClickZoom="true"      
             >
             <p:ajax event="pointSelect"
-                    listener="#{localController.busquedaPunto}"
+                    listener="#{localController.seleccion}"
               />
           </p:gmap>
       <br/>
@@ -84,8 +85,9 @@
                 PF('map').addOverlay(marker);
               };
           </script>
-        </h:form>
           
+      
+        
           <h:panelGrid columns="2" cellpadding="1">
             
             
@@ -105,7 +107,15 @@
                               display="rango" style="width: 250px" 
                               range="true" 
                               displayTemplate="Precios entre $ {min} y $ {max} " />
-                   <p:message for="rango" />
+                  <p:message for="rango" />
+                                     
+                  <h:inputHidden  id="inferior" value="#{localController.categoria.precioMenor}" required="true" />
+                  <h:inputHidden  id="superior" value="#{localController.categoria.precioMayor}" required="true" />
+                   <p:separator/>
+                   
+                   <p:separator/>
+                   <p:message for="superior" />
+                   <p:message for="inferior" />
             
             <p:commandButton value="Guardar" 
                  style="background-color: blue!important;
@@ -119,18 +129,20 @@
                   -moz-box-shadow: none!important;
                   box-shadow: none!important;"
                    
-                  actionListener="#{localController.guardarCategoria()}" 
+                  actionListener="#{localController.guardarCategoria}" update =""
                  />
             
             <p:outputLabel for="especialidad"
                            value="Especialidad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:selectOneMenu id="especialidad" value="#{localController.especialidades}" style="width:160px">
+            <p:selectOneMenu id="especialidad" value="#{localController.local.recomendacion.nombre}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione especialidad" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{localController.especialidades}" var="_esp" itemLabel="#{_esp.nombre}" itemValue="#{_esp.nombre}" />
+                <f:selectItems value="#{localController.categorias}" />
             </p:selectOneMenu>
 
+           
+            
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
@@ -139,7 +151,46 @@
                 <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>
             
-        
+                    <h:outputText value="Baño: " />
+                    <p:selectBooleanCheckbox value="#{localController.aprobado}" />
+                    <h:outputText value="WIFI: " />
+                    <p:selectBooleanCheckbox value="#{localController.wifi}" /> 
+                    <h:outputText value="Comer ahí: " />
+                    <p:selectBooleanCheckbox value="#{localController.comer}" /> 
+                    <h:outputText value="Llevar: " />
+                    <p:selectBooleanCheckbox value="#{localController.llevar}" /> 
+            
+                           <h:outputText  value="Foto" style="font-size: medium;
+                          font-weight: bolder"/>
+                                              <h:graphicImage 
+                       value="data:image/png;base64,#{localController.local.fotoUrl}"
+                                   rendered="#{localController.local.foto ne null}"
+                                   id="foto"
+                                   height="200"
+                                   />
+                   <p:fileUpload 
+                       
+                       fileUploadListener="#{localController.handleFileUpload}" 
+                                          mode="advanced"  
+                                         rendered="#{!(localController.local.foto ne null)}"
+                                         fileLimit="1"
+                                          auto="false"
+                                          value="#{localController.local.foto}"
+                                          sizeLimit="2097152" 
+                                          multiple="false"
+                                          update="foto"
+                                          immediate="true"
+                                          invalidFileMessage="Tipo de archivo invalido"
+                                          uploadLabel="añadir"
+                                          label="elegir"
+                                          
+                       allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+            <p:outputLabel  value="Descripcion" 
+                           style="font-size: medium;
+                          font-weight: bolder"/>
+            <p:inputText id="comentario" value="#{localController.local.descripcion}" placeholder="Escribe tu comentario"
+                         style="width: 150%;height:60px"/>
 
                    
                   
@@ -149,8 +200,6 @@
       <br/>
       <!-- sección para adjuntar las imagenes -->
       
-      <h:form enctype="multipart/form-data">
-        <p:growl id="messages" showDetail="true" />
           <br/>
 		  <h:panelGrid columns="2" columnClasses="logo,detail">
                           <p:outputPanel>								
@@ -169,7 +218,7 @@
                                              onclick="window.location.replace('index.xhtml')"
 							/>	
 		  
-                            <p:commandButton ajax="true"   
+                            <p:commandButton ajax="false"   
                                           value="Enviar"
                                           style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
@@ -180,57 +229,20 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: blue"
-                                 actionListener ="#{localController.guardarLocal()}" />
+                                 action ="inicio"
+                                 actionListener ="#{localController.guardarLocal()}" update ="mapa" />
                             
 								
 				</p:outputPanel>
 			</h:panelGrid>
-               </h:form>           
-        </ui:define>
  
-        <p:fileUpload  mode="simple"/>
+      </h:form>
  
-        <p:commandButton value="Submit" ajax="false" disabled="true" />
+ 
 
       
       
-      
-      <h:form>
-      <br/>
-        <h:panelGrid columns="2" columnClasses="logo,detail">
-          <p:outputPanel>								
-          <p:commandButton ajax="false" 
-                           accesskey=""
-                           value="Cancelar"
-                           style="-webkit-box-shadow: none!important;
-                           -moz-box-shadow: none!important;
-                           box-shadow: none!important;
-                           background-image: none!important;
-                           text-shadow: none!important;
-                           color:white;
-                           font-weight: bolder;
-                           font-size: medium;
-                           background-color: red"
-                           action="inicio"
-                                      />	
-
-          <p:commandButton ajax="true"   
-                        value="Enviar"
-                        style="-webkit-box-shadow: none!important;
-                        -moz-box-shadow: none!important;
-                        box-shadow: none!important;
-                        background-image: none!important;
-                        text-shadow: none!important;
-                        color:white;
-                        font-weight: bolder;
-                        font-size: medium;
-                        background-color: blue"
-                        action="inicio"/>
-
-
-          </p:outputPanel>
-      </h:panelGrid>
-      </h:form>       
+     
     </ui:define>
   </ui:composition>
 </html>

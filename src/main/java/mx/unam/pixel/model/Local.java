@@ -26,6 +26,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 //import sun.misc.BASE64Encoder;
 import java.util.Base64.Encoder;
+import javax.persistence.JoinColumn;
 import mx.unam.pixel.repository.LocalRepository;
 import mx.unam.pixel.service.LocalService;
 import mx.unam.pixel.service.impl.LocalServiceImpl;
@@ -78,7 +79,8 @@ public class Local implements Serializable {
     }
     
     
-    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch =FetchType.EAGER)
+    @JoinColumn(name = "faciltad_id", referencedColumnName = "id")
     private Facultad facultad;
     
         @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
@@ -87,7 +89,6 @@ public class Local implements Serializable {
         
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
-             mappedBy = "local",
             orphanRemoval = true)
     private List<Categoria> categorias;
 
@@ -103,8 +104,7 @@ public class Local implements Serializable {
     private List<Comentario> comentarios;    
     
     @Lob
-    @Column(name = "FOTO",columnDefinition = "LONGBLOB")
-  
+    @Column(name = "FOTO",columnDefinition = "LONGBLOB") 
     private byte[] foto;
 
     public Integer getCalificacion() {

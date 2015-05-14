@@ -149,7 +149,7 @@ public class UsuarioController {
         }
     }
 
-    public void borraUsuario(LoginController lg){
+    public String borraUsuario(LoginController lg){
         String usr=lg.getUsername();
         
         lg.doLogout();
@@ -162,9 +162,15 @@ public class UsuarioController {
         usuarioRegistro = new Usuario();
         //usuarios.remove(usuario);// = usuarioService.findAll();
         usuarios.remove(usuarioRegistro);
+                FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml";
     }
 
     public void actualizaUsuario(){
+        for (Usuario u : usuarios){
+            if(u.getCorreo().equals(usuarioRegistro) || u.getNombreUsuario().equals(usuarioRegistro.getNombreUsuario()))
+                return;
+        }
         this.usuarioService.guardaUsuario(usuarioRegistro);
         this.usuarios = usuarioService.findAll();
         this.usuarioRegistro = new Usuario();

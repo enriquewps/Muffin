@@ -106,6 +106,8 @@ public class LocalController {
     private String facultad = "";
     private Integer localId ;
     private Boolean bano = false;
+    private boolean comer = true, llevar =true;
+    
 
     @Autowired
     private JavaMailSenderImpl mailSender;
@@ -192,33 +194,102 @@ public class LocalController {
         facultades = localService.findAllFacultades();
         
         simpleModel = new DefaultMapModel(); 
-
-        categoriasAdmin = local.getCategorias();
         
-        /*for(Local l:this.locales){
-        LatLng coord = new LatLng(l.getLatitud(), l.getLongitud());
-        simpleModel.addOverlay(new Marker(coord, l.getNombre()));
-        }*/
+        for(Local l:this.locales){
+            LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
+            simpleModel.addOverlay(new Marker(coord, l.getNombre()));
+        }
     }
     
 
+     
+    public void guardarCategoria(){
+       System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
+       if(local == null){this.local=new Local();
+       this.local.setCalificacion(5);
+       }
+       if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
+       
+       local.getCategorias().add(categoria);
+        //localService.guardaCategoria(categoria);
+        //this.local.getCategorias().add(categoria);
+        //this.categoria=new Categoria();   
+    }
     
     public void guardarLocal(){
-        System.out.println("local "+local.getNombre()+" categorias "+local.getCategorias().size()+" facultad: "+facultad);
+        System.out.println("local "+local.getNombre()+
+                " categorias "+local.getCategorias().size()+
+                " facultad: "+facultad+
+                " fot es null: "+local.getFoto()== null);
                
         for(Facultad f:facultades){
-            if(f.getNombreFac().equals(facultad)){
+            System.out.println("comparando facultades:"+facultad+" comparado a: "+f.getNombreFac());
+
+            if(f.getNombreFac().equals(busqueda)){
                 local.setFacultad(f);
+                System.out.println("Se encontro la facultad antes de guardar");
                 break;
             }
         }
+        int comerLlevar = (comer && llevar )? 3:(comer)? 1:2;
+        local.setComerOLlevar(comerLlevar);
         this.localService.guardaLocal(local);
+        
         this.locales=localService.findAll();
     /***************************************/
         this.local=new Local();
                this.local.setCalificacion(5);
         this.local.setCategorias(new ArrayList<Categoria>());
+        
+        
+        
+        
+        
     }
+    
+    public void guaradLocalProvisional(){
+    System.out.println("local "+local.getNombre()+
+                " categorias "+local.getCategorias().size()+
+                " facultad: "+facultad+
+                " fot es null: "+local.getFoto()== null);
+    
+    Facultad fac;
+    
+               
+        for(Facultad f:facultades){
+            System.out.println("comparando facultades:"+facultad+" comparado a: "+f.getNombreFac());
+
+            if(f.getNombreFac().equals(busqueda)){
+                local.setFacultad(f);
+ 
+                fac = f;
+                break;
+            }
+        }
+        int comerLlevar = (comer && llevar )? 3:(comer)? 1:2;
+        local.setComerOLlevar(comerLlevar);
+        //this.localService.guardaLocal(local);
+        this.localService.guardaFacultad(local.getFacultad());
+        
+        this.localService.creaLocal(local);
+        
+        this.locales=localService.findAll();
+    /***************************************/
+        this.local=new Local();
+               this.local.setCalificacion(5);
+        this.local.setCategorias(new ArrayList<Categoria>());
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     
     public void actualizaLocal(){
         this.localService.guardaLocal(local);
@@ -226,21 +297,7 @@ public class LocalController {
         this.localesAdmin = localService.findAllAdmin();
     }
     
-    public void guaradLocalProvisional(){
-        while(true){
-            try{
-                local.setId(new Random().nextInt(100000));
-                        this.localService.guardaLocal(local);
-        this.locales=localService.findAll();
-    /***************************************/
-        this.local=new Local();
-               this.local.setCalificacion(5);
-        this.local.setCategorias(new ArrayList<Categoria>());
-                return;
-            }catch(Exception e){}
-            
-        }
-    }
+
     
     
     public void seleccion(PointSelectEvent event){
@@ -335,6 +392,7 @@ public class LocalController {
 
         }
             UploadedFile file=event.getFile();
+            System.out.println("aqui se supone qu se sube la foto que es :"+(file.getContents() == null));
             this.local.setFoto( file.getContents());   
     }
      
@@ -362,8 +420,6 @@ public class LocalController {
         if(local == null){this.local=new Local();
                       this.local.setCalificacion(5);
 
-        }else if (local.getNombre() != null){
-            local.setFoto(localService.findFoto(local.getId()));
         }
         return local;
     }
@@ -632,6 +688,7 @@ public class LocalController {
     }
 
     public void setBusqueda(String busqueda) {
+        System.out.println(busqueda);
         this.busqueda = busqueda;
     }
 
@@ -651,6 +708,7 @@ public class LocalController {
         this.bano = bano;
     }
    
+    /*
     public void guardarCategoria(){
        System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
        if(local == null){this.local=new Local();
@@ -687,5 +745,23 @@ public class LocalController {
 
          
        
+    }*/
+
+    public boolean isComer() {
+        return comer;
     }
+
+    public void setComer(boolean comer) {
+        this.comer = comer;
+    }
+
+    public boolean isLlevar() {
+        return llevar;
+    }
+
+    public void setLlevar(boolean llevar) {
+        this.llevar = llevar;
+    }
+    
+    
 }
