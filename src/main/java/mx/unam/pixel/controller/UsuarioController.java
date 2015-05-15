@@ -107,6 +107,7 @@ public class UsuarioController {
     }
 
     public List<Usuario> getUsuarios() {
+        
         return usuarioService.findAll();
     }
 
@@ -166,12 +167,16 @@ public class UsuarioController {
         return "/index.xhtml";
     }
 
-    public void actualizaUsuario(){
-        for (Usuario u : usuarios){
-            if(u.getCorreo().equals(usuarioRegistro) || u.getNombreUsuario().equals(usuarioRegistro.getNombreUsuario()))
-                return;
-        }
+    public void guardaUsuario(){
+
         this.usuarioService.guardaUsuario(usuarioRegistro);
+        this.usuarios = usuarioService.findAll();
+        this.usuarioRegistro = new Usuario();
+    }
+    
+    public void actualizaUsuario(){
+
+        this.usuarioService.actualizaUsuario(usuarioRegistro);
         this.usuarios = usuarioService.findAll();
         this.usuarioRegistro = new Usuario();
     }

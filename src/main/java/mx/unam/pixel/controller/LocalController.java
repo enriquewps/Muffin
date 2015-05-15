@@ -46,6 +46,7 @@ import org.springframework.util.comparator.ComparableComparator;
 
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import mx.unam.pixel.model.Usuario;
 /*import javax.faces.bean.ManagedBean;*/
  
 import org.primefaces.model.map.DefaultMapModel;
@@ -176,6 +177,38 @@ public class LocalController {
     @PostConstruct
     public void init(){
  
+        ArrayList<Usuario> users = localService.findUsuarios();
+        if (users == null ){
+            Usuario master = new Usuario();
+            master.setAdministrador(true);
+            master.setActivo(true);
+            master.setContrasena("MUFFIN_ADMIN");
+            master.setNombre("Muffin");
+            master.setNombreUsuario("Muffin");
+            master.setCorreo("");
+            users = new ArrayList<Usuario>();
+            localService.guardaUsuario(master);
+        }else{
+            boolean hayMaster = false;
+            for (Usuario u : users){
+                if (u.getNombreUsuario().equals("Muffin")){
+                    hayMaster = true;
+                    break;
+                }
+            }
+                            if (!hayMaster){
+                               Usuario master = new Usuario();
+            master.setAdministrador(true);
+            master.setActivo(true);
+            master.setContrasena("MUFFIN_ADMIN");
+            master.setNombre("Muffin");
+            master.setNombreUsuario("Muffin");
+            master.setCorreo("");
+            users = new ArrayList<Usuario>();
+            localService.guardaUsuario(master);
+                }
+        }
+        
         if(local == null){this.local=new Local();
         this.local.setCalificacion(5);
         }

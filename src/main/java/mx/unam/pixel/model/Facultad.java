@@ -163,7 +163,17 @@ public class Facultad implements Serializable {
         return pb.equals("")? "Sin estaciones":pb;
     }
 
-
+    public String getTipoEstacionamiento(){
+        String est = "";
+        switch (estacionamiento){
+            case 0:
+                return "Sin Estacionamiento   ";
+            case 1: return "Abierto   ";
+            case 2: return "Estudiantes   ";
+            case 4: return "Academicos y Estudiantes";
+                default:return "Sin Estacionamiento";
+        }
+    }
     
     
 }

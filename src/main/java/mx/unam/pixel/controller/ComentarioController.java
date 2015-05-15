@@ -14,6 +14,10 @@ import mx.unam.pixel.model.Usuario;
 import mx.unam.pixel.repository.ComentarioRepository;
 import mx.unam.pixel.repository.UsuarioRepository;
 import mx.unam.pixel.service.LocalService;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -48,6 +52,9 @@ public class ComentarioController {
     private Comentario comentario;
     
     private List<Comentario> comentarios;
+    
+        private MapModel simpleModel; // es usado en la vista del ver locales
+
     
     @PostConstruct
     public void init(){
@@ -86,7 +93,11 @@ public class ComentarioController {
         public void setLocalUsuario(Local local,Usuario us) {
         this.local = local;
         this.usuario = us;
-                comentarios = comentarioRepository.findByLocalID(local.getId());
+        comentarios = comentarioRepository.findByLocalID(local.getId());
+                simpleModel = new DefaultMapModel(); 
+
+        LatLng coord = new LatLng(local.getLatitud(), local.getLongitud()); 
+        simpleModel.addOverlay(new Marker(coord, local.getNombre()));
 
     }
 
@@ -164,6 +175,22 @@ public class ComentarioController {
     public void eliminiaComentario(Comentario c){
         comentarioRepository.delete(c);
         localService.actualizaCalificacion(local);        
+    }
+
+    public UsuarioRepository getUsuarioRepository() {
+        return usuarioRepository;
+    }
+
+    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public MapModel getSimpleModel() {
+        return simpleModel;
+    }
+
+    public void setSimpleModel(MapModel simpleModel) {
+        this.simpleModel = simpleModel;
     }
     
  

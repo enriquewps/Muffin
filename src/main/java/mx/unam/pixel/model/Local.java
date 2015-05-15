@@ -281,9 +281,6 @@ public class Local implements Serializable {
                 System.out.println("no es null la imagen");
                 //BASE64.Encoder encoder = new BASE64Encoder();
                 String imageString = Base64.getEncoder().encodeToString(this.getFoto());
-                
-                
-                
                 return   imageString;
             }
             else{
@@ -291,5 +288,28 @@ public class Local implements Serializable {
                 return null;
             }
         }
+    
+    public String getComeOLleva(){
+        switch (comerOLlevar){
+            case 1: return "Para comer Aquí   ";
+            case 2: return "Para llevar   ";
+            case 3: return "Para comer y llevar  ";
+                default: return "Para comer y llevar  ";
+        }
+        
+    }
+    
+    
+    public String getMenu(){
+        String menu = "";
+        String aux = "";
+        for(Categoria c: categorias){
+            aux = (c.getNombre()+"("+c.getPrecioMenor()+"~"+c.getPrecioMayor()+") - ");
+            menu += (menu.contains(aux))? "": aux;
+        }
+        System.out.println(menu+ " # de categorias "+categorias.size());
+        return menu;
+    }
+
     
 }

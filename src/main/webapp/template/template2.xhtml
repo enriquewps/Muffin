@@ -7,33 +7,32 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet library="css" name="default.css"/>
-        <h:outputStylesheet library="css" name="cssLayout.css"/>
-        <title>Muffin</title>
-    </h:head>
+  <h:head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <h:outputStylesheet library="css" name="default.css"/>
+      <h:outputStylesheet library="css" name="cssLayout.css"/>
+      <h:outputScript library="js"  name="script.js" />
+      <title>Muffin</title>
+  </h:head>
 
-    <h:body>
+  <h:body id="barrabusqueda">
 
-        <div id="top">
-			<h:form>
-            <ui:insert name="top">
-              <h:outputText value="Buscar" style="font-weight: bold;
-                          color: white;
-                          font-size: medium">
-                            
-            </h:outputText>
-				<!-- Busqueda -->
-				<p:inputText id="campobusqueda" required="true"/>
-				<p:commandButton ajax="true" 
-                             icon="ui-icon-search"
-                             onclick="window.location.replace('busqueda.xhtml')"
-				/>	
-                                      <h:outputText rendered="#{loginController.loged}"
+  <div id="top">
+    <h:form>
+      <ui:insert name="top">
+      <h:outputText value="Buscar" style="font-weight: bold;
+                    color: white;
+                    font-size: medium">
+      </h:outputText>
+      <!-- Busqueda /para el boton buscar required="true" -->
+      <p:inputText id="campobusqueda" />
+      <p:commandButton 
+                       icon="ui-icon-search"
+                       action="buscar"/>
+      <h:outputText rendered="#{loginController.loged}"
                value="Bienvenido #{loginController.username}"
-                                              style="font-size: medium"/>
-				      <p:menu overlay="true"
+               style="font-size: medium"/>
+      <p:menu overlay="true"
               trigger="btnsesion"
               my="left top"
               at="right top">
@@ -41,10 +40,11 @@
           <p:menuitem 
               rendered ="#{!loginController.loged}"
               value="Iniciar Sesion"
-                      action="iniciarSesion"/>
+                      action="padministracion"/>
           <p:menuitem value="Registrarse"
                                     rendered ="#{!loginController.loged}"
                       action="registrarse"/>
+
           <p:menuitem value="Sugerir Local"
                                     rendered ="#{loginController.loged}"
                       action="sugerir"/>
@@ -60,7 +60,7 @@
                                     rendered ="#{loginController.loged}"
                       action="inicio"
                       actionListener="#{loginController.doLogout()}"/>
-                        <p:menuitem value="Solicitar Baja"
+                    <p:menuitem value="Solicitar Baja"
                       rendered ="#{loginController.loged}">
                 <p:commandButton value="Solicitar baja" actionListener="#{usuarioController.borraUsuario(loginController)}" >
                       <p:confirm header="Confirmar"  icon="ui-icon-alert" />
@@ -72,81 +72,62 @@
                     </p:menuitem>
         </p:submenu>
         </p:menu>
-                                <!-- el styleClass se definio en csslayout.css-->
-                                <p:commandButton id="btnsesion" 
-                                                 value="Sesion" 
-                                                 style= "float:right;
-                                 color:white;
-                                 font-weight: bolder;
-                                 font-size: medium"
-                                                 styleClass="boton-sesion">
-                                    
-                                </p:commandButton>
-            </ui:insert>            
+        <!-- el styleClass se definio en csslayout.css-->
+        <p:commandButton id="btnsesion"
+                         value="Sesion"
+                         style= "float:right;
+                         color:white;
+                         font-weight: bolder;
+                         font-size: medium"
+                         styleClass="boton-sesion">
+
+        </p:commandButton>
+      </ui:insert>            
+    </h:form>
+  </div>
+        
+        
+        
+        
+  <div id="content"
+       class="center_content"
+       align="center"
+       style="margin: 0% 10% 0% 10%">
+          <!--   
+          <h:form>
+            <h:commandLink action="index" >
+            <p:graphicImage library="images" 
+                            name="logo.jpg" 
+                            style=" float: left; width: 450px; height: auto"
+                            styleClass="img-responsive" onclick="windows.location.replace('index.xhtlm')"/>
+            </h:commandLink>
             </h:form>
-        </div>
+          action="iniciarSesion?faces-redirect=true"
+            
+          
+          -->
+
+          
+  <br/><br/><br/><br/><br/><br/>
+    <ui:insert name="content">Content</ui:insert>
+            
+  </div>
         
-        <!-- Comentamos mi top para poner el de Gonzalo
-        <div id="top">
+        
+  <div id="bottom">
 
-        <h:form>
-             <h1 style="color:white">Busca un local</h1> 
-            
-            Buscar <p:inputText  id="nombre" size="35" validatorMessage="Formato no valido">
-                <f:validateRegex for="nombre" pattern="[a-zA-Z0-9]+" />
-            
-            <p:message for="nombre"/>
-            </p:inputText>
-            <p:commandButton id="Buscar" icon="ui-icon-busca" action="busqueda?faces-redirect=true"  />
-            <h:outputText value="   " />
-            <p:commandButton value="Iniciar sesion"  action="iniciarSesion?faces-redirect=true" style= "float:right" />
-            
+    <h:form style="text-align: center;color: red">
 
-             Intento de separar en tres partes el top
-            <p:layout style="min-width:400px;min-height:50px;">
-                <p:layoutUnit position="west">
-                    <h:outputText value="Buscar" />
-                </p:layoutUnit>
+      <p:commandLink id="nosotros"
+                     action="nosotros"> <!--ajax="false"-->
+        <h:outputText value="¿Quienes somos? "
+                      style="color: red" />
+      </p:commandLink>
  
-                <p:layoutUnit position="center">
-                    <p:inputText value="#{saludoController.nombre}" id="nombre" size="35" validatorMessage="Formato no valido">
-                    <f:validateRegex for="nombre" pattern="[a-zA-Z0-9]+" />
-                    <p:message for="nombre"/>
-                    </p:inputText>
-                    <p:commandButton value="Buscar"  actionListener="#{saludoController.cambiaNombre()}"  />
-                </p:layoutUnit>
-                
-                <p:layoutUnit position="east">
-                    <p:commandButton value="Iniciar sesion"  actionListener="#{saludoController.cambiaNombre()}"/>
-                </p:layoutUnit>
-            </p:layout>
-                </div>
-
-             fin del intento
-        </h:form> fin de mi top-->
-
-            
-        
-        
-        
-        <div id="content" class="center_content" align="center">
-            
-                    <ui:insert name="content">Content</ui:insert>
-            
-        </div>
-        
-        
-        <div id="bottom">
-
-        <h:form style="text-align: center;color: red">
-
-        <p:commandLink id="nosotros" onclick="window.location.replace('quienesSomos.xhtml')"> <!--ajax="false"-->
-            <h:outputText value="¿Quienes somos? " style="color: red" />
-        </p:commandLink>
- 
-          <p:commandLink id="contacto" onclick="window.location.replace('contacto.xhtml')"> <!--ajax="false"--> 
-            <h:outputText value=" Contacto " style="color: red"/>
-        </p:commandLink>
+      <p:commandLink id="contacto"
+                     action="contacto"> <!--ajax="false"--> 
+        <h:outputText value=" Contacto " style="color: red"/>
+      </p:commandLink>
 
         
 

@@ -5,6 +5,7 @@
  */
 package mx.unam.pixel.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Pumabus;
@@ -14,6 +15,7 @@ import mx.unam.pixel.model.Comentario;
 import mx.unam.pixel.model.Facultad;
 import mx.unam.pixel.model.Metrobus;
 import mx.unam.pixel.model.Metro;
+import mx.unam.pixel.model.Usuario;
 
 /**
  * Interface para operar con los locales, aqui se hacen busquedad, se agrega y se calcula la calificacion
@@ -67,6 +69,9 @@ public interface LocalService {
     public void guardaFacultad(Facultad facultad);
 
     public void creaLocal(Local local);
+
+    public ArrayList<Usuario> findUsuarios();
+    public void guardaUsuario(Usuario usuario) ;
 
     
 

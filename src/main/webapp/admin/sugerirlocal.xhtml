@@ -151,13 +151,17 @@
                 <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>
             
-                    <h:outputText value="Baño: " />
-                    <p:selectBooleanCheckbox value="#{localController.aprobado}" />
-                    <h:outputText value="WIFI: " />
-                    <p:selectBooleanCheckbox value="#{localController.wifi}" /> 
-                    <h:outputText value="Comer ahí: " />
+            <p:outputLabel value="Baño: " style="font-size: medium;
+                          font-weight: bolder"/>
+            <p:selectBooleanCheckbox value="#{localController.local.bano}" />
+                    <p:outputLabel value="WIFI: " style="font-size: medium;
+                          font-weight: bolder"/>
+                    <p:selectBooleanCheckbox value="#{localController.local.wifi}" /> 
+                    <p:outputLabel value="Comer ahí: " style="font-size: medium;
+                          font-weight: bolder"/>
                     <p:selectBooleanCheckbox value="#{localController.comer}" /> 
-                    <h:outputText value="Llevar: " />
+                    <p:outputLabel value="Llevar: " style="font-size: medium;
+                          font-weight: bolder"/>
                     <p:selectBooleanCheckbox value="#{localController.llevar}" /> 
             
                            <h:outputText  value="Foto" style="font-size: medium;
@@ -190,7 +194,7 @@
                            style="font-size: medium;
                           font-weight: bolder"/>
             <p:inputText id="comentario" value="#{localController.local.descripcion}" placeholder="Escribe tu comentario"
-                         style="width: 150%;height:60px"/>
+                         style="width: 150%;height:60px" maxlength="130"/>
 
                    
                   

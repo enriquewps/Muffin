@@ -55,7 +55,8 @@
                        <property name="correo" value="" /> 
                         <property name="nombre" value="" />
                         <property name="contrasena" value="" />
-                        <property name="administrador" value="true" />                         
+                        <property name="administrador" value="false" />   
+                         <property name="activo" value="true" />                        
                  </bean>
             </property> 
         </bean>
@@ -67,7 +68,8 @@
                        <property name="correo" value="" /> 
                         <property name="nombre" value="" />
                         <property name="contrasena" value="" />
-                        <property name="administrador" value="false" />                         
+                        <property name="administrador" value="false" />   
+                        <property name="activo" value="true" />                         
                  </bean>
             </property>
             <property name="comentario" >

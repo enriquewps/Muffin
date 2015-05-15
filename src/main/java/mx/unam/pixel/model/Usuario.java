@@ -43,9 +43,13 @@ public class Usuario implements Serializable {
     @NotNull
     private boolean administrador = false;
 
+
        @NotNull 
    private String rol = "ROLE_USER";
        
+       
+               @NotNull
+    private boolean activo = true;
        /*@OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = true)
@@ -113,7 +117,7 @@ public class Usuario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
+        int hash = 7;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
@@ -134,6 +138,14 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "mx.unam.pixel.model.Usuario[ id=" + id + " ]";
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     
     

@@ -42,14 +42,16 @@
 		  <p:outputLabel value="Correo "
                                  style="font-size: medium;
                                  font-weight: bolder"/>
-                  <p:inputText id="correo" value="#{usuarioController.usuarioRegistro.correo}" required="true"/>
+                  <p:inputText id="correo" value="#{usuarioController.usuarioRegistro.correo}" required="true">
+                   <f:validateRegex for="correo" pattern="[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+"  />
+                  </p:inputText>
 		  <p:message for="correo"/>
 		  <br/>
 		  <!-- Contrasena -->
 		  <p:outputLabel  value="Contrasena: " 
                                   style="font-size: medium;
                                  font-weight: bolder"/>
-		  <p:password id="pwd1" value ="#{usuarioController.usuarioRegistro.contrasena}" label="Password 1" required="true" />
+		  <p:password id="pwd1" value ="#{usuarioController.usuarioRegistro.contrasena}" match="pwd2" label="Password 1" required="true" />
 		  <br/>
 		  
 		  <!-- Contrasena -->
@@ -59,7 +61,7 @@
                                   style="font-size: medium;
                                  font-weight: bolder"/>
 		  
-		  <p:password id="pwd12"  label="Passworda 1" required="true" />
+                  <p:password id="pwd2"  label="Password 2" value="#{usuarioController.usuarioRegistro.contrasena}" required="true" />
 		  <br/>
 		  <br/>
 		  <!-- Seccion de Botones -->
@@ -92,7 +94,7 @@
                                  background-color: blue"
 				value="Registrarse"
                                 action="inicio"
-                                actionListener="#{usuarioController.actualizaUsuario()}" update=":datos @form"/>
+                                actionListener="#{usuarioController.guardaUsuario()}" update=":datos @form"/>
 									
                     </p:outputPanel>
                   </h:panelGrid>

@@ -8,7 +8,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">   
   <ui:composition template="/template/template.xhtml" >
     <ui:define name="content">
-          
+  
+
+        
+        
       <!-- Sección de información del Local onclick="window.location.replace('index.xhtml')"-->
       <p:panelGrid style="width: 100%">
         <p:row>
@@ -102,13 +105,21 @@
                               
       <h:panelGrid columns="3" cellpadding="1">
           
-        <p:outputLabel value="Categoria: "
+        <p:outputLabel value="Recomendación: "
                          style="font-weight: bolder;
                          font-size: large"/>
         <p:outputLabel value="#{comentarioController.local.recomendacion.nombre}"
                        style="font-weight: bolder;
                        font-size: large" />
            <br/>
+           
+        <p:outputLabel value="Categorias: "
+                         style="font-weight: bolder;
+                         font-size: large"/>
+        <p:outputLabel value="#{comentarioController.local.menu}"
+                       style="font-weight: bolder;
+                       font-size: large" />
+           <br/>   
 
         <p:outputLabel  value="Precios:"
                         style="font-weight: bolder;
@@ -123,7 +134,12 @@
         <h:outputText value="Baño: " 
                       style="font-weight: bolder;
                       font-size: large"/>
-        <h:outputText value="Si " 
+        <h:outputText value="Si   " 
+                      rendered="#{comentarioController.local.bano}"
+                      style="font-weight: bolder;
+                      font-size: large"/>
+                <h:outputText value="No   " 
+                      rendered="#{!comentarioController.local.bano}"
                       style="font-weight: bolder;
                       font-size: large"/>
         </p:column>
@@ -132,24 +148,11 @@
         <h:outputText value="Estacionamiento: "
                       style="font-weight: bolder;
                       font-size: large"/>
-        <h:outputText value="No" rendered="#{comentarioController.local.facultad.estacionamiento == 0}" 
-                      style="font-weight: bolder;
-                      font-size: large"/>
-        <h:outputText value="Si" rendered="#{comentarioController.local.facultad.estacionamiento != 0}" 
+        <h:outputText value="#{comentarioController.local.facultad.tipoEstacionamiento}" 
                       style="font-weight: bolder;
                       font-size: large"/>
         </p:column>
-        
-        <h:outputText value="Comer ahí "
-                      rendered="#{comentarioController.local.comerOLlevar == 2}"
-                      style="font-weight: bolder;
-                      font-size: large"/>
-        <h:outputText value="Llevar" rendered="#{comentarioController.local.comerOLlevar == 3}" 
-                      style="font-weight: bolder;
-                      font-size: large"/>
-        <h:outputText value="Comer y Llevar" rendered="#{comentarioController.local.comerOLlevar == 1}" 
-                      style="font-weight: bolder;
-                      font-size: large"/>
+
 
         <p:column>
         <h:outputText value="Internet: " 
@@ -198,7 +201,11 @@
                        font-size: large"/>
         <h:outputText value="#{comentarioController.local.facultad.nombreFac}" 
                       style="font-weight: bolder;
-                      font-size: large"/>                   
+                      font-size: large"/>   
+                
+        <h:outputText value="#{comentarioController.local.comeOLleva}"
+                      style="font-weight: bolder;
+                      font-size: large"/>
       </h:panelGrid>
         
         
@@ -215,7 +222,7 @@
               zoom="16" 
               type="HYBRID" 
               style="width:600px;height:400px"
-              onPointClick="agregaMarcador(event);"
+             
               widgetVar="map"
               disableDoubleClickZoom="true"      
               ></p:gmap>
@@ -319,7 +326,7 @@
                     border-bottom-color: black;
                     border-bottom-width: medium">
               <p:inputText id="comentario" value="#{comentarioController.comentario.comentario}" placeholder="Escribe tu comentario"
-                         style="width: 150%;height:30px"/>
+                           style="width: 150%;height:30px" maxlength="130"/>
           </p:column>
           <p:column style="border-bottom-color: black;
                     border-bottom-width: medium;

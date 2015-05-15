@@ -34,6 +34,7 @@ public interface UsuarioService {
     Usuario iniciarSesion(String nombre, String contrasena);
 
     public void guardaUsuario(Usuario usuario);
+    public void actualizaUsuario(Usuario usuario);
     
     
 }

@@ -17,6 +17,7 @@ import mx.unam.pixel.model.Local;
 import mx.unam.pixel.model.Metro;
 import mx.unam.pixel.model.Metrobus;
 import mx.unam.pixel.model.Pumabus;
+import mx.unam.pixel.model.Usuario;
 import mx.unam.pixel.repository.BiciPumaRepository;
 import mx.unam.pixel.repository.CategoriaRepository;
 import mx.unam.pixel.repository.ComentarioRepository;
@@ -94,7 +95,7 @@ public class LocalServiceImpl implements LocalService{
         }
         local.setRangoSuperior(precio);
 
-        local.setAprobado(true);
+        local.setAprobado(false);
         //localRepository.save(local);
         
                 try{
@@ -316,5 +317,18 @@ for (Categoria c : local.getCategorias())
     c.setLocal(local);
 localRepository.save(local);
     }
+
+    @Override
+    public ArrayList<Usuario> findUsuarios() {
+return (ArrayList<Usuario>) usuarioRepository.findAll();
+        }
+    
+    @Override
+    public void guardaUsuario(Usuario usuario) {
+        if (usuario.isAdministrador())usuario.setRol("ROLE_ADMIN");
+        else usuario.setRol("ROLE_USER");
+        usuarioRepository.save(usuario);
+    }
+    
     
 }

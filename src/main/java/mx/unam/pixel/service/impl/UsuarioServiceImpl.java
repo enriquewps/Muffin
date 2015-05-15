@@ -79,8 +79,21 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public void guardaUsuario(Usuario usuario) {
+        ArrayList<Usuario> users = (ArrayList<Usuario>) usuarioRepository.findAll();
+        for (Usuario u : users){
+            if(u.getCorreo().equals(usuario.getCorreo()) || u.getNombreUsuario().equals(usuario.getNombreUsuario()))
+                return;
+        }
+        if (usuario.isAdministrador())usuario.setRol("ROLE_ADMIN");
+        else usuario.setRol("ROLE_USER");
         usuarioRepository.save(usuario);
     }
+
+    @Override
+    public void actualizaUsuario(Usuario usuario) {
+        if (usuario.isAdministrador())usuario.setRol("ROLE_ADMIN");
+        else usuario.setRol("ROLE_USER");
+        usuarioRepository.save(usuario);    }
     
     
     
