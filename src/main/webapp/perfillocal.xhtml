@@ -22,11 +22,22 @@
                     border-bottom-width: medium;
                     width: 165px">
 
-            <h:graphicImage 
-                value="data:image/png;base64,#{comentarioController.local.fotoUrl}"
+              
+                            <p:graphicImage 
+                  library="images"
+                  rendered="#{!(comentarioController.local.foto ne null)}"
+                            style="width:
+                            165px;
+                            height: auto"
+                            name="logo.jpg" /> 
+                            <h:graphicImage rendered="#{comentarioController.local.foto ne null}"
+                                            value="data:image/png;base64,#{comentarioController.local.fotoUrl}"
+                     
                        style="width: 165px;
                             height: auto"
                                    />
+              
+
           </p:column>
 
           <p:column style="background-color: red; 
