@@ -68,7 +68,7 @@ public class Local implements Serializable {
     //Solo puede tener valores entre 1 y 3 significando 1: comer 2: llevar 3: ambos
     private int comerOLlevar;
     
-    private boolean aprobado;
+    private boolean aprobado = true;
 
     public Boolean getBano() {
         return bano;
@@ -118,15 +118,19 @@ public class Local implements Serializable {
 
     public List<Comentario> getComentarios() {
         if(comentarios == null)comentarios = new ArrayList<Comentario>();
+                    System.out.println("hay # de comentarios:"+comentarios.size());
+
         for (int i = 0 ; i < comentarios.size() ; i ++){
             Comentario aux = comentarios.get(i);
             System.out.println("comentario id:"+aux.getId());
             for (int j = i +1 ; j > comentarios.size() ; j ++){
-                if (aux.getId().equals(comentarios.get(j).getId())){
+                if (aux.getId().equals(comentarios.get(j).getId()) || comentarios.get(j).getId() == null){
                     comentarios.remove(j);
+                    j--;
                 }
             }
         }
+                            System.out.println("hay # de comentarios despues del for:"+comentarios.size());
         return comentarios;
     }
 
