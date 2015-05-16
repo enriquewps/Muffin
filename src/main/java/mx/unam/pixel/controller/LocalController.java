@@ -227,11 +227,7 @@ public class LocalController {
         facultades = localService.findAllFacultades();
         
         simpleModel = new DefaultMapModel(); 
-        
-        for(Local l:this.locales){
-            LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
-            simpleModel.addOverlay(new Marker(coord, l.getNombre()));
-        }
+
     }
     
 
@@ -330,6 +326,8 @@ public class LocalController {
         this.localService.guardaLocal(local);
         this.locales = localService.findAll();
         this.localesAdmin = localService.findAllAdmin();
+        local = new Local();
+        
     }
     
 

@@ -42,6 +42,12 @@ public class Comentario implements Serializable {
     private String comentario;
    @NotNull 
     private int calificacion;
+
+    public Comentario() {
+        this.fecha = new Date();
+        this.comentario = "";
+        this.calificacion = 5;
+    }
    
 
 

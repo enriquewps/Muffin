@@ -70,6 +70,22 @@ public class Local implements Serializable {
     
     private boolean aprobado = true;
 
+    public Local() {
+        this.nombre = "";
+        this.latitud = 0;
+        this.longitud = 0;
+        this.bano = true;
+        this.rangoInferior = 10;
+        this.rangoSuperior = 200;
+        this.wifi = true;
+        this.comerOLlevar = 3;
+        this.descripcion = "";
+        this.calificacion = 5;
+        //this.foto = new byte[1];
+    }
+
+    
+    
     public Boolean getBano() {
         return bano;
     }

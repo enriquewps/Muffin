@@ -152,10 +152,8 @@
                       style="font-weight: bolder;
                       font-size: large"/>
         </p:column>
-
-
-        <p:column>
-        <h:outputText value="Internet: " 
+<br/>
+        <h:outputText value="Wifi: " 
                       style="font-weight: bolder;
                       font-size: large"/>
                 <h:outputText value="No " rendered="#{!comentarioController.local.wifi}" 
@@ -164,7 +162,11 @@
         <h:outputText value="Si " rendered="#{comentarioController.local.wifi}" 
                       style="font-weight: bolder;
                       font-size: large"/>
-        </p:column>
+               <h:outputText value="#{comentarioController.local.comeOLleva}"
+                      style="font-weight: bolder;
+                      font-size: large"/>
+
+
 
         <p:outputLabel value="Bicipuma: "
                        style="font-weight: bolder;
@@ -203,9 +205,7 @@
                       style="font-weight: bolder;
                       font-size: large"/>   
                 
-        <h:outputText value="#{comentarioController.local.comeOLleva}"
-                      style="font-weight: bolder;
-                      font-size: large"/>
+
       </h:panelGrid>
         
         
@@ -218,14 +218,12 @@
       <!-- Mapa del local -->
         
       <p:gmap id="gmap"
-              center="19.3142052,-99.1835216"
-              zoom="16" 
+              center="#{comentarioController.local.latitud},#{comentarioController.local.longitud}"
+              zoom="18" 
               type="HYBRID" 
               style="width:600px;height:400px"
-             
-              widgetVar="map"
-              disableDoubleClickZoom="true"      
-              ></p:gmap>
+              model="#{comentarioController.simpleModel}" 
+              />
       <br/>
       <script type="text/javascript" 
               src="http://maps.googleapis.com/maps/api/js"/>
@@ -371,7 +369,7 @@
                            font-size: medium;
                            background-color: blue"
                            value="Enviar"
-                           update =":comentarios"
+                           update =":comentarios, :comentar:comentario,:comentar:calificacion"
                            actionListener="#{comentarioController.guardaComentario(loginController.username)}"
                            
                            />

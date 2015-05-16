@@ -60,6 +60,7 @@ public class ComentarioController {
     @PostConstruct
     public void init(){
         //comentarioRepository.deleteAll();
+        simpleModel = new DefaultMapModel();
         if (local != null)
         comentarios = comentarioRepository.findByLocalID(local.getId());
  
@@ -189,6 +190,9 @@ public class ComentarioController {
     }
 
     public MapModel getSimpleModel() {
+        LatLng coord = new LatLng(local.getLatitud(), local.getLongitud());
+        simpleModel = new DefaultMapModel();
+        simpleModel.addOverlay(new Marker(coord,local.getNombre()));
         return simpleModel;
     }
 
