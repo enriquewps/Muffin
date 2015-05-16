@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Este local ve muchas consultas entre ellas las de busqueda avanzada por facultad, por
  * ubicacion y los comentarios de un local
- * @author Enrique
+ * @author PIXEL
  */
 public interface LocalRepository extends CrudRepository<Local, Integer>{
      @Query("SELECT l FROM Local l")

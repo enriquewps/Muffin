@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  * *Consultas para los comentarios
- * @author Enrique
+ * @author PIXEL
  */
 public interface ComentarioRepository extends CrudRepository<Comentario, Integer> {
     

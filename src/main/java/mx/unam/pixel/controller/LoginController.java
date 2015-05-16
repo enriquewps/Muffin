@@ -25,8 +25,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 /**
- *
- * @author guillermorojas
+ * Controlador que se usa para gestionar la sesion en el Sistema
+ * @author PIXEL
  */
 @Controller("loginController")
 @Scope("request")
@@ -83,26 +83,25 @@ public class LoginController {
         return rol;
     }
     
- 
-   
-    
-  public void doLogin() {
-        System.out.println("sdsdsdsdsdsddsddsdsdsds");
+    /**
+     * Inica una sesoi con los parametros indicados a Spring Security
+     */
+    public void doLogin() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-                System.out.println("1");
         RequestDispatcher dispatcher =((ServletRequest) context.getRequest()).getRequestDispatcher("/j_spring_security_check");
-        System.out.println("2");
         try {
             
             dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse)context.getResponse());
-            System.out.println("3");
             FacesContext.getCurrentInstance().responseComplete();
-            System.out.println("4");
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    /**
+     * Termina la sesion que este inciada con spring security
+     * @return la pagina a la que redirige
+     */
     public String doLogout(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index.xhtml";

@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * *Clase de modelo
- * @author Enrique
+ * @author Pixel
  */
 @Entity
 public class Usuario implements Serializable {

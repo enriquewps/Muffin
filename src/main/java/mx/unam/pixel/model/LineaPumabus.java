@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Enrique
+ * @author PIXEL
  */
 @Entity
 public class LineaPumabus implements Serializable {

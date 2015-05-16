@@ -27,7 +27,7 @@ import org.springframework.stereotype.Controller;
  *La clase que se encarga de las operaciones de los comentairos tales como añadir, eliminar y conseguir 
  * los comentarios que ya estan en la base datos, falta preguntarle a memo como recibimos el local y el usuario des
  * la pagina
- * @author Enrique
+ * @author PIXEL
  */
 
 @Controller("comentarioController")
@@ -56,7 +56,9 @@ public class ComentarioController {
     
         private MapModel simpleModel; // es usado en la vista del ver locales
 
-    
+    /**
+     * Inicializa las variables para ser capas de añadir comentarios a un local
+     */
     @PostConstruct
     public void init(){
         //comentarioRepository.deleteAll();
@@ -86,11 +88,23 @@ public class ComentarioController {
         return local;
     }
 
+    /**
+     *Ademas de recibir el local inicializa la lista de comentarios del controlador 
+     * con los comentarios del controlador que acaba de recibir
+     * @param local
+     */
     public void setLocal(Local local) {
         this.local = local;
-                comentarios = comentarioRepository.findByLocalID(local.getId());
+        comentarios = comentarioRepository.findByLocalID(local.getId());
 
     }
+    
+    /**
+     * Recibe tanto el local en el que se van a hacer lo comentarios como el usuario que 
+     * va  a hacer los comentarios
+     * @param local
+     * @param us
+     */
     public void setLocalUsuario(Local local,Usuario us) {
         this.local = local;
         this.usuario = us;
@@ -116,10 +130,13 @@ public class ComentarioController {
     }
 
     public void setComentario(Comentario comentario) {
-
         this.comentario = comentario;
     }
 
+    /**
+     * Se asegura de obtener los comentarios mas recientes en la base de datos
+     * @return los comentarios del local que se estan viendo
+     */
     public List<Comentario> getComentarios() {
         //local = localService.findById(local.getId());
         comentarios = localService.findComentarios(local.getId());
@@ -135,14 +152,20 @@ public class ComentarioController {
     
     
     
-    public void obtenComentarios(){
+  /* public void obtenComentarios(){
        // local = localService.findById(local.getId());
        // comentarios = local.getComentarios();
       //          comentarios = localService.findComentarios(local.getId());
         //        local.setComentarios(comentarios);
 
-    }
-    
+    }*/
+
+    /**
+     * Guarda un comentarioe en la base de datos, añade el comentario del usuario a la
+     * lista de comentarios del local y actualiza el local y su califiacion en base a 
+     * los comentarios
+     * @param username el usuario que añade el comentario
+     */
     public void guardaComentario(String username){
         
         Comentario c = comentario;
@@ -176,6 +199,11 @@ public class ComentarioController {
         
     } 
     
+    /**
+     * Elimina un ocmentario de la base de datos y actualiza la calificacion del local 
+     * despues de haberlo eliminado
+     * @param c comentario a eliminar
+     */
     public void eliminiaComentario(Comentario c){
         comentarioRepository.delete(c);
         localService.actualizaCalificacion(local);        

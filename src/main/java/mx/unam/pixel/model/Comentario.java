@@ -21,7 +21,7 @@ import org.hibernate.type.TimestampType;
 
 /**
   *Clase de modelo
- * @author Enrique
+ * @author PIXEL
  */
 @Entity
 public class Comentario implements Serializable {

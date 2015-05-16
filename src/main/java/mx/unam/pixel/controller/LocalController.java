@@ -60,7 +60,7 @@ import org.primefaces.model.map.Marker;
  * Esta clase controlla a los locales tiene una instancia de los locales en la base de dato sy ademas tiene 
  * un local que es el que se esta creando para egistrarlo en la base de datos
  * todos los demas atributos que estan en esta clase son para realizar busquedas, 
- * @author Enrique
+ * @author PIXEL
  */
 @Controller("localController")
 @Scope("session")
@@ -294,8 +294,9 @@ String[] bicipumaArray ={
         this.categorias = categorias;
     }
     
-    
-    
+    /**
+     * El metodo donde se incializan las variables para administrar y sugerir un local
+     */
     @PostConstruct
     public void init(){
  
@@ -344,7 +345,7 @@ String[] bicipumaArray ={
         metrobuses=this.localService.findAllMetrobus();
         //se va a borrar pues estan en las facultades        
         locales=this.localService.findAll();
-        top = getTop5();
+        top = getTop();
        
         facultades = localService.findAllFacultades();
         
@@ -352,8 +353,10 @@ String[] bicipumaArray ={
 
     }
     
-
-     
+    /**
+     * De las categorias que se agregan las añade a la lista de categorias
+     * del local que esta por añadirse
+     */
     public void guardarCategoria(){
        System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
        if(local == null){this.local=new Local();
@@ -368,18 +371,18 @@ String[] bicipumaArray ={
         //this.categoria=new Categoria();   
     }
     
+    /**
+     * Añade a la base de datos un local nuevo verificando que tanto sus comentarios como 
+     * categorias esten enlazados correctamente e incializa los campos para que se pueda 
+     * añadir un nuevo local
+     */
     public void guardarLocal(){
-        System.out.println("local "+local.getNombre()+
-                " categorias "+local.getCategorias().size()+
-                " facultad: "+facultad+
-                " fot es null: "+local.getFoto()== null);
+
                
         for(Facultad f:facultades){
-            System.out.println("comparando facultades:"+facultad+" comparado a: "+f.getNombreFac());
 
             if(f.getNombreFac().equals(busqueda)){
                 local.setFacultad(f);
-                System.out.println("Se encontro la facultad antes de guardar");
                 break;
             }
         }
@@ -389,7 +392,6 @@ String[] bicipumaArray ={
         this.localService.guardaLocal(local);
         
         this.locales=localService.findAll();
-    /***************************************/
         this.local=new Local();
                this.local.setCalificacion(5);
         this.local.setCategorias(new ArrayList<Categoria>());
@@ -400,50 +402,10 @@ String[] bicipumaArray ={
         
     }
     
-    public void guaradLocalProvisional(){
-    System.out.println("local "+local.getNombre()+
-                " categorias "+local.getCategorias().size()+
-                " facultad: "+facultad+
-                " fot es null: "+local.getFoto()== null);
-    
-    Facultad fac;
-    
-               
-        for(Facultad f:facultades){
-            System.out.println("comparando facultades:"+facultad+" comparado a: "+f.getNombreFac());
-
-            if(f.getNombreFac().equals(busqueda)){
-                local.setFacultad(f);
- 
-                fac = f;
-                break;
-            }
-        }
-        int comerLlevar = (comer && llevar )? 3:(comer)? 1:2;
-        local.setComerOLlevar(comerLlevar);
-        //this.localService.guardaLocal(local);
-        this.localService.guardaFacultad(local.getFacultad());
-        
-        this.localService.creaLocal(local);
-        
-        this.locales=localService.findAll();
-    /***************************************/
-        this.local=new Local();
-               this.local.setCalificacion(5);
-        this.local.setCategorias(new ArrayList<Categoria>());
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
+    /**
+     * Si un local ya existe con esto lo actualiza en la base de datos
+     * se usa para añadir los comentarios
+     */
     public void actualizaLocal(){
         this.localService.guardaLocal(local);
         this.locales = localService.findAll();
@@ -452,9 +414,11 @@ String[] bicipumaArray ={
         
     }
     
-
-    
-    
+    /**
+     * Metodo que obtiene las coordenadas que se uaran para el local cuando
+     * este esta siendo sugerido
+     * @param event el enevnto que indica las coordenadas
+     */
     public void seleccion(PointSelectEvent event){
         
         if(local == null){this.local=new Local(); 
@@ -468,7 +432,11 @@ String[] bicipumaArray ={
          System.out.println(""+latlng.getLat());
     }
 
-    
+    /**
+     * En base al campo busqueda de este controlador solicita al service
+     * todos los locales que conisidan con el nombre
+     * @return La lista que coincida con "busqueda" como nombre
+     */
     public List<Local> buscarPorNombre(){
         this.locales=localService.findByNombre(busqueda);
          simpleModel = new DefaultMapModel(); 
@@ -480,8 +448,13 @@ String[] bicipumaArray ={
         return locales;
     }
     
-    
-     public void busquedaAvanzada(){
+    /**
+     * En base a todos los campos de busquda si estos valores son vacios o por default 
+     * no se realiza su busqueda, y si tiene valores asignados si se realiza la busqueda
+     * en base a esos valores y se actualiza la lista "locales" que se muestra con los 
+     * resultados de la consulta
+     */
+    public void busquedaAvanzada(){
         this.locales = localService.busquedaAvanzada(nombre,
                 rangoInferior, rangoSuperior, wifi, estacionamiento,busquedaFacultad,
                 pumabus, bicipuma, metrobus,bano,categoriaBusqueda);         
@@ -504,28 +477,9 @@ String[] bicipumaArray ={
         }
     }
     
-     
-
-     
-    public void busquedaPunto(PointSelectEvent event){
-        simpleModel = new DefaultMapModel(); 
-        LatLng latlng = event.getLatLng();
-
-        Circle circle = new Circle(latlng, 1000);
-        circle.setStrokeColor("#00003c");
-        circle.setFillColor("#00003c");
-        circle.setFillOpacity(0.2);
-         
-        simpleModel.addOverlay(circle);
-        
-         this.locales=localService.findByPunto(latlng.getLat(),latlng.getLng());
-       
-        for(Local l:this.locales){
-            LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 
-            simpleModel.addOverlay(new Marker(coord, l.getNombre()));
-        }
-    }
-    
+    /**
+     * Elimina un local de la base de datos 
+     */
     public void borraLocal(){
         
          localService.eliminaLocal(local);
@@ -538,7 +492,11 @@ String[] bicipumaArray ={
         }
      }
     
-    
+    /**
+     * Recibe la foto que se añade a la descripcion de un local
+     * y la guarda en el campo correspondiente
+     * @param event
+     */
     public void handleFileUpload(FileUploadEvent event) {
         
         if(local == null){this.local=new Local();
@@ -547,7 +505,6 @@ String[] bicipumaArray ={
 
         }
             UploadedFile file=event.getFile();
-            System.out.println("aqui se supone qu se sube la foto que es :"+(file.getContents() == null));
             this.local.setFoto( file.getContents());   
     }
      
@@ -813,22 +770,10 @@ String[] bicipumaArray ={
         this.local = l;
     }
     
-    public List<Local> getTop5(){
-        Collections.sort(locales,new Comparator<Local>() {
-
-            @Override
-            public int compare(Local o1, Local o2) {
-                if (o2.getCalificacion() == null)o2.setCalificacion(5);
-                if (o1.getCalificacion() == null)o1.setCalificacion(5);
-                return o2.getCalificacion().compareTo(o1.getCalificacion());
-            }
-        });
-        
-        locales = localService.findAll();
-      
-        return (locales.size()>= 5)?locales.subList(0,5):locales;
-    }
-    
+    /**
+     * Obtiene los 5 locales mejor calificados de la base de datos
+     * @return los 5 locales mejor calificados
+     */
     public List<Local> getTop() {
                 locales = localService.findAll();
 
@@ -873,7 +818,6 @@ String[] bicipumaArray ={
     }
 
     public void setCategoriaBusqueda(String categoriaBusqueda) {
-                        System.out.println(categoriaBusqueda);
 
         this.categoriaBusqueda = categoriaBusqueda;
     }
@@ -883,49 +827,9 @@ String[] bicipumaArray ={
     }
 
     public void setBano(Boolean bano) {
-                        System.out.println(bano);
         this.bano = bano;
     }
    
-    /*
-    public void guardarCategoria(){
-       System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
-       if(local == null){this.local=new Local();
-       this.local.setCalificacion(5);
-       }
-       if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
-       local.getCategorias().add(categoria);
-       categoria.setLocal(local);
-       localService.guardaCategoria(categoria);
-        //localService.guardaCategoria(categoria);
-        //this.local.getCategorias().add(categoria);
-        //this.categoria=new Categoria();   
-       
-       
-       
-               Categoria c = categoria;
-        
-                 categoria = new Categoria();
-         c.setLocal(local);
-
-         //usuario.getComentarios().add(categoria);
-         
-         
-         local.getCategorias().add(c);
-         //localService.guardaLocal(local);
-         
-         //categoriaRepository.save(local.getComentarios());
-         //localService.actualizaCalificacion(local);
-
-        // localService.actualizaCalificacion(local);
-                  localService.guardaCategoria(c);
-         local = localService.findById(local.getId());
-         
-
-         
-       
-    }*/
-
     public boolean isComer() {
         return comer;
     }

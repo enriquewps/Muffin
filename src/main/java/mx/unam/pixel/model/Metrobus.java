@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * *Clase de modelo
- * @author Enrique
+ * @author PIXEL
  */
 @Entity
 public class Metrobus implements Serializable {

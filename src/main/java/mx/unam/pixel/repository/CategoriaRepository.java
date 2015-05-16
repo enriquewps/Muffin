@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  * *Consultas para las categorias
- * @author Enrique
+ * @author PIXEL
  */
 public interface CategoriaRepository extends CrudRepository<Categoria, Integer>{
      @Query("SELECT l FROM Categoria l")

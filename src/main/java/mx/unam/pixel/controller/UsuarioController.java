@@ -43,7 +43,7 @@ import javax.faces.event.ActionEvent;
  * cuando se borra un usuario desde aqui se eliminan tambien sus ocmentarios
  * se tiene tambien una instancia de todos los usuarios que hay  y una del que se esta 
  * registrando en caso de que se este usando desde registro
- * @author Enrique
+ * @author PIXEL
  */
 @Controller("usuarioController")
 @Scope("session")
@@ -125,12 +125,14 @@ public class UsuarioController {
         this.usuarioRegistro = usuario;
     }
     
-    
+    /**
+     * Crea un usuario por primera vez en la base de datos
+     * @return se creo o no el usuario
+     */
     public boolean registraUsuario(){
         if(usuarios == null)
             usuarios = new ArrayList<Usuario>();
         
-        System.out.println(usuarioRegistro.getNombre() +" usuariooooooo "+usuarioRegistro.getContrasena());
         try{
         
         for (Usuario u: usuarios){
@@ -139,29 +141,29 @@ public class UsuarioController {
                 return false;
         }
         boolean creado  =this.usuarioService.crearUsuario(usuarioRegistro);
-        //this.usuarioRegistro = new Usuario();
-        //this.usuarioRegistro.setNombre("Se guardo");
+
         return creado;
         }catch(Exception e){
             this.usuarioRegistro=new Usuario();
-            this.usuarioRegistro.setNombre("NO se guardo");
-            e.printStackTrace();
+            this.usuarioRegistro.setNombre("No se guardo");
         return false;
         }
     }
-   public void borraUsuario(){
+    
+    /**
+     * Elimina un usuario de la base de datos
+     */
+    public void borraUsuario(){
         
         usuarioService.eliminaUsuario(usuarioRegistro);
-        //usuarioService.eliminaUsuario(usuario);
         usuarioRegistro = new Usuario();
         usuarios = usuarioService.findAll();
-        //usuarios.remove(usuario);// = usuarioService.findAll();
-        //usuarios.remove(usuarioRegistro);
         
     }
     
-    
-
+    /**
+     * guarda usuarios por primera vez en la base de datos
+     */
     public void guardaUsuario(){
 
         this.usuarioService.guardaUsuario(usuarioRegistro);
@@ -169,13 +171,19 @@ public class UsuarioController {
         this.usuarioRegistro = new Usuario();
     }
     
+    /**
+     * Acrtualiza la informacion de un usario, solo si es administrador o no
+     */
     public void actualizaUsuario(){
-
         this.usuarioService.actualizaUsuario(usuarioRegistro);
         this.usuarios = usuarioService.findAll();
         this.usuarioRegistro = new Usuario();
     }
 
+    /**
+     * Busca el usuario de con el campo "correoRecuperar" y si esta en la base de datos le 
+     * envia su contraseña por correo
+     */
     public void recuperaContrasena(){
         List<Usuario> u = usuarioService.findByCorreo(correoRecuperar);
         if(u!=null || u.size() > 0 ){
@@ -196,12 +204,18 @@ public class UsuarioController {
             return;
     }
     
+    /**
+     * busca usuarios en la base de datos y los guarda en la lista de usuarios del controlador
+     */
     public void buscaUsuario(){
     usuarios = usuarioService.findByNombre(busqueda);
     usuarios.addAll(usuarioService.findByCorreo(busqueda));
     usuarios.addAll(usuarioService.findByNombreUsuario(busqueda));
     }
     
+    
+    
+    //Boorar?
     public void iniciarSesion(){
         if (usuarioRegistro == null)usuarioRegistro = new Usuario();
         //System.out.println(usuario.getNombre()+" nombre y passs"+usuario.getContrasena());
@@ -214,7 +228,12 @@ public class UsuarioController {
         }
     }
     
-        public void enviaMensaje(String mensaje){
+    /**
+     * Envia por mensaje un correo con la informacion solicitada, se usa para enviar 
+     * por correo la contraseña
+     * @param mensaje
+     */
+    public void enviaMensaje(String mensaje){
         try {
             Properties props = new Properties();
             
@@ -260,27 +279,15 @@ public class UsuarioController {
     
     }
     
-    //public void eliminaUsuario(Usuario u){
-        //usuarioService.eliminaUsuario(u);
-    //}
-    
-        /*public void eliminaUsuario(){
-        for (Usuario u: usuarios){
-        if(u.getCorreo().equals(usuarioRegistro.getCorreo()) ||
-        u.getNombreUsuario().equals(usuarioRegistro.getNombreUsuario())){
-        usuarioService.eliminaUsuario(usuarioRegistro);
-        this.usuarioRegistro = new Usuario();
-        
-        }
-        }
-        
-        }*/
-        public String eliminaUsuario(){
+    /**
+     * Elimina un usuario de la base de datos, el usurio que esta en usuarioRegistro
+     * @return
+     */
+    public String eliminaUsuario(){
          this.usuarioService.eliminaUsuario(usuarioRegistro);
          this.usuarioRegistro = new Usuario();
          this.usuarios=usuarioService.findAll();
          this.usuario = new Usuario();
-         this.usuario.setNombre("ESTO ES Un ERROR");
          return "Se elimino el usuario";
      }
 
@@ -301,7 +308,10 @@ public class UsuarioController {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    
+    /**
+     * Da a d ebaja a un usuario para que la proxima que quiera inciar sesion ya no le sea posible
+     * @param username el usuario que solicita la baja
+     */
     public void solicitaBaja(String username){
         usuarioRegistro = usuarioService.findByNombreUsuario(username).get(0);
                 FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

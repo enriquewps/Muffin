@@ -20,8 +20,8 @@ import javax.mail.internet.MimeMessage;  //
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 /**
- *
- * @author Enrique
+ * 
+ * @author PIXEL
  */
 
 @Controller("mailController")

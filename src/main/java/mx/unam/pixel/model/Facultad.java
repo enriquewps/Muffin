@@ -21,7 +21,7 @@ import mx.unam.pixel.repository.BiciPumaRepository;
 
 /**
  * *Clase de modelo
- * @author Enrique
+ * @author PIXEL
  */
 @Entity
 public class Facultad implements Serializable {

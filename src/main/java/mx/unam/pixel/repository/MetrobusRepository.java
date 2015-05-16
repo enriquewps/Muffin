@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * *Consultas para el catalogo 
- * @author Enrique
+ * *Consultas para el Metrobus 
+ * @author PIXEL
  */
 public interface MetrobusRepository extends CrudRepository<Metrobus, Integer>{
     

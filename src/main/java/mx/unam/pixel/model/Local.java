@@ -35,7 +35,7 @@ import mx.unam.pixel.service.impl.LocalServiceImpl;
 
 /**
  * *Clase de modelo
- * @author Enrique
+ * @author PIXEL
  */
 @Entity
 public class Local implements Serializable {
@@ -81,7 +81,6 @@ public class Local implements Serializable {
         this.comerOLlevar = 3;
         this.descripcion = "";
         this.calificacion = 5;
-        //this.foto = new byte[1];
     }
 
     
@@ -134,11 +133,9 @@ public class Local implements Serializable {
 
     public List<Comentario> getComentarios() {
         if(comentarios == null)comentarios = new ArrayList<Comentario>();
-                    System.out.println("hay # de comentarios:"+comentarios.size());
 
         for (int i = 0 ; i < comentarios.size() ; i ++){
             Comentario aux = comentarios.get(i);
-            System.out.println("comentario id:"+aux.getId());
             for (int j = i +1 ; j < comentarios.size() ; j ++){
                 if (aux.getId()==comentarios.get(j).getId() || comentarios.get(j).getId() == null){
                     comentarios.remove(j);
@@ -146,7 +143,6 @@ public class Local implements Serializable {
                 }
             }
         }
-        System.out.println("hay # de comentarios despues del for:"+comentarios.size());
         return comentarios;
     }
 
@@ -307,19 +303,25 @@ public class Local implements Serializable {
         return "mx.unam.pixel.model.Local[ id=" + id + " ]";
     }
 
+    /**
+     * Regres la imagen del local codificada en Base 64
+     * @return
+     */
     public String getFotoUrl(){ 
             if(this!=null && this.getFoto()!=null){
-                System.out.println("no es null la imagen");
                 //BASE64.Encoder encoder = new BASE64Encoder();
                 String imageString = Base64.getEncoder().encodeToString(this.getFoto());
                 return   imageString;
             }
             else{
-                                System.out.println("SI es null la imagen");
                 return null;
             }
         }
     
+    /**
+     * Regresa la opcion de comer aqui o llevar para mostrarla al usuario
+     * @return opcion para mostrar al usuario
+     */
     public String getComeOLleva(){
         switch (comerOLlevar){
             case 1: return "Para comer Aquí   ";
@@ -330,7 +332,10 @@ public class Local implements Serializable {
         
     }
     
-    
+    /**
+     * obtiene las categorias y las pasa en una cadena
+     * @return cadena con las categorias listas para mostrarse al usuario
+     */
     public String getMenu(){
         String menu = "";
         String aux = "";

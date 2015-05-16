@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *Consultas para el catalogo 
- * @author Enrique
+ *Consultas para el catalogo de Bicipuma 
+ * @author PIXEL
  */
 public interface BiciPumaRepository extends CrudRepository<BiciPuma, Integer>{
     

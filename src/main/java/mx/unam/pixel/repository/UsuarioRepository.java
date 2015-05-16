@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *Consultas para operar con los usuarios
- * @author Enrique
+ * @author PIXEL
  */
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
      @Query("SELECT l FROM Usuario l")
