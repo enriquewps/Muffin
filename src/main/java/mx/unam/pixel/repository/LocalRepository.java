@@ -33,7 +33,13 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByNombreAdmin(String nombre);
     
-    @Query("SELECT l FROM Local l WHERE l.rangoInferior >= ? AND l.rangoSuperior<= ? AND l.aprobado = TRUE")
+    /**
+     *
+     * @param rangoInferior
+     * @param rangoSuperior
+     * @return
+     */
+    @Query("SELECT l FROM Local l WHERE l.rangoInferior >= ?1 AND l.rangoSuperior<= ?2 AND l.aprobado = TRUE")
     List<Local> findByRangoInferior(Integer rangoInferior,Integer rangoSuperior);
 
     @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ?")

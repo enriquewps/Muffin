@@ -158,7 +158,7 @@ public class LocalServiceImpl implements LocalService{
             System.out.println("Buscando por nombre:"+nombre);
             resultado = intersecta(resultado, localRepository.findByNombre(nombre));
         }
-        //resultado = intersecta(resultado, localRepository.findByRangoInferior(rangoInferior, rangoSuperior));
+        resultado = intersecta(resultado, localRepository.findByRangoInferior(rangoInferior, rangoSuperior));
         if (wifi){
                         System.out.println("Buscando por wifi:"+wifi);
         resultado = intersecta(resultado, localRepository.findByWifi());
