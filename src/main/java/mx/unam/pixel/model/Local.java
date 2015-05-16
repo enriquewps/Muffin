@@ -333,6 +333,7 @@ public class Local implements Serializable {
     public String getMenu(){
         String menu = "";
         String aux = "";
+        if (categorias == null)categorias = new ArrayList<Categoria>();
         for(Categoria c: categorias){
             aux = (c.getNombre()+"("+c.getPrecioMenor()+"~"+c.getPrecioMayor()+") - ");
             menu += (menu.contains(aux))? "": aux;
