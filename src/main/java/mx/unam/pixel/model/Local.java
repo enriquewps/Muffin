@@ -118,6 +118,15 @@ public class Local implements Serializable {
 
     public List<Comentario> getComentarios() {
         if(comentarios == null)comentarios = new ArrayList<Comentario>();
+        for (int i = 0 ; i < comentarios.size() ; i ++){
+            Comentario aux = comentarios.get(i);
+            System.out.println("comentario id:"+aux.getId());
+            for (int j = i +1 ; j > comentarios.size() ; j ++){
+                if (aux.getId().equals(comentarios.get(j).getId())){
+                    comentarios.remove(j);
+                }
+            }
+        }
         return comentarios;
     }
 

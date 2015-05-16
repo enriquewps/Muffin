@@ -30,7 +30,7 @@ public class Comentario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH,fetch =FetchType.EAGER)
     private Usuario usuario;
    @NotNull 
    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)

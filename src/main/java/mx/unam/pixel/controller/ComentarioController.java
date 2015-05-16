@@ -5,6 +5,7 @@
  */
 package mx.unam.pixel.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -89,8 +90,7 @@ public class ComentarioController {
                 comentarios = comentarioRepository.findByLocalID(local.getId());
 
     }
-    
-        public void setLocalUsuario(Local local,Usuario us) {
+    public void setLocalUsuario(Local local,Usuario us) {
         this.local = local;
         this.usuario = us;
         comentarios = comentarioRepository.findByLocalID(local.getId());
@@ -123,6 +123,7 @@ public class ComentarioController {
         //local = localService.findById(local.getId());
         comentarios = localService.findComentarios(local.getId());
                 //local.getComentarios();
+       local.setComentarios(new ArrayList<Comentario>());
         local.setComentarios(comentarios);
         return comentarios;
     }
@@ -167,6 +168,8 @@ public class ComentarioController {
                   localService.guardaComentario(c);
          local = localService.findById(local.getId());
          comentarios = local.getComentarios();
+
+         local.setComentarios(comentarios);
 
          
         

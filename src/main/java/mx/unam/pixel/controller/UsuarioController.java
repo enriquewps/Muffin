@@ -149,23 +149,18 @@ public class UsuarioController {
         return false;
         }
     }
-
-    public String borraUsuario(LoginController lg){
-        String usr=lg.getUsername();
-        
-        lg.doLogout();
-        
-        usuarioRegistro = usuarioService.findByNombreUsuario(usr).get(0);
-        
+   public void borraUsuario(){
         
         usuarioService.eliminaUsuario(usuarioRegistro);
         //usuarioService.eliminaUsuario(usuario);
         usuarioRegistro = new Usuario();
+        usuarios = usuarioService.findAll();
         //usuarios.remove(usuario);// = usuarioService.findAll();
-        usuarios.remove(usuarioRegistro);
-                FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/index.xhtml";
+        //usuarios.remove(usuarioRegistro);
+        
     }
+    
+    
 
     public void guardaUsuario(){
 

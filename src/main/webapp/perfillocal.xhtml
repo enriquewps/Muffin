@@ -388,7 +388,7 @@
                                                       update =":comentarios"
                            actionListener="#{comentarioController.guardaComentario(loginController.username)}"
                            value="Comentar Facebook"
-                           onclick="irUrl('https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%developers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://developers.facebook.com/tools/explorer&amp;name= NOmbre del local&amp;description='+getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"/>
+                           onclick="irUrl('https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%developers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://developers.facebook.com/tools/explorer&amp;name= NOmbre del local&amp;description='+'#{comentarioController.local.nombre} '+getComentario($('input[id=&quot;comentar:comentario&quot;]')[0].value))"/>
                            
                            <!--onclick="irUrl('https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%developers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://www.facebook.com/dialog/feed?app_id=145634995501895&amp;display=popup&amp;link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&amp;redirect_uri=https://developers.facebook.com/tools/explorer&amp;name= NOmbre del local&amp;description='+getComentario($('input[id=&quot;comentario&quot;]')[0].value))"/>
 -->
@@ -402,10 +402,10 @@
                            font-weight: bolder;
                            font-size: medium;
                            background-color: blue"
-                                                      update =":comentarios"
-                                                      actionListener="#{comentarioController.guardaComentario(loginController.usernameloginController.username)}"
+                           update =":comentarios"
+                           actionListener="#{comentarioController.guardaComentario(loginController.usernameloginController.username)}"
                            value="Comentar Twitter"
-                           onclick="Alerta(getComentario($('input[id=&quot;form:comentario&quot;]')[0].value))"
+                           onclick="Alerta('#{comentarioController.local.nombre}'+getComentario($('input[id=&quot;comentar:comentario&quot;]')[0].value))"
                            />
         </p:outputPanel>
       </h:panelGrid>

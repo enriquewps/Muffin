@@ -26,9 +26,8 @@ if (comentario.length > 140) {
  }
  else {
  //cambiar por nombre del local
- var twtLink = 'http://twitter.com/home?status=' +encodeURIComponent('Nombre del local(#MuffinUNAM):'+ comentario);
+ var twtLink = 'http://twitter.com/home?status=' +encodeURIComponent('(#MuffinUNAM):'+ comentario);
 //alert(twtLink);
  window.open(twtLink,'twittea','height=400,width=650');
  }
-alert(jobValue);
 }

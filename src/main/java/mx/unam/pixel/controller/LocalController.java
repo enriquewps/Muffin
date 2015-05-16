@@ -691,6 +691,8 @@ public class LocalController {
     }
     
     public List<Local> getTop() {
+                locales = localService.findAll();
+
          Collections.sort(locales,new Comparator<Local>() {
 
             @Override
