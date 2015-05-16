@@ -83,13 +83,13 @@ public class LocalServiceImpl implements LocalService{
         }
         
         
-        int precio= 100000;
+        int precio= (local.getRangoInferior() == null)? 200:local.getRangoInferior();
         for (Categoria cat: local.getCategorias()){
             if (precio > cat.getPrecioMenor())precio = cat.getPrecioMenor();
         }
         local.setRangoInferior(precio);
         
-        precio= 0;
+        precio= (local.getRangoSuperior()== null)? 0:local.getRangoSuperior();
         for (Categoria cat: local.getCategorias()){
             if (precio < cat.getPrecioMayor())precio = cat.getPrecioMayor();
         }

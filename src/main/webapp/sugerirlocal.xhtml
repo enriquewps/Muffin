@@ -34,9 +34,12 @@
                     PF('map').addOverlay(marker);
             };
         </script>
-            
-            
-          <h2>Sugerir Local</h2>
+                        <p:outputLabel rendered="#{!loginController.admin}" style="font-size: large;
+                        font-weight: bolder">
+                            Sugerir Local</p:outputLabel>
+                             <p:outputLabel rendered="#{loginController.admin}" style="font-size: large;
+                        font-weight: bolder">
+                            Agregar Local</p:outputLabel>
                   <h:form id="mapa">
           
                 <!--Panel para el primer campo "Nombre"  -->
