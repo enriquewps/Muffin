@@ -147,7 +147,129 @@ public class LocalController {
 
     
 
+String[] bicipumaArray ={
+    "anexo de ingenieria"
+    ,"arquitectura"
+    ,"bicicentro metro c.u."
+    ,"ciencias"
+    ,"ciencias politicas"
+    ,"derecho"
+    ,"estadio olimpico"
+    ,"estadio tapatio mendez"
+    ,"filosofia"
+    ,"ingenieria"
+    ,"medicina"
+    ,"quimica"
+    };
 
+    
+    String[] pumabusArray ={
+"universidad"
+,"cendi"
+,"psiquitria"
+,"quimica"
+,"cele"
+,"ingenieria"
+,"arquitectura"
+,"rectoria"
+,"psicologia"
+,"filosofia"
+,"derecho"
+,"economia"
+,"odontologia"
+,"medicina"
+,"veterinaria"
+,"instituto de geofisica"
+,"quimica conjunto d y e"
+,"ciencias a"
+,"ciencias circuito exterior"
+,"contaduria"
+,"trabajo social"
+,"metrobus cu"
+,"educacion a distancia"
+,"computo academico"
+,"ciencias b"
+,"tienda unam"
+,"ciencias politicas"
+,"investigaciones juridicas"
+,"biblioteca nacional"
+,"sala nezahualcoyotl"
+,"revalidacion de estudios"
+,"personal academico"
+,"archivo general"
+,"universum"
+,"teatro y danza"
+,"tv unam"
+,"ciencias"
+,"estadio de practicas"
+,"campos de futbol 1"
+,"jardin botanico"
+,"campos de futbol 2"
+,"psiquiatria"
+,"av. universidad"
+,"ciencias del mar y limnologia"
+,"invernadero"
+,"posgrado de ingenieria"
+,"camino verde"
+,"muca"
+,"e1"
+,"e2"
+,"e3"
+,"e4"
+,"e6"
+,"e7"
+,"e8"
+,"investigaciones biomedicas"
+,"servicios medicos"
+,"alberca olimpica"
+,"frontones"
+,"iimas"
+,"biblioteca nacional"
+,"sala nezahualcoyotl"
+,"relaciones laborales"
+,"obras y conservacion"
+,"aapaunam"
+,"udual"
+,"pista de calentamiento"
+,"pumitas"
+,"instituto de materiales"
+,"ciencias del mar"
+,"investigacion cientifica"
+,"instituto de quimica"
+    };
+
+    String [] metrobusArray= {
+        "ccu",
+        "cu",
+        "dr galvez"
+    };
+
+    String[] facultadArray = {
+        "Anexo de Ingenieria"
+,"Arquitectura"
+,"Ciencias"
+,"Ciencias Políticas y Sociales"
+,"Contaduría y Administración"
+,"Derecho"
+,"Economía"
+,"Filosofía y Letras"
+,"Ingeniería"
+,"edicina"
+,"edicina Veterinaria y Zootecnia"
+,"dontología"
+,"Psicología"
+,"Trabajo Social"
+,"Química"
+,"Zona Cultural"
+,"ciencias"
+,"onta"
+,"UAC"
+,"MUCA"
+,"Ciencias 0"
+,"Ciencias 03"
+,"Ciencias 2"
+,"Ciencias1"
+    };
     
     
     public void findLocalByID(){
@@ -359,16 +481,16 @@ public class LocalController {
     }
     
     
-     public void busquedaAvanzada(Boolean admin){
+     public void busquedaAvanzada(){
         this.locales = localService.busquedaAvanzada(nombre,
-                rangoInferior, rangoSuperior, wifi, estacionamiento,facultad,
-                pumabus, bicipuma, metrobus, admin,bano,categoriaBusqueda);         
+                rangoInferior, rangoSuperior, wifi, estacionamiento,busquedaFacultad,
+                pumabus, bicipuma, metrobus,bano,categoriaBusqueda);         
         nombre = "";
         rangoInferior = 0;
         rangoSuperior = 200;
         wifi = false;
         estacionamiento = false;
-        facultad = "";
+        busquedaFacultad = "";
         pumabus = "";
         bicipuma = "";
         metrobus = "";
@@ -434,7 +556,7 @@ public class LocalController {
     }
 
     public void setFacultad(String facultad) {
-        System.out.println("nombre de facultad seleccionada "+facultad);
+        System.out.println(facultad);
         this.facultad = facultad;
     }
 
@@ -533,6 +655,7 @@ public class LocalController {
     }
 
     public void setNombre(String nombre) {
+        System.out.println(nombre);
         this.nombre = nombre;
     }
 
@@ -551,6 +674,8 @@ public class LocalController {
     }
 
     public void setRangoInferior(Integer rangoInferior) {
+                System.out.println(rangoInferior);
+
         this.rangoInferior = rangoInferior;
     }
 
@@ -559,6 +684,8 @@ public class LocalController {
     }
 
     public void setRangoSuperior(Integer rangoSuperior) {
+                        System.out.println(rangoSuperior);
+
         this.rangoSuperior = rangoSuperior;
     }
 
@@ -567,6 +694,8 @@ public class LocalController {
     }
 
     public void setWifi(Boolean wifi) {
+                        System.out.println(wifi+"");
+
         this.wifi = wifi;
     }
 
@@ -575,6 +704,8 @@ public class LocalController {
     }
 
     public void setEstacionamiento(Boolean estacionamiento) {
+                        System.out.println(estacionamiento);
+
         this.estacionamiento = estacionamiento;
     }
 
@@ -591,6 +722,8 @@ public class LocalController {
     }
 
     public void setBusquedaFacultad(String busquedaFacultad) {
+                        System.out.println(busquedaFacultad);
+
         this.busquedaFacultad = busquedaFacultad;
     }
 
@@ -599,6 +732,8 @@ public class LocalController {
     }
 
     public void setPumabus(String pumabus) {
+                        System.out.println(pumabus);
+
         this.pumabus = pumabus;
     }
 
@@ -607,6 +742,8 @@ public class LocalController {
     }
 
     public void setBicipuma(String bicipuma) {
+                        System.out.println(bicipuma);
+
         this.bicipuma = bicipuma;
     }
 
@@ -615,6 +752,8 @@ public class LocalController {
     }
 
     public void setMetro(String metro) {
+                        System.out.println(metro);
+
         this.metro = metro;
     }
 
@@ -623,6 +762,8 @@ public class LocalController {
     }
 
     public void setMetrobus(String metrobus) {
+                        System.out.println(metrobus);
+
         this.metrobus = metrobus;
     }
 
@@ -732,6 +873,8 @@ public class LocalController {
     }
 
     public void setCategoriaBusqueda(String categoriaBusqueda) {
+                        System.out.println(categoriaBusqueda);
+
         this.categoriaBusqueda = categoriaBusqueda;
     }
 
@@ -740,6 +883,7 @@ public class LocalController {
     }
 
     public void setBano(Boolean bano) {
+                        System.out.println(bano);
         this.bano = bano;
     }
    
@@ -797,6 +941,41 @@ public class LocalController {
     public void setLlevar(boolean llevar) {
         this.llevar = llevar;
     }
+
+    public String[] getBicipumaArray() {
+        return bicipumaArray;
+    }
+
+    public void setBicipumaArray(String[] bicipumaArray) {
+        this.bicipumaArray = bicipumaArray;
+    }
+
+    public String[] getPumabusArray() {
+        return pumabusArray;
+    }
+
+    public void setPumabusArray(String[] pumabusArray) {
+        this.pumabusArray = pumabusArray;
+    }
+
+    public String[] getMetrobusArray() {
+        return metrobusArray;
+    }
+
+    public void setMetrobusArray(String[] metrobusArray) {
+        this.metrobusArray = metrobusArray;
+    }
+
+    public String[] getFacultadArray() {
+        return facultadArray;
+    }
+
+    public void setFacultadArray(String[] facultadArray) {
+        this.facultadArray = facultadArray;
+    }
+    
+    
+    public void ajaxListener(){};
     
     
 }

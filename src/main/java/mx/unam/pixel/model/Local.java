@@ -301,6 +301,7 @@ public class Local implements Serializable {
         return true;
     }
 
+
     @Override
     public String toString() {
         return "mx.unam.pixel.model.Local[ id=" + id + " ]";

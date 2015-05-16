@@ -21,8 +21,8 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
      @Override
     List<Local> findAll();
     
-    @Query("SELECT l FROM Local l WHERE l.bano = ? AND l.aprobado = TRUE")
-    List<Local> findByBano(Boolean bano);
+    @Query("SELECT l FROM Local l WHERE l.bano = TRUE AND l.aprobado = TRUE")
+    List<Local> findByBano();
     
     @Query("SELECT l FROM Local l WHERE l.bano = ? ")
     List<Local> findByBanoAdmin(Boolean bano);
@@ -33,7 +33,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT('%',?,'%')")
     List<Local> findByNombreAdmin(String nombre);
     
-    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ? AND l.aprobado = TRUE")
+    @Query("SELECT l FROM Local l WHERE l.rangoInferior >= ? AND l.rangoSuperior<= ? AND l.aprobado = TRUE")
     List<Local> findByRangoInferior(Integer rangoInferior,Integer rangoSuperior);
 
     @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ?")
@@ -42,7 +42,7 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     @Query("SELECT loc FROM Local loc WHERE loc.wifi = true AND loc.aprobado = TRUE")
     List<Local> findByWifi();
 
-    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1) AND loc.aprobado = TRUE")
+    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento != 0 ) AND loc.aprobado = TRUE")
     List<Local> findByEstacionamiento();
 
     @Query("SELECT loc FROM Local loc WHERE loc.wifi = true")

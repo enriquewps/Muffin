@@ -134,71 +134,75 @@ public class LocalServiceImpl implements LocalService{
     public List<Local> busquedaAvanzada(String nombre,
             Integer rangoInferior, Integer rangoSuperior, Boolean wifi, Boolean estacionamiento,
             String facultad, String pumabus, String bicipuma,
-            String metrobus, Boolean admin, Boolean bano,String categoria){
+            String metrobus,  Boolean bano,String categoria){
         
-        List<Local> resultado;
+        
+        
+        System.out.println("los criterios de busqueda son:"
+                + "\nnombre:"+nombre+
+                "\ninferior:"+rangoInferior+
+                "\nsuperior:"+rangoSuperior+
+                "\nwifi:"+wifi+
+                "\nestacionamiento:"+estacionamiento+
+                "\nfacultad:"+facultad+
+                "\npumabus:"+pumabus+
+                "\nbicipuma:"+bicipuma+
+                "\nmetrobus:"+metrobus+
+                "\nnaño:"+bano+
+                "\ncategoria:"+categoria);
+        
+      List<Local> resultado = new ArrayList<Local>();
 
-        if(admin){
-            resultado = localRepository.findAll();
-            if(nombre != "")
-                resultado = intersecta(resultado,localRepository.findByNombreAdmin(nombre));
-            
-            resultado = intersecta(resultado,localRepository.findByBanoAdmin(bano));
-            if(categoria != "")
-                resultado = intersecta(resultado,localRepository.findByCategoriaAdmin(categoria));
-            resultado = intersecta(resultado,localRepository.findByRangoInferiorAdmin(rangoInferior, rangoSuperior));
-            if(wifi)
-                resultado = intersecta(resultado,localRepository.findByWifiAdmin());
-            if(estacionamiento)
-                resultado = intersecta(resultado,localRepository.findByEstacionamientoAdmin());
-            if(facultad != "")
-                resultado = intersecta(resultado,localRepository.findByFacultadAdmin(facultad));
-            if(pumabus != "")
-                resultado = intersecta(resultado,localRepository.findByPumabusAdmin(pumabus));
-            if(bicipuma != "")
-                resultado = intersecta(resultado,localRepository.findByBiciPumaAdmin(bicipuma));
-            if(metrobus != "")
-                resultado = intersecta(resultado,localRepository.findByBiciPumaAdmin(metrobus));
-            return resultado;
-        }else{
-            resultado = localRepository.findByAprobado(true);
-            if(nombre != "")
-                resultado = intersecta(resultado,localRepository.findByNombre(nombre));
-            resultado = intersecta(resultado,localRepository.findByBano(bano));
-            if(categoria != "")
-                resultado = intersecta(resultado,localRepository.findByCategoria(categoria));
-            resultado = intersecta(resultado,localRepository.findByRangoInferior(rangoInferior, rangoSuperior));
-            if(wifi)
-                resultado = intersecta(resultado,localRepository.findByWifi());
-            if(estacionamiento)
-                resultado = intersecta(resultado,localRepository.findByEstacionamiento());
-            if(facultad != "")
-                resultado = intersecta(resultado,localRepository.findByFacultad(facultad));
-            if(pumabus != "")
-                resultado = intersecta(resultado,localRepository.findByPumabus(pumabus));
-            if(bicipuma != "")
-                resultado = intersecta(resultado,localRepository.findByBiciPuma(bicipuma));
-            if(metrobus != "")
-                resultado = intersecta(resultado,localRepository.findByMetroBus(metrobus));
-        return resultado;
+        resultado = localRepository.findByAprobado(true);
+        if(!nombre.equals("")){
+            System.out.println("Buscando por nombre:"+nombre);
+            resultado = intersecta(resultado, localRepository.findByNombre(nombre));
         }
+        //resultado = intersecta(resultado, localRepository.findByRangoInferior(rangoInferior, rangoSuperior));
+        if (wifi){
+                        System.out.println("Buscando por wifi:"+wifi);
+        resultado = intersecta(resultado, localRepository.findByWifi());
+        }if(estacionamiento){
+                        System.out.println("Buscando por  estacionamiento:"+estacionamiento);
+            resultado = intersecta(resultado, localRepository.findByEstacionamiento());
+        }if(!facultad.equals("")){
+                        System.out.println("Buscando por facultad:"+facultad);
+            resultado = intersecta(resultado, localRepository.findByFacultad(facultad));
+        }if(!pumabus.equals("")){
+                        System.out.println("Buscando por pumabis:"+pumabus);
+            resultado = intersecta(resultado, localRepository.findByPumabus(pumabus));
+        }if(!bicipuma.equals("")){
+                        System.out.println("Buscando por bicipuma:"+bicipuma);
+            resultado = intersecta(resultado, localRepository.findByBiciPuma(bicipuma));
+        }if(!metrobus.equals("")){
+                        System.out.println("Buscando por metrobus:"+metrobus);
+            resultado = intersecta(resultado, localRepository.findByMetroBus(metrobus));
+        }if(bano){    
+                        System.out.println("Buscando por bano:"+bano);
+        resultado = intersecta(resultado, localRepository.findByBano());
+        }if(!categoria.equals("")){
+                        System.out.println("Buscando por categoria:"+categoria);
+            resultado = intersecta(resultado, localRepository.findByCategoria(categoria));
+        }
+        return resultado;
+    
     }
 
-
+    
     private List<Local> intersecta(List<Local> lista1,List<Local> lista2){
-        if(lista1 == null)
-            return lista2;
-        if(lista2 == null)
-            return lista1;
-        
+        List<Local> temp = new ArrayList<Local>();
+
         List<Local> resultado = new ArrayList<Local>();
         
-        for (Iterator<Local> it = lista1.iterator(); it.hasNext();) {
-            Local local = it.next();
-            if(lista2.contains(local))
-                resultado.add(local);
+        for (Local l1 : lista1) {
+            for (Local l2:lista2)
+            if(l1.getId() == l2.getId()) {
+                temp.add(l1);
+                
+            }
         }
-        return resultado;
+        
+        return temp;
     }
 
     @Override

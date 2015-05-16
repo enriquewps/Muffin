@@ -52,7 +52,7 @@
                           style="font-weight: bolder;
                           font-size: large"
                           />
-            <p:selectBooleanCheckbox value="#{localController.bano}"/>
+            <p:selectBooleanCheckbox value="#{localController.bano}" immediate="true"/>
           </p:column>
             
           <p:column>
@@ -74,13 +74,13 @@
                          style="font-weight: bolder;
                          font-size: large"/>
           <p:selectOneMenu id="categoria"
-                           value="#{dropdownView.country}"
+                           value="#{localController.categoriaBusqueda}"
                            style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
+              <p:ajax listener="#{localController.ajaxListener()}"/>
               <f:selectItem itemLabel="Seleccione categoria"
                             itemValue=""
                             noSelectionOption="true" />
-              <f:selectItems value="#{localController.categoriaBusqueda}" />
+              <f:selectItems value="#{localController.categorias}" />
           </p:selectOneMenu>
 
           <br/>
@@ -89,12 +89,13 @@
           <p:outputLabel value="Bicipuma: "
                          style="font-weight: bolder;
                          font-size: large"/>
-          <p:selectOneMenu id="bicipuma" value="#{dropdownView.country}" style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
+          <p:selectOneMenu id="bicipuma" value="#{localController.bicipuma}" style="width:160px">
               <f:selectItem itemLabel="Seleccione Bicipuma"
                             itemValue=""
                             noSelectionOption="true" />
-              <f:selectItems value="#{localController.bicipuma}" />
+                            <p:ajax listener="#{localController.ajaxListener()}"/>
+
+              <f:selectItems value="#{localController.bicipumaArray}" />
           </p:selectOneMenu>
 
           <br/>
@@ -103,13 +104,14 @@
                          style="font-weight: bolder;
                          font-size: large"/>
           <p:selectOneMenu id="pumabus"
-                           value="#{dropdownView.country}"
+                           value="#{localController.pumabus}"
                            style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
               <f:selectItem itemLabel="Seleccione Pumabus"
                             itemValue=""
                             noSelectionOption="true" />
-              <f:selectItems value="#{localController.pumabus}" />
+                            <p:ajax listener="#{localController.ajaxListener()}"/>
+
+              <f:selectItems value="#{localController.pumabusArray}" />
           </p:selectOneMenu>
 
           <br/>
@@ -117,12 +119,13 @@
           <p:outputLabel value="Metrobus: "
                          style="font-weight: bolder;
                          font-size: large"/>
-          <p:selectOneMenu id="metrobus" value="#{dropdownView.country}" style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
+          <p:selectOneMenu id="metrobus" value="#{localController.metrobus}" style="width:160px">
               <f:selectItem itemLabel="Seleccione Metrobus"
                             itemValue=""
                             noSelectionOption="true" />
-              <f:selectItems value="#{localController.metrobus}" />
+                            <p:ajax listener="#{localController.ajaxListener()}"/>
+
+              <f:selectItems value="#{localController.metrobusArray}" />
           </p:selectOneMenu>
 
           <br/>
@@ -131,15 +134,16 @@
                          style="font-weight: bolder;
                          font-size: large"/>
           <p:selectOneMenu id="facultad"
-                           value="#{dropdownView.country}"
+                           value="#{localController.busquedaFacultad}"
                            style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
               <f:selectItem itemLabel="Seleccione Facultad"
                             itemValue=""
                             noSelectionOption="true" />
-              <f:selectItems value="#{localController.facultad}" />
+                            <p:ajax listener="#{localController.ajaxListener()}"/>
+
+              <f:selectItems value="#{localController.facultadArray}" />
           </p:selectOneMenu>
-                 <h:inputHidden  id="inferior" value="#{localController.rangoInferior}"  />
+          <h:inputHidden  id="inferior" value="#{localController.rangoInferior}"  />
                  <h:inputHidden  id="superior" value="#{localController.rangoSuperior}"  />
 
           </h:panelGrid>
@@ -155,8 +159,8 @@
                     -webkit-box-shadow: none!important;
                     -moz-box-shadow: none!important;
                     box-shadow: none!important;"
-
-                    actionListener="#{localController.busquedaAvanzada(loginController.admin)}"
+                    update=":form"
+                    actionListener="#{localController.busquedaAvanzada()}"
                    action="buscar"/>
         
         </p:tab>
@@ -169,10 +173,9 @@
       <!-- Sección Locales -->
       
       
-      <!--<p:outputLabel value="#{localController.buscarPorNombre(localController.busqueda,loginController.admin)}"/>-->
     <h:form id="form">
             
-        <p:dataScroller  value="#{localController.buscarPorNombre(localController.busqueda,loginController.admin)}" 
+        <p:dataScroller  value="#{localController.locales}" 
                           id="locales"
                           var="_local"
                           style="width: 800px"
