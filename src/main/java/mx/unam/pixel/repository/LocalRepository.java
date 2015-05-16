@@ -24,32 +24,22 @@ public interface LocalRepository extends CrudRepository<Local, Integer>{
     @Query("SELECT l FROM Local l WHERE l.bano = ? AND l.aprobado = TRUE")
     List<Local> findByBano(Boolean bano);
     
-    @Query("SELECT l FROM Local l WHERE l.bano = ? ")
-    List<Local> findByBanoAdmin(Boolean bano);
+
     
     @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT('%',?,'%') AND loc.aprobado = TRUE")
     List<Local> findByNombre(String nombre);
 
-    @Query("SELECT loc FROM Local loc WHERE loc.nombre LIKE CONCAT('%',?,'%')")
-    List<Local> findByNombreAdmin(String nombre);
+
     
-    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ? AND l.aprobado = TRUE")
+    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ?1 AND l.rangoSuperior< ?2 AND l.aprobado = TRUE")
     List<Local> findByRangoInferior(Integer rangoInferior,Integer rangoSuperior);
 
-    @Query("SELECT l FROM Local l WHERE l.rangoInferior > ? AND l.rangoSuperior< ?")
-    List<Local> findByRangoInferiorAdmin(Integer rangoInferior,Integer rangoSuperior);
-    
-    @Query("SELECT loc FROM Local loc WHERE loc.wifi = true AND loc.aprobado = TRUE")
-    List<Local> findByWifi();
+     
+    @Query("SELECT loc FROM Local loc WHERE loc.wifi = ? AND loc.aprobado = TRUE")
+    List<Local> findByWifi(Boolean w);
 
-    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1) AND loc.aprobado = TRUE")
-    List<Local> findByEstacionamiento();
-
-    @Query("SELECT loc FROM Local loc WHERE loc.wifi = true")
-    List<Local> findByWifiAdmin();
-
-    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = 1)")
-    List<Local> findByEstacionamientoAdmin();
+    @Query("SELECT loc FROM Local loc WHERE loc.facultad IN (SELECT f FROM Facultad f WHERE f.estacionamiento = ? ) AND loc.aprobado = TRUE")
+    List<Local> findByEstacionamiento(Integer i);
 
     @Query("SELECT loc FROM Local loc WHERE loc.aprobado = ? ")
     List<Local> findByAprobado(Boolean b);

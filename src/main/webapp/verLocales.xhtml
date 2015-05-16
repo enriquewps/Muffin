@@ -26,7 +26,7 @@
                           font-size: large"/>
           <p:inputText id="campobusqueda"
                        
-                       value="#{localController.nombre}"
+                       value="#{localController.busqueda}"
                        />
 
           <br/>
@@ -35,7 +35,7 @@
                         value="Rango de precios: - "
                         style="font-weight: bolder;
                         font-size: large"/>
-          <p:slider  minValue="10"
+          <p:slider  minValue="0"
                      maxValue="200" 
                      for="inferior,superior" 
                      display="rango"
@@ -73,14 +73,12 @@
           <p:outputLabel for="categoria" value="Categoria: "
                          style="font-weight: bolder;
                          font-size: large"/>
+          
           <p:selectOneMenu id="categoria"
-                           value="#{dropdownView.country}"
+                           value="#{localController.categoriaBusqueda}"
                            style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
-              <f:selectItem itemLabel="Seleccione categoria"
-                            itemValue=""
-                            noSelectionOption="true" />
-              <f:selectItems value="#{localController.categoriaBusqueda}" />
+              <f:selectItem itemLabel="Seleccione categoria" itemValue=""/>
+              <f:selectItems value="#{localController.listaCategorias}" />
           </p:selectOneMenu>
 
           <br/>
@@ -89,12 +87,11 @@
           <p:outputLabel value="Bicipuma: "
                          style="font-weight: bolder;
                          font-size: large"/>
-          <p:selectOneMenu id="bicipuma" value="#{dropdownView.country}" style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
-              <f:selectItem itemLabel="Seleccione Bicipuma"
-                            itemValue=""
-                            noSelectionOption="true" />
-              <f:selectItems value="#{localController.bicipuma}" />
+          <p:selectOneMenu id="bicipuma"
+                           value="#{localController.categoriaBusqueda}"
+                           style="width:160px">
+              <f:selectItem itemLabel="Seleccione categoria" itemValue=""/>
+              <f:selectItems value="#{localController.listaCategorias}" />
           </p:selectOneMenu>
 
           <br/>
@@ -103,13 +100,10 @@
                          style="font-weight: bolder;
                          font-size: large"/>
           <p:selectOneMenu id="pumabus"
-                           value="#{dropdownView.country}"
+                           value="#{localController.categoriaBusqueda}"
                            style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
-              <f:selectItem itemLabel="Seleccione Pumabus"
-                            itemValue=""
-                            noSelectionOption="true" />
-              <f:selectItems value="#{localController.pumabus}" />
+              <f:selectItem itemLabel="Seleccione categoria" itemValue=""/>
+              <f:selectItems value="#{localController.listaCategorias}" />
           </p:selectOneMenu>
 
           <br/>
@@ -117,12 +111,11 @@
           <p:outputLabel value="Metrobus: "
                          style="font-weight: bolder;
                          font-size: large"/>
-          <p:selectOneMenu id="metrobus" value="#{dropdownView.country}" style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
-              <f:selectItem itemLabel="Seleccione Metrobus"
-                            itemValue=""
-                            noSelectionOption="true" />
-              <f:selectItems value="#{localController.metrobus}" />
+          <p:selectOneMenu id="metrobus"
+                           value="#{localController.categoriaBusqueda}"
+                           style="width:160px">
+              <f:selectItem itemLabel="Seleccione categoria" itemValue=""/>
+              <f:selectItems value="#{localController.listaCategorias}" />
           </p:selectOneMenu>
 
           <br/>
@@ -131,20 +124,20 @@
                          style="font-weight: bolder;
                          font-size: large"/>
           <p:selectOneMenu id="facultad"
-                           value="#{dropdownView.country}"
+                           value="#{localController.categoriaBusqueda}"
                            style="width:160px">
-              <p:ajax listener="#{dropdownView.onCountryChange}" />
-              <f:selectItem itemLabel="Seleccione Facultad"
-                            itemValue=""
-                            noSelectionOption="true" />
-              <f:selectItems value="#{localController.facultad}" />
+              <f:selectItem itemLabel="Seleccione categoria" itemValue=""/>
+              <f:selectItems value="#{localController.listaCategorias}" />
           </p:selectOneMenu>
+
+
+          </h:panelGrid>
                  <h:inputHidden  id="inferior" value="#{localController.rangoInferior}"  />
                  <h:inputHidden  id="superior" value="#{localController.rangoSuperior}"  />
 
-          </h:panelGrid>
-        
-          <p:commandButton value="Buscar" 
+               
+          <p:commandButton ajax="true"
+              value="Buscar" 
                    style="background-color: red!important;
                     background-image: none!important;
                     color: black!important;
@@ -155,24 +148,23 @@
                     -webkit-box-shadow: none!important;
                     -moz-box-shadow: none!important;
                     box-shadow: none!important;"
+                    action="buscar"
+                    actionListener="#{localController.busquedaAvanzada}"
+                   />
 
-                    actionListener="#{localController.busquedaAvanzada(loginController.admin)}"
-                   action="buscar"/>
-        
         </p:tab>
         
       </p:accordionPanel>
  
       <p:separator />
-        
+
     </h:form>
       <!-- Sección Locales -->
       
       
-      <!--<p:outputLabel value="#{localController.buscarPorNombre(localController.busqueda,loginController.admin)}"/>-->
     <h:form id="form">
             
-        <p:dataScroller  value="#{localController.buscarPorNombre(localController.busqueda,loginController.admin)}" 
+        <p:dataScroller  value="#{localController.locales}" 
                           id="locales"
                           var="_local"
                           style="width: 800px"

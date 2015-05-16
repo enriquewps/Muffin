@@ -30,5 +30,4 @@ if (comentario.length > 140) {
 //alert(twtLink);
  window.open(twtLink,'twittea','height=400,width=650');
  }
-alert(jobValue);
 }

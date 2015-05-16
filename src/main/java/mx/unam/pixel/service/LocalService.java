@@ -30,12 +30,12 @@ public interface LocalService {
     List<Local> busquedaAvanzada(String nombre,
             Integer rangoInferior, Integer rangoSuperior, Boolean wifi, Boolean estacionamiento,
             String facultad, String pumabus, String bicipuma,
-            String metrobus, Boolean admin, Boolean bano,String categoria);
+            String metrobus, Boolean bano,String categoria);
 
     
     List<Local> findByPunto(Double lat,Double lon);
     
-    List<Local> findByNombre(String nombre,Boolean admin);
+    List<Local> findByNombre(String nombre);
 
     List<Pumabus> findAllPumabus();
 

@@ -156,7 +156,10 @@ public class Facultad implements Serializable {
     
     public String getParadasMetrobus(){
         String pb="";
-                if (metroBus == null)metroBus = new ArrayList<Metrobus>();
+        if (metroBus == null)metroBus = new ArrayList<Metrobus>();
+        Metrobus mb = new Metrobus();
+        mb.setNombre("metrobus Filosofia");
+        metroBus.add(mb);
         for (Metrobus bici : metroBus)
             pb+=bici.getNombre()+" - ";
         return pb.equals("")? "Sin estaciones":pb;
