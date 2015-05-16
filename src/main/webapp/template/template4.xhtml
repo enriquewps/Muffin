@@ -56,7 +56,7 @@
                       actionListener="#{loginController.doLogout()}"/>
                         <p:menuitem value="Solicitar Baja"
                       rendered ="#{loginController.loged}">
-                <p:commandButton value="Solicitar baja" actionListener="#{usuarioController.borraUsuario(loginController)}" >
+                            <p:commandButton value="Solicitar baja" actionListener="#{usuarioController.solicitaBaja(loginController.username)}" >
                       <p:confirm header="Confirmar"  icon="ui-icon-alert" />
                 </p:commandButton>
                          <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">

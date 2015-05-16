@@ -300,5 +300,16 @@ public class UsuarioController {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+    
+    
+    public void solicitaBaja(String username){
+        usuarioRegistro = usuarioService.findByNombreUsuario(username).get(0);
+                FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+        usuarioService.eliminaUsuario(usuarioRegistro);
+        //usuarioService.eliminaUsuario(usuario);
+        usuarioRegistro = new Usuario();
+        usuarios = usuarioService.findAll();
+    }
         
 }
