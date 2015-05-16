@@ -8,7 +8,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
         
-  <ui:composition template="/template/template.xhtml" >
+  <ui:composition template="/template/template3.xhtml" >
     <ui:define name="content">
      
 
@@ -32,7 +32,7 @@
           
       <br/><br/>
 
-          <p:gmap center="19.3142052,-99.1835216" 
+      <p:gmap center="#{localController.local.latitud},#{localController.local.longitud}" 
                   zoom="15" 
                   type="HYBRID" 
                   style="width:600px;height:400px"
@@ -63,37 +63,16 @@
           </script>
           
       
-        
-            
-            <p:dataScroller  value="#{localController.localesAdmin}" 
-                          id="locales"
-                          var="_local"
-                          style="width: 400px"
-                          chunkSize="6"
-                          >
-                
-            <p:outputLabel value="Categoria: " 
+               <p:outputLabel value="Categorias: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            
-            <h:outputText value="#{_local.nombre}" />
-            
-            </p:dataScroller>
-            
-          <p:dataScroller  value="#{localController.categoriasAdmin}" 
-                          id="categorias"
-                          var="_categoria"
-                          style="width: 800px"
-                          chunkSize="6"
-                          >
-            <p:outputLabel value="Categoria: " 
+               <p:outputLabel value="#{localController.local.menu}" 
                            style="font-size: medium;
                           font-weight: bolder"/>
+   
             
-            <h:outputText value="#{_categoria.nombre}" />
             
-                   <p:separator/>
-                   </p:dataScroller>
+         
         
           <h:panelGrid columns="2" cellpadding="1">
               
@@ -104,20 +83,43 @@
                            value="Especialidad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <h:outputText value="#{localController.local.recomendacion.nombre}" />
+            <p:outputLabel value="#{localController.local.recomendacion.nombre}"
+                         style="font-size: medium;
+                          font-weight: bolder"/>
 
            
             
             <p:outputLabel for="especialidad" value="Facultad: " 
                            style="font-size: medium;
                           font-weight: bolder"/>
-            <p:outputLabel id="facultad" value="#{localController.local.facultad.nombreFac}" />
+            <p:outputLabel id="facultad" value="#{localController.local.facultad.nombreFac}" style="font-size: medium;
+                          font-weight: bolder"/>
             
-                    <h:outputText value="Baño: " />
-                    <p:selectBooleanCheckbox value="#{localController.local.aprobado}" />
-                    <!--CAMBIARLO PARA CUANDO SE TENGO BAÑO EN LOCAL-->
-                    <h:outputText value="WIFI: " />
-                    <p:selectBooleanCheckbox value="#{localController.wifi}" />            
+                           <p:column>
+        <p:outputLabel value="Baño: " style="font-size: medium;
+                          font-weight: bolder"/>
+        <p:outputLabel value="Si   " 
+                      rendered="#{localController.local.bano}"
+                      style="font-size: medium;
+                          font-weight: bolder"/>
+                <p:outputLabel value="No   " 
+                      rendered="#{!localController.local.bano}"
+                      style="font-size: medium;
+                          font-weight: bolder"/>
+        </p:column>
+                          <p:column>
+        <p:outputLabel value="Wifi: " 
+                    style="font-size: medium;
+                          font-weight: bolder"/>
+        <p:outputLabel value="Si   " 
+                      rendered="#{localController.local.wifi}"
+                      style="font-size: medium;
+                          font-weight: bolder"/>
+                <p:outputLabel value="No   " 
+                              rendered="#{!localController.local.wifi}"
+                      style="font-size: medium;
+                          font-weight: bolder"/>
+        </p:column>            
             
                            <h:outputText  value="Foto" style="font-size: medium;
                           font-weight: bolder"/>
@@ -137,7 +139,7 @@
             <p:outputLabel id="comentario" value="#{localController.local.descripcion}" />
 
                    
-             <h:outputText value="Aprobado: " 
+             <p:outputLabel value="Aprobado: " 
                                 style="font-size: medium;
                                  font-weight: bolder"/>
              <p:selectBooleanCheckbox value="#{localController.local.aprobado}"  />
@@ -181,7 +183,7 @@
                         
                             
                                  <p:commandButton ajax="false"
-                                          value="Eliminar Usuario"
+                                          value="Eliminar Local"
                                           style="-webkit-box-shadow: none!important;
                                   -moz-box-shadow: none!important;
                                   box-shadow: none!important;
