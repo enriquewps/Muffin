@@ -123,14 +123,14 @@ public class Local implements Serializable {
         for (int i = 0 ; i < comentarios.size() ; i ++){
             Comentario aux = comentarios.get(i);
             System.out.println("comentario id:"+aux.getId());
-            for (int j = i +1 ; j > comentarios.size() ; j ++){
-                if (aux.getId().equals(comentarios.get(j).getId()) || comentarios.get(j).getId() == null){
+            for (int j = i +1 ; j < comentarios.size() ; j ++){
+                if (aux.getId()==comentarios.get(j).getId() || comentarios.get(j).getId() == null){
                     comentarios.remove(j);
                     j--;
                 }
             }
         }
-                            System.out.println("hay # de comentarios despues del for:"+comentarios.size());
+        System.out.println("hay # de comentarios despues del for:"+comentarios.size());
         return comentarios;
     }
 
