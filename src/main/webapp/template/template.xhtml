@@ -25,10 +25,11 @@
                     font-size: medium">
       </h:outputText>
       <!-- Busqueda /para el boton buscar required="true" -->
-      <p:inputText id="campobusqueda" />
+      <p:inputText id="campobusqueda" value="#{localController.busqueda}"/>
       <p:commandButton 
                        icon="ui-icon-search"
-                       action="buscar"/>
+                       action="buscar"
+                       actionListener="#{localController.buscarPorNombre()}"/>
       <h:outputText rendered="#{loginController.loged}"
                value="Bienvenido #{loginController.username}"
                style="font-size: medium"/>

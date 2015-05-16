@@ -226,9 +226,7 @@ public class LocalServiceImpl implements LocalService{
     }
 
     @Override
-    public List<Local> findByNombre(String nombre,Boolean admin) {
-        if(admin)
-            return localRepository.findByNombreAdmin(nombre);
+    public List<Local> findByNombre(String nombre) {
         return localRepository.findByNombre(nombre);
     }
 

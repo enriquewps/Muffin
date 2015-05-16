@@ -469,8 +469,8 @@ String[] bicipumaArray ={
     }
 
     
-    public List<Local> buscarPorNombre(String busqueda,Boolean admin){
-        this.locales=localService.findByNombre(busqueda,admin);
+    public List<Local> buscarPorNombre(){
+        this.locales=localService.findByNombre(busqueda);
          simpleModel = new DefaultMapModel(); 
         for(Local l:this.locales){
             LatLng coord = new LatLng(l.getLatitud(), l.getLongitud()); 

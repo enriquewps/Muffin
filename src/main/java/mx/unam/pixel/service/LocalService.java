@@ -37,7 +37,7 @@ public interface LocalService {
     
     List<Local> findByPunto(Double lat,Double lon);
     
-    List<Local> findByNombre(String nombre,Boolean admin);
+    List<Local> findByNombre(String nombre);
 
     List<Pumabus> findAllPumabus();
 
