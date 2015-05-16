@@ -51,6 +51,7 @@ public class Facultad implements Serializable {
     private Integer estacionamiento; 
 
     public Integer getEstacionamiento() {
+        if (estacionamiento == null)estacionamiento = 0;
         return estacionamiento;
     }
 
@@ -59,6 +60,7 @@ public class Facultad implements Serializable {
     }
     
     public String getNombreFac() {
+        if (nombreFac == null)nombreFac = "";
         return nombreFac;
     }
 
@@ -67,6 +69,7 @@ public class Facultad implements Serializable {
     }
 
     public List<Pumabus> getPumabus() {
+        if (pumabus == null)pumabus = new ArrayList<Pumabus>();
         return pumabus;
     }
 
@@ -75,6 +78,7 @@ public class Facultad implements Serializable {
     }
 
     public List<BiciPuma> getBiciPuma() {
+        if (biciPuma == null)biciPuma = new ArrayList<BiciPuma>();
         return biciPuma;
     }
 
@@ -83,6 +87,7 @@ public class Facultad implements Serializable {
     }
 
     public List<Metro> getMetro() {
+        if (metro == null)metro = new ArrayList<Metro>();
         return metro;
     }
 
@@ -91,6 +96,7 @@ public class Facultad implements Serializable {
     }
 
     public List<Metrobus> getMetroBus() {
+        if (metroBus == null)metroBus = new ArrayList<Metrobus>();
         return metroBus;
     }
 
@@ -165,6 +171,7 @@ public class Facultad implements Serializable {
 
     public String getTipoEstacionamiento(){
         String est = "";
+        if (estacionamiento == null)estacionamiento = 0;
         switch (estacionamiento){
             case 0:
                 return "Sin Estacionamiento   ";

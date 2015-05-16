@@ -98,7 +98,7 @@ public class Local implements Serializable {
     private Integer calificacion;
     
     @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.DETACH,
             mappedBy = "local",
             orphanRemoval = true)
     private List<Comentario> comentarios;    
@@ -222,6 +222,7 @@ public class Local implements Serializable {
 
     public Facultad getFacultad() {
         if (facultad == null)facultad = new Facultad();
+        
         return facultad;
     }
 
