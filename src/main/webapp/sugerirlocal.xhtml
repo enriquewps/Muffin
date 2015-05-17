@@ -98,6 +98,8 @@
                            style="font-size: medium;
                           font-weight: bolder"/>
             <p:selectOneMenu id="categoria" value="#{localController.categoria.nombre}" style="width:160px">
+                              <p:ajax listener="#{localController.ajaxListener()}"/>
+
                 <f:selectItem itemLabel="Seleccione categoria" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{localController.categorias}" />
             </p:selectOneMenu>
@@ -140,6 +142,8 @@
                            style="font-size: medium;
                           font-weight: bolder"/>
             <p:selectOneMenu id="especialidad" value="#{localController.local.recomendacion.nombre}" style="width:160px">
+                              <p:ajax listener="#{localController.ajaxListener()}"/>
+
                 <f:selectItem itemLabel="Seleccione especialidad" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{localController.categorias}" />
             </p:selectOneMenu>
@@ -150,6 +154,8 @@
                            style="font-size: medium;
                           font-weight: bolder"/>
             <p:selectOneMenu id="facultad" value="#{localController.facultad}" style="width:160px">
+                              <p:ajax listener="#{localController.ajaxListener()}"/>
+
                 <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>

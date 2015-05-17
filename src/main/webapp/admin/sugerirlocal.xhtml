@@ -149,6 +149,7 @@
                           font-weight: bolder"/>
             <p:selectOneMenu id="facultad" value="#{localController.busqueda}" style="width:160px">
                 <f:selectItem itemLabel="Seleccione Facultad" itemValue="" noSelectionOption="false" />
+                
                 <f:selectItems value="#{localController.facultades}" var="_fac" itemLabel="#{_fac.nombreFac}" itemValue="#{_fac.nombreFac}" />
             </p:selectOneMenu>
             
@@ -223,7 +224,7 @@
                                  font-weight: bolder;
                                  font-size: medium;
                                  background-color: red"
-                                             onclick="window.location.replace('index.xhtml')"
+                                             action="inicio"
 							/>	
 		  
                             <p:commandButton ajax="false"   

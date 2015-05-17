@@ -254,21 +254,14 @@ String[] bicipumaArray ={
 ,"Economía"
 ,"Filosofía y Letras"
 ,"Ingeniería"
-,"edicina"
-,"edicina Veterinaria y Zootecnia"
-,"dontología"
+,"Medicina"
+,"Medicina Veterinaria y Zootecnia"
+,"Odontología"
 ,"Psicología"
 ,"Trabajo Social"
 ,"Química"
 ,"Zona Cultural"
-,"ciencias"
-,"onta"
-,"UAC"
-,"MUCA"
-,"Ciencias 0"
-,"Ciencias 03"
-,"Ciencias 2"
-,"Ciencias1"
+
     };
     
     
@@ -365,10 +358,7 @@ String[] bicipumaArray ={
        if (local.getCategorias() == null)local.setCategorias(new ArrayList<Categoria>());
        
        local.getCategorias().add(categoria);
-       categoria = new Categoria();
-        //localService.guardaCategoria(categoria);
-        //this.local.getCategorias().add(categoria);
-        //this.categoria=new Categoria();   
+       categoria = new Categoria(); 
     }
     
     /**
@@ -393,7 +383,7 @@ String[] bicipumaArray ={
         
         this.locales=localService.findAll();
         this.local=new Local();
-               this.local.setCalificacion(5);
+        this.local.setCalificacion(5);
         this.local.setCategorias(new ArrayList<Categoria>());
         
         
@@ -880,6 +870,11 @@ String[] bicipumaArray ={
     
     
     public void ajaxListener(){};
+    
+    public void paraSugerir(){
+        local = new Local();
+        
+    }
     
     
 }

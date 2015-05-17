@@ -47,8 +47,9 @@
                       action="registrarse"/>
 
           <p:menuitem value="Sugerir Local"
-                                    rendered ="#{loginController.loged}"
-                      action="sugerir"/>
+                      rendered ="#{loginController.loged}"
+                      action="sugerir"
+                      actionListener="#{localController.paraSugerir()}"/>
 
           <p:menuitem rendered="#{loginController.admin}"
                       value="Panel de Administración" 
