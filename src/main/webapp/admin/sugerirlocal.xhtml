@@ -103,7 +103,8 @@
             <h:outputText id="rango" value="Rango de precios: "
                           style="font-size: medium;
                           font-weight: bolder"/>
-            <p:slider  minValue="#{localController.categoria.precioMenor}" maxValue="#{localController.categoria.precioMayor}" 
+            <p:slider  
+                minValue="#{localController.categoria.precioMenor}" maxValue="#{localController.categoria.precioMayor}" 
                               for="inferior,superior" 
                               display="rango" style="width: 250px" 
                               range="true" 

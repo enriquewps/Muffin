@@ -351,7 +351,6 @@ String[] bicipumaArray ={
      * del local que esta por añadirse
      */
     public void guardarCategoria(){
-       System.out.println("gaurdando categoria "+categoria.getNombre()+ " facultades "+ facultades.size());
        if(local == null){this.local=new Local();
        this.local.setCalificacion(5);
        }
@@ -873,7 +872,7 @@ String[] bicipumaArray ={
     
     public void paraSugerir(){
         local = new Local();
-        
+        categoria = new Categoria();
     }
     
     
