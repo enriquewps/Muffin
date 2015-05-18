@@ -322,14 +322,18 @@ public class Local implements Serializable {
      * @return
      */
     public String getFotoUrl(){ 
+        try{
             if(this!=null && this.getFoto()!=null){
                 //BASE64.Encoder encoder = new BASE64Encoder();
                 String imageString = Base64.getEncoder().encodeToString(this.getFoto());
                 return   imageString;
             }
             else{
-                return null;
+                return "";
             }
+        }catch(Exception e){
+            return "";
+        }
         }
     
     /**

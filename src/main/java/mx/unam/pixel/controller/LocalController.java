@@ -248,18 +248,18 @@ String[] bicipumaArray ={
         "Anexo de Ingenieria"
 ,"Arquitectura"
 ,"Ciencias"
-,"Ciencias Políticas y Sociales"
-,"Contaduría y Administración"
+,"Ciencias Politicas y Sociales"
+,"Contaduria y Administracion"
 ,"Derecho"
-,"Economía"
-,"Filosofía y Letras"
-,"Ingeniería"
+,"Economia"
+,"Filosofia y Letras"
+,"Ingenieria"
 ,"Medicina"
 ,"Medicina Veterinaria y Zootecnia"
-,"Odontología"
-,"Psicología"
+,"Odontologia"
+,"Psicologia"
 ,"Trabajo Social"
-,"Química"
+,"Quimica"
 ,"Zona Cultural"
 
     };
@@ -723,6 +723,7 @@ String[] bicipumaArray ={
     }
 
     public List<Facultad> getFacultades() {
+        if (facultad == null || facultades.size()== 0)inicializaFacultades();
         return facultades;
     }
 
