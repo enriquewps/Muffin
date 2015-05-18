@@ -90,6 +90,7 @@ public class Local implements Serializable {
     }
 
     public void setBano(Boolean bano) {
+        
         this.bano = bano;
     }
     
@@ -166,6 +167,19 @@ public class Local implements Serializable {
     }
 
     public void setFoto(byte[] foto) {
+        try{
+            if(this!=null ){
+                //BASE64.Encoder encoder = new BASE64Encoder();
+                String imageString = Base64.getEncoder().encodeToString(foto);
+                
+            }
+            else{
+                return ;
+            }
+        }catch(Exception e){
+            this.foto = null;
+            return ;
+        }
         this.foto = foto;
     }
     

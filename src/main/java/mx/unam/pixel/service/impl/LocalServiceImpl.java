@@ -310,6 +310,15 @@ return facultadRepository.findAll();
     @Override
     public void guardaFacultad(Facultad facultad) {
 
+        for (BiciPuma bp:facultad.getBiciPuma())
+            bicipumaRepository.save(bp);
+       for (Pumabus bp:facultad.getPumabus())
+            pumabusRepository.save(bp);
+       for (Metro bp:facultad.getMetro())
+            metroRepository.save(bp);
+       for (Metrobus bp:facultad.getMetroBus())
+            metrobusRepository.save(bp);
+        
 facultadRepository.save(facultad);
     }
 

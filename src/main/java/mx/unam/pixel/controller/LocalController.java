@@ -341,6 +341,7 @@ String[] bicipumaArray ={
         top = getTop();
        
         facultades = localService.findAllFacultades();
+        if (facultades == null || facultades.size() == 0 ) inicializaFacultades();
         
         simpleModel = new DefaultMapModel(); 
 
@@ -875,5 +876,297 @@ String[] bicipumaArray ={
         categoria = new Categoria();
     }
     
+    
+    private void inicializaFacultades(){
+        ArrayList<BiciPuma> bp = new ArrayList<BiciPuma>();
+        ArrayList<Metro> m = new ArrayList<Metro>();
+        ArrayList<Metrobus> mb = new ArrayList<Metrobus>();
+        ArrayList<Pumabus> pb = new ArrayList<Pumabus>();
+        
+                
+        for (int i = 0, l = bicipumaArray.length; i < l ; i ++){
+            BiciPuma bpaux = new BiciPuma();
+            bpaux.setName(bicipumaArray[i]);
+            bp.add(bpaux);
+        }
+
+        for (int i = 0, l = metrobusArray.length; i < l ; i ++){
+            Metrobus bpaux = new Metrobus();
+            bpaux.setNombre(metrobusArray[i]);
+            mb.add(bpaux);
+        }
+
+        for (int i = 0, l = pumabusArray.length; i < l ; i ++){
+            Pumabus bpaux = new Pumabus();
+            bpaux.setEstacion(pumabusArray[i]);
+            pb.add(bpaux);
+        }
+        
+        Metro cu = new Metro();
+        cu.setNombre("universidad");
+                Metro copilco = new Metro();
+        copilco.setNombre("copilco");
+        
+        
+        Facultad f = new Facultad();
+        f.setNombreFac(facultadArray[0]);
+        f.setEstacionamiento(3);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        //f.getBiciPuma().add();
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(46));
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+
+        localService.guardaFacultad(f);
+        
+        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[1]);
+        f.setEstacionamiento(3);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(0));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(6));
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        
+        localService.guardaFacultad(f);
+                
+        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[2]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(3));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(17));  
+        f.getPumabus().add(pb.get(18));
+        f.getPumabus().add(pb.get(24));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        f.getMetro().add(cu);
+        
+        localService.guardaFacultad(f);
+                ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[3]);
+        f.setEstacionamiento(2);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(4));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(26));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        f.getMetro().add(cu);
+        
+        localService.guardaFacultad(f);
+                        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[4]);
+        f.setEstacionamiento(0);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(5));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(19));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+                                ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[5]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(10));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+
+                        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[6]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(1));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+                                ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[7]);
+        f.setEstacionamiento(2);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(8));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(9));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+                                        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[8]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(9));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(5));
+
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+                                      ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[9]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(10));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(13));
+
+        f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+                                       ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[10]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        //f.getBiciPuma().add(bp.get(10));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(14));
+
+        f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+                        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[11]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        //f.getBiciPuma().add(bp.get(10));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(12));
+
+        //f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        
+        localService.guardaFacultad(f);
+        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[12]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        //f.getBiciPuma().add(bp.get(10));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(8));
+
+        //f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        f.getMetroBus().add(mb.get(2));
+        
+        localService.guardaFacultad(f);
+                ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[13]);
+        f.setEstacionamiento(1);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        //f.getBiciPuma().add(bp.get(10));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(20));
+
+        //f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        f.getMetroBus().add(mb.get(1));
+        
+        localService.guardaFacultad(f);
+                        ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[14]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        f.getBiciPuma().add(bp.get(11));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(3));
+
+        //f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        //f.getMetroBus().add(mb.get(1));
+        
+        localService.guardaFacultad(f);
+                                ////CAMBIOOOO
+         f = new Facultad();
+        f.setNombreFac(facultadArray[15]);
+        f.setEstacionamiento(4);
+
+
+        f.setBiciPuma(new ArrayList<BiciPuma>());
+        //f.getBiciPuma().add(bp.get(11));
+        f.setPumabus(new ArrayList<Pumabus>());
+        f.getPumabus().add(pb.get(28));
+        f.getPumabus().add(pb.get(29));
+
+        //f.getMetro().add(copilco);
+        
+        f.setMetroBus(new ArrayList<Metrobus>());
+        f.getMetroBus().add(mb.get(0));
+        
+        localService.guardaFacultad(f);
+        
+        
+        
+        facultades = localService.findAllFacultades();
+    }
     
 }
